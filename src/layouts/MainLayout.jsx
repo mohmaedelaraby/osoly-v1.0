@@ -1,20 +1,14 @@
-
 import { Outlet } from "react-router-dom";
+import "../assets/genric-styles/mainLayout.css";
+import SideBar from "../components/sidebar/SideBar";
 
 const MainLayout = () => {
-  //const [clientKey, _] = useSessionStorage("clientKey", 0);
   return (
-    <div className="">
-      <div className="fixed">
-        hi im main
+      <div className="homepage">
+        <SideBar/>
+        <Outlet/>
       </div>
-      <div className="page-wrapper">
-      hi im main
-        <div className="page-container min-h-screen">
-          <Outlet/>
-        </div>
-      </div>
-    </div>
+    
   );
 };
 
