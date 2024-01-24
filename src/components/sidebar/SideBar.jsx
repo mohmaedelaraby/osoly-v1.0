@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useWindowDimensions from '../../customHooks/useWindowDimensions'
 import { sidebarItems } from '../../mocks/sideBar'
-import "../../assets/components/Sidebar.scss";
+import "../../assets/styels/components/Sidebar.scss";
 
 
 function SideBar() {
