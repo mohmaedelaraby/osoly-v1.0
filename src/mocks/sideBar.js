@@ -5,7 +5,14 @@ export const sidebarItems = [
         id: 1,
         name: "Dashboard",
         icon: img1,
-        isActive: false
+        isActive: false,
+        nestedChildern:[{
+            name:'mohemed'
+        },{
+            name:'mohemed'
+        },{
+            name:'mohemed'
+        }]
     },
 
     {

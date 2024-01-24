@@ -34,11 +34,8 @@ function SideBar() {
                         <div className="sidebar__items__container">
                             { // eslint-disable-next-line
                                 sidebarItems.map((item, i) => (
+                                    <>
                                     <div key={i} className={`${selected === i ? " sidebar__items__container__item active" : "sidebar__items__container__item"}`} onClick={() => setSelected(i)}>
-
-                                        <div className={
-                                            `${selected === i ? " active" : ""}`
-                                        }> </div>
 
                                         <div className="sidebar__items__container__item__icon">
                                             <img src={item.icon} alt="logo" className='sidebar__items__container__item__icon__img' />
@@ -46,6 +43,15 @@ function SideBar() {
 
                                         <div className="sidebar__items__container__item__text">{item.name}</div>
                                     </div>
+                                    <div >
+                                        {selected === i && item.nestedChildern? (item.nestedChildern.map((child,j)=>(
+                                            <>
+                                            <div>child {j} -- {child.name}</div>
+                                            </>
+                                        ))):(<></>)}
+                                    </div>
+                                    </>
+                                   
                                 ))}
 
                         </div>
