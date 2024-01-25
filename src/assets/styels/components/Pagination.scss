@@ -1,0 +1,13 @@
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pagination_prev{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.pagination_next{
+    gap: 8px;
+}
