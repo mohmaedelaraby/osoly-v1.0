@@ -3,6 +3,10 @@
     background-color: #F1F2F7;
     width: 15%;
     min-width: 15%;
+    @media screen and (max-width:768px) {
+        min-width: 20%;
+    }
+
 
     @media screen and (max-width:426px) {
         min-height: 100vh;
@@ -16,9 +20,7 @@
     }
 
     @media screen and (max-width:321px) {
-
         min-width: 66%;
-
     }
 
     &.non-display {
@@ -81,17 +83,17 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-                    margin: 20px 12px;
-                    padding: 12px;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    margin-bottom: 0;
+                    margin-top: 20px;
+                    padding: 8px;
                     border-radius: 10px;
-
 
                     &:hover {
                         background-color: rgba(112, 127, 221, 0.1);
                         transition: 0.1s all;
                     }
-
-
 
                     .sidebar__items__container__item__icon {
 
@@ -111,9 +113,9 @@
 
                     .sidebar__items__container__item__text {
 
-                        font-size: 16px;
-                        font-weight: 300;
-                        color: #273240;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: black;
                         padding-left: 12px;
 
                         @media screen and (max-width:768px) {
@@ -122,12 +124,29 @@
 
                     }
                 }
+                .sidebar__items__container_nested{
+                    margin-left: 24%;
+                    font-size: 14px;
+                    font-weight: 300;
+                    
+                    .sidebar__items__container_nested__item{
+                        color: black;
+                        margin-bottom: 4px;
+                        &:hover{
+                            transition: 0.1s all;
+                            font-weight: 500;
+                        }
+                    }
+                }
 
                 .active {
-                    margin: 20px 12px;
-                    padding: 12px;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    margin-bottom: 8px;
+                    margin-top: 20px;
                     border-radius: 10px;
                     background-color: rgba(112, 127, 221, 0.1);
+                    
                 }
             }
         }

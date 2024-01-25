@@ -43,10 +43,10 @@ function SideBar() {
 
                                         <div className="sidebar__items__container__item__text">{item.name}</div>
                                     </div>
-                                    <div >
+                                    <div className='sidebar__items__container_nested'>
                                         {selected === i && item.nestedChildern? (item.nestedChildern.map((child,j)=>(
                                             <>
-                                            <div>child {j} -- {child.name}</div>
+                                            <div className='sidebar__items__container_nested__item'>{child.name}</div>
                                             </>
                                         ))):(<></>)}
                                     </div>
