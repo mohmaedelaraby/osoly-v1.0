@@ -20,8 +20,11 @@ export const RootRoutes = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="/home" index element={<HomePage />} />
-        <Route path="/user-page" index element={<UserFormPage />} />
-        <Route path="/user-table" index element={<UserTablePage />} />
+        <Route path="/user" index element={<UserFormPage />} />
+        <Route path="/users" index element={<UserTablePage />} />
+        <Route path="/owners" index element={<>owners</>} />
+        <Route path="/ads" index element={<>ads</>} />
+        <Route path="/tickets" index element={<>tickets</>} />
       </Route>
     </Routes>
   );

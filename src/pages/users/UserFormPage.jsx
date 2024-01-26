@@ -1,7 +1,8 @@
+import UserForm from "../../modules/users/templete/UserForm"
 
 const UserFormPage = () => {
     return (
-      <div>UserFormPage sda</div>
+      <div>UserForm <UserForm/></div>
     )
   }
   

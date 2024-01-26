@@ -1,34 +1,63 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import React from "react";
 import { users } from "../../../mocks/users";
+import "../../../assets/styels/components/Table.scss";
+import { AddIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 const UserTable = () => {
+  const navigate=useNavigate()
   return (
     <>
-      <TableContainer>
-        <Table variant="simple">
-          <TableCaption>users table</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>Name</Th>
-              <Th>Email</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {
-                users.map((item,index)=>(
-                    <Tr>
-                    <Td>{item.id}</Td>
-                    <Td>{item.name}</Td>
-                    <Td >{item.email}</Td>
+      <CardHeader>
+        <div className="tabel_header">
+          <span className="tabel_header_text">
+            <Text>Users</Text>
+          </span>
+          <span className="tabel_header_addBtn">
+            <Button leftIcon={<AddIcon/>} className="tabel_header_addBtn_btn">Add User</Button>
+          </span>
+        </div>
+      </CardHeader>
+      <Card >
+        <Card >
+          <CardBody >
+            <TableContainer>
+              <Table className="table" variant="simple">
+                <Thead className="table_header">
+                  <Tr>
+                    <Th className="table_header_item" >ID</Th>
+                    <Th className="table_header_item">Name</Th>
+                    <Th className="table_header_item">Email</Th>
                   </Tr>
-                ))
-            }
-           
-          </Tbody>
-        </Table>
-      </TableContainer>
+                </Thead>
+                <Tbody className="table_body">
+                  {users.map((item, index) => (
+                    <Tr className="table_body_row" onClick={()=>{navigate('/user', { state: { id:item.id,name:item.name,email:item.email } })}}>
+                      <Td className="table_body_row_item">{item.id}</Td>
+                      <Td className="table_body_row_item">{item.name}</Td>
+                      <Td className="table_body_row_item">{item.email}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </CardBody>
+        </Card>
+      </Card>
     </>
   );
 };
