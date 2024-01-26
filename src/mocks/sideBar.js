@@ -10,6 +10,7 @@ export const sidebarItems = [
         icon: <IconDashboard/>,
         activeIcon: <IconDashboardActive/>,
         navTo:'/users',
+        activeRoutes:['/users','/user','/owner','/owners','/ad','/ads','/ticket','/tickets','unit'],
         isActive: false,
         nestedChildern:[{
             name:'users',

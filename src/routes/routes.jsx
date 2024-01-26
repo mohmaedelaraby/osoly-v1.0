@@ -28,6 +28,7 @@ export const RootRoutes = () => {
         <Route path="/owner" index element={<OwnersFormPage/>} />
         <Route path="/ads" index element={<>ads</>} />
         <Route path="/tickets" index element={<>tickets</>} />
+        <Route path="/settings" index element={<>settings</>} />
       </Route>
     </Routes>
   );

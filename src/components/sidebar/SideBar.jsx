@@ -71,11 +71,11 @@ function SideBar() {
                     <div
                       key={i}
                       className={`${
-                        selected === i
+                        selected === i || checkIsActive(item.activeRoutes)
                           ? " sidebar__items__container__item active"
                           : "sidebar__items__container__item"
                       }`}
-                      onClick={() => setSelected(i)}
+                      onClick={() => {setSelected(i); navigate (item.navTo)}}
                     >
                       <div className="sidebar__items__container__item__icon">
                         { selected === i ? item.activeIcon : item.icon}
@@ -87,7 +87,7 @@ function SideBar() {
                     </div>
 
                     <div className="sidebar__items__container_nested">
-                      {selected === i && item.nestedChildern ? (
+                      {(selected === i || checkIsActive(item.activeRoutes)) && item.nestedChildern ? (
                         item.nestedChildern.map((child, j) => (
                           <>
                             <div

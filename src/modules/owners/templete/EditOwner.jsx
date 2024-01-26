@@ -1,13 +1,13 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 
-const OwnerForm =()=> {
+const EditOwner =()=> {
 
   const {state} = useLocation();
   const { id, name,buildings } = state;
   return (
-    <div> -- {id} -- {name} </div>
+    <div> {id} -- {name} </div>
   )
 }
 
-export default OwnerForm
+export default EditOwner
