@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 
-const UserForm =()=> {
+const CreateUser =()=> {
 
   const {state} = useLocation();
   const { id, name,email } = state;
@@ -10,4 +10,4 @@ const UserForm =()=> {
   )
 }
 
-export default UserForm
+export default CreateUser

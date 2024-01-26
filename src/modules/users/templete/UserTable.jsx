@@ -3,6 +3,12 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Table,
   TableContainer,
   Tbody,
@@ -11,15 +17,19 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { users } from "../../../mocks/users";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import EditUser from "./EditUser";
 
 const UserTable = () => {
   const navigate=useNavigate()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <CardHeader>
@@ -28,7 +38,7 @@ const UserTable = () => {
             <Text>Users</Text>
           </span>
           <span className="tabel_header_addBtn">
-            <Button leftIcon={<AddIcon/>} className="tabel_header_addBtn_btn">Add User</Button>
+            <Button  onClick={onOpen} leftIcon={<AddIcon/>} className="tabel_header_addBtn_btn">Add User</Button>
           </span>
         </div>
       </CardHeader>
@@ -58,6 +68,16 @@ const UserTable = () => {
           </CardBody>
         </Card>
       </Card>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <EditUser/>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 };

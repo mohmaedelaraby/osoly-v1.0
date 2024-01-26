@@ -6,7 +6,7 @@ const EditOwner =()=> {
   const {state} = useLocation();
   const { id, name,buildings } = state;
   return (
-    <div> {id} -- {name} </div>
+    <div> {id} -- {name} --{buildings} </div>
   )
 }
 
