@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage/HomePage";
 import MainLayout from "../layouts/MainLayout";
 import UserFormPage from "../pages/users/UserFormPage";
 import UserTablePage from "../pages/users/UserTablePage";
+import OwenrsTablePage from "../pages/owners/OwenrsTablePage";
+import OwnersFormPage from "../pages/owners/OwnersFormPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ export const RootRoutes = () => {
         <Route path="/home" index element={<HomePage />} />
         <Route path="/user" index element={<UserFormPage />} />
         <Route path="/users" index element={<UserTablePage />} />
-        <Route path="/owners" index element={<>owners</>} />
+        <Route path="/owners" index element={<OwenrsTablePage/>} />
+        <Route path="/owner" index element={<OwnersFormPage/>} />
         <Route path="/ads" index element={<>ads</>} />
         <Route path="/tickets" index element={<>tickets</>} />
       </Route>

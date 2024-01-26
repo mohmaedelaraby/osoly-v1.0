@@ -6,7 +6,7 @@ const OwnerForm =()=> {
   const {state} = useLocation();
   const { id, name,buildings } = state;
   return (
-    <div> -- {id} -- {name} -- {buildings.map((item)=>(<>item - {item}</>))}</div>
+    <div> -- {id} -- {name} </div>
   )
 }
 

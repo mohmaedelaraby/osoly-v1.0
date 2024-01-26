@@ -1,5 +1,5 @@
 import { Card, CardBody } from "@chakra-ui/react";
-import "../../assets/styels/pages/UserTable.scss";
+import "../../assets/styels/genric-styles/table.scss";
 import OwnerTable from "../../modules/owners/templete/OwnerTable";
 /* import Pagination from "../../components/shared/Pagination";
 import { useState } from "react"; */

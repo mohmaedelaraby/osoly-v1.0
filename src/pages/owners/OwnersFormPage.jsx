@@ -2,7 +2,7 @@ import OwnerForm from "../../modules/owners/templete/OwnerForm"
 
 const OwnersFormPage = () => {
     return (
-      <div>UserForm <OwnerForm/></div>
+      <div>OwenerForm <OwnerForm/></div>
     )
   }
   
