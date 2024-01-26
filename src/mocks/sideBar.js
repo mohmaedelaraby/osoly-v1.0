@@ -17,16 +17,16 @@ export const sidebarItems = [
             navTo:'/users'
         },{
             name:'owners',
-            active:['/owner'],
+            active:['/owner','/owners'],
             navTo:'/owners'
         },{
             name:'ads',
-            active:['/ad'],
+            active:['/ad','/ads'],
             navTo:'/ads'
         },
         {
             name:'tickets',
-            active:['/ticket'],
+            active:['/ticket','/tickets'],
             navTo:'/tickets'
         }]
     },

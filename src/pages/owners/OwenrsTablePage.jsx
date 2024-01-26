@@ -1,10 +1,10 @@
 import { Card, CardBody } from "@chakra-ui/react";
-import UserTable from "../../modules/users/templete/UserTable";
-import "../../assets/styels/genric-styles/table.scss";
+import "../../assets/styels/pages/UserTable.scss";
+import OwnerTable from "../../modules/owners/templete/OwnerTable";
 /* import Pagination from "../../components/shared/Pagination";
 import { useState } from "react"; */
 
-const UserTablePage = () => {
+const OwenrsTablePage = () => {
   /* const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (page) => {
@@ -15,7 +15,7 @@ const UserTablePage = () => {
       <div className="table_container">
         <Card width="90%">
           <CardBody  marginBottom='24px'>
-            <UserTable/>
+            <OwnerTable/>
           </CardBody>
         </Card>
         {/*  {
@@ -31,4 +31,4 @@ const UserTablePage = () => {
   );
 };
 
-export default UserTablePage;
+export default OwenrsTablePage;

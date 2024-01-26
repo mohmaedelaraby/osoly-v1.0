@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import "../assets/genric-styles/mainLayout.css";
+import "../assets/styels/genric-styles/mainLayout.scss";
 import SideBar from "../components/sidebar/SideBar";
 
 const MainLayout = () => {
