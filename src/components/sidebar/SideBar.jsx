@@ -46,7 +46,6 @@ function SideBar() {
           <div className="sidebar__logo">
             <div className="sidebar__logo__container">
               <img src={logo} alt="logo" className="sidebar__logo__img" />
-              
             </div>
             {width < 427 ? (
               <div
@@ -84,7 +83,9 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        {selected === i || checkIsActive(item.activeRoutes)  ? item.activeIcon : item.icon}
+                        {selected === i || checkIsActive(item.activeRoutes)
+                          ? item.activeIcon
+                          : item.icon}
                       </div>
 
                       <div className="sidebar__items__container__item__text">

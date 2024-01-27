@@ -56,6 +56,17 @@
                     font-style: 14px;
                 }
             }
+
+            .form__input__container__colorpicker{
+                display: flex;
+            }
+            
+        }
+        .form__input__flex{
+            display: flex;
+            .form__input__container{
+                margin-right: 24px;
+            }
         }
 
         .form__btn__container {
@@ -132,7 +143,21 @@
                     font-style: 14px;
                 }
             }
+            .form__input__container__colorpicker{
+                display: flex;
+                border: 1px solid ;
+                border-color: inherit;
+                padding: 6px;
+                border-radius: 0.375rem;
+            }
         }
+        .form__input__flex{
+            display: flex;
+            .form__input__container{
+                margin-right: 24px;
+            }
+        }
+       
 
         .form__btn__container {
             width: 100%;

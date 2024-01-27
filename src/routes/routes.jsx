@@ -9,6 +9,7 @@ import OwnersFormPage from "../pages/owners/OwnersFormPage";
 import AdsTablePage from "../pages/ads/AdsTablePage";
 import AdsFormPage from "../pages/ads/AdsFormPage";
 import TicketsPage from "../pages/Tickets/TicketsPage";
+import SettingsPage from "../pages/settings/SettingsPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export const RootRoutes = () => {
         <Route path="/ads" index element={<AdsTablePage/>} />
         <Route path="/ad" index element={<AdsFormPage/>} />
         <Route path="/tickets" index element={<TicketsPage/>} />
-        <Route path="/settings" index element={<>settings</>} />
+        <Route path="/settings" index element={<SettingsPage/>} />
       </Route>
     </Routes>
   );
