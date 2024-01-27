@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useWindowDimensions from "../../customHooks/useWindowDimensions";
 import { sidebarItems } from "../../mocks/sideBar";
 import "../../assets/styels/components/Sidebar.scss";
@@ -11,6 +11,23 @@ function SideBar() {
   const location = useLocation();
   const [selected, setSelected] = useState(false);
   const [openSidebar, setopenSidebar] = useState(0);
+
+ /*  const [bgColor, setBgcolor] = useState("#f6f6f6a7");
+  const [bgFontColor, setbgFontcolor] = useState("#707FDD"); */
+  const [sbColor, setSbcolor] = useState("#F1F2F7");
+  const [sbFontColor, setSbFontcolor] = useState("black");
+
+
+
+  useEffect(()=>{
+  
+    if(sessionStorage.getItem("sbColor")){
+        setSbcolor(sessionStorage.getItem("sbColor"))
+    }
+    if(sessionStorage.getItem("sbFontColor")){
+        setSbFontcolor(sessionStorage.getItem("sbFontColor"))
+    }
+  },[])
 
   const { width } = useWindowDimensions();
   const checkIsActive = (activeRoutes) => {
@@ -41,6 +58,7 @@ function SideBar() {
         className={
           openSidebar === 0 && width < 427 ? "sidebar non-display" : "sidebar"
         }
+        style={{'background':sbColor}}
       >
         <div className="sidebar__container">
           <div className="sidebar__logo">
@@ -88,7 +106,7 @@ function SideBar() {
                           : item.icon}
                       </div>
 
-                      <div className="sidebar__items__container__item__text">
+                      <div className="sidebar__items__container__item__text" style={{'color':sbFontColor}}>
                         {item.name}
                       </div>
                     </div>
