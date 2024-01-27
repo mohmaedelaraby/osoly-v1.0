@@ -3,6 +3,7 @@ import useWindowDimensions from "../../customHooks/useWindowDimensions";
 import { sidebarItems } from "../../mocks/sideBar";
 import "../../assets/styels/components/Sidebar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/tmpLogo.jpg";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -12,16 +13,15 @@ function SideBar() {
   const [openSidebar, setopenSidebar] = useState(0);
 
   const { width } = useWindowDimensions();
-  const checkIsActive =  (activeRoutes) => {
-    let isActive =false
-    activeRoutes?.map((item)=>{
-      if(item === location.pathname){
-        isActive=true
+  const checkIsActive = (activeRoutes) => {
+    let isActive = false;
+    activeRoutes?.map((item) => {
+      if (item === location.pathname) {
+        isActive = true;
       }
-     
-    })
-    return isActive
-  }
+    });
+    return isActive;
+  };
   return (
     <>
       {width < 427 ? (
@@ -44,7 +44,10 @@ function SideBar() {
       >
         <div className="sidebar__container">
           <div className="sidebar__logo">
-            <img src="" alt="logo" className="sidebar__logo__img" />
+            <div className="sidebar__logo__container">
+              <img src={logo} alt="logo" className="sidebar__logo__img" />
+              <span className="sidebar__logo__text">Logo</span>
+            </div>
             {width < 427 ? (
               <div
                 className="sidebar__logo__closeicon"
@@ -75,10 +78,13 @@ function SideBar() {
                           ? " sidebar__items__container__item active"
                           : "sidebar__items__container__item"
                       }`}
-                      onClick={() => {setSelected(i); navigate (item.navTo)}}
+                      onClick={() => {
+                        setSelected(i);
+                        navigate(item.navTo);
+                      }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        { selected === i ? item.activeIcon : item.icon}
+                        {selected === i ? item.activeIcon : item.icon}
                       </div>
 
                       <div className="sidebar__items__container__item__text">
@@ -87,11 +93,14 @@ function SideBar() {
                     </div>
 
                     <div className="sidebar__items__container_nested">
-                      {(selected === i || checkIsActive(item.activeRoutes)) && item.nestedChildern ? (
+                      {(selected === i || checkIsActive(item.activeRoutes)) &&
+                      item.nestedChildern ? (
                         item.nestedChildern.map((child, j) => (
                           <>
                             <div
-                              onClick={()=>{navigate(child.navTo)}}
+                              onClick={() => {
+                                navigate(child.navTo);
+                              }}
                               className={`${
                                 checkIsActive(child.active)
                                   ? "sidebar__items__container_nested__item nested_active"
