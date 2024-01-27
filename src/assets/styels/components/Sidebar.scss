@@ -35,7 +35,6 @@
         .sidebar__logo {
             padding-bottom: 20px;
             padding-top: 20px;
-            padding-left: 40px;
             border-bottom: 1px solid #C8CBD9;
 
             @media screen and (max-width:768px) {
@@ -49,9 +48,11 @@
             .sidebar__logo__container{
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 
                 .sidebar__logo__img {
-                    height: 30px;
+                    height: auto;
+                    max-height: 50px;
                     cursor: pointer;
                 }
                 .sidebar__logo__text{

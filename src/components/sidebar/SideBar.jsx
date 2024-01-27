@@ -3,7 +3,7 @@ import useWindowDimensions from "../../customHooks/useWindowDimensions";
 import { sidebarItems } from "../../mocks/sideBar";
 import "../../assets/styels/components/Sidebar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/tmpLogo.jpg";
+import logo from "../../assets/originallogo.png";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -46,7 +46,7 @@ function SideBar() {
           <div className="sidebar__logo">
             <div className="sidebar__logo__container">
               <img src={logo} alt="logo" className="sidebar__logo__img" />
-              <span className="sidebar__logo__text">Logo</span>
+              
             </div>
             {width < 427 ? (
               <div
@@ -84,7 +84,7 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        {selected === i ? item.activeIcon : item.icon}
+                        {selected === i || checkIsActive(item.activeRoutes)  ? item.activeIcon : item.icon}
                       </div>
 
                       <div className="sidebar__items__container__item__text">
