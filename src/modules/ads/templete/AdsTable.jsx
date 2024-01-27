@@ -38,7 +38,7 @@ const AdsTable = () => {
             <Text>Ads</Text>
           </span>
           <span className="tabel_header_addBtn">
-            <Button  onClick={onOpen} leftIcon={<AddIcon/>} className="tabel_header_addBtn_btn">Add User</Button>
+            <Button  onClick={onOpen} leftIcon={<AddIcon/>} className="tabel_header_addBtn_btn">Add Ad</Button>
           </span>
         </div>
       </CardHeader>
@@ -71,7 +71,6 @@ const AdsTable = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <CreateAd/>

@@ -1,0 +1,68 @@
+@import '../../../assets/styels/vars.scss';
+
+.form {
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+
+    .form__header {
+        color: $font-color;
+        font-size: $header-text;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+
+    .form__input {
+        .form__input__container {
+            margin-bottom: 16px;
+
+            .form__input__container__label {
+                color: $font-color;
+                font-size: $paragraph-text;
+                font-weight: bold;
+            }
+
+            .form__input__container__input {
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+
+            .form__input__container__warn {
+                display: flex;
+                flex-direction: column;
+                height: 21px;
+            }
+            .form__input__container__uploadFile{
+                text-align: center;
+                cursor: pointer;
+                border: none;
+                width: 31%;
+            }
+            .form__input__container__image{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-direction: column;
+            }
+            .form__input__container__image__remove{
+                color: red;
+                font-style: 14px;
+            }
+        }
+    }
+
+    .form__btn__container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+
+        .form__btn {
+            padding: 6px 36px;
+            background-color: $btn-color;
+            color: $font-color;
+        }
+    }
+
+}
