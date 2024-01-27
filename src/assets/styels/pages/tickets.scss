@@ -1,0 +1,13 @@
+.tickets_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    .tickets_item{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}
