@@ -1,8 +1,12 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 
-const EditUser = ()=> {
+const EditUser =()=> {
+
+  const {state} = useLocation();
+  const { id, name,email } = state;
   return (
-    <div>EditUser</div>
+    <div> -- {id} -- {name} -- {email}</div>
   )
 }
 

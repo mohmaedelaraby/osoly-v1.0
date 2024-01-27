@@ -1,12 +1,8 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
 
-const CreateUser =()=> {
-
-  const {state} = useLocation();
-  const { id, name,email } = state;
+const CreateUser = ()=> {
   return (
-    <div> -- {id} -- {name} -- {email}</div>
+    <div>CreateUser</div>
   )
 }
 

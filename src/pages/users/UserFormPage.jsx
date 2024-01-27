@@ -1,8 +1,8 @@
-import CreateUser from "../../modules/users/templete/CreateUser"
+import EditUser from "../../modules/users/templete/EditUser"
 
 const UserFormPage = () => {
     return (
-      <div>UserForm <CreateUser/></div>
+      <div>UserForm <EditUser/></div>
     )
   }
   
