@@ -34,6 +34,7 @@ export const RootRoutes = () => {
         <Route path="/ad" index element={<AdsFormPage/>} />
         <Route path="/tickets" index element={<TicketsPage/>} />
         <Route path="/settings" index element={<SettingsPage/>} />
+        <Route path="/building" index element={<>building </>} />
       </Route>
     </Routes>
   );

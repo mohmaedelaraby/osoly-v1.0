@@ -125,6 +125,7 @@ function SideBar() {
                                   ? "sidebar__items__container_nested__item nested_active"
                                   : "sidebar__items__container_nested__item "
                               }`}
+                              style={{'color':sbFontColor}}
                             >
                               {child.name}
                             </div>
