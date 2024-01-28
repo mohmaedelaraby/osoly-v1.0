@@ -10,6 +10,8 @@ import AdsTablePage from "../pages/ads/AdsTablePage";
 import AdsFormPage from "../pages/ads/AdsFormPage";
 import TicketsPage from "../pages/Tickets/TicketsPage";
 import SettingsPage from "../pages/settings/SettingsPage";
+import AuthLayout from "../layouts/AuthLayout";
+import LoginPage from "../pages/Auth/LoginPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -28,13 +30,17 @@ export const RootRoutes = () => {
         <Route path="/home" index element={<HomePage />} />
         <Route path="/user" index element={<UserFormPage />} />
         <Route path="/users" index element={<UserTablePage />} />
-        <Route path="/owners" index element={<OwenrsTablePage/>} />
-        <Route path="/owner" index element={<OwnersFormPage/>} />
-        <Route path="/ads" index element={<AdsTablePage/>} />
-        <Route path="/ad" index element={<AdsFormPage/>} />
-        <Route path="/tickets" index element={<TicketsPage/>} />
-        <Route path="/settings" index element={<SettingsPage/>} />
+        <Route path="/owners" index element={<OwenrsTablePage />} />
+        <Route path="/owner" index element={<OwnersFormPage />} />
+        <Route path="/ads" index element={<AdsTablePage />} />
+        <Route path="/ad" index element={<AdsFormPage />} />
+        <Route path="/tickets" index element={<TicketsPage />} />
+        <Route path="/settings" index element={<SettingsPage />} />
         <Route path="/building" index element={<>building </>} />
+      </Route>
+
+      <Route path="login" element={<AuthLayout />}>
+        <Route index element={<LoginPage />} />
       </Route>
     </Routes>
   );
