@@ -1,9 +1,20 @@
 .review_contianer{
     padding: 8px 16px;
     border-radius: 20px;
-    background-color: #FF0000;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.solved{
+    background-color: rgb(2, 187, 2);
+}
+.canceled{
+    background-color: rgb(187, 2, 2);
+}
+.processsing{
+    background-color: rgb(187, 156, 2);
+}
+.review{
+    background-color: rgb(26, 146, 226);
 }
