@@ -25,7 +25,7 @@ const EditUser = () => {
     initialValues: initialValues,
     validationSchema: userValidation,
     onSubmit: (values) => {
-      console.log(values);
+      console.log(values ,id);
     },
   });
   return (

@@ -11,28 +11,19 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
-  Tr,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ownerValidation, propertyValidation } from "../validation/schema";
+import { useLocation } from "react-router-dom";
+import {  propertyValidation } from "../validation/schema";
 import { AddIcon } from "@chakra-ui/icons";
-import { building } from "../../../mocks/building";
 import UnitsTable from "../../units/templete/UnitsTable";
 
 const EditProperty = () => {
   const { state } = useLocation();
   const { id, name, desc } = state;
-  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialValues = {

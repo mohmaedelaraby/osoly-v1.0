@@ -2,38 +2,20 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   FormControl,
   FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
-  Tr,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ownerValidation } from "../validation/schema";
-import { AddIcon } from "@chakra-ui/icons";
-import { building } from "../../../mocks/building";
 import PropertyTable from "../../propreties/templete/PropertiesTable";
 
 const EditOwner = () => {
   const { state } = useLocation();
   const { id, name } = state;
-  const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialValues = {
     id: `${id}`,
