@@ -1,9 +1,13 @@
 import { CheckIcon, CloseIcon, DeleteIcon, WarningIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import React ,{ useEffect}from "react";
 import '../style/ticketCard.scss'
 
-const TicketCard = ({ item }) => {
+function TicketCard({ item }) {
+ 
+  useEffect(()=>{
+    console.log("first",item)
+  },[item])
   return (
     <Card width='75%'>
       <CardHeader>
@@ -12,21 +16,19 @@ const TicketCard = ({ item }) => {
             <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
 
             <Box>
-              <Heading size="sm">Segun Adebayo</Heading>
-              <Text>Creator, Chakra UI</Text>
+              <Heading size="sm">{item.name}</Heading>
+              <Text>{item.type}</Text>
             </Box>
           </Flex>
           <div className="review_contianer">
-            Under Review
+            {item.status}
           </div>
          
         </Flex>
       </CardHeader>
       <CardBody>
         <Text>
-          With Chakra UI, I wanted to sync the speed of development with the
-          speed of design. I wanted the developer to be just as excited as the
-          designer to create a screen.
+          {item.desc}
         </Text>
       </CardBody>
      

@@ -3,25 +3,29 @@ export const tickets = [{
     name: 'ticket 1',
     src:'https://cdn.pixabay.com/photo/2024/01/15/19/40/animal-8510775_1280.jpg',
     desc: "desc for ticket balaln dsap dk dowd fpglo lesdfo lasso rof sa darmmd oapmm",
-    status: 1
+    status: 1,
+    type:1
 },
 {
     id: 2,
     name: 'ticket 2',
     src:'https://cdn.pixabay.com/photo/2024/01/15/19/40/animal-8510775_1280.jpg',
     desc: "desc for ticket balaln dsap dk dowd fpglo lesdfo lasso rof sa darmmd oapmm",
-    status: 2
+    status: 2,
+    type:2
 },
 {
     id: 3,
     name: 'ticket 3',
     src:'https://cdn.pixabay.com/photo/2024/01/15/19/40/animal-8510775_1280.jpg',
     desc: "desc for ticket balaln dsap dk dowd fpglo lesdfo lasso rof sa darmmd oapmm",
-    status: 3
+    status: 3,
+    type:1
 }, {
     id: 4,
     name: 'ticket 4',
     src:'https://cdn.pixabay.com/photo/2024/01/15/19/40/animal-8510775_1280.jpg',
     desc: "desc for ticket balaln dsap dk dowd fpglo lesdfo lasso rof sa darmmd oapmm",
-    status: 4
+    status: 4,
+    type:3
 }]
