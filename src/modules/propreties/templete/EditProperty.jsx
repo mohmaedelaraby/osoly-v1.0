@@ -27,6 +27,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ownerValidation, propertyValidation } from "../validation/schema";
 import { AddIcon } from "@chakra-ui/icons";
 import { building } from "../../../mocks/building";
+import UnitsTable from "../../units/templete/UnitsTable";
 
 const EditProperty = () => {
   const { state } = useLocation();
@@ -134,44 +135,7 @@ const EditProperty = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <TableContainer>
-                            <Table className="table" variant="simple">
-                              <Thead className="table_header">
-                                <Tr>
-                                  <Th className="table_header_item">ID</Th>
-                                  <Th className="table_header_item">Name</Th>
-                                  <Th className="table_header_item">desc</Th>
-                                </Tr>
-                              </Thead>
-                              <Tbody className="table_body">
-                                {building.map((item, index) => (
-                                  <Tr
-                                    className="table_body_row"
-                                    onClick={() => {
-                                      navigate("/building", {
-                                        state: {
-                                          id: item.id,
-                                          name: item.name,
-                                          desc: item.desc,
-                                          units: item.units,
-                                        },
-                                      });
-                                    }}
-                                  >
-                                    <Td className="table_body_row_item">
-                                      {item.id}
-                                    </Td>
-                                    <Td className="table_body_row_item">
-                                      {item.name}
-                                    </Td>
-                                    <Td className="table_body_row_item">
-                                      {item.desc}
-                                    </Td>
-                                  </Tr>
-                                ))}
-                              </Tbody>
-                            </Table>
-                          </TableContainer>
+                          <UnitsTable/>
                         </CardBody>
                       </Card>
                     </Card>

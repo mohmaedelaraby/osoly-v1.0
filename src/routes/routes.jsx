@@ -14,6 +14,8 @@ import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../pages/Auth/LoginPage";
 import PropertiesTablePage from "../pages/Properties/PropertiesPage";
 import PropertiesFormPage from "../pages/Properties/PropertiesFormPage";
+import UnitPage from "../pages/units/UnitPage";
+import UnitFormPage from "../pages/units/UnitFormPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -40,6 +42,8 @@ export const RootRoutes = () => {
         <Route path="/settings" index element={<SettingsPage />} />
         <Route path="/propreties" index element={<PropertiesTablePage/>} />
         <Route path="/property" index element={<PropertiesFormPage/>} />
+        <Route path="/units" index element={<UnitPage/>} />
+        <Route path="/unit" index element={<UnitFormPage/>} />
       </Route>
 
       <Route path="login" element={<AuthLayout />}>
