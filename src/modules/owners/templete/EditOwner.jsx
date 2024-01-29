@@ -27,6 +27,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ownerValidation } from "../validation/schema";
 import { AddIcon } from "@chakra-ui/icons";
 import { building } from "../../../mocks/building";
+import PropertyTable from "../../propreties/templete/PropertiesTable";
 
 const EditOwner = () => {
   const { state } = useLocation();
@@ -112,75 +113,7 @@ const EditOwner = () => {
               <div className="formWithTable_container__table">
                 <Card>
                   <CardBody>
-                    <CardHeader>
-                      <div className="tabel_header">
-                        <span className="tabel_header_text">
-                          <Text>Buildings</Text>
-                        </span>
-                        <span className="tabel_header_addBtn">
-                          <Button
-                            leftIcon={<AddIcon />}
-                            className="tabel_header_addBtn_btn"
-                            onClick={onOpen}
-                          >
-                            Add Building
-                          </Button>
-                        </span>
-                      </div>
-                    </CardHeader>
-                    <Card>
-                      <Card>
-                        <CardBody>
-                          <TableContainer>
-                            <Table className="table" variant="simple">
-                              <Thead className="table_header">
-                                <Tr>
-                                  <Th className="table_header_item">ID</Th>
-                                  <Th className="table_header_item">Name</Th>
-                                  <Th className="table_header_item">desc</Th>
-                                </Tr>
-                              </Thead>
-                              <Tbody className="table_body">
-                                {building.map((item, index) => (
-                                  <Tr
-                                    className="table_body_row"
-                                    onClick={() => {
-                                      navigate("/building", {
-                                        state: {
-                                          id: item.id,
-                                          name: item.name,
-                                          desc: item.desc,
-                                          units: item.units,
-                                        },
-                                      });
-                                    }}
-                                  >
-                                    <Td className="table_body_row_item">
-                                      {item.id}
-                                    </Td>
-                                    <Td className="table_body_row_item">
-                                      {item.name}
-                                    </Td>
-                                    <Td className="table_body_row_item">
-                                      {item.desc}
-                                    </Td>
-                                  </Tr>
-                                ))}
-                              </Tbody>
-                            </Table>
-                          </TableContainer>
-                        </CardBody>
-                      </Card>
-                    </Card>
-                    <Modal isOpen={isOpen} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent>
-                        <ModalCloseButton />
-                        <ModalBody>
-                          <>create build</>
-                        </ModalBody>
-                      </ModalContent>
-                    </Modal>
+                    <PropertyTable/>
                   </CardBody>
                 </Card>
               </div>

@@ -12,6 +12,8 @@ import TicketsPage from "../pages/Tickets/TicketsPage";
 import SettingsPage from "../pages/settings/SettingsPage";
 import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../pages/Auth/LoginPage";
+import PropertiesTablePage from "../pages/Properties/PropertiesPage";
+import PropertiesFormPage from "../pages/Properties/PropertiesFormPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -36,7 +38,8 @@ export const RootRoutes = () => {
         <Route path="/ad" index element={<AdsFormPage />} />
         <Route path="/tickets" index element={<TicketsPage />} />
         <Route path="/settings" index element={<SettingsPage />} />
-        <Route path="/building" index element={<>building </>} />
+        <Route path="/propreties" index element={<PropertiesTablePage/>} />
+        <Route path="/property" index element={<PropertiesFormPage/>} />
       </Route>
 
       <Route path="login" element={<AuthLayout />}>
