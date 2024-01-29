@@ -81,6 +81,12 @@
                 background-color: $btn-color;
                 color: $font-color;
             }
+            .form__btn__delete{
+                margin-left: 12px;
+                border: 1px solid red !important;
+                color: red !important;
+                background-color: white;
+            }
         }
 
     }
@@ -171,7 +177,17 @@
                 background-color: $btn-color;
                 color: $font-color;
             }
+            .form__btn__delete{
+                margin-left: 12px;
+                border: 1px solid red !important;
+                color: red !important;
+                background-color: white;
+            }
         }
 
     }
+}
+
+.from__card__full{
+    width: 100%;
 }

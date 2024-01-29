@@ -142,7 +142,10 @@ const EditAd = () => {
 
           <div className="form__btn__container">
             <Button className="form__btn " type="submit">
-              Add Ad
+              Edit
+            </Button>
+            <Button className="form__btn form__btn__delete ">
+              Delete
             </Button>
           </div>
         </form>

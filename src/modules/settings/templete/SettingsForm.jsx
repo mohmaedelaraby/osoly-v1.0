@@ -42,7 +42,7 @@ const SettingsForm = () => {
     <Card className="from__card">
       <CardBody>
         <form onSubmit={() => handleSubmit()} className="form">
-          <div className="form__header">Dashboard Settings -- {bgColor}</div>
+          <div className="form__header">Dashboard Settings</div>
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">

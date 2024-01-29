@@ -128,7 +128,7 @@ const CreateAd = () => {
 
       <div className="form__btn__container">
         <Button className="form__btn " type="submit">
-          Add Ad
+        Create
         </Button>
       </div>
     </form>

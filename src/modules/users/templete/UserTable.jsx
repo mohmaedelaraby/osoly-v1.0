@@ -7,7 +7,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Table,
   TableContainer,
@@ -71,7 +70,6 @@ const UserTable = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <CreateUser/>

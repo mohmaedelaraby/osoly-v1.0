@@ -186,10 +186,13 @@ const EditOwner = () => {
               </div>
             </div>
             <div className="form__btn__container">
-              <Button className="form__btn " type="submit">
-                Edit Owner
-              </Button>
-            </div>
+            <Button className="form__btn " type="submit">
+              Edit 
+            </Button>
+            <Button className="form__btn form__btn__delete ">
+              Delete
+            </Button>
+          </div>
           </form>
         </CardBody>
       </Card>
