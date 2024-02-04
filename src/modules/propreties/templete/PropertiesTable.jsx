@@ -86,7 +86,7 @@ const PropertyTable = () => {
       </Card>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
             <CreateProperty />
