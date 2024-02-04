@@ -41,8 +41,7 @@ const EditAd = () => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  {" "}
-                  Url -- {formik.values.url} --{id}{" "}
+                  Url 
                 </Text>
               </FormLabel>
 
