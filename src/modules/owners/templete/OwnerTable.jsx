@@ -7,7 +7,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Table,
   TableContainer,
@@ -84,8 +83,7 @@ const OwnerTable = () => {
       </Card>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
             <CreateOwner />
