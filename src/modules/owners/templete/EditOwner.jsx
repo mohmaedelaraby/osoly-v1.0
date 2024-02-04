@@ -2,7 +2,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   FormControl,
   FormLabel,
   Input,
@@ -18,7 +17,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { ownerValidation } from "../validation/schema";
 import PropertyTable from "../../propreties/templete/PropertiesTable";
-import { AddIcon } from "@chakra-ui/icons";
 
 const EditOwner = () => {
   const { state } = useLocation();

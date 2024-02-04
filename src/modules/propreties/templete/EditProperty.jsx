@@ -2,7 +2,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   FormControl,
   FormLabel,
   Input,
@@ -18,7 +17,6 @@ import { useFormik } from "formik";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import {  propertyValidation } from "../validation/schema";
-import { AddIcon } from "@chakra-ui/icons";
 import UnitsTable from "../../units/templete/UnitsTable";
 
 const EditProperty = () => {
