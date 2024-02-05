@@ -3,9 +3,25 @@ import IconDashboardActive from '../assets/icons/IconDashboardActive';
 import IconSettings from '../assets/icons/IconSettings';
 import IconSettingsActive from '../assets/icons/IconSettingsActive';
 export const sidebarItems = [
-
+    
     {
         id: 1,
+        name: "Enterprises",
+        icon: <IconDashboard/>,
+        activeIcon: <IconDashboardActive/>,
+        navTo:'/enterprises-users',
+        activeRoutes:['/enterprises-users','/enterprises-user'],
+        isActive: false,
+        nestedChildern:[{
+            name:'users',
+            active:['/enterprises-users','/enterprises-user'],
+            navTo:'/users'
+        }
+    ]
+    },
+
+    {
+        id: 2,
         name: "Osoly",
         icon: <IconDashboard/>,
         activeIcon: <IconDashboardActive/>,
@@ -33,7 +49,7 @@ export const sidebarItems = [
     },
 
     {
-        id: 2,
+        id: 3,
         name: "Settings",
         navTo:'/settings',
         icon: <IconSettings/>,
