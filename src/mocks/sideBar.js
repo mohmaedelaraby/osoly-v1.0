@@ -10,7 +10,7 @@ export const sidebarItems = [
         icon: <IconDashboard/>,
         activeIcon: <IconDashboardActive/>,
         navTo:'/users',
-        activeRoutes:['/users','/user','/owner','/owners','/ad','/ads','/ticket','/tickets','unit' ,'units','property'],
+        activeRoutes:['/users','/user','/owner','/owners','/ad','/ads','/ticket','/tickets','/unit' ,'/units','/property'],
         isActive: false,
         nestedChildern:[{
             name:'users',
@@ -18,7 +18,7 @@ export const sidebarItems = [
             navTo:'/users'
         },{
             name:'owners',
-            active:['/owner','/owners','property','units','unit'],
+            active:['/owner','/owners','/property','/units','/unit'],
             navTo:'/owners'
         },{
             name:'ads',
