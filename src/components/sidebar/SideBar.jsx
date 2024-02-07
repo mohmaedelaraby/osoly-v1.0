@@ -17,8 +17,6 @@ function SideBar() {
   const [sbColor, setSbcolor] = useState("#F1F2F7");
   const [sbFontColor, setSbFontcolor] = useState("black");
 
-
-
   useEffect(()=>{
   
     if(sessionStorage.getItem("sbColor")){

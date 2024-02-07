@@ -156,7 +156,7 @@ const EditUnit = () => {
             name="waterAccount"
             type="text"
             className="form__input__container__input"
-            placeholder="enter your Phone Number"
+            placeholder="enter your water account"
             value={formik.values.waterAccount}
             onChange={formik.handleChange}
             isInvalid={formik.touched.waterAccount && !!formik.errors.waterAccount}
@@ -206,7 +206,7 @@ const EditUnit = () => {
             name="space"
             type="text"
             className="form__input__container__input"
-            placeholder="enter your Phone Number"
+            placeholder="enter your space "
             value={formik.values.space}
             onChange={formik.handleChange}
             isInvalid={formik.touched.space && !!formik.errors.space}
@@ -256,7 +256,7 @@ const EditUnit = () => {
             name="bathrooms"
             type="text"
             className="form__input__container__input"
-            placeholder="enter your Phone Number"
+            placeholder="enter your bathrooms"
             value={formik.values.bathrooms}
             onChange={formik.handleChange}
             isInvalid={formik.touched.bathrooms && !!formik.errors.bathrooms}
@@ -306,7 +306,7 @@ const EditUnit = () => {
             name="conditioners"
             type="text"
             className="form__input__container__input"
-            placeholder="enter your Phone Number"
+            placeholder="enter your conditioners "
             value={formik.values.conditioners}
             onChange={formik.handleChange}
             isInvalid={formik.touched.conditioners && !!formik.errors.conditioners}
