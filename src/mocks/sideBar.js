@@ -9,13 +9,13 @@ export const sidebarItems = [
         name: "Enterprises",
         icon: <IconDashboard/>,
         activeIcon: <IconDashboardActive/>,
-        navTo:'/enterprises-users',
-        activeRoutes:['/enterprises-users','/enterprises-user'],
+        navTo:'/enterprises',
+        activeRoutes:['/enterprises','/enterprise'],
         isActive: false,
         nestedChildern:[{
             name:'users',
-            active:['/enterprises-users','/enterprises-user'],
-            navTo:'/users'
+            active:['/enterprises','/enterprise'],
+            navTo:'/enterprise'
         }
     ]
     },

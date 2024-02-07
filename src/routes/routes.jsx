@@ -16,6 +16,8 @@ import PropertiesTablePage from "../pages/Properties/PropertiesPage";
 import PropertiesFormPage from "../pages/Properties/PropertiesFormPage";
 import UnitPage from "../pages/units/UnitPage";
 import UnitFormPage from "../pages/units/UnitFormPage";
+import EnterpraisUserTablePage from "../pages/EnterpraisUsers/EnterpraisUserTablePage";
+import EnterpraisUserFormPage from "../pages/EnterpraisUsers/EnterpraisUserFormPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -34,6 +36,8 @@ export const RootRoutes = () => {
         <Route path="/home" index element={<HomePage />} />
         <Route path="/user" index element={<UserFormPage />} />
         <Route path="/users" index element={<UserTablePage />} />
+        <Route path="/enterprise" index element={<EnterpraisUserFormPage />} />
+        <Route path="/enterprises" index element={<EnterpraisUserTablePage />} />
         <Route path="/owners" index element={<OwenrsTablePage />} />
         <Route path="/owner" index element={<OwnersFormPage />} />
         <Route path="/ads" index element={<AdsTablePage />} />
