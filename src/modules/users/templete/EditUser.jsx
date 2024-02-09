@@ -14,17 +14,17 @@ import { userValidation } from "../validation/schema";
 
 const EditUser = () => {
   const { state } = useLocation();
-  const { id, name, email } = state;
+  const { id, email,firstNameAr,firstNameEn,lastNameAr,lastNameEn,phoneNumber,role } = state;
 
   const initialValues = {
-    phoneNumber: name,
-    password: "",
+    phoneNumber: phoneNumber,
     email: email,
-    firstNameEn: "",
-    lastNameEn: "",
-    firstNameAr: "",
-    lastNameAr: "",
-    role: ""
+    firstNameEn: firstNameEn,
+    lastNameEn: lastNameEn,
+    firstNameAr: firstNameAr,
+    lastNameAr: lastNameAr,
+    role: role,
+    password:""
 }
 
   const formik = useFormik({
