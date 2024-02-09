@@ -3,6 +3,7 @@ import React from "react";
 import { FaBuilding, FaHouseUser, FaUser } from "react-icons/fa";
 import "../style/Home.scss";
 import PieChartComponent from "../../../components/Charts/PieChart";
+import BarChartComponent from "../../../components/Charts/BarChart";
 const Home = () => {
   const arr = [
     {
@@ -25,11 +26,33 @@ const Home = () => {
     },
   ];
 
-  const data = [
+  const pieData = [
     { name: "Solved ", value: 400 },
     { name: "Proccisng ", value: 300 },
     { name: "Rejected ", value: 300 },
     { name: "Review", value: 200 }
+  ];
+  const barData = [
+    {
+      name: "Eco",
+      NumOfUnits: 40,
+    },
+    {
+      name: "Pro",
+      NumOfUnits: 300,
+    },
+    {
+      name: "Super Lux",
+      NumOfUnits: 100,
+    },
+    {
+      name: "Altra Lux",
+      NumOfUnits: 20,
+    },
+    {
+      name: "Luxury",
+      NumOfUnits: 3,
+    },
   ];
   return (
     <>
@@ -74,7 +97,7 @@ const Home = () => {
                   </Heading>
                 </CardHeader>
                 <CardBody paddingTop="0px">
-                  <PieChartComponent data={data} />
+                  <PieChartComponent data={pieData} />
                 </CardBody>
               </Card>
             </div>
@@ -83,12 +106,12 @@ const Home = () => {
                 <CardHeader paddingBottom="8px">
                   <Heading>
                     <Text fontSize="24px" fontWeight="bold">
-                      Ads
+                      Units
                     </Text>
                   </Heading>
                 </CardHeader>
                 <CardBody paddingTop="0px">
-                  <PieChartComponent data={data} />
+                  <BarChartComponent data={barData}  dataKeyValue={"NumOfUnits"}  name={"name"} />
                 </CardBody>
               </Card>
             </div>
