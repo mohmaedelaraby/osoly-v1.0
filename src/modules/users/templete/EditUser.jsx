@@ -11,24 +11,24 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useGetUser from "../hooks/useGetUser";
-import { useUpdateUser } from "../hooks/useUpdateUsers";
+import { useUpdateUser } from "../hooks/useUpdateUser";
 import { userEditValidation } from "../validation/schema";
 
 const EditUser = () => {
   const { state } = useLocation();
-  const { id } = state;
+  const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr} = state;
 
   const { mutate } = useUpdateUser();
   const { data, isLoading, refetch } = useGetUser(id);
   useEffect(() => {
     refetch();
   }, []);
-
+  if(data){console.log("first")}
   const initialValues = {
-    firstNameEn: "",
-    lastNameEn: "",
-    firstNameAr: "",
-    lastNameAr: "",
+    firstNameEn: firstNameEn,
+    lastNameEn: lastNameEn,
+    firstNameAr: firstNameAr,
+    lastNameAr: lastNameAr,
     password: "",
   };
 

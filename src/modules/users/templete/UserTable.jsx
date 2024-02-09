@@ -18,15 +18,28 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import CreateUser from "./CreateUser";
+import useClosePopUps from "../../../store/useClosePopups";
 
 const UserTable = ({ data }) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { show , toggleShow}=useClosePopUps()
+
+  const openPopup =()=>{
+    onOpen();
+    if(show){
+      toggleShow()
+    }
+  }
+
+  useEffect(()=>{
+    //console.log(show )
+  },[show])
 
   return (
     <>
@@ -37,7 +50,7 @@ const UserTable = ({ data }) => {
           </span>
           <span className="tabel_header_addBtn">
             <Button
-              onClick={onOpen}
+              onClick={()=>{openPopup()}}
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
             >
@@ -68,6 +81,10 @@ const UserTable = ({ data }) => {
                         navigate("/user", {
                           state: {
                             id: item.id,
+                            firstNameEn: item.firstNameEn,
+                            lastNameEn: item.lastNameEn,
+                            firstNameAr: item.firstNameAr,
+                            lastNameAr: item.lastNameAr,
                           },
                         });
                       }}
@@ -85,7 +102,7 @@ const UserTable = ({ data }) => {
           </CardBody>
         </Card>
       </Card>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen && !show} onClose={onClose}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalCloseButton />

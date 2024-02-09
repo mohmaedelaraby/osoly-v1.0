@@ -7,7 +7,7 @@ export const useUpdateUser = () => {
 
     const mutation = useMutation(updateUser, {
         onSuccess: (res) => {
-            if (res.status === 200) {
+            if (res.status === 201) {
                 successToast()
             } 
         },
