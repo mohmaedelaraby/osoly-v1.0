@@ -19,7 +19,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { users } from "../../../mocks/users";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
@@ -68,14 +67,7 @@ const UserTable = ({ data }) => {
                       onClick={() => {
                         navigate("/user", {
                           state: {
-                            email: item.email,
-                            firstNameAr: item.firstNameAr,
-                            firstNameEn: item.firstNameEn,
                             id: item.id,
-                            lastNameAr: item.lastNameAr,
-                            lastNameEn: item.lastNameEn,
-                            phoneNumber: item.phoneNumber,
-                            role: item.role,
                           },
                         });
                       }}

@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
-import { userValidation } from "../validation/schema";
+import { userCreateValidation } from "../validation/schema";
 import {
   Button,
   FormControl,
@@ -24,7 +24,7 @@ const CreateUser = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: userValidation,
+    validationSchema: userCreateValidation,
     onSubmit: (values) => {
       console.log(values);
     },

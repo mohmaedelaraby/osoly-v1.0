@@ -4,15 +4,14 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 //Fetch all users
 export const getUsers = (params) => {
   const { pageNo, limit } = params;
-  console.log(pageNo , limit)
   return axios.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}`, {
   }).then(res => res.data.data)
 }
+
 //Fech details of a specific user
-/* export const getUserDetails = async (params) => {
-  const { userId } = params;
+export const getUserDetails = async (id) => {
   try {
-    let url = `${apiUrl}/referd/users/${userId}/details`;
+    let url = `${apiUrl}dashboard/users/${id}`;
     const response = await axios.get(url);
 
     if (response.status === 200) {
@@ -24,6 +23,16 @@ export const getUsers = (params) => {
   } catch (error) {
     return { error: 'Network error occurred' };
   }
-} */
+}
+
+//update user
+export const updateUser = (data) => {
+  return axios.put(`${apiUrl}dashboard/users/${data?.id}`, data?.body)
+}
+
+//create user
+export const createUser = (data) => {
+  return axios.post(`${apiUrl}dashboard/users`, data?.body)
+}
 
 

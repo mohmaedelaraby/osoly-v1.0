@@ -16,8 +16,7 @@ const UserTablePage = () => {
 
   useEffect(() => {
     refetch();
-    console.log(data)
-  }, [data, currentPage]);
+  }, [currentPage]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -25,7 +24,7 @@ const UserTablePage = () => {
   return (
     <>
       <div className="table_container">
-        {data.users ? (
+        {data?.users && !isLoading? (
           <>
             <Card width="90%">
               <CardBody marginBottom="24px">
@@ -44,7 +43,9 @@ const UserTablePage = () => {
             </Card>
           </>
         ) : (
-          <></>
+          <>
+          NO TABLE
+          </>
         )}
       </div>
     </>
