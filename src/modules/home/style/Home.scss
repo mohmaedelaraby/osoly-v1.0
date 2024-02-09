@@ -1,0 +1,50 @@
+.home {
+    
+    .home_container {
+        .home_container_cards {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+
+            .home_container_cards_card {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .home_container_cards_card_header{
+                    display: flex;
+                    align-items: center;
+                    .home_container_cards_card_header_icon{
+                        font-size: 20px;
+                        margin-right:  6px;
+                    }
+                    .home_container_cards_card_header_title{
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                }
+
+                .home_container_cards_card_num {
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-right: 8px;
+                }
+
+                .home_container_cards_card_label {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+        .home_container_charts_table{
+            .home_container_charts_table__chart{
+
+            }
+            .home_container_charts_table__table{
+                
+            }
+        }
+    }
+}

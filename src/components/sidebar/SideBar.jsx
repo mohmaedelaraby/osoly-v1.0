@@ -60,7 +60,7 @@ function SideBar() {
       >
         <div className="sidebar__container">
           <div className="sidebar__logo">
-            <div className="sidebar__logo__container">
+            <div onClick={()=>navigate('/home')} className="sidebar__logo__container">
               <img src={logo} alt="logo" className="sidebar__logo__img" />
             </div>
             {width < 427 ? (

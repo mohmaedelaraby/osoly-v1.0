@@ -1,7 +1,10 @@
+import Home from "../../modules/home/templete/Home"
 
 const HomePage = () => {
   return (
-    <div>HomePage sda</div>
+    <>
+    <Home/>
+    </>
   )
 }
 
