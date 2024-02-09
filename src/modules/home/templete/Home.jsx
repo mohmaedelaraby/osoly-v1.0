@@ -2,6 +2,7 @@ import { Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
 import React from "react";
 import {  FaBuilding, FaHouseUser, FaUser } from "react-icons/fa";
 import '../style/Home.scss'
+import PieChart from "../../../components/Charts/PieChart";
 const Home = () => {
   const arr = [
     {
@@ -56,7 +57,7 @@ const Home = () => {
           </div>
           <div className="home_container_charts_table">
             <div className="home_container_charts_table__chart">
-
+              <PieChart/>
             </div>
             <div className="home_container_charts_table__table">
 
