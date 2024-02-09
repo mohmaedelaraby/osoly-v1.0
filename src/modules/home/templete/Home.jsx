@@ -57,7 +57,9 @@ const Home = () => {
           </div>
           <div className="home_container_charts_table">
             <div className="home_container_charts_table__chart">
-              <PieChart/>
+            <Card width='80%'>
+            <PieChart/>
+            </Card>
             </div>
             <div className="home_container_charts_table__table">
 
