@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import React from 'react'
-import { ownerValidation } from '../validation/schema';
 import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
+import { USER_ROLES } from '../../../enums/UserRoles';
+import { useCreateUser } from '../../users/hooks/useCreateUsers';
+import { userCreateValidation } from '../../users/validation/schema';
 
 const CreateOwner =()=> {
-
+  const { mutate } = useCreateUser();
   const initialValues = {
     phoneNumber: "",
     password: "",
@@ -13,14 +15,14 @@ const CreateOwner =()=> {
     lastNameEn: "",
     firstNameAr: "",
     lastNameAr: "",
-    role: ""
+    role: USER_ROLES.OWNER
 }
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: ownerValidation,
+    validationSchema: userCreateValidation,
     onSubmit: (values) => {
-      console.log(values);
+      mutate({body:values})
     },
   });
   return (
@@ -207,29 +209,6 @@ const CreateOwner =()=> {
           </div>
         </FormControl>
 
-        <FormControl className="form__input__container">
-          <FormLabel>
-            <Text className="form__input__container__label"> Role </Text>
-          </FormLabel>
-
-          <Input
-            name="role"
-            type="text"
-            className="form__input__container__input"
-            placeholder="enter your Role"
-            value={formik.values.role}
-            onChange={formik.handleChange}
-            isInvalid={formik.touched.role && !!formik.errors.role}
-          />
-
-          <div classeName="form__input__container__warn">
-            {formik.touched.role && formik.errors.role ? (
-              <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                {formik.errors.role}
-              </Text>
-            ) : null}
-          </div>
-        </FormControl>
       </div>
 
 

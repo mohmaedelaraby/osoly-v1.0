@@ -24,22 +24,23 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import CreateUser from "./CreateUser";
 import useClosePopUps from "../../../store/useClosePopups";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
 const UserTable = ({ data }) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { show , toggleShow}=useClosePopUps()
+  const { show, toggleShow } = useClosePopUps();
 
-  const openPopup =()=>{
+  const openPopup = () => {
     onOpen();
-    if(show){
-      toggleShow()
+    if (show) {
+      toggleShow();
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     //console.log(show )
-  },[show])
+  }, [show]);
 
   return (
     <>
@@ -50,7 +51,9 @@ const UserTable = ({ data }) => {
           </span>
           <span className="tabel_header_addBtn">
             <Button
-              onClick={()=>{openPopup()}}
+              onClick={() => {
+                openPopup();
+              }}
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
             >
@@ -62,8 +65,13 @@ const UserTable = ({ data }) => {
       <Card>
         <Card>
           <CardBody>
-            <TableContainer overflowY='scroll' overflowX='scroll'  minHeight='340px' maxHeight='340px'>
-              <Table  className="table" variant="simple">
+            <TableContainer
+              overflowY="scroll"
+              overflowX="scroll"
+              minHeight="340px"
+              maxHeight="340px"
+            >
+              <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
                     <Th className="table_header_item">Email</Th>
@@ -74,29 +82,41 @@ const UserTable = ({ data }) => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {data?.map((item, index) => (
-                    <Tr
-                    key={index}
-                      className="table_body_row"
-                      onClick={() => {
-                        navigate("/user", {
-                          state: {
-                            id: item.id,
-                            firstNameEn: item.firstNameEn,
-                            lastNameEn: item.lastNameEn,
-                            firstNameAr: item.firstNameAr,
-                            lastNameAr: item.lastNameAr,
-                          },
-                        });
-                      }}
-                    >
-                      <Td className="table_body_row_item">{item.email}</Td>
-                      <Td className="table_body_row_item">{item.firstNameEn}</Td>
-                      <Td className="table_body_row_item">{item.lastNameEn}</Td>
-                      <Td className="table_body_row_item">{item.phoneNumber}</Td>
-                      <Td className="table_body_row_item">{item.role}</Td>
-                    </Tr>
-                  ))}
+                  {data?.map((item, index) =>
+                    item.role == USER_ROLES.TENANT ? (
+                      <>
+                        <Tr
+                          key={index}
+                          className="table_body_row"
+                          onClick={() => {
+                            navigate("/user", {
+                              state: {
+                                id: item.id,
+                                firstNameEn: item.firstNameEn,
+                                lastNameEn: item.lastNameEn,
+                                firstNameAr: item.firstNameAr,
+                                lastNameAr: item.lastNameAr,
+                              },
+                            });
+                          }}
+                        >
+                          <Td className="table_body_row_item">{item.email}</Td>
+                          <Td className="table_body_row_item">
+                            {item.firstNameEn}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.lastNameEn}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.phoneNumber}
+                          </Td>
+                          <Td className="table_body_row_item">{item.role}</Td>
+                        </Tr>
+                      </>
+                    ) : (
+                      <></>
+                    )
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>

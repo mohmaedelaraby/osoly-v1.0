@@ -18,16 +18,30 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { ownerss } from "../../../mocks/owners";
 import CreateOwner from "./CreateOwner";
+import useClosePopUps from "../../../store/useClosePopups";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
-const OwnerTable = () => {
+const OwnerTable = ({data}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { show, toggleShow } = useClosePopUps();
+
+  const openPopup = () => {
+    onOpen();
+    if (show) {
+      toggleShow();
+    }
+  };
+
+  useEffect(() => {
+    //console.log(show )
+  }, [show]);
   return (
     <>
       <CardHeader>
@@ -39,7 +53,9 @@ const OwnerTable = () => {
             <Button
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
-              onClick={onOpen}
+              onClick={() => {
+                openPopup();
+              }}
             >
               Add Owner
             </Button>
@@ -49,39 +65,65 @@ const OwnerTable = () => {
       <Card>
         <Card>
           <CardBody>
-            <TableContainer>
+          <TableContainer
+              overflowY="scroll"
+              overflowX="scroll"
+              minHeight="340px"
+              maxHeight="340px"
+            >
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
-                    <Th className="table_header_item">ID</Th>
-                    <Th className="table_header_item">Name</Th>
+                    <Th className="table_header_item">Email</Th>
+                    <Th className="table_header_item">First Name</Th>
+                    <Th className="table_header_item">Last Name</Th>
+                    <Th className="table_header_item">Phone Number</Th>
+                    <Th className="table_header_item">Role</Th>
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {ownerss.map((item, index) => (
-                    <Tr
-                      className="table_body_row"
-                      onClick={() => {
-                        navigate("/owner", {
-                          state: {
-                            id: item.id,
-                            name: item.name,
-                            buildings: item.buildings,
-                          },
-                        });
-                      }}
-                    >
-                      <Td className="table_body_row_item">{item.id}</Td>
-                      <Td className="table_body_row_item">{item.name}</Td>
-                    </Tr>
-                  ))}
+                  {data?.map((item, index) =>
+                    item.role == USER_ROLES.OWNER ? (
+                      <>
+                        <Tr
+                          key={index}
+                          className="table_body_row"
+                          onClick={() => {
+                            navigate("/user", {
+                              state: {
+                                id: item.id,
+                                firstNameEn: item.firstNameEn,
+                                lastNameEn: item.lastNameEn,
+                                firstNameAr: item.firstNameAr,
+                                lastNameAr: item.lastNameAr,
+                              },
+                            });
+                          }}
+                        >
+                          <Td className="table_body_row_item">{item.email}</Td>
+                          <Td className="table_body_row_item">
+                            {item.firstNameEn}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.lastNameEn}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.phoneNumber}
+                          </Td>
+                          <Td className="table_body_row_item">{item.role}</Td>
+                        </Tr>
+                      </>
+                    ) : (
+                      <></>
+                    )
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>
           </CardBody>
         </Card>
       </Card>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen && !show} onClose={onClose}>
         <ModalOverlay />
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />

@@ -13,32 +13,36 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ownerValidation } from "../validation/schema";
 import PropertyTable from "../../propreties/templete/PropertiesTable";
+import { useUpdateUser } from "../../users/hooks/useUpdateUser";
+import useGetUser from "../../users/hooks/useGetUser";
+import { userEditValidation } from "../../users/validation/schema";
 
 const EditOwner = () => {
   const { state } = useLocation();
-  const { id, name } = state;
+  const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr} = state;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const { mutate } = useUpdateUser();
+  const { data, isLoading, refetch } = useGetUser(id);
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const initialValues = {
-    phoneNumber: "",
+    firstNameEn: firstNameEn,
+    lastNameEn: lastNameEn,
+    firstNameAr: firstNameAr,
+    lastNameAr: lastNameAr,
     password: "",
-    email: "",
-    firstNameEn: "",
-    lastNameEn: "",
-    firstNameAr: "",
-    lastNameAr: "",
-    role: ""
-}
-
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: ownerValidation,
+    validationSchema: userEditValidation,
     onSubmit: (values) => {
       console.log(values);
     },
@@ -224,30 +228,6 @@ const EditOwner = () => {
                 {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                     {formik.errors.phoneNumber}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
-
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label"> Role </Text>
-              </FormLabel>
-
-              <Input
-                name="role"
-                type="text"
-                className="form__input__container__input"
-                placeholder="enter your Role"
-                value={formik.values.role}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.role && !!formik.errors.role}
-              />
-
-              <div classeName="form__input__container__warn">
-                {formik.touched.role && formik.errors.role ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.role}
                   </Text>
                 ) : null}
               </div>
