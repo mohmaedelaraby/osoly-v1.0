@@ -30,7 +30,7 @@ const UserTablePage = () => {
       <div className="table_container">
         {data?.users && !isLoading? (
           <>
-            <Card width="90%" maxHeight='85%'>
+            <Card width="90%" minHeight='85%'>
               <CardBody marginBottom="24px">
                 <UserTable data={data?.users}/>
                 <div className="table_container_paganation">
