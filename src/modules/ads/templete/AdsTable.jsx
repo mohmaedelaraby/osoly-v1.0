@@ -72,7 +72,8 @@ const AdsTable = ({ data }) => {
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
-                    <Th className="table_header_item">Content</Th>
+                    <Th className="table_header_item">Title</Th>
+                    <Th className="table_header_item">Sub title</Th>
                     <Th className="table_header_item">Url</Th>
                     <Th className="table_header_item">Index</Th>
                   </Tr>
@@ -87,7 +88,7 @@ const AdsTable = ({ data }) => {
                           navigate("/ad", {
                             state: {
                               id: item.id,
-                              content: item.content,
+                              title: item.title,
                               index: item.index,
                               url: item.url,
                               image: item.image,
@@ -95,7 +96,8 @@ const AdsTable = ({ data }) => {
                           });
                         }}
                       >
-                        <Td className="table_body_row_item">{item.content}</Td>
+                        <Td className="table_body_row_item">{item.title}</Td>
+                        <Td className="table_body_row_item">{item.subTitle}</Td>
                         <Td className="table_body_row_item">{item.url}</Td>
                         <Td className="table_body_row_item">{item.index}</Td>
                       </Tr>

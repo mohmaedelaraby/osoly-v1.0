@@ -38,7 +38,7 @@ const AdsTablePage = () => {
                     <Pagination
                       totalCount={data?.pagination.count}
                       currentPage={currentPage}
-                      pageSize={10}
+                      pageSize={25}
                       onPageChange={handlePageChange}
                     />
                   }
