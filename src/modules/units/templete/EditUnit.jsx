@@ -57,7 +57,7 @@ const EditUnit = () => {
             <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">Name </Text>
+            <Text className="form__input__container__label">Name</Text>
           </FormLabel>
 
           <Input
@@ -81,7 +81,7 @@ const EditUnit = () => {
 
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> rent</Text>
+            <Text className="form__input__container__label">rent</Text>
           </FormLabel>
 
           <Input
@@ -107,7 +107,7 @@ const EditUnit = () => {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">rentCollectionDate </Text>
+            <Text className="form__input__container__label">rent collectionDate</Text>
           </FormLabel>
 
           <Input
@@ -131,7 +131,7 @@ const EditUnit = () => {
 
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> electricityAccount </Text>
+            <Text className="form__input__container__label"> electricity account</Text>
           </FormLabel>
 
           <Input
@@ -145,7 +145,8 @@ const EditUnit = () => {
           />
 
           <div classeName="form__input__container__warn">
-            {formik.touched.electricityAccount && formik.errors.electricityAccount ? (
+            {formik.touched.electricityAccount && formik.errors.electricityAccount ?
+             (
               <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                 {formik.errors.electricityAccount}
               </Text>
@@ -157,7 +158,7 @@ const EditUnit = () => {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">waterAccount </Text>
+            <Text className="form__input__container__label">water account</Text>
           </FormLabel>
 
           <Input
@@ -207,7 +208,7 @@ const EditUnit = () => {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">space </Text>
+            <Text className="form__input__container__label">space</Text>
           </FormLabel>
 
           <Input
