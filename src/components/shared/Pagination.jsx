@@ -12,8 +12,7 @@ import { usePagination } from "../../customHooks/usePagination"
 const Pagination = ({ totalCount, currentPage, pageSize, onPageChange }) => {
     const range = usePagination(totalCount, pageSize)
     const lastPage = range[range.length - 1]
-    console.log(totalCount, pageSize)
-
+    
     const onNext = () => {
         onPageChange(currentPage + 1)
     }
