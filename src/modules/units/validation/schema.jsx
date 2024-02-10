@@ -10,7 +10,7 @@ export const unitsValidation = Yup.object({
   space: Yup.string().required("You should enter space"),
   rooms: Yup.string().required("You should enter rooms"),
   bathrooms: Yup.string().required("You should enter bathrooms"),
-  lounge: Yup.string().required("You should enter lounge"),
+  lounge: Yup.boolean().required("You should enter lounge"),
   conditioners: Yup.string().required("You should enter conditioners"),
   kitchen: Yup.string().required("You should enter kitchen"),
 });
