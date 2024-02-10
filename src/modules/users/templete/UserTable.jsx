@@ -62,8 +62,8 @@ const UserTable = ({ data }) => {
       <Card>
         <Card>
           <CardBody>
-            <TableContainer>
-              <Table className="table" variant="simple">
+            <TableContainer overflowY='scroll' overflowX='scroll'  maxHeight='340px'>
+              <Table  className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
                     <Th className="table_header_item">Email</Th>

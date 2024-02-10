@@ -11,6 +11,7 @@ import {
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUser } from "../hooks/useCreateUsers";
 import useClosePopUps from "../../../store/useClosePopups";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
 const CreateUser = () => {
 
@@ -24,7 +25,7 @@ const CreateUser = () => {
     lastNameEn: "",
     firstNameAr: "",
     lastNameAr: "",
-    role: ""
+    role: USER_ROLES.TENANT
 }
 
   const formik = useFormik({
@@ -219,29 +220,6 @@ const CreateUser = () => {
               </div>
             </FormControl>
 
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label"> Role </Text>
-              </FormLabel>
-
-              <Input
-                name="role"
-                type="text"
-                className="form__input__container__input"
-                placeholder="enter your Role"
-                value={formik.values.role}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.role && !!formik.errors.role}
-              />
-
-              <div classeName="form__input__container__warn">
-                {formik.touched.role && formik.errors.role ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.role}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
           </div>
 
 

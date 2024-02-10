@@ -4,8 +4,10 @@ import "../../assets/styels/genric-styles/table.scss";
 import Pagination from "../../components/shared/Pagination";
 import { useEffect, useState } from "react";
 import useUsers from "../../modules/users/hooks/useUsers";
+import useClosePopUps from "../../store/useClosePopups";
 
 const UserTablePage = () => {
+  const {show}=useClosePopUps()
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
@@ -16,7 +18,7 @@ const UserTablePage = () => {
 
   useEffect(() => {
     refetch();
-  }, [currentPage]);
+  }, [currentPage , !show]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -26,7 +28,7 @@ const UserTablePage = () => {
       <div className="table_container">
         {data?.users && !isLoading? (
           <>
-            <Card width="90%">
+            <Card width="90%" maxHeight='85%'>
               <CardBody marginBottom="24px">
                 <UserTable data={data?.users}/>
                 <div className="table_container_paganation">
