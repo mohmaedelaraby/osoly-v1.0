@@ -10,13 +10,11 @@ import {
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUser } from "../hooks/useCreateUsers";
-import useClosePopUps from "../../../store/useClosePopups";
 import { USER_ROLES } from "../../../enums/UserRoles";
 
 const CreateUser = () => {
 
   const { mutate } = useCreateUser();
-  const {toggleShow}=useClosePopUps()
   const initialValues = {
     phoneNumber: "",
     password: "",
@@ -33,7 +31,6 @@ const CreateUser = () => {
     validationSchema: userCreateValidation,
     onSubmit: (values) => {
       mutate({body:values})
-      toggleShow()
     },
   });
   return (

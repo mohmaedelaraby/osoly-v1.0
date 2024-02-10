@@ -7,7 +7,7 @@ import useUsers from "../../modules/users/hooks/useUsers";
 import useClosePopUps from "../../store/useClosePopups";
 
 const UserTablePage = () => {
-  const {show}=useClosePopUps()
+  const {show ,toggleShow}=useClosePopUps()
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
@@ -15,10 +15,12 @@ const UserTablePage = () => {
     pageNo: currentPage,
     limit: limit,
   });
-
   useEffect(() => {
     refetch();
-  }, [currentPage , !show]);
+    if(show && !isLoading){
+      refetch()
+    }
+  }, [currentPage,show]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
