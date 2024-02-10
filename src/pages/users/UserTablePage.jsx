@@ -7,7 +7,7 @@ import useUsers from "../../modules/users/hooks/useUsers";
 import useClosePopUps from "../../store/useClosePopups";
 
 const UserTablePage = () => {
-  const {show ,toggleShow}=useClosePopUps()
+  const {show }=useClosePopUps()
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 

@@ -11,8 +11,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
+import { useCreatePropertey } from "../hooks/useCreatePropertey";
 
 const CreateProperty = () => {
+  const { mutate } = useCreatePropertey();
+
   const initialValues = {
     name:"",
     address: "",
@@ -30,6 +33,7 @@ const CreateProperty = () => {
     validationSchema: propertyValidation,
     onSubmit: (values) => {
       console.log(values);
+      mutate({body:values})
     },
   });
   return (

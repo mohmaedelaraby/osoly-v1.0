@@ -25,10 +25,19 @@ import { useNavigate } from "react-router-dom";
 
 import CreateProperty from "./CreateProperty";
 import { building } from "../../../mocks/building";
+import useClosePopUps from "../../../store/useClosePopups";
 
 const PropertyTable = ({data}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { show, toggleShow } = useClosePopUps();
+
+  const openPopup = () => {
+    onOpen();
+    if (show) {
+      toggleShow();
+    }
+  };
   return (
     <>
       <CardHeader>
@@ -40,7 +49,7 @@ const PropertyTable = ({data}) => {
             <Button
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
-              onClick={onOpen}
+              onClick={openPopup()}
             >
               Add Proberty
             </Button>
@@ -54,28 +63,47 @@ const PropertyTable = ({data}) => {
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
-                    <Th className="table_header_item">ID</Th>
                     <Th className="table_header_item">Name</Th>
-                    <Th className="table_header_item">Desc</Th>
+                    <Th className="table_header_item">address</Th>
+                    <Th className="table_header_item">units</Th>
+                    <Th className="table_header_item">instrument number</Th>
+                    <Th className="table_header_item">postalCode</Th>
+                    <Th className="table_header_item">block number</Th>
+                    <Th className="table_header_item">street</Th>
+                    <Th className="table_header_item">district</Th>
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {building.map((item, index) => (
+                  {data && data.map((item, index) => (
                     <Tr
+                      key={index}
                       className="table_body_row"
                       onClick={() => {
                         navigate("/property", {
                           state: {
                             id: item.id,
                             name: item.name,
-                            desc: item.desc,
+                            address: item.address,
+                            unitsCount: item.unitsCount,
+                            instrumentNumber: item.instrumentNumber,
+                            postalCode: item.postalCode,
+                            blockNumber: item.blockNumber,
+                            street: item.street,
+                            subNumber: item.subNumber,
+                            district: item.district,
                           },
                         });
                       }}
                     >
-                      <Td className="table_body_row_item">{item.id}</Td>
                       <Td className="table_body_row_item">{item.name}</Td>
-                      <Td className="table_body_row_item">{item.desc}</Td>
+                      <Td className="table_body_row_item">{item.address}</Td>
+                      <Td className="table_body_row_item">{item.unitsCount}</Td>
+                      <Td className="table_body_row_item">{item.instrumentNumber}</Td>
+                      <Td className="table_body_row_item">{item.postalCode}</Td>
+                      <Td className="table_body_row_item">{item.blockNumber}</Td>
+                      <Td className="table_body_row_item">{item.street}</Td>
+                      <Td className="table_body_row_item">{item.subNumber}</Td>
+                      <Td className="table_body_row_item">{item.district}</Td>
                     </Tr>
                   ))}
                 </Tbody>
@@ -84,7 +112,7 @@ const PropertyTable = ({data}) => {
           </CardBody>
         </Card>
       </Card>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen && !show} onClose={onClose}>
         <ModalOverlay />
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />

@@ -26,7 +26,7 @@ import { units } from "../../../mocks/units";
 import CreateUnit from "./CreateUnit";
 
 
-const UnitsTable = () => {
+const UnitsTable = ({data}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

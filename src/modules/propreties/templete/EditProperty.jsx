@@ -14,26 +14,35 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {  propertyValidation } from "../validation/schema";
 import UnitsTable from "../../units/templete/UnitsTable";
+import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
+import useGetPropertey from "../hooks/useGetPropertey";
+import CreateUnit from "../../units/templete/CreateUnit";
 
 const EditProperty = () => {
   const { state } = useLocation();
-  const { id, name, desc } = state;
+  const { id, name, address , unitsCount ,instrumentNumber ,postalCode ,blockNumber ,street ,subNumber ,district ,units} = state;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const { mutate } = useUpdatePropertey();
+  const { data, isLoading, refetch } = useGetPropertey(id);
+  useEffect(() => {
+    refetch();
+  }, []);
+
   const initialValues = {
-    name:"",
-    address: "",
-    unitsCount: "",
-    instrumentNumber: "",
-    postalCode: "",
-    blockNumber: "",
-    street: "",
-    subNumber: "",
-    district: "",
+    name:name,
+    address: address,
+    unitsCount: unitsCount,
+    instrumentNumber: instrumentNumber,
+    postalCode: postalCode,
+    blockNumber: blockNumber,
+    street: street,
+    subNumber: subNumber,
+    district: district,
   };
 
   const formik = useFormik({
@@ -259,19 +268,10 @@ const EditProperty = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <UnitsTable/>
+                          <UnitsTable data={units}/>
                         </CardBody>
                       </Card>
                     </Card>
-                    <Modal isOpen={isOpen} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent>
-                        <ModalCloseButton />
-                        <ModalBody>
-                          <>create build</>
-                        </ModalBody>
-                      </ModalContent>
-                    </Modal>
                  
               </div>
             </div>
