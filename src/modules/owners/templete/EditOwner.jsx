@@ -15,7 +15,6 @@ import {
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ownerValidation } from "../validation/schema";
 import PropertyTable from "../../propreties/templete/PropertiesTable";
 import { useUpdateUser } from "../../users/hooks/useUpdateUser";
 import useGetUser from "../../users/hooks/useGetUser";
@@ -23,7 +22,7 @@ import { userEditValidation } from "../../users/validation/schema";
 
 const EditOwner = () => {
   const { state } = useLocation();
-  const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr} = state;
+  const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr , ownedProperties} = state;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { mutate } = useUpdateUser();
@@ -159,29 +158,6 @@ const EditOwner = () => {
           <hr className="hr_style"/>
 
           <div className="form__input form__input__flex">
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label">Email </Text>
-              </FormLabel>
-
-              <Input
-                name="email"
-                type="text"
-                className="form__input__container__input"
-                placeholder="enter your Email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.email && !!formik.errors.email}
-              />
-
-              <div className="form__input__container__warn">
-                {formik.touched.email && formik.errors.email ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.email}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
 
             <FormControl className="form__input__container">
               <FormLabel>
@@ -207,50 +183,16 @@ const EditOwner = () => {
               </div>
             </FormControl>
           </div>
-          
-          <div className="form__input form__input__flex">
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label">Phone Number </Text>
-              </FormLabel>
-
-              <Input
-                name="phoneNumber"
-                type="text"
-                className="form__input__container__input"
-                placeholder="enter your Phone Number"
-                value={formik.values.phoneNumber}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.phoneNumber && !!formik.errors.phoneNumber}
-              />
-
-              <div className="form__input__container__warn">
-                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.phoneNumber}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
-          </div>
 
           <div className="formWithTable_container__table">
                
                     <Card>
                       <Card>
                         <CardBody>
-                          <PropertyTable/>
+                          <PropertyTable data={data?.ownedProperties}/>
                         </CardBody>
                       </Card>
                     </Card>
-                    <Modal isOpen={isOpen} onClose={onClose}>
-                      <ModalOverlay />
-                      <ModalContent>
-                        <ModalBody>
-                          <>create build</>
-                        </ModalBody>
-                      </ModalContent>
-                    </Modal>
                
               </div>
 

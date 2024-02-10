@@ -22,7 +22,6 @@ import React, { useEffect } from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { ownerss } from "../../../mocks/owners";
 import CreateOwner from "./CreateOwner";
 import useClosePopUps from "../../../store/useClosePopups";
 import { USER_ROLES } from "../../../enums/UserRoles";
@@ -83,19 +82,20 @@ const OwnerTable = ({data}) => {
                 </Thead>
                 <Tbody className="table_body">
                   {data?.map((item, index) =>
-                    item.role == USER_ROLES.OWNER ? (
+                    item.role === USER_ROLES.TENANT ? (
                       <>
                         <Tr
                           key={index}
                           className="table_body_row"
                           onClick={() => {
-                            navigate("/user", {
+                            navigate("/owner", {
                               state: {
                                 id: item.id,
                                 firstNameEn: item.firstNameEn,
                                 lastNameEn: item.lastNameEn,
                                 firstNameAr: item.firstNameAr,
                                 lastNameAr: item.lastNameAr,
+                                ownedProperties:item?.ownedProperties
                               },
                             });
                           }}

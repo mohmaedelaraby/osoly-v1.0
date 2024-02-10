@@ -26,7 +26,7 @@ import { useNavigate } from "react-router-dom";
 import CreateProperty from "./CreateProperty";
 import { building } from "../../../mocks/building";
 
-const PropertyTable = () => {
+const PropertyTable = ({data}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
