@@ -141,6 +141,6 @@ export const setupInterceptorsTo = (
 
 
 export const logout = () => {
-  // localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
   window.location.href = "/login";
 }

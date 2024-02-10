@@ -1,9 +1,10 @@
 import axios from "axios";
+import { apiUrl } from "../../../utils/exportEnvUrls";
 
 
 export const loginApi = (user) => {
   return axios.post(
-    `test/Protected/referd/Token`,
+    `${apiUrl}auth/login`,
     user
   );
 };

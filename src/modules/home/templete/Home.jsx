@@ -26,12 +26,14 @@ const Home = () => {
     },
   ];
 
+  //for tickets
   const pieData = [
     { name: "Solved ", value: 400 },
     { name: "Proccisng ", value: 300 },
     { name: "Rejected ", value: 300 },
     { name: "Review", value: 200 }
   ];
+  //for units
   const barData = [
     {
       name: "Eco",
