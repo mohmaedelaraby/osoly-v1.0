@@ -23,7 +23,6 @@ const EditUser = () => {
   useEffect(() => {
     refetch();
   }, []);
-  if(data){console.log("first")}
   const initialValues = {
     firstNameEn: firstNameEn,
     lastNameEn: lastNameEn,

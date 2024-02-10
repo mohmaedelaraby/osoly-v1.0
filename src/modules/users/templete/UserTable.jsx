@@ -76,6 +76,7 @@ const UserTable = ({ data }) => {
                 <Tbody className="table_body">
                   {data?.map((item, index) => (
                     <Tr
+                    key={index}
                       className="table_body_row"
                       onClick={() => {
                         navigate("/user", {

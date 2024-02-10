@@ -3,28 +3,24 @@ import React, { useState } from "react";
 import { adsValidation } from "../validation/schema";
 import { Button, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
+import { useCreateAds } from "../hooks/useCreateAds";
 
-const CreateAd = () => {
-  /* "image": "uploads/first.png",
-  "content": "This ad for some unit",
-  "url": "url.com",
-  "index": 1 */
-  /*   const [index, setIndex] = useState(0);
-  const [url, setUrl] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(''); */
+const CreateAd = () => { 
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const { mutate } = useCreateAds();
   const initialValues = {
     url: "",
     content: "",
+    index:0
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: adsValidation,
     onSubmit: (values) => {
-      console.log(values);
+      let ad = {...values , image:selectedImage?.name}
+      mutate({body:ad})
+      console.log(ad);
     },
   });
   return (
@@ -77,6 +73,32 @@ const CreateAd = () => {
             {formik.touched.content && formik.errors.content ? (
               <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                 {formik.errors.content}
+              </Text>
+            ) : null}
+          </div>
+        </FormControl>
+      </div>
+
+      <div className="form__input">
+        <FormControl className="form__input__container">
+          <FormLabel>
+            <Text className="form__input__container__label"> Index </Text>
+          </FormLabel>
+
+          <Input
+            name="index"
+            type="number"
+            className="form__input__container__input"
+            placeholder="enter your index"
+            value={formik.values.index}
+            onChange={formik.handleChange}
+            isInvalid={formik.touched.index && !!formik.errors.index}
+          />
+
+          <div className="form__input__container__warn">
+            {formik.touched.index && formik.errors.index ? (
+              <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                {formik.errors.index}
               </Text>
             ) : null}
           </div>
