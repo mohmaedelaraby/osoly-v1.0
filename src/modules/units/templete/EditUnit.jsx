@@ -8,34 +8,42 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { unitsValidation } from "../validation/schema";
+import { useUpdateUnit } from "../hooks/useUpdateUnit";
+import useUnits from "../hooks/useUnits";
 
 
 const EditUnit = () => {
   const { state } = useLocation();
-  const { id, name, price } = state;
+  const { id ,name ,rent ,rentCollectionDate , electricityAccount , waterAccount ,address,space,rooms,bathrooms,lounge,conditioners,kitchen} = state;
 
+  const { mutate } = useUpdateUnit();
+  const { data, isLoading, refetch } = useUnits(id);
+  useEffect(() => {
+    refetch();
+  }, []);
   const initialValues = { 
-    name: "",
-    rent: "",
-    rentCollectionDate: "",
-    electricityAccount: "",
-    waterAccount: "",
-    address: "",
-    space:"",
-    rooms: "",
-    bathrooms: "",
-    lounge: "",
-    conditioners: "",
-    kitchen:"",
+    name: name,
+    rent: rent,
+    rentCollectionDate: rentCollectionDate,
+    electricityAccount: electricityAccount,
+    waterAccount: waterAccount,
+    address: address,
+    space:space,
+    rooms: rooms,
+    bathrooms: bathrooms,
+    lounge: lounge,
+    conditioners: conditioners,
+    kitchen:kitchen,
     };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
+      mutate({id:id,body:values})
       console.log(values);
     },
   });

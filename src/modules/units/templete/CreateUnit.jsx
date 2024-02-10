@@ -11,8 +11,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
+import { useCreateUnit } from "../hooks/useCreateUnit";
 
 const CreateUnit = () => {
+  const { mutate } = useCreateUnit();
   const initialValues = { 
   name: "",
   rent: "",
@@ -33,6 +35,7 @@ const CreateUnit = () => {
     validationSchema: unitsValidation,
     onSubmit: (values) => {
       console.log(values);
+      mutate({body:values})
     },
   });
   return (
