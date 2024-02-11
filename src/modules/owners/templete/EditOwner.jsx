@@ -29,6 +29,7 @@ const EditOwner = () => {
   const { data, isLoading, refetch } = useGetUser(id);
   useEffect(() => {
     refetch();
+    console.log(ownedProperties)
   }, []);
 
   const initialValues = {
@@ -189,7 +190,7 @@ const EditOwner = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <PropertyTable data={data?.ownedProperties}/>
+                          <PropertyTable data={ownedProperties}/>
                         </CardBody>
                       </Card>
                     </Card>

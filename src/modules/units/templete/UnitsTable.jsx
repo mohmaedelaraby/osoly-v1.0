@@ -38,6 +38,8 @@ const UnitsTable = ({data}) => {
       toggleShow();
     }
   };
+
+  console.log("first", data)
   return (
     <>
       <CardHeader>
@@ -49,7 +51,7 @@ const UnitsTable = ({data}) => {
             <Button
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
-              onClick={openPopup()}
+              onClick={()=>openPopup()}
             >
               Add Unit
             </Button>

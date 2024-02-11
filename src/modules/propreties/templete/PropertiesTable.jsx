@@ -11,6 +11,7 @@ import {
   Table,
   TableContainer,
   Tbody,
+  Td,
   Text,
   Th,
   Thead,
@@ -39,6 +40,7 @@ const PropertyTable = ({data}) => {
 
   useEffect(() => {
     //console.log(show )
+    console.log("d",data)
   }, [show]);
   return (
     <>
@@ -76,7 +78,7 @@ const PropertyTable = ({data}) => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                 {/*  {data && data.map((item, index) => (
+                  {data && data.map((item, index) => (
                     <Tr
                       key={index}
                       className="table_body_row"
@@ -93,6 +95,7 @@ const PropertyTable = ({data}) => {
                             street: item.street,
                             subNumber: item.subNumber,
                             district: item.district,
+                            units:item.units
                           },
                         });
                       }}
@@ -107,7 +110,7 @@ const PropertyTable = ({data}) => {
                       <Td className="table_body_row_item">{item.subNumber}</Td>
                       <Td className="table_body_row_item">{item.district}</Td>
                     </Tr>
-                  ))} */}
+                  ))}
                 </Tbody>
               </Table>
             </TableContainer>
