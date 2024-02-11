@@ -107,7 +107,7 @@ const EditUnit = () => {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">rent collectionDate</Text>
+            <Text className="form__input__container__label">rent collection date</Text>
           </FormLabel>
 
           <Input

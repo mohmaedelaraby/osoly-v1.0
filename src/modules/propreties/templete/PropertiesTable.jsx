@@ -11,20 +11,18 @@ import {
   Table,
   TableContainer,
   Tbody,
-  Td,
   Text,
   Th,
   Thead,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 import CreateProperty from "./CreateProperty";
-import { building } from "../../../mocks/building";
 import useClosePopUps from "../../../store/useClosePopups";
 
 const PropertyTable = ({data}) => {
@@ -38,6 +36,10 @@ const PropertyTable = ({data}) => {
       toggleShow();
     }
   };
+
+  useEffect(() => {
+    //console.log(show )
+  }, [show]);
   return (
     <>
       <CardHeader>
@@ -49,7 +51,7 @@ const PropertyTable = ({data}) => {
             <Button
               leftIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
-              onClick={openPopup()}
+              onClick={()=>{openPopup()}}
             >
               Add Proberty
             </Button>
@@ -74,7 +76,7 @@ const PropertyTable = ({data}) => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {data && data.map((item, index) => (
+                 {/*  {data && data.map((item, index) => (
                     <Tr
                       key={index}
                       className="table_body_row"
@@ -105,7 +107,7 @@ const PropertyTable = ({data}) => {
                       <Td className="table_body_row_item">{item.subNumber}</Td>
                       <Td className="table_body_row_item">{item.district}</Td>
                     </Tr>
-                  ))}
+                  ))} */}
                 </Tbody>
               </Table>
             </TableContainer>
