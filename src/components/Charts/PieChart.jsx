@@ -34,7 +34,7 @@ const PieChartComponent =({data}) =>{
   };
   return (
     <>
-     <PieChart width={500} height={500}>
+     <PieChart width={400} height={400}>
       <Pie
         data={data}
         cx={230}
