@@ -63,7 +63,10 @@ const PropertyTable = ({data}) => {
       <Card>
         <Card>
           <CardBody>
-            <TableContainer>
+            <TableContainer overflowY="scroll"
+              overflowX="scroll"
+              minHeight="340px"
+              maxHeight="340px">
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>

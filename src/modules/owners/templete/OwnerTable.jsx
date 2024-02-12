@@ -82,7 +82,7 @@ const OwnerTable = ({data}) => {
                 </Thead>
                 <Tbody className="table_body">
                   {data?.map((item, index) =>
-                    item.role === USER_ROLES.TENANT ? (
+                    item.role === USER_ROLES.OWNER ? (
                       <>
                         <Tr
                           key={index}

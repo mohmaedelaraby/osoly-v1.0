@@ -45,6 +45,18 @@ export const sidebarItems = [
             name:'tickets',
             active:['/ticket','/tickets'],
             navTo:'/tickets'
+        }
+        ,
+        {
+            name:'propreties',
+            active:['/propreties','/propretie'],
+            navTo:'/propreties'
+        }
+        ,
+        {
+            name:'units',
+            active:['/units','/unit'],
+            navTo:'/units'
         }]
     },
 
@@ -56,5 +68,6 @@ export const sidebarItems = [
         activeIcon: <IconSettingsActive/>,
         isActive: true
     },
+  
 
 ];

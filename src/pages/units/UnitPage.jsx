@@ -30,11 +30,11 @@ const UnitPage = () => {
   return (
     <>
        <div className="table_container">
-        {data?.users && !isLoading? (
+        {data?.units && !isLoading? (
           <>
             <Card width="90%" minHeight='85%'>
               <CardBody marginBottom="24px">
-                <UnitsTable data={data?.properties}/>
+                <UnitsTable data={data?.units}/>
                 <div className="table_container_paganation">
                   {
                     <Pagination

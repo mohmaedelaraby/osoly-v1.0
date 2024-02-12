@@ -30,9 +30,9 @@ const PropertiesTablePage = () => {
   return (
     <>
        <div className="table_container">
-        {data?.users && !isLoading? (
+        {data?.properties && !isLoading? (
           <>
-            <Card width="90%" minHeight='85%'>
+            <Card width="80%" minHeight='85%'>
               <CardBody marginBottom="24px">
                 <PropertyTable data={data?.properties}/>
                 <div className="table_container_paganation">
