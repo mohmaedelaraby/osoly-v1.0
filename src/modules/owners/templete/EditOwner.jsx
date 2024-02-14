@@ -190,7 +190,7 @@ const EditOwner = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <PropertyTable data={ownedProperties}/>
+                          <PropertyTable data={ownedProperties} owenerId={id}/>
                         </CardBody>
                       </Card>
                     </Card>

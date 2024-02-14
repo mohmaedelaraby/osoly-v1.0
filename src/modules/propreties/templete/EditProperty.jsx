@@ -16,7 +16,7 @@ import {
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {  propertyValidation } from "../validation/schema";
+import {  propertyEditValidation } from "../validation/schema";
 import UnitsTable from "../../units/templete/UnitsTable";
 import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
 import useGetPropertey from "../hooks/useGetPropertey";
@@ -24,7 +24,7 @@ import CreateUnit from "../../units/templete/CreateUnit";
 
 const EditProperty = () => {
   const { state } = useLocation();
-  const { id, name, address , unitsCount ,instrumentNumber ,postalCode ,blockNumber ,street ,subNumber ,district ,units} = state;
+  const { id, name, address , unitsCount ,instrumentNumber ,postalCode ,blockNumber ,street ,subNumber ,district ,units , owenerId} = state;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { mutate } = useUpdatePropertey();
@@ -47,8 +47,15 @@ const EditProperty = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: propertyValidation,
+    validationSchema: propertyEditValidation,
     onSubmit: (values) => {
+      let belongToOwner = { ...values, owenerId: owenerId };
+      let freeProperty = { ...values, owenerId: null };
+      if(owenerId){
+        mutate({body:belongToOwner})
+      }else{
+        mutate({body:freeProperty})
+      }
       console.log(values);
     },
   });
@@ -256,6 +263,32 @@ const EditProperty = () => {
                 {formik.touched.subNumber && formik.errors.subNumber ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                     {formik.errors.subNumber}
+                  </Text>
+                ) : null}
+              </div>
+            </FormControl>
+
+
+            
+            <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label"> district </Text>
+              </FormLabel>
+
+              <Input
+                name="district"
+                type="text"
+                className="form__input__container__input"
+                placeholder="enter your district"
+                value={formik.values.district}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.district && !!formik.errors.district}
+              />
+
+              <div className="form__input__container__warn">
+                {formik.touched.district && formik.errors.district ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                    {formik.errors.district}
                   </Text>
                 ) : null}
               </div>

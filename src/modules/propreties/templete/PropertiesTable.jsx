@@ -26,7 +26,7 @@ import { useNavigate } from "react-router-dom";
 import CreateProperty from "./CreateProperty";
 import useClosePopUps from "../../../store/useClosePopups";
 
-const PropertyTable = ({data}) => {
+const PropertyTable = ({data , owenerId}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { show, toggleShow } = useClosePopUps();
@@ -98,7 +98,8 @@ const PropertyTable = ({data}) => {
                             street: item.street,
                             subNumber: item.subNumber,
                             district: item.district,
-                            units:item.units
+                            units:item.units,
+                            owenerId:owenerId
                           },
                         });
                       }}
@@ -125,7 +126,7 @@ const PropertyTable = ({data}) => {
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
-            <CreateProperty />
+            <CreateProperty owenerID={owenerId}/>
           </ModalBody>
         </ModalContent>
       </Modal>

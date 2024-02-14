@@ -1,8 +1,8 @@
 
 
 import { useFormik } from "formik";
-import React from "react";
-import { propertyValidation } from "../validation/schema";
+import React, { useEffect } from "react";
+import { propertyCreateValidation } from "../validation/schema";
 import {
   Button,
   FormControl,
@@ -13,13 +13,16 @@ import {
 import "../../../assets/styels/components/forms.scss";
 import { useCreatePropertey } from "../hooks/useCreatePropertey";
 
-const CreateProperty = () => {
+const CreateProperty = ({owenerID}) => {
+  useEffect(()=>{
+    console.log("form starter")
+  },[])
   const { mutate } = useCreatePropertey();
 
   const initialValues = {
     name:"",
     address: "",
-    unitsCount: "",
+    unitsCount: null,
     instrumentNumber: "",
     postalCode: "",
     blockNumber: "",
@@ -30,10 +33,16 @@ const CreateProperty = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: propertyValidation,
+    validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
-      console.log(values);
-      mutate({body:values})
+      let belongToOwner = { ...values, owenerId: owenerID };
+      let freeProperty = { ...values, owenerId: null };
+      if(owenerID){
+        mutate({body:belongToOwner})
+      }else{
+        mutate({body:freeProperty})
+      }
+      console.log("first")
     },
   });
   return (
@@ -126,7 +135,7 @@ const CreateProperty = () => {
 
               <Input
                 name="unitsCount"
-                type="text"
+                type="number"
                 className="form__input__container__input"
                 placeholder="enter your name"
                 value={formik.values.unitsCount}
@@ -241,8 +250,31 @@ const CreateProperty = () => {
                 ) : null}
               </div>
             </FormControl>
-          </div>
 
+            <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label"> district </Text>
+              </FormLabel>
+
+              <Input
+                name="district"
+                type="text"
+                className="form__input__container__input"
+                placeholder="enter your district"
+                value={formik.values.district}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.district && !!formik.errors.district}
+              />
+
+              <div className="form__input__container__warn">
+                {formik.touched.district && formik.errors.district ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                    {formik.errors.district}
+                  </Text>
+                ) : null}
+              </div>
+            </FormControl>
+          </div>
           <div className="form__btn__container">
             <Button className="form__btn " type="submit">
               Create
