@@ -18,18 +18,25 @@ import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
 const TicketCard = ({ item }) => {
   const TICKET_STATUS__KEYS = Object.keys(ticketsStatus);
   const TICKET_STATUS__Values = ticketsStatus;
-  const TICKET_TYPES = Object.keys(ticketsTypes);
+  const TICKET_TYPES = ticketsTypes; 
 
-  const [name,setName]=useState(item.name)
-  const [type,setType]=useState(item.type)
-  const [status,setStatus]=useState(item.status)
-  const [desc,setDesc]=useState(item.desc)
+  const [name,setName]=useState(item?.name)
+  const [type,setType]=useState(item?.type)
+  const [status,setStatus]=useState(item?.status)
+  const [desc,setDesc]=useState(item?.desc)
 
   useEffect(() => {
-    console.log("status",status)
+    //
   }, [status]);
+  useEffect(() => {
+    //
+    setName(item.name)
+    setType(item.type)
+    setStatus(item.status)
+    setDesc(item.desc)
+  }, [item]);
   return (
-    <Card width="75%">
+    <Card width="95%">
       <CardHeader>
         <Flex spacing="4">
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
@@ -37,7 +44,7 @@ const TicketCard = ({ item }) => {
 
             <Box>
               <Heading size="sm">{name}</Heading>
-              <Text color='gray' fontSize='large' fontWeight='bold'>{TICKET_TYPES[type]}</Text>
+              <Text color='gray' fontSize='large' fontWeight='bold'>{type== TICKET_TYPES.service ? 'service' : type== TICKET_TYPES.complian ? 'complian' :type == TICKET_TYPES.other ? 'other':''}</Text>
             </Box>
           </Flex>
           <div

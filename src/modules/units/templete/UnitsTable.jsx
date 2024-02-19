@@ -39,7 +39,6 @@ const UnitsTable = ({data}) => {
     }
   };
 
-  console.log("first", data)
   return (
     <>
       <CardHeader>

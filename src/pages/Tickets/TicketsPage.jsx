@@ -1,19 +1,26 @@
 import React from "react";
-import { tickets } from "../../mocks/tickets";
-import TicketCard from "../../modules/Tickets/templete/TicketCard";
 import "../../assets/styels/pages/tickets.scss";
+import TicketsContainer from "../../modules/Tickets/templete/TicketsContainer";
+import { Card, CardBody } from "@chakra-ui/react";
+import { tickets } from "../../mocks/tickets";
 
 const TicketsPage = () => {
   return (
     <>
-      <div className="tickets_container">
-        {tickets.map((item, index) => (
+     <div className="tickets_page">
+        {tickets? (
           <>
-            <div className="tickets_item">
-              <TicketCard item={item} key={index}></TicketCard>
-            </div>
+            <Card width="90%" minHeight='85%' maxHeight='85%' overflowY='scroll'>
+              <CardBody marginBottom="24px">
+                <TicketsContainer/>  
+              </CardBody>
+            </Card>
           </>
-        ))}
+        ) : (
+          <>
+          NO Tickets
+          </>
+        )}
       </div>
     </>
   );
