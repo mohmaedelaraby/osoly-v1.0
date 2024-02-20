@@ -39,6 +39,7 @@ console.log("first",id)
   const { mutate } = useUpdateUnit(id);
   const { data, isLoading, refetch } = useGetUnit(id);
   const [loungeChoice, setLoungeChoice] = useState(lounge.toString());
+  const [kitchenChoice, setKitchenChoice] = useState(kitchen.toString());
 
   useEffect(() => {
     refetch();
@@ -62,7 +63,7 @@ console.log("first",id)
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
-      let data = {id: id,  body: {lounge:loungeChoice ==='true'? true : false , ...values }}
+      let data = {id: id,  body: {lounge:loungeChoice ==='true'? true : false ,kitchen:kitchenChoice ==='true'? true : false , ...values }}
       mutate(data);
     },
   });
@@ -389,30 +390,24 @@ console.log("first",id)
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      {" "}
-                      kitchen{" "}
+                      kitchen
                     </Text>
                   </FormLabel>
 
-                  <Input
-                    name="kitchen"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder="enter your kitchen"
-                    value={formik.values.kitchen}
-                    onChange={formik.handleChange}
-                    isInvalid={
-                      formik.touched.kitchen && !!formik.errors.kitchen
-                    }
-                  />
-
-                  <div classeName="form__input__container__warn">
-                    {formik.touched.kitchen && formik.errors.kitchen ? (
-                      <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                        {formik.errors.kitchen}
-                      </Text>
-                    ) : null}
-                  </div>
+                  <RadioGroup
+                    value={kitchenChoice}
+                    onChange={(newType) => setKitchenChoice(newType)}
+                    marginTop="16px"
+                  >
+                    <Stack direction="row">
+                      <Radio value={'true'} marginRight="12px">
+                        True
+                      </Radio>
+                      <Radio value={'false'} marginRight="12px">
+                        False
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
                 </FormControl>
               </div>
             </div>
