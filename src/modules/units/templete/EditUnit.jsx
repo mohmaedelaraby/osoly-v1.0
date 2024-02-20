@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import { unitsValidation } from "../validation/schema";
 import { useUpdateUnit } from "../hooks/useUpdateUnit";
 import useGetUser from "../hooks/useGetUnit";
+import useGetUnit from "../hooks/useGetUnit";
 
 const EditUnit = () => {
   const { state } = useLocation();
@@ -34,14 +35,15 @@ const EditUnit = () => {
     conditioners,
     kitchen,
   } = state;
-
-  const { mutate } = useUpdateUnit();
-  const { data, isLoading, refetch } = useGetUser(id);
-  const [loungeChoice, setLoungeChoice] = useState(lounge);
+console.log("first",id)
+  const { mutate } = useUpdateUnit(id);
+  const { data, isLoading, refetch } = useGetUnit(id);
+  const [loungeChoice, setLoungeChoice] = useState(lounge.toString());
 
   useEffect(() => {
     refetch();
   }, []);
+
   const initialValues = {
     name: name,
     rent: rent,
@@ -52,7 +54,6 @@ const EditUnit = () => {
     space: space,
     rooms: rooms,
     bathrooms: bathrooms,
-    lounge: lounge,
     conditioners: conditioners,
     kitchen: kitchen,
   };
@@ -61,8 +62,8 @@ const EditUnit = () => {
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
-      mutate({ id: id, body: values });
-      console.log(values);
+      let data = {id: id,  body: {lounge:loungeChoice ==='true'? true : false , ...values }}
+      mutate(data);
     },
   });
   return (
@@ -331,35 +332,26 @@ const EditUnit = () => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      {" "}
-                      lounge{" "}
+                      lounge
                     </Text>
                   </FormLabel>
 
 
                   <RadioGroup
-                    value={formik.values.lounge}
-                    onChange={formik.handleChange}
-                    isInvalid={formik.touched.lounge && !!formik.errors.lounge}
+                    value={loungeChoice}
+                    onChange={(newType) => setLoungeChoice(newType)}
                     marginTop="16px"
                   >
                     <Stack direction="row">
-                      <Radio value={true} marginRight="12px">
+                      <Radio value={'true'} marginRight="12px">
                         True
                       </Radio>
-                      <Radio value={false} marginRight="12px">
+                      <Radio value={'false'} marginRight="12px">
                         False
                       </Radio>
                     </Stack>
                   </RadioGroup>
 
-                  <div classeName="form__input__container__warn">
-                    {formik.touched.lounge && formik.errors.lounge ? (
-                      <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                        {formik.errors.lounge}
-                      </Text>
-                    ) : null}
-                  </div>
                 </FormControl>
               </div>
 

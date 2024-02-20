@@ -5,7 +5,7 @@ const fetchUnit = async (id) => {
     return await getUnitDetails(id);
 };
 
-const useGetUser = (id) => {
+const useGetUnit = (id) => {
     const { data, refetch, status } = useQuery([`unit${id}`, id], () => fetchUnit(id), {
         refetchOnWindowFocus: false,
         enabled: false
@@ -18,4 +18,4 @@ const useGetUser = (id) => {
     };
 };
 
-export default useGetUser;
+export default useGetUnit;
