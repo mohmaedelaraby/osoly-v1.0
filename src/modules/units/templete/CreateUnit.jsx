@@ -13,15 +13,15 @@ const CreateUnit = () => {
 
   const initialValues = {
     name: "",
-    rent: 0,
+    rent: "",
     rentCollectionDate: "",
     electricityAccount: "",
     waterAccount: "",
     address: "",
     space: "",
-    rooms: 0,
-    bathrooms: 0,
-    conditioners: 0,
+    rooms: "",
+    bathrooms: "",
+    conditioners: "",
     kitchen: "",
   };
 
@@ -47,9 +47,9 @@ const CreateUnit = () => {
 
             <Input
               name="name"
-              type="number"
+              type="text"
               className="form__input__container__input"
-              placeholder="enter your first name "
+              placeholder="enter your first name in En"
               value={formik.values.name}
               onChange={formik.handleChange}
               isInvalid={formik.touched.name && !!formik.errors.name}
@@ -71,9 +71,9 @@ const CreateUnit = () => {
 
             <Input
               name="rent"
-              type="number"
+              type="text"
               className="form__input__container__input"
-              placeholder="enter your rent"
+              placeholder="enter your last name in En"
               value={formik.values.rent}
               onChange={formik.handleChange}
               isInvalid={formik.touched.rent && !!formik.errors.rent}
@@ -238,7 +238,7 @@ const CreateUnit = () => {
 
             <Input
               name="rooms"
-              type="number"
+              type="text"
               className="form__input__container__input"
               placeholder="enter your rooms"
               value={formik.values.rooms}
@@ -264,7 +264,7 @@ const CreateUnit = () => {
 
             <Input
               name="bathrooms"
-              type="number"
+              type="text"
               className="form__input__container__input"
               placeholder="enter your bathrooms"
               value={formik.values.bathrooms}
