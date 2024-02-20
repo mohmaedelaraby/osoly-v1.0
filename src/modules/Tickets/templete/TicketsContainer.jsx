@@ -20,13 +20,13 @@ import TicketCard from "./TicketCard";
 function TicketsContainer() {
   const [isEditingFilter, setIsEditingFilter] = useBoolean();
   const [isEditingSort, setIsEditingSort] = useBoolean();
-  const [statuss, setStatus] = React.useState(0);
-  const [typee, setType] = React.useState(0);
+  const [statuss, setStatus] = React.useState("All");
+  const [typee, setType] = React.useState("All");
   const [filterdTickets, setFilterdTickets] = useState(tickets);
 //for filter data
   useEffect(() => {
     // it means show all
-    if (statuss !== 0) {
+    if (statuss !== "All") {
       const newFiltered = tickets.filter((s) => s.status == statuss);
       setFilterdTickets(newFiltered);
     }else{
@@ -37,8 +37,8 @@ function TicketsContainer() {
   useEffect(() => {
     // it means show all
     let newFiltered
-    if (typee !== 0) {
-      if(typee==1){
+    if (typee !== "All") {
+      if(typee =="processing"){
          newFiltered = tickets.sort(function(a, b) { 
           return a.type - b.type 
         });
@@ -99,7 +99,7 @@ function TicketsContainer() {
                   <RadioGroup
                     marginTop="8px"
                     value={typee}
-                    onChange={(newType) => setType(parseInt(newType))}
+                    onChange={(newType) => setType(newType)}
                   >
                     <Radio value={ticketsTypes.service} marginRight="6%">
                     service
@@ -142,7 +142,7 @@ function TicketsContainer() {
                   <RadioGroup
                     marginTop="8px"
                     value={statuss}
-                    onChange={(newType) => setStatus(parseInt(newType))}
+                    onChange={(newType) => setStatus(newType)}
                   >
                     <Radio value={ticketsStatus.solved} marginRight="15%">
                       solved
