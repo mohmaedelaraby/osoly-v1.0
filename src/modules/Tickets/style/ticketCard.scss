@@ -1,21 +1,7 @@
 @import '../../../assets/styels/vars.scss';
 
 
-.solved {
-    background-color: rgb(2, 187, 2);
-}
 
-.canceled {
-    background-color: rgb(187, 2, 2);
-}
-
-.processsing {
-    background-color: rgb(187, 156, 2);
-}
-
-.review {
-    background-color: rgb(26, 146, 226);
-}
 
 .card {
     width: 80%;
@@ -42,12 +28,26 @@
                     color: $font-color;
                     direction: ltr;
                     cursor: pointer;
+                    margin-left: 4px;
                 }
 
                 .card__container__header__title__type {
                     font-size: 14px;
                     font-weight: bold;
-                    margin-right: 4px;
+                   
+                }
+                
+                
+                .complain {
+                    color: rgb(187, 2, 2);
+                }
+                
+                .service {
+                    color: rgb(187, 156, 2);
+                }
+                
+                .other {
+                    color: rgb(26, 146, 226);
                 }
             }
 
@@ -60,6 +60,21 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+            .solved {
+                background-color: rgb(2, 187, 2);
+            }
+            
+            .canceled {
+                background-color: rgb(187, 2, 2);
+            }
+            
+            .processsing {
+                background-color: rgb(187, 156, 2);
+            }
+            
+            .review {
+                background-color: rgb(26, 146, 226);
             }
         }
 

@@ -6,6 +6,6 @@ export const ticketsStatus = {
 }
 export const ticketsTypes = {
     service: 'service',
-    complian: 'complian',
+    complain: 'complain',
     other: 'other',
 }
