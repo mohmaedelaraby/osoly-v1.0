@@ -32,8 +32,8 @@ const UnitPage = () => {
        <div className="table_container">
         {data?.units && !isLoading? (
           <>
-            <Card width="90%" minHeight='85%'>
-              <CardBody marginBottom="24px">
+            <Card maxWidth='1020px' minWidth='1020px' minHeight='85%'>
+              <CardBody marginBottom="24px" >
                 <UnitsTable data={data?.units}/>
                 <div className="table_container_paganation">
                   {

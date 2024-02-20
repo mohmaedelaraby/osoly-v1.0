@@ -13,7 +13,7 @@ const EnterpraisUserTablePage = () => {
   return (
     <>
       <div className="table_container">
-        <Card width="90%">
+        <Card  maxWidth='1020px' minWidth='1020px'>
           <CardBody  marginBottom='24px'>
             <UserEnterpraiseTable/>
           </CardBody>

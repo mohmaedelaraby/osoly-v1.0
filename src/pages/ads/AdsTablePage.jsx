@@ -30,7 +30,7 @@ const AdsTablePage = () => {
       <div className="table_container">
       {data?.ads && !isLoading? (
           <>
-            <Card width="90%" minHeight='85%'>
+            <Card  maxWidth='1020px' minWidth='1020px' minHeight='85%'>
               <CardBody marginBottom="24px">
                 <AdsTable data={data?.ads}/>
                 <div className="table_container_paganation">
