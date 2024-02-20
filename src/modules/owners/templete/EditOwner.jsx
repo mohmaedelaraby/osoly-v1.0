@@ -109,7 +109,7 @@ const EditOwner = () => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">First Name (Ar) </Text>
+                <Text className="form__input__container__label">First Name (EN) </Text>
               </FormLabel>
 
               <Input
@@ -133,7 +133,7 @@ const EditOwner = () => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label"> Last Name (Ar) </Text>
+                <Text className="form__input__container__label"> Last Name (EN) </Text>
               </FormLabel>
 
               <Input
