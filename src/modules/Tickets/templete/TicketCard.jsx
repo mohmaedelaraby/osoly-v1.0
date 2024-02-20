@@ -44,34 +44,39 @@ const TicketCard = ({ item }) => {
               <span className="card__container__header__title__desc">
                 {item?.unit?.name}
               </span>
-              (<span   className={
-                item?.type === TICKET_TYPES.complain
-                  ? "card__container__header__title__type complain"
-                  : item?.type === TICKET_TYPES.service
-                  ? "card__container__header__title__type service"
-                  : item?.type === TICKET_TYPES.other
-                  ? "card__container__header__title__type other"
-                  : " "
-              }>
-                 {item?.type} 
-              </span>)
+              (
+              <span
+                className={
+                  item?.type === TICKET_TYPES.complain
+                    ? "card__container__header__title__type complain"
+                    : item?.type === TICKET_TYPES.service
+                    ? "card__container__header__title__type service"
+                    : item?.type === TICKET_TYPES.other
+                    ? "card__container__header__title__type other"
+                    : " "
+                }
+              >
+                {item?.type}
+              </span>
+              )
             </div>
             <div
               className={
-                item?.status === TICKET_STATUS.solved
+                status === TICKET_STATUS.solved
                   ? "card__container__header__status solved"
-                  : item?.status === TICKET_STATUS.canceled
+                  : status === TICKET_STATUS.canceled
                   ? "card__container__header__status canceled"
-                  : item?.status === TICKET_STATUS.processing
+                  : status === TICKET_STATUS.processing
                   ? "card__container__header__status processsing"
-                  : item?.status === TICKET_STATUS.review
+                  : status === TICKET_STATUS.review
                   ? "card__container__header__status review"
                   : " "
               }
             >
-              {item?.status}
+              {status}
             </div>
           </div>
+
           <div className="card__container__body">
             <div className="card__container__body__desc">
               {item?.description}
@@ -92,6 +97,69 @@ const TicketCard = ({ item }) => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="card_container__btns">
+            {status === TICKET_STATUS.review ? (
+              <>
+                  <Button
+                     variant="solid"
+                     leftIcon={<CheckIcon />}
+                     colorScheme='blue'
+                     marginLeft='8px'
+                     width='100%'
+                    onClick={() => {
+                      setStatus(TICKET_STATUS.solved);
+                    }}
+                  >
+                    solved
+                  </Button>
+                  <Button
+                    variant="outline"
+                    leftIcon={<CloseIcon />}
+                    colorScheme='red'
+                    width='100%'
+                    onClick={() => {
+                      setStatus(TICKET_STATUS.canceled);
+                    }}
+                  >
+                    cancel
+                  </Button>
+              </>
+            ) : (
+              <></>
+            )}
+
+            {status === TICKET_STATUS.processing ? (
+              <>
+                  <Button
+                    variant="solid"
+                    leftIcon={<CheckIcon />}
+                    colorScheme='blue'
+                    marginLeft='8px'
+                    width='100%'
+                    onClick={() => {
+                      setStatus(TICKET_STATUS.review);
+                    }}
+                  >
+                    Accept
+                  </Button>
+                  <Button
+                    variant="outline"
+                    leftIcon={<CloseIcon />}
+                    colorScheme='red'
+                    width='100%'
+
+                    onClick={() => {
+                      setStatus(TICKET_STATUS.canceled);
+                    }}
+                  >
+                    Reject
+                  </Button>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

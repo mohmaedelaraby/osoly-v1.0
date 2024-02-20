@@ -17,20 +17,20 @@ import { EditIcon, RepeatIcon, UpDownIcon } from "@chakra-ui/icons";
 import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
 import TicketCard from "./TicketCard";
 
-function TicketsContainer() {
+function TicketsContainer({data=tickets}) {
   const [isEditingFilter, setIsEditingFilter] = useBoolean();
   const [isEditingSort, setIsEditingSort] = useBoolean();
-  const [statuss, setStatus] = React.useState("All");
-  const [typee, setType] = React.useState("All");
-  const [filterdTickets, setFilterdTickets] = useState(tickets);
+  const [statuss, setStatus] = useState("All");
+  const [typee, setType] = useState("All");
+  const [filterdTickets, setFilterdTickets] = useState(data);
 //for filter data
   useEffect(() => {
     // it means show all
     if (statuss !== "All") {
-      const newFiltered = tickets.filter((s) => s.status == statuss);
+      const newFiltered = data.filter((s) => s.status == statuss);
       setFilterdTickets(newFiltered);
     }else{
-      setFilterdTickets(tickets)
+      setFilterdTickets(data)
     }
   }, [statuss]);
 //for sorting data
@@ -39,12 +39,12 @@ function TicketsContainer() {
     let newFiltered
     if (typee !== "All") {
       if(typee =="processing"){
-         newFiltered = tickets.sort(function(a, b) { 
+         newFiltered = data.sort(function(a, b) { 
           return a.type - b.type 
         });
       }
       else{
-         newFiltered = tickets.sort(function(a, b) { 
+         newFiltered = data.sort(function(a, b) { 
           return b.type - a.type 
         });
       }
@@ -66,7 +66,7 @@ function TicketsContainer() {
               className="tabel_header_addBtn_btn"
               marginRight="8px"
               variant="outline"
-              onClick={()=>setStatus(0)}
+              onClick={()=>{setStatus("All"); setIsEditingSort.off() ; setIsEditingFilter.off()}}
             >
               Reset
             </Button>
@@ -74,9 +74,9 @@ function TicketsContainer() {
               {/* sort popup */}
               <Popover
               isOpen={isEditingSort}
-              onOpen={setIsEditingSort.on}
+              onOpen={()=>{setIsEditingSort.on(); setIsEditingFilter.off()}}
               onClose={setIsEditingSort.off}
-              closeOnBlur={false}
+              closeOnBlur={true}
               isLazy
               lazyBehavior="keepMounted"
             >
@@ -118,7 +118,7 @@ function TicketsContainer() {
             {/* filter popup */}
             <Popover
               isOpen={isEditingFilter}
-              onOpen={setIsEditingFilter.on}
+              onOpen={()=>{setIsEditingFilter.on(); setIsEditingSort.off()}}
               onClose={setIsEditingFilter.off}
               closeOnBlur={false}
               isLazy
