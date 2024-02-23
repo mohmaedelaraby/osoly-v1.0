@@ -34,11 +34,11 @@ const PieChartComponent =({data}) =>{
   };
   return (
     <>
-     <PieChart width={400} height={400}>
+     <PieChart width={500} height={420}>
       <Pie
         data={data}
-        cx={200}
-        cy={200}
+        cx={250}
+        cy={210}
         labelLine={false}
         label={renderCustomizedLabel}
         outerRadius={190}

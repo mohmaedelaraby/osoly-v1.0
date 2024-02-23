@@ -13,8 +13,8 @@ const BarChartComponent = ({data , dataKeyValue , name}) => {
   return (
     <>
       <BarChart
-        width={400}
-        height={400}
+        width={500}
+        height={420}
         data={data}
         margin={{
           top: 5,
