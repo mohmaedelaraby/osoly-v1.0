@@ -1,10 +1,11 @@
 import axios from "axios";
 import { apiUrl } from "../../../utils/exportEnvUrls";
+import api from "../../../services/axiosInstance/api";
 
 //Fetch all ads
 export const getAds = (params) => {
   const { pageNo, limit } = params;
-  return axios.get(`${apiUrl}dashboard/ads?page=${pageNo}&limit=${limit}`, {
+  return api.get(`${apiUrl}dashboard/ads?page=${pageNo}&limit=${limit}`, {
   }).then(res => res.data.data)
 }
 
@@ -27,12 +28,12 @@ export const getAdsDetails = async (id) => {
 
 //update ads
 export const updateAds = (data) => {
-  return axios.put(`${apiUrl}dashboard/ads/${data?.id}`, data?.body)
+  return api.put(`${apiUrl}dashboard/ads/${data?.id}`, data?.body)
 }
 
 //create ads
 export const createAds = (data) => {
-  return axios.post(`${apiUrl}dashboard/ads`, data?.body)
+  return api.post(`${apiUrl}dashboard/ads`, data?.body)
 }
 
 

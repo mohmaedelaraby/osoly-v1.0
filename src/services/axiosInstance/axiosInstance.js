@@ -7,25 +7,25 @@ const onRequest = (
   config
 ) => {
   const currentUserJson = localStorage.getItem("currentUser");
-  const clientKey = sessionStorage.getItem("clientKey");
+  //const clientKey = sessionStorage.getItem("clientKey");
   const currentUser = currentUserJson ? JSON.parse(currentUserJson) : {};
 
   // Extract access token and API key from the current user
   const accessToken = currentUser?.accessToken;
-  const apiKey = currentUser?.apiKey;
+  //const apiKey = currentUser?.apiKey;
 
   // If clientKey exists, ClientKey headers to the request config
-  if (clientKey) {
+ /*  if (clientKey) {
     config.headers["ClientKey"] = clientKey;
-  }
+  } */
   // If accessToken exists, Authorization headers to the request config
   if (accessToken) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
   }
   // If accessToken exists, Apikey headers to the request config
-  if (apiKey) {
+ /*  if (apiKey) {
     config.headers["Apikey"] = apiKey;
-  }
+  } */
 
   return config;
 };

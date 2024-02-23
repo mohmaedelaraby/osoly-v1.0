@@ -9,19 +9,15 @@ export const useAuthStore = create((set) => {
 
   const storedAccessToken = currentUser?.accessToken;
 
-  const isSubscriptionConfigured = currentUser?.isSubscriptionConfigured
-
   return {
     accessToken: storedAccessToken,
     isLoggedIn: Boolean(storedAccessToken),
-    isSubscriptionConfigured,
     login: () => {
       set((prev) => ({ ...prev, isLoggedIn: true }));
     },
     logout: () => {
       set((prev) => ({ ...prev, isLoggedIn: false }));
     },
-    setIsCofigured: (isSubscriptionConfigured) => set({ isSubscriptionConfigured }),
   };
 });
 

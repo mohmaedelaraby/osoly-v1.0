@@ -13,19 +13,16 @@ export const useLoginMutation = () => {
   const location = useLocation();
   const redirectPath = location.state?.path || "/home";
   const loginStore = useAuthStore((state) => state.login);
-  const { setIsCofigured } = useAuthStore();
   const [error, setError] = useState(null);
   const { errorToast } = useToastMessage()
 
   const mutation = useMutation(loginApi, {
     onSuccess: (res) => {
       console.log(res)
-      if (res.data.isSucceeded && res.data.data.accessToken) {
+      if (res.data.data.accessToken) {
         const currentUser= res.data.data
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
         loginStore();
-        setIsCofigured(res.data.data.isSubscriptionConfigured)
-
         navigate(redirectPath, { replace: true });
       } else {
         errorToast(res.data.status.message)
