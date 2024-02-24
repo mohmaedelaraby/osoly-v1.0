@@ -18,6 +18,7 @@ import UnitPage from "../pages/units/UnitPage";
 import UnitFormPage from "../pages/units/UnitFormPage";
 import EnterpraisUserTablePage from "../pages/EnterpraisUsers/EnterpraisUserTablePage";
 import EnterpraisUserFormPage from "../pages/EnterpraisUsers/EnterpraisUserFormPage";
+import { ProtectedRoutes } from "./protectedRoutes";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -32,22 +33,33 @@ export const RootRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />}>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoutes>
+            <MainLayout />
+          </ProtectedRoutes>
+        }
+      >
         <Route path="/home" index element={<HomePage />} />
         <Route path="/user" index element={<UserFormPage />} />
         <Route path="/users" index element={<UserTablePage />} />
         <Route path="/enterprise" index element={<EnterpraisUserFormPage />} />
-        <Route path="/enterprises" index element={<EnterpraisUserTablePage />} />
+        <Route
+          path="/enterprises"
+          index
+          element={<EnterpraisUserTablePage />}
+        />
         <Route path="/owners" index element={<OwenrsTablePage />} />
         <Route path="/owner" index element={<OwnersFormPage />} />
         <Route path="/ads" index element={<AdsTablePage />} />
         <Route path="/ad" index element={<AdsFormPage />} />
         <Route path="/tickets" index element={<TicketsPage />} />
         <Route path="/settings" index element={<SettingsPage />} />
-        <Route path="/propreties" index element={<PropertiesTablePage/>} />
-        <Route path="/property" index element={<PropertiesFormPage/>} />
-        <Route path="/units" index element={<UnitPage/>} />
-        <Route path="/unit" index element={<UnitFormPage/>} />
+        <Route path="/propreties" index element={<PropertiesTablePage />} />
+        <Route path="/property" index element={<PropertiesFormPage />} />
+        <Route path="/units" index element={<UnitPage />} />
+        <Route path="/unit" index element={<UnitFormPage />} />
       </Route>
 
       <Route path="login" element={<AuthLayout />}>
