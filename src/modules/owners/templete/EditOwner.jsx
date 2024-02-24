@@ -25,7 +25,6 @@ const EditOwner = () => {
   const { data, isLoading, refetch } = useGetUser(id);
   useEffect(() => {
     refetch();
-    console.log(ownedProperties)
   }, []);
 
   const initialValues = {
@@ -33,7 +32,6 @@ const EditOwner = () => {
     lastNameEn: lastNameEn,
     firstNameAr: firstNameAr,
     lastNameAr: lastNameAr,
-    password: "",
   };
 
   const formik = useFormik({
@@ -154,32 +152,7 @@ const EditOwner = () => {
 
           <hr className="hr_style"/>
 
-          <div className="form__input form__input__flex">
-
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label"> Password </Text>
-              </FormLabel>
-
-              <Input
-                name="password"
-                type="text"
-                className="form__input__container__input"
-                placeholder="enter your Password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.password && !!formik.errors.password}
-              />
-
-              <div classeName="form__input__container__warn">
-                {formik.touched.password && formik.errors.password ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.password}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
-          </div>
+        
 
           <div className="formWithTable_container__table">
                

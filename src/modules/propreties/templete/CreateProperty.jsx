@@ -1,13 +1,28 @@
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { propertyCreateValidation } from "../validation/schema";
-import { Button, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreatePropertey } from "../hooks/useCreatePropertey";
+import useUsers from "../../users/hooks/useUsers";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
 const CreateProperty = ({ owenerID }) => {
+  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+  const { usersData, usersRefetch } = useUsers({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
   useEffect(() => {
-    console.log("form starter");
+    usersRefetch();
   }, []);
   const { mutate } = useCreatePropertey();
 
@@ -21,20 +36,16 @@ const CreateProperty = ({ owenerID }) => {
     street: "",
     subNumber: "",
     district: "",
+    city: "",
+    ownerId:""
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
-      let belongToOwner = { ...values, ownerId: owenerID };
-      let freeProperty = { ...values, ownerId: 1 };
-      if (owenerID) {
-        mutate({ body: belongToOwner });
-      } else {
-        mutate({ body: freeProperty });
-      }
-      console.log("first");
+      let body = { ownerId: selectedOwnerId, ...values };
+      console.log(values.ownerId , selectedOwnerId , body);
     },
   });
   return (
@@ -265,6 +276,32 @@ const CreateProperty = ({ owenerID }) => {
               ) : null}
             </div>
           </FormControl>
+        </div>
+
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">City</Text>
+            </FormLabel>
+
+            <Input
+              name="city"
+              type="text"
+              className="form__input__container__input"
+              placeholder="enter your city"
+              value={formik.values.city}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.city && !!formik.errors.city}
+            />
+
+            <div className="form__input__container__warn">
+              {formik.touched.city && formik.errors.city ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.city}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
 
           <FormControl className="form__input__container">
             <FormLabel>
@@ -290,9 +327,39 @@ const CreateProperty = ({ owenerID }) => {
             </div>
           </FormControl>
         </div>
+
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">Owner</Text>
+              <Text className="form__input__container__desc">choose owner is mandotry for create property </Text>
+            </FormLabel>
+
+            <Select
+              name="propertyOwner"
+              value={formik.values.ownerId}
+              onChange={(e) => {
+                formik.handleChange(e.target.value);
+                setSelectedOwnerId(e.target.value)
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}>Select User Role</option>
+              {usersData?.users
+                    .filter((s) => s.role == USER_ROLES.OWNER)
+                    ?.map((i, index) => (
+                <option value={i.id} key={index}>
+                  {i.firstNameEn}
+                </option>
+              ))}
+            </Select>
+
+           
+          </FormControl>
+        </div>
         <div className="form__btn__container">
-          <Button className="form__btn " type="submit">
-            Create
+          <Button isDisabled={selectedOwnerId == 0 } className="form__btn " type="submit">
+            Create {selectedOwnerId}
           </Button>
         </div>
       </form>

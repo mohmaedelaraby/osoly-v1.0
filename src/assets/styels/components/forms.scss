@@ -23,6 +23,11 @@
                     font-size: $paragraph-text;
                     font-weight: bold;
                 }
+                .form__input__container__desc{
+                    color: gray;
+                    font-size: 14px;
+                    font-weight: 400;
+                }
 
                 .form__input__container__input {
                     padding-top: 16px;
@@ -115,6 +120,11 @@
                     color: $font-color;
                     font-size: $paragraph-text;
                     font-weight: bold;
+                }
+                .form__input__container__desc{
+                    color: gray;
+                    font-size: 14px;
+                    font-weight: 400;
                 }
 
                 .form__input__container__input {

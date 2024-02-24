@@ -99,6 +99,7 @@ const UnitsTable = ({data , owenerId}) => {
                             lounge: item.lounge,
                             conditioners: item.conditioners,
                             kitchen: item.kitchen,
+                            waterCost:item.waterCost
                           },
                         });
                       }}

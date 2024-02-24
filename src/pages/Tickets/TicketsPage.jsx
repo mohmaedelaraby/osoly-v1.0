@@ -25,7 +25,7 @@ const TicketsPage = () => {
   return (
     <>
       <div className="tickets_page">
-        {tickets ? (
+        {data && data?.tickets ? (
           <>
             <Card
               width="90%"
@@ -34,7 +34,7 @@ const TicketsPage = () => {
               overflowY="scroll"
             >
               <CardBody marginBottom="24px">
-                <TicketsContainer />
+                <TicketsContainer data={data?.tickets} />
                 <div className="table_container_paganation">
                   {
                     <Pagination

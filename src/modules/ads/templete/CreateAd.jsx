@@ -8,6 +8,7 @@ import { useCreateAds } from "../hooks/useCreateAds";
 const CreateAd = () => { 
   const [selectedImage, setSelectedImage] = useState(null);
   const { mutate } = useCreateAds();
+  let formData = new FormData();
   const initialValues = {
     title:"",
     subTitle:"",
@@ -19,9 +20,10 @@ const CreateAd = () => {
     initialValues: initialValues,
     validationSchema: adsValidation,
     onSubmit: (values) => {
-      let ad = {...values , image:selectedImage?.name}
+      let img =formData.append('pic1', selectedImage);
+      let ad = {...values , image:img }
+      console.log(ad)
       mutate({body:ad})
-      console.log(ad);
     },
   });
   return (
@@ -147,7 +149,7 @@ const CreateAd = () => {
                 name="image"
                 accept=".png, .jpg, .jpeg"
                 onChange={(event) => {
-                  console.log(event.target.files[0]);
+                  console.log(event.target.files);
                   setSelectedImage(event.target.files[0]);
                 }}
               />

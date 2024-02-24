@@ -99,7 +99,8 @@ const PropertyTable = ({data , owenerId}) => {
                             subNumber: item.subNumber,
                             district: item.district,
                             units:item.units,
-                            owenerId:owenerId?owenerId : item?.owenerId
+                            owenerId:owenerId?owenerId : item?.owenerId,
+                            city:item?.city
                           },
                         });
                       }}

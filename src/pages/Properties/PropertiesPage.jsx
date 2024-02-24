@@ -13,14 +13,14 @@ const PropertiesTablePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
-  const { data, isLoading, refetch } = useProperties({
+  const { PropertiesData, isLoading, PropertiesRefetch } = useProperties({
     pageNo: currentPage,
     limit: limit,
   });
   useEffect(() => {
-    refetch();
+    PropertiesRefetch();
     if(show && !isLoading){
-      refetch()
+      PropertiesRefetch()
     }
   }, [currentPage,show]);
 
@@ -30,15 +30,15 @@ const PropertiesTablePage = () => {
   return (
     <>
        <div className="table_container">
-        {data?.properties && !isLoading? (
+        {PropertiesData?.properties && !isLoading? (
           <>
             <Card  maxWidth='1020px' minWidth='1020px' minHeight='85%'>
               <CardBody marginBottom="24px">
-                <PropertyTable data={data?.properties}/>
+                <PropertyTable data={PropertiesData?.properties}/>
                 <div className="table_container_paganation">
                   {
                     <Pagination
-                      totalCount={data?.pagination.count}
+                      totalCount={PropertiesData?.pagination.count}
                       currentPage={currentPage}
                       pageSize={10}
                       onPageChange={handlePageChange}

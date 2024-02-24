@@ -13,9 +13,9 @@ const useUsers = (params) => {
     });
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {
-        data:data,
-        isLoading: modifiedIsLoading,
-        refetch,
+        usersData:data,
+        usersisLoading: modifiedIsLoading,
+        usersRefetch:refetch,
     };
 };
 

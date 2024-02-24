@@ -7,6 +7,7 @@ import {
   Input,
   Radio,
   RadioGroup,
+  Select,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -17,6 +18,9 @@ import { unitsValidation } from "../validation/schema";
 import { useUpdateUnit } from "../hooks/useUpdateUnit";
 import useGetUser from "../hooks/useGetUnit";
 import useGetUnit from "../hooks/useGetUnit";
+import useUsers from "../../users/hooks/useUsers";
+import useProperties from "../../propreties/hooks/useAllProperties";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
 const EditUnit = () => {
   const { state } = useLocation();
@@ -34,12 +38,29 @@ const EditUnit = () => {
     lounge,
     conditioners,
     kitchen,
+    waterCost
   } = state;
-console.log("first",id)
   const { mutate } = useUpdateUnit(id);
   const { data, isLoading, refetch } = useGetUnit(id);
   const [loungeChoice, setLoungeChoice] = useState(lounge.toString());
   const [kitchenChoice, setKitchenChoice] = useState(kitchen.toString());
+
+  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+  const [selectedProbertyId, setSelectedPropertyId] = useState(0);
+  const { usersData, usersRefetch } = useUsers({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
+  const { PropertiesData, PropertiesRefetch } = useProperties({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
+  useEffect(() => {
+    usersRefetch();
+    PropertiesRefetch();
+  }, []);
 
   useEffect(() => {
     refetch();
@@ -57,13 +78,21 @@ console.log("first",id)
     bathrooms: bathrooms,
     conditioners: conditioners,
     kitchen: kitchen,
+    waterCost:waterCost
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
-      let data = {id: id,  body: {lounge:loungeChoice ==='true'? true : false ,kitchen:kitchenChoice ==='true'? true : false , ...values }}
+      let data = {
+        id: id,
+        body: {
+          lounge: loungeChoice === "true" ? true : false,
+          kitchen: kitchenChoice === "true" ? true : false,
+          ...values,
+        },
+      };
       mutate(data);
     },
   });
@@ -299,6 +328,34 @@ console.log("first",id)
                     ) : null}
                   </div>
                 </FormControl>
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      {" "}
+                      waterCost{" "}
+                    </Text>
+                  </FormLabel>
+
+                  <Input
+                    name="waterCost"
+                    type="number"
+                    className="form__input__container__input"
+                    placeholder="enter your waterCost"
+                    value={formik.values.waterCost}
+                    onChange={formik.handleChange}
+                    isInvalid={
+                      formik.touched.waterCost && !!formik.errors.waterCost
+                    }
+                  />
+
+                  <div classeName="form__input__container__warn">
+                    {formik.touched.waterCost && formik.errors.waterCost ? (
+                      <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                        {formik.errors.waterCost}
+                      </Text>
+                    ) : null}
+                  </div>
+                </FormControl>
               </div>
 
               <div className="form__input form__input__flex">
@@ -337,22 +394,20 @@ console.log("first",id)
                     </Text>
                   </FormLabel>
 
-
                   <RadioGroup
                     value={loungeChoice}
                     onChange={(newType) => setLoungeChoice(newType)}
                     marginTop="16px"
                   >
                     <Stack direction="row">
-                      <Radio value={'true'} marginRight="12px">
+                      <Radio value={"true"} marginRight="12px">
                         True
                       </Radio>
-                      <Radio value={'false'} marginRight="12px">
+                      <Radio value={"false"} marginRight="12px">
                         False
                       </Radio>
                     </Stack>
                   </RadioGroup>
-
                 </FormControl>
               </div>
 
@@ -400,22 +455,76 @@ console.log("first",id)
                     marginTop="16px"
                   >
                     <Stack direction="row">
-                      <Radio value={'true'} marginRight="12px">
+                      <Radio value={"true"} marginRight="12px">
                         True
                       </Radio>
-                      <Radio value={'false'} marginRight="12px">
+                      <Radio value={"false"} marginRight="12px">
                         False
                       </Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
               </div>
+
+              <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">Owner</Text>
+              <Text className="form__input__container__desc">choose owner is mandotry for create property </Text>
+            </FormLabel>
+
+            <Select
+              name="propertyOwner"
+              value={selectedProbertyId}
+              onChange={(e) => {
+                setSelectedOwnerId(e.target.value)
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}>Select User</option>
+              {usersData?.users
+                    .filter((s) => s.role == USER_ROLES.OWNER)
+                    ?.map((i, index) => (
+                <option value={i.id} key={index}>
+                  {i.firstNameEn}
+                </option>
+              ))}
+            </Select>
+
+           
+          </FormControl>
+
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">Property</Text>
+              <Text className="form__input__container__desc">choose owner is optional for create property </Text>
+            </FormLabel>
+
+            <Select
+              name="propertyOwner"
+              value={selectedProbertyId}
+              onChange={(e) => {
+                setSelectedPropertyId(e.target.value)
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}>Select Property </option>
+              {PropertiesData?.properties?.map((i, index) => (
+                <option value={i.id} key={index}>
+                  {i.name}
+                </option>
+              ))}
+            </Select>
+
+           
+          </FormControl>
+        </div>
             </div>
             <div className="form__btn__container">
-              <Button className="form__btn " type="submit">
+              <Button  isDisabled={selectedOwnerId == 0 } className="form__btn " type="submit">
                 Edit
               </Button>
-              <Button className="form__btn form__btn__delete ">Delete</Button>
+              {/* <Button className="form__btn form__btn__delete ">Delete</Button> */}
             </div>
           </form>
         </CardBody>

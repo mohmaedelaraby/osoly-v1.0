@@ -1,13 +1,31 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { unitsValidation } from "../validation/schema";
-import { Button, FormControl, FormLabel, Input, Radio, RadioGroup, Stack, Text } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input, Radio, RadioGroup, Select, Stack, Text } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUnit } from "../hooks/useCreateUnit";
+import useUsers from "../../users/hooks/useUsers";
+import useProperties from "../../propreties/hooks/useAllProperties";
+import { USER_ROLES } from "../../../enums/UserRoles";
 
 const CreateUnit = ({ownerId}) => {
   const { mutate } = useCreateUnit();
-
+  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+  const [selectedProbertyId, setSelectedPropertyId] = useState(0);
+  const { usersData, usersRefetch } = useUsers({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
+  const { PropertiesData, PropertiesRefetch } = useProperties({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
+  useEffect(() => {
+    usersRefetch();
+    PropertiesRefetch();
+  }, []);
   const [loungeChoice, setLoungeChoice] = useState("true");
   const [kitchenChoice, setKitchenChoice] = useState("true");
 
@@ -22,6 +40,7 @@ const CreateUnit = ({ownerId}) => {
     rooms: 0,
     bathrooms: 0,
     conditioners: 0,
+    waterCost: 0,
   };
 
   const formik = useFormik({
@@ -30,10 +49,7 @@ const CreateUnit = ({ownerId}) => {
     onSubmit: (values) => {
       let kitchen = kitchenChoice == 'true'? true : false 
       let lounge = loungeChoice == 'true'? true : false
-      console.log("kitchen" ,kitchen )
-      console.log("lounge" ,lounge )
       let data = { body: {lounge:lounge , kitchen:kitchen , ownerId:ownerId , ...values }}
-      console.log(data, kitchenChoice)
       mutate(data);
     },
   });
@@ -257,6 +273,30 @@ const CreateUnit = ({ownerId}) => {
               ) : null}
             </div>
           </FormControl>
+
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label"> waterCost </Text>
+            </FormLabel>
+
+            <Input
+              name="waterCost"
+              type="number"
+              className="form__input__container__input"
+              placeholder="enter your waterCost"
+              value={formik.values.waterCost}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.waterCost && !!formik.errors.waterCost}
+            />
+
+            <div classeName="form__input__container__warn">
+              {formik.touched.waterCost && formik.errors.waterCost ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.waterCost}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
         </div>
 
         <div className="form__input form__input__flex">
@@ -357,8 +397,62 @@ const CreateUnit = ({ownerId}) => {
           </FormControl>
         </div>
 
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">Owner</Text>
+              <Text className="form__input__container__desc">choose owner is mandotry for create property </Text>
+            </FormLabel>
+
+            <Select
+              name="propertyOwner"
+              value={selectedOwnerId}
+              onChange={(e) => {
+                setSelectedOwnerId(e.target.value)
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}>Select User</option>
+              {usersData?.users
+                    .filter((s) => s.role == USER_ROLES.OWNER)
+                    ?.map((i, index) => (
+                <option value={i.id} key={index}>
+                  {i.firstNameEn}
+                </option>
+              ))}
+            </Select>
+
+           
+          </FormControl>
+
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label">Property</Text>
+              <Text className="form__input__container__desc">choose owner is optional for create property </Text>
+            </FormLabel>
+
+            <Select
+              name="propertyOwner"
+              value={selectedProbertyId}
+              onChange={(e) => {
+                setSelectedPropertyId(e.target.value)
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}>Select Property </option>
+              {PropertiesData?.properties?.map((i, index) => (
+                <option value={i.id} key={index}>
+                  {i.name}
+                </option>
+              ))}
+            </Select>
+
+           
+          </FormControl>
+        </div>
+
         <div className="form__btn__container">
-          <Button className="form__btn " type="submit">
+          <Button  isDisabled={selectedOwnerId == 0 } className="form__btn " type="submit">
             Create
           </Button>
         </div>

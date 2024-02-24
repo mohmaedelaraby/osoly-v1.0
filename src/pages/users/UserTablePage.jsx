@@ -11,14 +11,14 @@ const UserTablePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
-  const { data, isLoading, refetch } = useUsers({
+  const { usersData, usersisLoading, usersRefetch } = useUsers({
     pageNo: currentPage,
     limit: limit,
   });
   useEffect(() => {
-    refetch();
-    if(show && !isLoading){
-      refetch()
+    usersRefetch();
+    if(show && !usersisLoading){
+      usersRefetch()
     }
   }, [currentPage,show]);
 
@@ -28,15 +28,15 @@ const UserTablePage = () => {
   return (
     <>
       <div className="table_container">
-        {data?.users && !isLoading? (
+        {usersData?.users && !usersisLoading? (
           <>
             <Card  maxWidth='1020px' minWidth='1020px' minHeight='85%'>
               <CardBody marginBottom="24px">
-                <UserTable data={data?.users}/>
+                <UserTable data={usersData?.users}/>
                 <div className="table_container_paganation">
                   {
                     <Pagination
-                      totalCount={data?.paginationOption.count}
+                      totalCount={usersData?.paginationOption.count}
                       currentPage={currentPage}
                       pageSize={10}
                       onPageChange={handlePageChange}
