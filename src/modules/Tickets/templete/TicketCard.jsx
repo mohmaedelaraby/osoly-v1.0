@@ -14,6 +14,7 @@ import {
 import React, { useEffect, useState } from "react";
 import "../style/ticketCard.scss";
 import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
+import { useUpdateTickets } from "../hooks/useUpdateTickets";
 
 const TicketCard = ({ item }) => {
   const TICKET_STATUS = ticketsStatus;
@@ -23,6 +24,8 @@ const TicketCard = ({ item }) => {
   const [type, setType] = useState(item?.type);
   const [status, setStatus] = useState(item?.status);
   const [desc, setDesc] = useState(item?.desc);
+
+  const { mutate } = useUpdateTickets();
 
   useEffect(() => {
     //{id: 5, description: ' نريد تغير مفاتيح الشقة', status: 'processing', type: 'complain', createdAt: '2024-02-15T09:33:22.767Z', …}
@@ -35,6 +38,12 @@ const TicketCard = ({ item }) => {
     setStatus(item.status);
     setDesc(item.desc);
   }, [item]);
+
+  const updateStatus = (status)=> {
+    let body = {'status' : status}
+    mutate({id:item?.id , body:body})
+
+  }
   return (
     <>
       <div className="card">
@@ -110,6 +119,7 @@ const TicketCard = ({ item }) => {
                      width='100%'
                     onClick={() => {
                       setStatus(TICKET_STATUS.solved);
+                      updateStatus(TICKET_STATUS.solved);
                     }}
                   >
                     solved
@@ -121,6 +131,7 @@ const TicketCard = ({ item }) => {
                     width='100%'
                     onClick={() => {
                       setStatus(TICKET_STATUS.canceled);
+                      updateStatus(TICKET_STATUS.canceled);
                     }}
                   >
                     cancel
@@ -140,6 +151,7 @@ const TicketCard = ({ item }) => {
                     width='100%'
                     onClick={() => {
                       setStatus(TICKET_STATUS.review);
+                      updateStatus(TICKET_STATUS.review);
                     }}
                   >
                     Accept
@@ -152,6 +164,7 @@ const TicketCard = ({ item }) => {
 
                     onClick={() => {
                       setStatus(TICKET_STATUS.canceled);
+                      updateStatus(TICKET_STATUS.canceled);
                     }}
                   >
                     Reject

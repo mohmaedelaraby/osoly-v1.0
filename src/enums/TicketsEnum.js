@@ -2,7 +2,7 @@ export const ticketsStatus = {
     solved: 'solved',
     canceled: 'canceled',
     processing: 'processing',
-    review: 'review'
+    review: 'reviewing'
 }
 export const ticketsTypes = {
     service: 'service',

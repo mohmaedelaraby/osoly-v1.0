@@ -7,7 +7,7 @@ export const useUpdateTickets = () => {
 
     const mutation = useMutation(updateTickets, {
         onSuccess: (res) => {
-            if (res.status === 201) {
+            if (res.status === 201 || res.status === 200) {
                 successToast()
             } 
         },
