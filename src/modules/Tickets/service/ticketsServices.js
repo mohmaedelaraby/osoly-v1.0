@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "../../../services/axiosInstance/api";
 import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all Tickets
 export const getTickets = (params) => {
   const { pageNo, limit } = params;
-  return axios.get(`${apiUrl}dashboard/tickets?page=${pageNo}&limit=${limit}`, {
+  return api.get(`${apiUrl}dashboard/tickets?page=${pageNo}&limit=${limit}`, {
   }).then(res => res.data.data)
 }
 
@@ -12,7 +12,7 @@ export const getTickets = (params) => {
 export const getTicketsDetails = async (id) => {
   try {
     let url = `${apiUrl}dashboard/tickets/${id}`;
-    const response = await axios.get(url);
+    const response = await api.get(url);
 
     if (response.status === 200) {
       const data = response.data.data;
@@ -27,16 +27,16 @@ export const getTicketsDetails = async (id) => {
 
 //update Tickets
 export const updateTickets = (data) => {
-  return axios.put(`${apiUrl}dashboard/tickets/${data?.id}`, data?.body)
+  return api.put(`${apiUrl}dashboard/tickets/${data?.id}`, data?.body)
 }
 
 //create Tickets
 export const createTickets = (data) => {
-  return axios.post(`${apiUrl}dashboard/tickets`, data?.body)
+  return api.post(`${apiUrl}dashboard/tickets`, data?.body)
 }
 //create Tickets
 export const deleteTickets = (data) => {
-    return axios.delete(`${apiUrl}dashboard/tickets${data?.id}`,)
+    return api.delete(`${apiUrl}dashboard/tickets${data?.id}`,)
   }
 
 

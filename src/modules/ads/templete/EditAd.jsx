@@ -18,7 +18,7 @@ import { number } from "yup";
 
 const EditAd = () => {
   const { state } = useLocation();
-  const { id, content, index, url, image } = state;
+  const { id, content, index, url, image , title , subTitle } = state;
   const [selectedImage, setSelectedImage] = useState(null);
 
   const { mutate } = useUpdateAds();
@@ -29,6 +29,8 @@ const EditAd = () => {
 
   const initialValues = {
     url: url,
+    title:title,
+    subTitle:subTitle,
     content: content,
     index: parseInt(index),
   };

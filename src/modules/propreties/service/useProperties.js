@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "../../../services/axiosInstance/api";
 import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all properties
 export const getProperties = (params) => {
   const { pageNo, limit } = params;
-  return axios.get(`${apiUrl}dashboard/properties?page=${pageNo}&limit=${limit}`, {
+  return api.get(`${apiUrl}dashboard/properties?page=${pageNo}&limit=${limit}`, {
   }).then(res => res.data.data)
 }
 
@@ -12,7 +12,7 @@ export const getProperties = (params) => {
 export const getProperteyDetails = async (id) => {
   try {
     let url = `${apiUrl}dashboard/properties/${id}`;
-    const response = await axios.get(url);
+    const response = await api.get(url);
 
     if (response.status === 200) {
       const data = response.data.data;
@@ -27,17 +27,17 @@ export const getProperteyDetails = async (id) => {
 
 //update Propertey
 export const updatePropertey = (data) => {
-  return axios.put(`${apiUrl}dashboard/properties/${data?.id}`, data?.body)
+  return api.put(`${apiUrl}dashboard/properties/${data?.id}`, data?.body)
 }
 
 //create Propertey
 export const createPropertey = (data) => {
-  return axios.post(`${apiUrl}dashboard/properties`, data?.body)
+  return api.post(`${apiUrl}dashboard/properties`, data?.body)
 }
 
 //delete Propertey
 export const deletePropertey = (data) => {
-    return axios.delete(`${apiUrl}dashboard/properties/${data?.id}`)
+    return api.delete(`${apiUrl}dashboard/properties/${data?.id}`)
   }
 
 

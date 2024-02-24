@@ -5,10 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalOverlay,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -44,7 +40,7 @@ const EditOwner = () => {
     initialValues: initialValues,
     validationSchema: userEditValidation,
     onSubmit: (values) => {
-      console.log(values);
+      mutate({id:id,body:values})
     },
   });
   return (
@@ -201,9 +197,9 @@ const EditOwner = () => {
             <Button className="form__btn " type="submit">
               Edit 
             </Button>
-            <Button className="form__btn form__btn__delete ">
+          {/*   <Button className="form__btn form__btn__delete ">
               Delete
-            </Button>
+            </Button> */}
           </div>
         </form>
       </CardBody>

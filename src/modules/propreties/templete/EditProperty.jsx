@@ -5,11 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -20,7 +15,6 @@ import {  propertyEditValidation } from "../validation/schema";
 import UnitsTable from "../../units/templete/UnitsTable";
 import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
 import useGetPropertey from "../hooks/useGetPropertey";
-import CreateUnit from "../../units/templete/CreateUnit";
 
 const EditProperty = () => {
   const { state } = useLocation();
@@ -31,6 +25,7 @@ const EditProperty = () => {
   const { data, isLoading, refetch } = useGetPropertey(id);
   useEffect(() => {
     refetch();
+    console.log("first",data)
   }, []);
 
   const initialValues = {
@@ -50,11 +45,11 @@ const EditProperty = () => {
     validationSchema: propertyEditValidation,
     onSubmit: (values) => {
       let belongToOwner = { ...values, owenerId: owenerId };
-      let freeProperty = { ...values, owenerId: null };
+      let freeProperty = { ...values };
       if(owenerId){
-        mutate({body:belongToOwner})
+        mutate({id:data?.id,body:belongToOwner})
       }else{
-        mutate({body:freeProperty})
+        mutate({id:data?.id,body:freeProperty})
       }
       console.log(values);
     },
@@ -301,7 +296,7 @@ const EditProperty = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <UnitsTable data={units}/>
+                          <UnitsTable data={units} owenerId={owenerId ? owenerId : data?.ownerId}/>
                         </CardBody>
                       </Card>
                     </Card>

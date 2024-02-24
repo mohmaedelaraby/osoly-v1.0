@@ -9,8 +9,9 @@ const CreateAd = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const { mutate } = useCreateAds();
   const initialValues = {
+    title:"",
+    subTitle:"",
     url: "",
-    content: "",
     index:0
   };
 
@@ -27,6 +28,57 @@ const CreateAd = () => {
     <form onSubmit={formik.handleSubmit} className="form">
       <div className="form__header">Create New Ad</div>
 
+      <div className="form__input">
+        <FormControl className="form__input__container">
+          <FormLabel>
+            <Text className="form__input__container__label"> title </Text>
+          </FormLabel>
+
+          <Input
+            name="title"
+            type="text"
+            className="form__input__container__input"
+            placeholder="enter your title"
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            isInvalid={formik.touched.title && !!formik.errors.title}
+          />
+
+          <div className="form__input__container__warn">
+            {formik.touched.title && formik.errors.title ? (
+              <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                {formik.errors.title}
+              </Text>
+            ) : null}
+          </div>
+        </FormControl>
+      </div>
+
+      <div className="form__input">
+        <FormControl className="form__input__container">
+          <FormLabel>
+            <Text className="form__input__container__label"> sub Title </Text>
+          </FormLabel>
+
+          <Input
+            name="subTitle"
+            type="text"
+            className="form__input__container__input"
+            placeholder="enter your subTitle"
+            value={formik.values.subTitle}
+            onChange={formik.handleChange}
+            isInvalid={formik.touched.subTitle && !!formik.errors.subTitle}
+          />
+
+          <div className="form__input__container__warn">
+            {formik.touched.subTitle && formik.errors.subTitle ? (
+              <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                {formik.errors.subTitle}
+              </Text>
+            ) : null}
+          </div>
+        </FormControl>
+      </div>
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
@@ -53,31 +105,7 @@ const CreateAd = () => {
         </FormControl>
       </div>
 
-      <div className="form__input">
-        <FormControl className="form__input__container">
-          <FormLabel>
-            <Text className="form__input__container__label"> Content </Text>
-          </FormLabel>
-
-          <Input
-            name="content"
-            type="text"
-            className="form__input__container__input"
-            placeholder="enter your content"
-            value={formik.values.content}
-            onChange={formik.handleChange}
-            isInvalid={formik.touched.content && !!formik.errors.content}
-          />
-
-          <div className="form__input__container__warn">
-            {formik.touched.content && formik.errors.content ? (
-              <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                {formik.errors.content}
-              </Text>
-            ) : null}
-          </div>
-        </FormControl>
-      </div>
+      
 
       <div className="form__input">
         <FormControl className="form__input__container">

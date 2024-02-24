@@ -22,12 +22,11 @@ import React from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { units } from "../../../mocks/units";
 import CreateUnit from "./CreateUnit";
 import useClosePopUps from "../../../store/useClosePopups";
 
 
-const UnitsTable = ({data}) => {
+const UnitsTable = ({data , owenerId}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { show, toggleShow } = useClosePopUps();
@@ -129,7 +128,7 @@ const UnitsTable = ({data}) => {
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
-            <CreateUnit/>
+            <CreateUnit ownerId={owenerId}/>
           </ModalBody>
         </ModalContent>
       </Modal>

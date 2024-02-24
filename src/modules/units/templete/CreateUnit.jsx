@@ -5,7 +5,7 @@ import { Button, FormControl, FormLabel, Input, Radio, RadioGroup, Stack, Text }
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUnit } from "../hooks/useCreateUnit";
 
-const CreateUnit = () => {
+const CreateUnit = ({ownerId}) => {
   const { mutate } = useCreateUnit();
 
   const [loungeChoice, setLoungeChoice] = useState("true");
@@ -13,24 +13,27 @@ const CreateUnit = () => {
 
   const initialValues = {
     name: "",
-    rent: "",
+    rent: 0,
     rentCollectionDate: "",
     electricityAccount: "",
     waterAccount: "",
     address: "",
-    space: "",
-    rooms: "",
-    bathrooms: "",
-    conditioners: "",
-    kitchen: "",
+    space: 0,
+    rooms: 0,
+    bathrooms: 0,
+    conditioners: 0,
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
-      let data = { body: {lounge:loungeChoice ==='true'? true : false ,kitchen:kitchenChoice ==='true'? true : false , ...values }}
-
+      let kitchen = kitchenChoice == 'true'? true : false 
+      let lounge = loungeChoice == 'true'? true : false
+      console.log("kitchen" ,kitchen )
+      console.log("lounge" ,lounge )
+      let data = { body: {lounge:lounge , kitchen:kitchen , ownerId:ownerId , ...values }}
+      console.log(data, kitchenChoice)
       mutate(data);
     },
   });
@@ -71,7 +74,7 @@ const CreateUnit = () => {
 
             <Input
               name="rent"
-              type="text"
+              type="number"
               className="form__input__container__input"
               placeholder="enter your last name in En"
               value={formik.values.rent}
@@ -214,7 +217,7 @@ const CreateUnit = () => {
 
             <Input
               name="space"
-              type="text"
+              type="number"
               className="form__input__container__input"
               placeholder="enter your space"
               value={formik.values.space}
@@ -238,7 +241,7 @@ const CreateUnit = () => {
 
             <Input
               name="rooms"
-              type="text"
+              type="number"
               className="form__input__container__input"
               placeholder="enter your rooms"
               value={formik.values.rooms}
@@ -264,7 +267,7 @@ const CreateUnit = () => {
 
             <Input
               name="bathrooms"
-              type="text"
+              type="number"
               className="form__input__container__input"
               placeholder="enter your bathrooms"
               value={formik.values.bathrooms}
@@ -307,13 +310,13 @@ const CreateUnit = () => {
           <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label">
-                conditioners{" "}
+                conditioners
               </Text>
             </FormLabel>
 
             <Input
               name="conditioners"
-              type="text"
+              type="number"
               className="form__input__container__input"
               placeholder="enter your conditioners"
               value={formik.values.conditioners}
@@ -334,23 +337,23 @@ const CreateUnit = () => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label"> kitchen </Text>
+              <Text className="form__input__container__label">Kitchen</Text>
             </FormLabel>
 
             <RadioGroup
-                    value={kitchenChoice}
-                    onChange={(newType) => setKitchenChoice(newType)}
-                    marginTop="16px"
-                  >
-                    <Stack direction="row">
-                      <Radio value={'true'} marginRight="12px">
-                        True
-                      </Radio>
-                      <Radio value={'false'} marginRight="12px">
-                        False
-                      </Radio>
-                    </Stack>
-                  </RadioGroup>
+              value={kitchenChoice}
+              onChange={(newType) => setKitchenChoice(newType)}
+              marginTop="16px"
+            >
+              <Stack direction="row">
+                <Radio value={"true"} marginRight="12px">
+                  True
+                </Radio>
+                <Radio value={"false"} marginRight="12px">
+                  False
+                </Radio>
+              </Stack>
+            </RadioGroup>
           </FormControl>
         </div>
 

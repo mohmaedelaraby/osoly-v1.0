@@ -88,10 +88,11 @@ const AdsTable = ({ data }) => {
                           navigate("/ad", {
                             state: {
                               id: item.id,
-                              title: item.title,
                               index: item.index,
                               url: item.url,
                               image: item.image,
+                              title: item.title,
+                              subTitle:item.subTitle,
                             },
                           });
                         }}
