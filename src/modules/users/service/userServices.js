@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "../../../services/axiosInstance/api";
 import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all users
 export const getUsers = (params) => {
   const { pageNo, limit } = params;
-  return axios.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}`, {
+  return api.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}`, {
   }).then(res => res.data.data)
 }
 
@@ -12,7 +12,7 @@ export const getUsers = (params) => {
 export const getUserDetails = async (id) => {
   try {
     let url = `${apiUrl}dashboard/users/${id}`;
-    const response = await axios.get(url);
+    const response = await api.get(url);
 
     if (response.status === 200) {
       const data = response.data.data;
@@ -27,12 +27,16 @@ export const getUserDetails = async (id) => {
 
 //update user
 export const updateUser = (data) => {
-  return axios.put(`${apiUrl}dashboard/users/${data?.id}`, data?.body)
+  return api.put(`${apiUrl}dashboard/users/${data?.id}`, data?.body)
 }
 
 //create user
 export const createUser = (data) => {
-  return axios.post(`${apiUrl}dashboard/users`, data?.body)
+  return api.post(`${apiUrl}dashboard/users`, data?.body)
+}
+//delete user
+export const deleteUser = (data) => {
+  return api.delete(`${apiUrl}dashboard/users`, data?.body)
 }
 
 
