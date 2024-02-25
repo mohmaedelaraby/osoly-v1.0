@@ -18,7 +18,7 @@ import { number } from "yup";
 
 const EditAd = () => {
   const { state } = useLocation();
-  const { id, content, index, url, image , title , subTitle } = state;
+  const { id, content, index, url, image, title, subTitle } = state;
   const [selectedImage, setSelectedImage] = useState(null);
 
   const { mutate } = useUpdateAds();
@@ -29,9 +29,8 @@ const EditAd = () => {
 
   const initialValues = {
     url: url,
-    title:title,
-    subTitle:subTitle,
-    content: content,
+    title: title,
+    subTitle: subTitle,
     index: parseInt(index),
   };
 
@@ -40,7 +39,7 @@ const EditAd = () => {
     validationSchema: adsValidation,
     onSubmit: (values) => {
       let ad = { ...values, image: selectedImage };
-      mutate({id:id,body:ad})
+      mutate({ id: id, body: ad });
       console.log(ad);
     },
   });
@@ -52,6 +51,66 @@ const EditAd = () => {
             <CardBody>
               <form onSubmit={formik.handleSubmit} className="form">
                 <div className="form__header">Create New Ad</div>
+
+                <div className="form__input">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        {" "}
+                        title{" "}
+                      </Text>
+                    </FormLabel>
+
+                    <Input
+                      name="title"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder="enter your title"
+                      value={formik.values.title}
+                      onChange={formik.handleChange}
+                      isInvalid={formik.touched.title && !!formik.errors.title}
+                    />
+
+                    <div className="form__input__container__warn">
+                      {formik.touched.title && formik.errors.title ? (
+                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                          {formik.errors.title}
+                        </Text>
+                      ) : null}
+                    </div>
+                  </FormControl>
+                </div>
+
+                <div className="form__input">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        {" "}
+                        sub Title{" "}
+                      </Text>
+                    </FormLabel>
+
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder="enter your subTitle"
+                      value={formik.values.subTitle}
+                      onChange={formik.handleChange}
+                      isInvalid={
+                        formik.touched.subTitle && !!formik.errors.subTitle
+                      }
+                    />
+
+                    <div className="form__input__container__warn">
+                      {formik.touched.subTitle && formik.errors.subTitle ? (
+                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                          {formik.errors.subTitle}
+                        </Text>
+                      ) : null}
+                    </div>
+                  </FormControl>
+                </div>
 
                 <div className="form__input">
                   <FormControl className="form__input__container">
@@ -73,37 +132,6 @@ const EditAd = () => {
                       {formik.touched.url && formik.errors.url ? (
                         <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                           {formik.errors.url}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </FormControl>
-                </div>
-
-                <div className="form__input">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label">
-                        {" "}
-                        Content{" "}
-                      </Text>
-                    </FormLabel>
-
-                    <Input
-                      name="content"
-                      type="text"
-                      className="form__input__container__input"
-                      placeholder="enter your content"
-                      value={formik.values.content}
-                      onChange={formik.handleChange}
-                      isInvalid={
-                        formik.touched.content && !!formik.errors.content
-                      }
-                    />
-
-                    <div className="form__input__container__warn">
-                      {formik.touched.content && formik.errors.content ? (
-                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                          {formik.errors.content}
                         </Text>
                       ) : null}
                     </div>

@@ -4,11 +4,12 @@ import { adsValidation } from "../validation/schema";
 import { Button, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateAds } from "../hooks/useCreateAds";
+import axios from "axios";
 
 const CreateAd = () => { 
   const [selectedImage, setSelectedImage] = useState(null);
   const { mutate } = useCreateAds();
-  let formData = new FormData();
+  const formData = new FormData();
   const initialValues = {
     title:"",
     subTitle:"",
@@ -20,8 +21,11 @@ const CreateAd = () => {
     initialValues: initialValues,
     validationSchema: adsValidation,
     onSubmit: (values) => {
-      let img =formData.append('pic1', selectedImage);
-      let ad = {...values , image:img }
+      formData.append('image', selectedImage);
+      //axios.post('http://localhost:3000/images/upload', formData)
+      //console.log(selectedImage.name,formData.append('image', selectedImage))
+      //console.log(img)
+      let ad = {...values , image:selectedImage.name }
       console.log(ad)
       mutate({body:ad})
     },
