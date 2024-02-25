@@ -1,11 +1,11 @@
 export const ticketsStatus = {
-    solved: 'solved',
-    canceled: 'canceled',
-    processing: 'processing',
-    review: 'reviewing'
+    solved: 'SOLVED',
+    canceled: 'CANCELED',
+    processing: 'PROCESSING',
+    review: 'REVIEWING'
 }
 export const ticketsTypes = {
-    service: 'service',
-    complain: 'complain',
-    other: 'other',
+    service: 'SERVICE',
+    complain: 'COMPLAIN',
+    other: 'OTHER',
 }
