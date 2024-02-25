@@ -38,7 +38,9 @@ const EditUnit = () => {
     lounge,
     conditioners,
     kitchen,
-    waterCost
+    waterCost,
+    propertyId,
+    ownerId
   } = state;
   const { mutate } = useUpdateUnit(id);
   const { data, isLoading, refetch } = useGetUnit(id);
@@ -85,11 +87,15 @@ const EditUnit = () => {
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
+      let kitchen = kitchenChoice == "true" ? true : false;
+      let lounge = loungeChoice == "true" ? true : false;
       let data = {
-        id: id,
+        id:id,
         body: {
-          lounge: loungeChoice === "true" ? true : false,
-          kitchen: kitchenChoice === "true" ? true : false,
+          lounge: lounge,
+          kitchen: kitchen,
+          ownerId: selectedOwnerId==0 ? parseInt(propertyId) : parseInt(selectedOwnerId),
+          propertyId: selectedProbertyId==0  ? parseInt(ownerId) : parseInt(selectedProbertyId),
           ...values,
         },
       };

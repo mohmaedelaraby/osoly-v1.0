@@ -14,7 +14,7 @@ import { useCreatePropertey } from "../hooks/useCreatePropertey";
 import useUsers from "../../users/hooks/useUsers";
 import { USER_ROLES } from "../../../enums/UserRoles";
 
-const CreateProperty = ({ owenerID }) => {
+const CreateProperty = ({ propOwenerId }) => {
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const { usersData, usersRefetch } = useUsers({
     pageNo: 1,
@@ -37,21 +37,20 @@ const CreateProperty = ({ owenerID }) => {
     subNumber: "",
     district: "",
     city: "",
-    ownerId:""
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
-      let body = { ownerId: selectedOwnerId, ...values };
-      console.log(values.ownerId , selectedOwnerId , body);
+      let data = { ownerId: propOwenerId? propOwenerId : parseInt(selectedOwnerId), ...values };
+      mutate({body:data});
     },
   });
   return (
     <div className="from__card from__card__full">
       <form onSubmit={formik.handleSubmit} className="form">
-        <div className="form__header">Create Property</div>
+        <div className="form__header">Create Property {propOwenerId}</div>
 
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
@@ -329,36 +328,47 @@ const CreateProperty = ({ owenerID }) => {
         </div>
 
         <div className="form__input form__input__flex">
-          <FormControl className="form__input__container">
-            <FormLabel>
-              <Text className="form__input__container__label">Owner</Text>
-              <Text className="form__input__container__desc">choose owner is mandotry for create property </Text>
-            </FormLabel>
+          {!propOwenerId ? (
+            <>
+              {" "}
+              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">Owner</Text>
+                  <Text className="form__input__container__desc">
+                    choose owner is mandotry for create property{" "}
+                  </Text>
+                </FormLabel>
 
-            <Select
-              name="propertyOwner"
-              value={formik.values.ownerId}
-              onChange={(e) => {
-                formik.handleChange(e.target.value);
-                setSelectedOwnerId(e.target.value)
-                setTimeout(() => {}, 0);
-              }}
-            >
-              <option value={0}>Select User Role</option>
-              {usersData?.users
+                <Select
+                  name="propertyOwner"
+                  value={formik.values.ownerId}
+                  onChange={(e) => {
+                    formik.handleChange(e.target.value);
+                    setSelectedOwnerId(e.target.value);
+                    setTimeout(() => {}, 0);
+                  }}
+                >
+                  <option value={0}>Select User Role</option>
+                  {usersData?.users
                     .filter((s) => s.role == USER_ROLES.OWNER)
                     ?.map((i, index) => (
-                <option value={i.id} key={index}>
-                  {i.firstNameEn}
-                </option>
-              ))}
-            </Select>
-
-           
-          </FormControl>
+                      <option value={i.id} key={index}>
+                        {i.firstNameEn}
+                      </option>
+                    ))}
+                </Select>
+              </FormControl>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form__btn__container">
-          <Button isDisabled={selectedOwnerId == 0 } className="form__btn " type="submit">
+          <Button
+            isDisabled={!propOwenerId && selectedOwnerId == 0}
+            className="form__btn "
+            type="submit"
+          >
             Create {selectedOwnerId}
           </Button>
         </div>

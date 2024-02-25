@@ -7,7 +7,7 @@ export const useUpdatePropertey = () => {
 
     const mutation = useMutation(updatePropertey, {
         onSuccess: (res) => {
-            if (res.status === 201) {
+            if (res.status === 201 || res.status === 200 ) {
                 successToast()
             } 
         },

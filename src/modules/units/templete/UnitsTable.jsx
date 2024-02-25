@@ -26,7 +26,7 @@ import CreateUnit from "./CreateUnit";
 import useClosePopUps from "../../../store/useClosePopups";
 
 
-const UnitsTable = ({data , owenerId}) => {
+const UnitsTable = ({data , propOwenerId , propPropertyId}) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { show, toggleShow } = useClosePopUps();
@@ -99,7 +99,9 @@ const UnitsTable = ({data , owenerId}) => {
                             lounge: item.lounge,
                             conditioners: item.conditioners,
                             kitchen: item.kitchen,
-                            waterCost:item.waterCost
+                            waterCost:item.waterCost,
+                            propertyId:item?.propertyId,
+                            ownerId:item?.ownerId
                           },
                         });
                       }}
@@ -129,7 +131,7 @@ const UnitsTable = ({data , owenerId}) => {
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
-            <CreateUnit ownerId={owenerId}/>
+            <CreateUnit propOwenerId={propOwenerId} propPropertyId={propPropertyId}/>
           </ModalBody>
         </ModalContent>
       </Modal>

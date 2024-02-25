@@ -11,12 +11,11 @@ export const propertyCreateValidation = Yup.object({
   subNumber: Yup.string().required("You should enter subNumber"),
   district: Yup.string().required("You should enter district"),
   city: Yup.string().required("You should enter city"),
-  ownerId: Yup.number().required("You should enter owner"),
 });
 export const propertyEditValidation = Yup.object({
   name: Yup.string().required("You should enter name"),
   address: Yup.string().required("You should enter address"),
-  unitsCount: Yup.string().required("You should enter unitsCount"),
+  unitsCount: Yup.number().required("You should enter unitsCount"),
   instrumentNumber: Yup.string().required("You should enter instrumentNumber"),
   postalCode: Yup.string().required("You should enter postalCode"),
   blockNumber: Yup.string().required("You should enter blockNumber"),
@@ -24,5 +23,4 @@ export const propertyEditValidation = Yup.object({
   subNumber: Yup.string().required("You should enter subNumber"),
   district: Yup.string().required("You should enter district"),
   city: Yup.string().required("You should enter city"),
-  ownerId: Yup.number().required("You should enter owner"),
 });

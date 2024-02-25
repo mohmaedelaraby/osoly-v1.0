@@ -1,14 +1,24 @@
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { unitsValidation } from "../validation/schema";
-import { Button, FormControl, FormLabel, Input, Radio, RadioGroup, Select, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUnit } from "../hooks/useCreateUnit";
 import useUsers from "../../users/hooks/useUsers";
 import useProperties from "../../propreties/hooks/useAllProperties";
 import { USER_ROLES } from "../../../enums/UserRoles";
 
-const CreateUnit = ({ownerId}) => {
+const CreateUnit = ({ propOwenerId, propPropertyId }) => {
   const { mutate } = useCreateUnit();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedProbertyId, setSelectedPropertyId] = useState(0);
@@ -47,9 +57,17 @@ const CreateUnit = ({ownerId}) => {
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
-      let kitchen = kitchenChoice == 'true'? true : false 
-      let lounge = loungeChoice == 'true'? true : false
-      let data = { body: {lounge:lounge , kitchen:kitchen , ownerId:ownerId , ...values }}
+      let kitchen = kitchenChoice == "true" ? true : false;
+      let lounge = loungeChoice == "true" ? true : false;
+      let data = {
+        body: {
+          lounge: lounge,
+          kitchen: kitchen,
+          ownerId: propOwenerId ? parseInt(propOwenerId) : parseInt(selectedOwnerId),
+          propertyId: propPropertyId ? parseInt(propPropertyId) : parseInt(selectedProbertyId),
+          ...values,
+        },
+      };
       mutate(data);
     },
   });
@@ -401,41 +419,43 @@ const CreateUnit = ({ownerId}) => {
           <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label">Owner</Text>
-              <Text className="form__input__container__desc">choose owner is mandotry for create property </Text>
+              <Text className="form__input__container__desc">
+                choose owner is mandotry for create property{" "}
+              </Text>
             </FormLabel>
 
             <Select
               name="propertyOwner"
               value={selectedOwnerId}
               onChange={(e) => {
-                setSelectedOwnerId(e.target.value)
+                setSelectedOwnerId(e.target.value);
                 setTimeout(() => {}, 0);
               }}
             >
               <option value={0}>Select User</option>
               {usersData?.users
-                    .filter((s) => s.role == USER_ROLES.OWNER)
-                    ?.map((i, index) => (
-                <option value={i.id} key={index}>
-                  {i.firstNameEn}
-                </option>
-              ))}
+                .filter((s) => s.role == USER_ROLES.OWNER)
+                ?.map((i, index) => (
+                  <option value={i.id} key={index}>
+                    {i.firstNameEn}
+                  </option>
+                ))}
             </Select>
-
-           
           </FormControl>
 
           <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label">Property</Text>
-              <Text className="form__input__container__desc">choose owner is optional for create property </Text>
+              <Text className="form__input__container__desc">
+                choose owner is optional for create property{" "}
+              </Text>
             </FormLabel>
 
             <Select
               name="propertyOwner"
               value={selectedProbertyId}
               onChange={(e) => {
-                setSelectedPropertyId(e.target.value)
+                setSelectedPropertyId(e.target.value);
                 setTimeout(() => {}, 0);
               }}
             >
@@ -446,13 +466,15 @@ const CreateUnit = ({ownerId}) => {
                 </option>
               ))}
             </Select>
-
-           
           </FormControl>
         </div>
 
         <div className="form__btn__container">
-          <Button  isDisabled={selectedOwnerId == 0 } className="form__btn " type="submit">
+          <Button
+            isDisabled={selectedOwnerId == 0}
+            className="form__btn "
+            type="submit"
+          >
             Create
           </Button>
         </div>

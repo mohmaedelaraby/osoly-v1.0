@@ -40,7 +40,6 @@ const PropertyTable = ({data , owenerId}) => {
 
   useEffect(() => {
     //console.log(show )
-    console.log("d",data)
   }, [show]);
   return (
     <>
@@ -127,7 +126,7 @@ const PropertyTable = ({data , owenerId}) => {
         <ModalContent maxWidth='700px'>
           <ModalCloseButton />
           <ModalBody>
-            <CreateProperty owenerID={owenerId}/>
+            <CreateProperty propOwenerId={owenerId}/>
           </ModalBody>
         </ModalContent>
       </Modal>

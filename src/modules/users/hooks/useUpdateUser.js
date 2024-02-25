@@ -1,6 +1,5 @@
 import { useMutation } from "react-query";
 import { useToastMessage } from "../../../hooks/useToastMessage";
-import { updateUnit } from "../../units/service/useUnits";
 import { updateUser } from "../service/userServices";
 
 export const useUpdateUser = () => {
@@ -8,7 +7,7 @@ export const useUpdateUser = () => {
 
     const mutation = useMutation(updateUser, {
         onSuccess: (res) => {
-            if (res.status === 201) {
+            if (res.status === 201 || res.status === 200) {
                 successToast()
             } 
         },

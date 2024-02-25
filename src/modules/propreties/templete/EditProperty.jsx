@@ -52,9 +52,10 @@ const EditProperty = () => {
   }, []);
 
   useEffect(() => {
-    setSelectedOwnerId(data.ownerId)
+    if (data) {
+      setSelectedOwnerId(data?.ownerId);
+    }
   }, [data]);
-
 
   const initialValues = {
     name: name,
@@ -67,15 +68,15 @@ const EditProperty = () => {
     subNumber: subNumber,
     district: district,
     city: city,
-    owenerId: owenerId,
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: propertyEditValidation,
     onSubmit: (values) => {
-      let body = { ownerId: selectedOwnerId, ...values };
-      console.log(values.ownerId , selectedOwnerId , body);
+      let data = { ...values };
+    
+      mutate({id:id? id:data?.id ,body:data});
       //mutate({ id: data?.id, body: values });
     },
   });
@@ -84,7 +85,7 @@ const EditProperty = () => {
       <Card className="from__card">
         <CardBody>
           <form onSubmit={formik.handleSubmit} className="form">
-            <div className="form__header">Edit Proprety</div>
+            <div className="form__header">Edit Proprety -- {owenerId}</div>
             <div className="formWithTable_container">
               <div className="from__card from__card__full">
                 <div className="form__input form__input__flex">
@@ -187,7 +188,7 @@ const EditProperty = () => {
 
                     <Input
                       name="unitsCount"
-                      type="text"
+                      type="number"
                       className="form__input__container__input"
                       placeholder="enter your name"
                       value={formik.values.unitsCount}
@@ -386,35 +387,42 @@ const EditProperty = () => {
                 </div>
 
                 <div className="form__input form__input__flex">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label">
-                        Owner
-                      </Text>
-                      <Text className="form__input__container__desc">
-                        choose owner is mandotry for create property{" "}
-                      </Text>
-                    </FormLabel>
+                  {!owenerId ? (
+                    <>
+                      {" "}
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label">
+                            Owner
+                          </Text>
+                          <Text className="form__input__container__desc">
+                            choose owner is mandotry for create property{" "}
+                          </Text>
+                        </FormLabel>
 
-                    <Select
-                      name="propertyOwner"
-                      value={formik.values.ownerId}
-                      onChange={(e) => {
-                        formik.handleChange(e.target.value);
-                        setSelectedOwnerId(e.target.value);
-                        setTimeout(() => {}, 0);
-                      }}
-                    >
-                      <option value={0}>Select User Role</option>
-                      {usersData?.users
-                        .filter((s) => s.role == USER_ROLES.OWNER)
-                        ?.map((i, index) => (
-                          <option value={i.id} key={index}>
-                            {i.firstNameEn}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
+                        <Select
+                          name="propertyOwner"
+                          value={formik.values.ownerId}
+                          onChange={(e) => {
+                            formik.handleChange(e.target.value);
+                            setSelectedOwnerId(e.target.value);
+                            setTimeout(() => {}, 0);
+                          }}
+                        >
+                          <option value={0}>Select User Role</option>
+                          {usersData?.users
+                            .filter((s) => s.role == USER_ROLES.OWNER)
+                            ?.map((i, index) => (
+                              <option value={i.id} key={index}>
+                                {i.firstNameEn}
+                              </option>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
 
@@ -424,7 +432,8 @@ const EditProperty = () => {
                     <CardBody>
                       <UnitsTable
                         data={units}
-                        owenerId={owenerId ? owenerId : data?.ownerId}
+                        propOwenerId={owenerId ? owenerId : data?.ownerId}
+                        propPropertyId={data?.id}
                       />
                     </CardBody>
                   </Card>
