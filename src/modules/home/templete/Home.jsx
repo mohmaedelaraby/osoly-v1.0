@@ -1,67 +1,59 @@
 import { Card, CardBody, CardHeader, Heading, Text } from "@chakra-ui/react";
-import React from "react";
-import { FaBuilding, FaHouseUser, FaUser } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaBuilding, FaHouseUser, FaTicketAlt, FaUser } from "react-icons/fa";
 import "../style/Home.scss";
 import PieChartComponent from "../../../components/Charts/PieChart";
 import BarChartComponent from "../../../components/Charts/BarChart";
 const Home = () => {
-  const arr = [
+  const currentUserJson = localStorage.getItem("currentUser");
+  const homeData = JSON.parse(currentUserJson)
+  const [pieData,setPieData]=useState()
+  const [ownersCount,setOwnersCount]=useState(0)
+  const [propertiesCount,setPropertiesCount]=useState(0)
+  const [tenantsCount,setTenantsCount]=useState(0)
+  const [metricData,setMetricData]=useState()
+  const [barData,setBarData]=useState()
+  const metircArr = [
     {
-      tile: "Users",
-      label: "User",
+      tile: "Tenants",
+      label: "Tickets",
       icon: <FaUser />,
-      num: 12,
+      num:0
     },
     {
       tile: "Owners",
       label: "Owner",
       icon: <FaHouseUser />,
-      num: 102,
+      num:0
     },
     {
       tile: "Properties",
       label: "Property",
       icon: <FaBuilding />,
-      num: 1122,
+      num:0
     },
   ];
+ const metricVals =[]
+  useEffect(()=>{
+    console.log(homeData.stats)
+    setPieData(homeData?.stats?.ticketsStats)
+    setBarData(homeData?.stats?.unitsStats)
+    setOwnersCount(homeData?.stats?.ownersCount)
+    setPropertiesCount(homeData?.stats?.propertiesCount)
+    setTenantsCount(homeData?.stats?.tenantsCount)
+    
+  },[])
+  useEffect(()=>{
+   setMetricData([homeData?.stats?.tenantsCount,homeData?.stats?.ownersCount,homeData?.stats?.propertiesCount])
+  },[ownersCount,propertiesCount,tenantsCount])
+ 
 
-  //for tickets
-  const pieData = [
-    { name: "Solved ", value: 400 },
-    { name: "Proccisng ", value: 300 },
-    { name: "Rejected ", value: 300 },
-    { name: "Review", value: 200 }
-  ];
-  //for units
-  const barData = [
-    {
-      name: "Eco",
-      NumOfUnits: 40,
-    },
-    {
-      name: "Pro",
-      NumOfUnits: 300,
-    },
-    {
-      name: "Super Lux",
-      NumOfUnits: 100,
-    },
-    {
-      name: "Altra Lux",
-      NumOfUnits: 20,
-    },
-    {
-      name: "Luxury",
-      NumOfUnits: 3,
-    },
-  ];
   return (
     <>
       <div className="home">
         <div className="home_container">
           <div className="home_container_cards">
-            {arr.map((item, i) => (
+            {metricData && metircArr?.map((item, i) => (
               <div key={i} className="home_container_cards_card">
                 <Card width="90%">
                   <CardHeader paddingBottom="8px">
@@ -78,7 +70,7 @@ const Home = () => {
                   </CardHeader>
                   <CardBody paddingTop="0px">
                     <span className="home_container_cards_card_num">
-                      {item.num}
+                     {metricData[i]}
                     </span>
                     <span className="home_container_cards_card_label">
                       {item.label}
@@ -113,7 +105,7 @@ const Home = () => {
                   </Heading>
                 </CardHeader>
                 <CardBody paddingTop="0px">
-                  <BarChartComponent data={barData}  dataKeyValue={"NumOfUnits"}  name={"name"} />
+                  <BarChartComponent data={barData}  dataKeyValue={"value"}  name={"name"} />
                 </CardBody>
               </Card>
             </div>
