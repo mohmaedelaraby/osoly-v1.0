@@ -1,11 +1,11 @@
-import { Card, CardBody } from '@chakra-ui/react'
+import { Card } from '@chakra-ui/react'
 import "../../assets/styels/components/cards.scss";
 
 import React from 'react'
 
 function CardWithNumber({icon , number , desc , bg}) {
   return (
-    <Card>
+    <Card width='-webkit-fit-content'>
         <div className="cardWithNum">
             <div className="cardWithNum_contanier">
                 <div style={{'backgroundColor':bg}} className="cardWithNum_contanier__icon">
