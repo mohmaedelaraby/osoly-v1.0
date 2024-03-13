@@ -2,10 +2,11 @@
 
 .sidebar {
     min-height: 100vh;
-    background-color: #F1F2F7;
-    width: 200px;
-    min-width: 200px;
+    background-color: #194C81;
+    width: 256px;
+    min-width: 256px;
     position: fixed;
+
     @media screen and (max-width:768px) {
         min-width: 20%;
     }
@@ -31,11 +32,13 @@
     }
 
     .sidebar__container {
+        padding: 32px 24px 24px 24px;
 
         .sidebar__logo {
             padding-bottom: 20px;
-            padding-top: 20px;
             border-bottom: 1px solid #C8CBD9;
+            display: flex;
+            flex-direction: row-reverse;
 
             @media screen and (max-width:768px) {
                 padding-left: 20px;
@@ -45,24 +48,30 @@
                 display: flex;
                 align-items: center;
             }
-            .sidebar__logo__container{
+
+            .sidebar__logo__container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
+                background: #EFF9FF;
+                width: fit-content;
+                padding: 20px;
+                border-radius: 15px;
+
                 .sidebar__logo__img {
                     height: auto;
                     max-height: 50px;
                     cursor: pointer;
                 }
-                .sidebar__logo__text{
+
+                .sidebar__logo__text {
                     margin-left: 16px;
                     font-weight: bold;
                     color: $font-color;
                 }
             }
 
-           
+
 
             .sidebar__logo__closeicon {
 
@@ -98,8 +107,8 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-                    margin-left: 12px;
-                    margin-right: 12px;
+                    flex-direction: row-reverse;
+                   
                     margin-bottom: 0;
                     margin-top: 20px;
                     padding: 8px;
@@ -127,11 +136,11 @@
                     }
 
                     .sidebar__items__container__item__text {
-
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: black;
-                        padding-left: 12px;
+                        color: #EFF9FF;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        padding-right: 12px;
 
                         @media screen and (max-width:768px) {
                             font-size: 14px;
@@ -139,32 +148,42 @@
 
                     }
                 }
-                .sidebar__items__container_nested{
-                    margin-left: 24%;
+
+                .sidebar__items__container_nested {
+                    margin-right: 10%;
                     font-size: 14px;
-                    font-weight: 300;
-                    
-                    .sidebar__items__container_nested__item{
-                        color: black;
+                    font-style: normal;
+                    font-weight: 400;
+                    text-align: end;
+
+                    .sidebar__items__container_nested__item {
+                        color: #EFF9FF;
                         margin-bottom: 4px;
-                        &:hover{
+
+                        &:hover {
                             transition: 0.1s all;
                             font-weight: 500;
                         }
                     }
-                    .nested_active{
+
+                    .nested_active {
                         font-weight: 500;
+                        color: #194C81;
+                        border-radius: 10px;
+                        background-color: #EFF9FF;
+                        padding: 8px;
+
                     }
                 }
 
                 .active {
-                    margin-left: 12px;
-                    margin-right: 12px;
                     margin-bottom: 8px;
                     margin-top: 20px;
                     border-radius: 10px;
-                    background-color: rgba(112, 127, 221, 0.1);
-                    
+                    background-color: #EFF9FF;
+                    .sidebar__items__container__item__text{
+                        color: #194C81;
+                    }
                 }
             }
         }

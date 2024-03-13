@@ -14,8 +14,8 @@ function SideBar() {
 
  /*  const [bgColor, setBgcolor] = useState("#f6f6f6a7");
   const [bgFontColor, setbgFontcolor] = useState("#707FDD"); */
-  const [sbColor, setSbcolor] = useState("#F1F2F7");
-  const [sbFontColor, setSbFontcolor] = useState("black");
+  const [sbColor, setSbcolor] = useState("#194C81");
+  const [sbFontColor, setSbFontcolor] = useState("#EFF9FF");
 
   useEffect(()=>{
   
@@ -103,8 +103,8 @@ function SideBar() {
                           ? item.activeIcon
                           : item.icon}
                       </div>
-
-                      <div className="sidebar__items__container__item__text" style={{'color':sbFontColor}}>
+                      {/*  style={{'color':sbFontColor}} */}
+                      <div className="sidebar__items__container__item__text" >
                         {item.name}
                       </div>
                     </div>
@@ -123,8 +123,9 @@ function SideBar() {
                                   ? "sidebar__items__container_nested__item nested_active"
                                   : "sidebar__items__container_nested__item "
                               }`}
-                              style={{'color':sbFontColor}}
+                              
                             >
+                             {/*  style={{'color':sbFontColor}} */}
                               {child.name}
                             </div>
                           </>
