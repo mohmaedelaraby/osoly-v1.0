@@ -11,7 +11,7 @@ import {
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import PropertyTable from "../../propreties/templete/PropertiesTable";
+import PropertiesComponent from "../../propreties/templete/PropertiesComponent";
 import { useUpdateUser } from "../../users/hooks/useUpdateUser";
 import useGetUser from "../../users/hooks/useGetUser";
 import { userEditValidation } from "../../users/validation/schema";
@@ -159,7 +159,7 @@ const EditOwner = () => {
                     <Card>
                       <Card>
                         <CardBody>
-                          <PropertyTable data={ownedProperties} owenerId={id}/>
+                          <PropertiesComponent data={ownedProperties} owenerId={id}/>
                         </CardBody>
                       </Card>
                     </Card>

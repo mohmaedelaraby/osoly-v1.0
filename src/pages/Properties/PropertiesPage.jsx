@@ -1,12 +1,10 @@
-import { Card, CardBody } from "@chakra-ui/react";
 import "../../assets/styels/genric-styles/table.scss";
-import PropertyTable from "../../modules/propreties/templete/PropertiesTable";
 import useClosePopUps from "../../store/useClosePopups";
 import { useEffect, useState } from "react";
 import useProperties from "../../modules/propreties/hooks/useAllProperties";
 import Pagination from "../../components/shared/Pagination";
-/* import Pagination from "../../components/shared/Pagination";
-import { useState } from "react"; */
+import PropertiesComponent from "../../modules/propreties/templete/PropertiesComponent";
+
 
 const PropertiesTablePage = () => {
   const {show}=useClosePopUps()
@@ -29,24 +27,14 @@ const PropertiesTablePage = () => {
   };
   return (
     <>
-       <div className="table_container">
+       <div>
         {PropertiesData?.properties && !isLoading? (
           <>
-            <Card  maxWidth='1020px' minWidth='1020px' minHeight='85%'>
-              <CardBody marginBottom="24px">
-                <PropertyTable data={PropertiesData?.properties}/>
-                <div className="table_container_paganation">
-                  {
-                    <Pagination
-                      totalCount={PropertiesData?.pagination.count}
-                      currentPage={currentPage}
-                      pageSize={10}
-                      onPageChange={handlePageChange}
-                    />
-                  }
-                </div>
-              </CardBody>
-            </Card>
+            
+             <div className="genric_page">
+             <PropertiesComponent/>
+               
+             </div>
           </>
         ) : (
           <>

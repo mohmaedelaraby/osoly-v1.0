@@ -5,7 +5,7 @@ import React from 'react'
 
 function CardWithNumber({icon , number , desc , bg}) {
   return (
-    <Card width='-webkit-fit-content'>
+    <Card width='100%'>
         <div className="cardWithNum">
             <div className="cardWithNum_contanier">
                 <div style={{'backgroundColor':bg}} className="cardWithNum_contanier__icon">

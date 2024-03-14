@@ -3,7 +3,7 @@
     position: relative;
     background: #f6f6f6a7;
     overflow-x: hidden;
-    flex-direction: row-reverse;
+    direction: rtl;
 }
 
 .w-100 {
@@ -11,7 +11,9 @@
 }
 
 .layout {
-    margin-right: 200px;
+    margin-right: 246px;
+    min-height: 100vh;
+    max-width: -webkit-fill-available;
 }
 
 .form_container {

@@ -1,0 +1,95 @@
+.page {
+    padding: 24px;
+
+    .page_container {
+        width: 100%;
+
+        .page_container_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+
+            .page_container_header__title {
+                color: #010B38;
+                text-align: right;
+                font-size: 36px;
+                font-weight: 700;
+            }
+
+            .page_container_header__icons {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+        }
+
+        .page_container_cards {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+
+            .page_container_cards_card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:last-child {
+                    justify-content: flex-end;
+                }
+
+                &:first-child {
+                    justify-content: flex-start;
+                }
+            }
+
+        }
+
+        .page_container_table {
+            margin-top: 24px;
+            .page_container_table__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .page_container_table__header__btns {
+                    display: flex;
+                    align-items: center;
+
+                    .page_container_table__header__btns__add {
+                        padding: 8px 16px;
+                        justify-content: center;
+                        align-items: center;
+                        color: white;
+                    }
+                }
+
+                .page_container_table__header__search {
+                    max-width: 421px;
+                    width: 421px;
+                }
+
+                .page_container_table__header__switcher {
+                    display: flex;
+                    align-items: center;
+                    .page_container_table__header__switcher_grid{
+                        margin-right: 8px;
+                        margin-left: 8px;
+                    }
+                }
+            }
+            .page_container_table__content{
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .page_container_table__content__grid{
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 16px;
+                }
+            }
+        }
+    }
+}

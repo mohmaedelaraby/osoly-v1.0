@@ -51,7 +51,6 @@ const Home = () => {
 
   return (
     <>
-    <CardWithImg address="الرياض - حي الخالدية - شارع خالد بن الوليد" price={1200} title="شقة 107" key={1}></CardWithImg>
       <div className="home">
         <div className="home_container">
           <div className="home_container_cards">
