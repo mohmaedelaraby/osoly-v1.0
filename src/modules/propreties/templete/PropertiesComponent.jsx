@@ -6,6 +6,10 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -32,6 +36,7 @@ import "../../../assets/styels/components/page.scss";
 import {
   AddIcon,
   CalendarIcon,
+  ChevronDownIcon,
   DragHandleIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
@@ -148,6 +153,35 @@ const PropertiesComponent = ({ data, owenerId }) => {
                         >
                           إضافة جديد
                         </Button>
+                        <Menu>
+                          <MenuButton
+                            as={Button}
+                            marginRight='8px'
+                            marginLeft='8px'
+                            rightIcon={<ChevronDownIcon />}
+                          >
+                            فرز حسب
+                          </MenuButton>
+                          <MenuList>
+                            <MenuItem>الاسم</MenuItem>
+                            <MenuItem>العنوان</MenuItem>
+                            <MenuItem>التاريخ</MenuItem>
+                          </MenuList>
+                        </Menu>
+
+                        <Menu>
+                          <MenuButton
+                            as={Button}
+                            rightIcon={<ChevronDownIcon />}
+                          >
+                            ترتيب حسب
+                          </MenuButton>
+                          <MenuList>
+                            <MenuItem>الاسم</MenuItem>
+                            <MenuItem>العنوان</MenuItem>
+                            <MenuItem>التاريخ</MenuItem>
+                          </MenuList>
+                        </Menu>
                       </div>
                       <div className="page_container_table__header__search">
                         <InputGroup>
@@ -268,40 +302,38 @@ const PropertiesComponent = ({ data, owenerId }) => {
                         </>
                       ) : (
                         <>
-                        <div className="page_container_table__content__grid">
-                        {PropertiesData &&
-                            PropertiesData?.properties?.map((item, index) => (
-                              <CardWithImg
-                                key={index}
-                                address={item.address}
-                                title={item.name}
-                                price={item.id}
-                                onClick={() => {
-                                  navigate("/property", {
-                                    state: {
-                                      id: item.id,
-                                      name: item.name,
-                                      address: item.address,
-                                      unitsCount: item.unitsCount,
-                                      instrumentNumber: item.instrumentNumber,
-                                      postalCode: item.postalCode,
-                                      blockNumber: item.blockNumber,
-                                      street: item.street,
-                                      subNumber: item.subNumber,
-                                      district: item.district,
-                                      units: item.units,
-                                      owenerId: owenerId
-                                        ? owenerId
-                                        : item?.owenerId,
-                                      city: item?.city,
-                                    },
-                                  });
-                                }}
-                              ></CardWithImg>
-                            ))}
-
-                        </div>
-                          
+                          <div className="page_container_table__content__grid">
+                            {PropertiesData &&
+                              PropertiesData?.properties?.map((item, index) => (
+                                <CardWithImg
+                                  key={index}
+                                  address={item.address}
+                                  title={item.name}
+                                  price={item.id}
+                                  onClick={() => {
+                                    navigate("/property", {
+                                      state: {
+                                        id: item.id,
+                                        name: item.name,
+                                        address: item.address,
+                                        unitsCount: item.unitsCount,
+                                        instrumentNumber: item.instrumentNumber,
+                                        postalCode: item.postalCode,
+                                        blockNumber: item.blockNumber,
+                                        street: item.street,
+                                        subNumber: item.subNumber,
+                                        district: item.district,
+                                        units: item.units,
+                                        owenerId: owenerId
+                                          ? owenerId
+                                          : item?.owenerId,
+                                        city: item?.city,
+                                      },
+                                    });
+                                  }}
+                                ></CardWithImg>
+                              ))}
+                          </div>
                         </>
                       )}
 
