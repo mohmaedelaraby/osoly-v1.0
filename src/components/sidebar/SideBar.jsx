@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useWindowDimensions from "../../customHooks/useWindowDimensions";
-import { sidebarItems } from "../../mocks/sideBar";
+import { sidebarBottom, sidebarItems, sidebarSettings } from "../../mocks/sideBar";
 import "../../assets/styels/components/Sidebar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/originallogo.png";
@@ -81,8 +81,9 @@ function SideBar() {
               <div></div>
             )}
           </div>
-          <div className="sidebar__items">
-            <div className="sidebar__items__container">
+          <div className="sidebar__items ">
+            <div className="sidebar__items__container sidebar_structure">
+              <div className="top">
               {
                 // eslint-disable-next-line
                 sidebarItems.map((item, i) => (
@@ -138,6 +139,122 @@ function SideBar() {
                   </>
                 ))
               }
+              <hr className="sidebar__items_hr"/>
+              {
+                // eslint-disable-next-line
+                sidebarSettings.map((item, i) => (
+                  <>
+                    <div
+                      key={i}
+                      className={`${
+                        selected === i || checkIsActive(item.activeRoutes)
+                          ? " sidebar__items__container__item active"
+                          : "sidebar__items__container__item"
+                      }`}
+                      onClick={() => {
+                        setSelected(i);
+                        navigate(item.navTo);
+                      }}
+                    >
+                      <div className="sidebar__items__container__item__icon">
+                        {selected === i || checkIsActive(item.activeRoutes)
+                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
+                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
+                      </div>
+                      {/* <div><HomeSidebar fill="red"/></div> */}
+                      <div className="sidebar__items__container__item__text" >
+                        {item.name}
+                      </div>
+                    </div>
+
+                    <div className="sidebar__items__container_nested">
+                      {(selected === i || checkIsActive(item.activeRoutes)) &&
+                      item.nestedChildern ? (
+                        item.nestedChildern.map((child, j) => (
+                          <>
+                            <div
+                              onClick={() => {
+                                navigate(child.navTo);
+                              }}
+                              className={`${
+                                checkIsActive(child.active)
+                                  ? "sidebar__items__container_nested__item nested_active"
+                                  : "sidebar__items__container_nested__item "
+                              }`}
+                              
+                            >
+                             {/*  style={{'color':sbFontColor}} */}
+                              {child.name}
+                            </div>
+                          </>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </>
+                ))
+              }
+              </div>
+              <div className="bottom">
+              {
+                // eslint-disable-next-line
+                sidebarBottom.map((item, i) => (
+                  <>
+                    <div
+                      key={i}
+                      className={`${
+                        selected === i || checkIsActive(item.activeRoutes)
+                          ? " sidebar__items__container__item active"
+                          : "sidebar__items__container__item"
+                      }`}
+                      onClick={() => {
+                        setSelected(i);
+                        navigate(item.navTo);
+                      }}
+                    >
+                      <div className="sidebar__items__container__item__icon">
+                        {selected === i || checkIsActive(item.activeRoutes)
+                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
+                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
+                      </div>
+                      {/* <div><HomeSidebar fill="red"/></div> */}
+                      <div className="sidebar__items__container__item__text" >
+                        {item.name}
+                      </div>
+                    </div>
+
+                    <div className="sidebar__items__container_nested">
+                      {(selected === i || checkIsActive(item.activeRoutes)) &&
+                      item.nestedChildern ? (
+                        item.nestedChildern.map((child, j) => (
+                          <>
+                            <div
+                              onClick={() => {
+                                navigate(child.navTo);
+                              }}
+                              className={`${
+                                checkIsActive(child.active)
+                                  ? "sidebar__items__container_nested__item nested_active"
+                                  : "sidebar__items__container_nested__item "
+                              }`}
+                              
+                            >
+                             {/*  style={{'color':sbFontColor}} */}
+                              {child.name}
+                            </div>
+                          </>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </>
+                ))
+              }
+              </div>
+             
+             
             </div>
           </div>
         </div>
