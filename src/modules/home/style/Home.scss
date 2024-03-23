@@ -5,9 +5,9 @@
         align-items: center;
         flex-direction: column;
         .home_container_cards {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
             width: 100%;
             margin-bottom: 24px;
             .home_container_cards_card {
