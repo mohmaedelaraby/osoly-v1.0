@@ -4,6 +4,7 @@ import { sidebarItems } from "../../mocks/sideBar";
 import "../../assets/styels/components/Sidebar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/originallogo.png";
+import HomeSidebar from "../../assets/icons/HomeSidebar";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -51,12 +52,12 @@ function SideBar() {
       ) : (
         <div></div>
       )}
-
+{/*  style={{'background':sbColor}} */}
       <div
         className={
           openSidebar === 0 && width < 427 ? "sidebar non-display" : "sidebar"
         }
-        style={{'background':sbColor}}
+       
       >
         <div className="sidebar__container">
           <div className="sidebar__logo">
@@ -100,10 +101,10 @@ function SideBar() {
                     >
                       <div className="sidebar__items__container__item__icon">
                         {selected === i || checkIsActive(item.activeRoutes)
-                          ? item.activeIcon
-                          : item.icon}
+                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
+                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
                       </div>
-                      {/*  style={{'color':sbFontColor}} */}
+                      {/* <div><HomeSidebar fill="red"/></div> */}
                       <div className="sidebar__items__container__item__text" >
                         {item.name}
                       </div>

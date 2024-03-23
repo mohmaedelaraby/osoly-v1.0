@@ -114,8 +114,11 @@
                     border-radius: 10px;
 
                     &:hover {
-                        background-color: rgba(112, 127, 221, 0.1);
+                        background-color: #EFF9FF;
                         transition: 0.1s all;
+                        .sidebar__items__container__item__text{
+                            color: #194C81;
+                        }
                     }
 
                     .sidebar__items__container__item__icon {
@@ -153,7 +156,6 @@
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 400;
-                    text-align: end;
 
                     .sidebar__items__container_nested__item {
                         color: #EFF9FF;
