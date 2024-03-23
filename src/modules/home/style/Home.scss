@@ -1,52 +1,49 @@
 .home {
     padding: 25px 50px;
+
     .home_container {
         display: flex;
         align-items: center;
         flex-direction: column;
+
         .home_container_cards {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
             width: 100%;
             margin-bottom: 24px;
-            .home_container_cards_card {
+
+        }
+
+        .home_container_tables {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            .home_container_item_tables {
                 width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &:last-child{
-                    justify-content: end;
-                }
-                &:first-child{
-                    justify-content: start;
-                }
-                .home_container_cards_card_header {
+                .home_container_tables_item_header {
                     display: flex;
                     align-items: center;
+                    justify-content: space-between;
 
-                    .home_container_cards_card_header_icon {
-                        font-size: 20px;
-                        margin-right: 6px;
-                    }
-
-                    .home_container_cards_card_header_title {
+                    .home_container_tables_item_header_title {
+                        color: #010B38;
                         font-size: 24px;
-                        font-weight: bold;
+                        font-style: normal;
+                        font-weight: 700;
                     }
+
+                    .home_container_tables_item_header_btn {}
                 }
 
-                .home_container_cards_card_num {
-                    font-size: 14px;
-                    font-weight: bold;
-                    margin-right: 8px;
-                }
-
-                .home_container_cards_card_label {
-                    font-size: 16px;
-                    font-weight: 500;
+                .home_container_tables_item_table {
+                    margin-top: 8px;
                 }
             }
+
+
         }
 
         .home_container_charts_table {
@@ -60,4 +57,11 @@
             .home_container_charts_table__table {}
         }
     }
+}
+
+.ml-12{
+    margin-left: 12px;
+}
+.mr-12{
+    margin-right: 12px;
 }
