@@ -4,16 +4,24 @@
     background: #f6f6f6a7;
     overflow-x: hidden;
     direction: rtl;
+    
 }
 
 .w-100 {
     width: 100%;
+}
+.ml-24{
+    margin-left: 24px;
+}
+.mr-24{
+    margin-right: 24px;
 }
 
 .layout {
     margin-right: 256px;
     min-height: 100vh;
     max-width: -webkit-fill-available;
+    padding: 25px 50px;
 }
 
 .form_container {

@@ -87,7 +87,9 @@ const PropertiesComponent = ({ data, owenerId }) => {
     PropertiesRefetch();
     if (show && !isLoading) {
       PropertiesRefetch();
+      console.log("-->",PropertiesData)
     }
+    
   }, [currentPage, show]);
 
   const handlePageChange = (page) => {
@@ -102,7 +104,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
   };
 
   useEffect(() => {
-    //console.log(show )
+    console.log(show )
   }, [show]);
   return (
     <>
@@ -238,7 +240,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
                               </Thead>
                               <Tbody className="table_body">
                                 {PropertiesData &&
-                                  PropertiesData?.properties?.map(
+                                  PropertiesData?.updatedProperties?.map(
                                     (item, index) => (
                                       <Tr
                                         key={index}

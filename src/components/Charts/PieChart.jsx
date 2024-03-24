@@ -4,9 +4,9 @@ import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 
 const PieChartComponent =({data}) =>{
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#194C81", "#3D6A98", "#85A5C7", "#85A5C7"];
   
-  const RADIAN = Math.PI / 180;
+  const RADIAN = Math.PI / 200;
   const renderCustomizedLabel = ({
     cx,
     cy,
@@ -28,20 +28,20 @@ const PieChartComponent =({data}) =>{
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
-        {`${(percent * 100).toFixed(0)}%`}
+        {`${data[index].value>0 ? `${data[index].name}`:``}`}
       </text>
     );
   };
   return (
     <>
-     <PieChart width={500} height={420}>
+     <PieChart width={306} height={292}>
       <Pie
         data={data}
-        cx={250}
-        cy={210}
+        cx={153}
+        cy={145}
         labelLine={false}
         label={renderCustomizedLabel}
-        outerRadius={190}
+        outerRadius={140}
         fill="#8884d8"
         dataKey="value"
       >

@@ -1,28 +1,47 @@
 .home {
-    padding: 25px 50px;
+   
 
     .home_container {
         display: flex;
         align-items: center;
         flex-direction: column;
+        .home_container_header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            width: 100%;
+            .home_container_header__title{
+                color: #010B38;
+                text-align: right;
+                font-size: 36px;
+                font-weight: 700;
+            }
+            .home_container_header__icons{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+        }
 
         .home_container_cards {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
             width: 100%;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
 
         }
 
         .home_container_tables {
             display: flex;
-            align-items: center;
             justify-content: space-between;
             width: 100%;
+          
 
             .home_container_item_tables {
                 width: 100%;
+
                 .home_container_tables_item_header {
                     display: flex;
                     align-items: center;
@@ -47,21 +66,31 @@
         }
 
         .home_container_charts_table {
+            margin-bottom: 32px;
             display: flex;
             align-items: start;
             justify-content: space-between;
             width: 100%;
 
-            .home_container_charts_table__chart {}
+            .home_container_charts_table__chart {
+                .home_container_charts_table__chart_header {
+                    color: #010B38;
+
+                    font-size: 24px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
+                }
+            }
 
             .home_container_charts_table__table {}
         }
     }
 }
 
-.ml-12{
+.ml-12 {
     margin-left: 12px;
 }
-.mr-12{
+
+.mr-12 {
     margin-right: 12px;
 }

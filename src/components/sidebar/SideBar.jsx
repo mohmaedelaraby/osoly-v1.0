@@ -82,7 +82,7 @@ function SideBar() {
             )}
           </div>
           <div className="sidebar__items ">
-            <div className="sidebar__items__container sidebar_structure">
+            <div className="sidebar__items__container sidebar_">
               <div className="top">
               {
                 // eslint-disable-next-line
@@ -91,7 +91,7 @@ function SideBar() {
                     <div
                       key={i}
                       className={`${
-                        selected === i || checkIsActive(item.activeRoutes)
+                         checkIsActive(item.activeRoutes)
                           ? " sidebar__items__container__item active"
                           : "sidebar__items__container__item"
                       }`}
@@ -101,7 +101,7 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        {selected === i || checkIsActive(item.activeRoutes)
+                        { checkIsActive(item.activeRoutes)
                           ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
                           : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
                       </div>
@@ -147,7 +147,7 @@ function SideBar() {
                     <div
                       key={i}
                       className={`${
-                        selected === i || checkIsActive(item.activeRoutes)
+                         checkIsActive(item.activeRoutes)
                           ? " sidebar__items__container__item active"
                           : "sidebar__items__container__item"
                       }`}
@@ -157,7 +157,7 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        {selected === i || checkIsActive(item.activeRoutes)
+                        { checkIsActive(item.activeRoutes)
                           ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
                           : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
                       </div>
@@ -204,7 +204,7 @@ function SideBar() {
                     <div
                       key={i}
                       className={`${
-                        selected === i || checkIsActive(item.activeRoutes)
+                        checkIsActive(item.activeRoutes)
                           ? " sidebar__items__container__item active"
                           : "sidebar__items__container__item"
                       }`}

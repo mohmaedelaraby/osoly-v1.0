@@ -48,11 +48,26 @@
         .cardWithimg_contanier__text {
             padding-top: 16px;
 
+            .cardWithimg_contanier__text_header {
+                color: rgba(1, 11, 56, 0.50);
+                font-size: 12px;
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+
             .cardWithimg_contanier__text_title {
-                text-align: right;
                 color: #010B38;
                 font-size: 20px;
                 font-weight: 700;
+            }
+
+            .cardWithimg_contanier__text_name {
+                color: #010B38;
+                font-size: 12px;
+                font-weight: 400;
+                display: inline-flex;
+                align-items: baseline;
+
             }
 
             .cardWithimg_contanier__text_priceContainer {
@@ -78,7 +93,7 @@
                     color: rgba(1, 11, 56, 0.60);
                     margin-right: 4px;
                     margin-left: 4px;
-                  
+
 
                 }
 
@@ -90,9 +105,43 @@
                 font-weight: 400;
                 text-align: right;
                 color: rgba(1, 11, 56, 0.60);
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                        line-clamp: 2; 
+                -webkit-box-orient: vertical;
+                width: 70%;
             }
 
 
         }
+        .cardWithimg_contanier__btns{
+            margin-top: 16px;
+            width: 100%;
+        }
+    }
+}
+.verticalCard{
+    flex-direction: row !important;
+    .cardWithimg_contanier__icon{
+        height: 96px;
+        img{
+            height: 100%;
+            width: 250px;
+        }
+    }
+    .cardWithimg_contanier__text{
+        padding-top: 0px !important;
+        margin-right: 12px;
+        .cardWithimg_contanier__text_header{
+            font-size: 10px !important;
+        }
+        .cardWithimg_contanier__text_title{
+            font-size: 12px !important;
+        }
+    }
+    .cardWithimg_contanier__btns{
+        margin-top: 0px !important;
+
     }
 }

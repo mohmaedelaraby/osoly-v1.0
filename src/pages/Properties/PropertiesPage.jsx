@@ -28,7 +28,7 @@ const PropertiesTablePage = () => {
   return (
     <>
        <div>
-        {PropertiesData?.properties && !isLoading? (
+        {PropertiesData?.updatedProperties && !isLoading? (
           <>
             
              <div className="genric_page">
@@ -38,7 +38,7 @@ const PropertiesTablePage = () => {
           </>
         ) : (
           <>
-          NO TABLE
+          NO Page
           </>
         )}
       </div>
