@@ -306,12 +306,15 @@ const PropertiesComponent = ({ data, owenerId }) => {
                         <>
                           <div className="page_container_table__content__grid">
                             {PropertiesData &&
-                              PropertiesData?.properties?.map((item, index) => (
+                              PropertiesData?.updatedProperties?.map((item, index) => (
                                 <CardWithImg
                                   key={index}
                                   address={item.address}
                                   title={item.name}
                                   price={item.id}
+                                  isBtns={false}
+                                  isVertical={false}
+                                  currncy={'ريال سعودي'}
                                   onClick={() => {
                                     navigate("/property", {
                                       state: {
