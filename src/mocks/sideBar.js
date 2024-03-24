@@ -25,7 +25,7 @@ export const sidebarItems = [
         name: "المؤسسة",
         icon: enterprisesSB,
         activeIcon: enterprisesSB,
-        navTo:'/enterprise',
+        navTo:'/enterprises',
         activeRoutes:['/enterprises','/enterprise'],
         isActive: false,
     },

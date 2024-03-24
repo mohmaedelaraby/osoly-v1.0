@@ -1,22 +1,22 @@
 import { useQuery } from "react-query";
-import { getUsers } from "../service/userServices";
+import { getEnterprisesUsers } from "../service/enterprisesUserServices";
 
-const fetchUsers = async (params) => {
+const fetchEnterPrisesUsers = async (params) => {
     const modifiedParams = { ...params };
-    return await getUsers(modifiedParams);
+    return await getEnterprisesUsers(modifiedParams);
 };
 
-const useUsers = (params) => {
-    const { data, refetch, status } = useQuery(['users', params], () => fetchUsers(params), {
+const useEnterPrisesUsers = (params) => {
+    const { data, refetch, status } = useQuery(['enterprises-users', params], () => fetchEnterPrisesUsers(params), {
         refetchOnWindowFocus: false,
         enabled: false
     });
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {
-        usersData:data,
-        usersisLoading: modifiedIsLoading,
-        usersRefetch:refetch,
+        usersEnterPrisesData:data,
+        usersEnterPrisesisLoading: modifiedIsLoading,
+        usersEnterPrisesRefetch:refetch,
     };
 };
 
-export default useUsers;
+export default useEnterPrisesUsers;

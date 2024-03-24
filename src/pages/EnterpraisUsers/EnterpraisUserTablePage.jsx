@@ -1,31 +1,14 @@
-import { Card, CardBody } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import "../../assets/styels/genric-styles/table.scss";
 import UserEnterpraiseTable from "../../modules/enterpraiseUsers/templete/EnterpraiseUserTable";
-/* import Pagination from "../../components/shared/Pagination";
-import { useState } from "react"; */
+
 
 const EnterpraisUserTablePage = () => {
-  /* const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  }; */
   return (
     <>
-      <div className="table_container">
-        <Card  maxWidth='1020px' minWidth='1020px'>
-          <CardBody  marginBottom='24px'>
+      <div className="genric_page">
             <UserEnterpraiseTable/>
-          </CardBody>
-        </Card>
-        {/*  {
-          <Pagination
-            totalCount={12}
-            currentPage={0}
-            pageSize={12}
-            onPageChange={handlePageChange}
-          />
-        } */}
       </div>
     </>
   );

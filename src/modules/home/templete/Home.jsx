@@ -36,6 +36,7 @@ const Home = () => {
   const [tenantsCount, setTenantsCount] = useState(0);
   const [metricData, setMetricData] = useState();
   const [barData, setBarData] = useState();
+  
   const metircArr = [
     {
       tile: "Tenants",
@@ -155,7 +156,7 @@ const Home = () => {
         <div className="home_container">
         <div className="home_container_header">
             <div className="home_container_header__title">
-              العقارات/الوحدات{" "}
+              اهلا {homeData?.enterprise.name}
             </div>
             <div className="home_container_header__icons">
               <img src={user} alt="user" width="40px" height="40px" />

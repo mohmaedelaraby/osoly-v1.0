@@ -112,8 +112,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
         <div className="page_container">
           <div className="page_container_header">
             <div className="page_container_header__title">
-              {" "}
-              العقارات/الوحدات{" "}
+              العقارات/الوحدات
             </div>
             <div className="page_container_header__icons">
               <img src={user} alt="user" width="40px" height="40px" />
