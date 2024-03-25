@@ -2,126 +2,154 @@
 
 //create Form
 
-    .form {
-        padding: 16px;
-        margin-bottom: 16px;
-        margin-top: 16px;
+.form {
+    padding-bottom: 24px;
+    direction: rtl;
 
-        .form__header {
-            color: $font-color;
-            font-size: $header-text;
-            font-weight: bold;
-            margin-bottom: 16px;
+    .form__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid #C8C9CC;
+        padding: 16px 24px;
+
+        .form__header_text {
+            color: #001833;
+            font-size: 36px;
+            font-weight: 700;
         }
 
-        .form__input {
-            .form__input__container {
-                margin-bottom: 16px;
+        .form__header_close {}
 
-                .form__input__container__label {
-                    color: $font-color;
-                    font-size: $paragraph-text;
-                    font-weight: bold;
-                }
-                .form__input__container__desc{
-                    color: gray;
-                    font-size: 14px;
-                    font-weight: 400;
-                }
+    }
 
-                .form__input__container__input {
-                    padding-top: 16px;
-                    padding-bottom: 16px;
-                }
+    .form__input {
+        .form__input__container {
 
-                .form__input__container__warn {
-                    display: flex;
-                    flex-direction: column;
-                    height: 21px;
-                }
-
-                .form__input__container__uploadFile {
-                    text-align: center;
-                    cursor: pointer;
-                    border: none;
-                    width: 27%;
-                    padding: 0;
-                    padding-top: 4px;
-                }
-
-                .form__input__container__image {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    flex-direction: column;
-                }
-
-                .form__input__container__image__remove {
-                    color: red;
-                    font-style: 14px;
-                }
-            }
-
-            .form__input__container__colorpicker{
-                display: flex;
-            }
-            
-        }
-        .form__input__flex{
-            display: flex;
-            .form__input__container{
-                margin-right: 24px;
-            }
-        }
-
-        .form__btn__container {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 24px;
-
-            .form__btn {
-                padding: 6px 36px;
-                background-color: $btn-color;
+            .form__input__container__label {
                 color: $font-color;
+                font-size: $paragraph-text;
+                font-weight: bold;
             }
-            .form__btn__delete{
-                margin-left: 12px;
-                border: 1px solid red !important;
-                color: red !important;
-                background-color: white;
+
+            .form__input__container__desc {
+                color: gray;
+                font-size: 14px;
+                font-weight: 400;
             }
+
+            .form__input__container__input {
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+
+            .form__input__container__warn {
+                display: flex;
+                flex-direction: column;
+                height: 21px;
+            }
+
+            .form__input__container__uploadFile {
+                text-align: center;
+                cursor: pointer;
+                border: none;
+                width: 27%;
+                padding: 0;
+                padding-top: 4px;
+            }
+
+            .form__input__container__image {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-direction: column;
+            }
+
+            .form__input__container__image__remove {
+                color: red;
+                font-style: 14px;
+            }
+        }
+
+        .form__input__container__colorpicker {
+            display: flex;
         }
 
     }
+
+    .form__input__flex {
+        display: flex;
+        padding: 0px 24px;
+        gap: 24px;
+
+        .form__input__container {
+        }
+    }
+
+    .form__btn__container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+        padding: 0px 24px;
+
+        .form__btn {
+            padding: 6px 36px;
+            background-color: $btn-color;
+            color: $font-color;
+        }
+
+        .form__btn__delete {
+            margin-left: 12px;
+            border: 1px solid red !important;
+            color: red !important;
+            background-color: white;
+        }
+    }
+
+}
 
 
 //edit form
 .from__card {
     width: 70%;
+
     .form {
-        padding: 16px;
-        margin-bottom: 16px;
-        margin-top: 16px;
+        direction: rtl;
+        padding-bottom: 24px;
 
         .form__header {
-            color: $font-color;
-            font-size: $header-text;
-            font-weight: bold;
-            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #C8C9CC;
+            padding: 16px 24px;
+
+            .form__header_text {
+                color: #001833;
+                font-size: 36px;
+                font-weight: 700;
+            }
+
+            .form__header_close {}
+
         }
 
         .form__input {
+
             .form__input__container {
-                margin-bottom: 16px;
 
                 .form__input__container__label {
                     color: $font-color;
                     font-size: $paragraph-text;
                     font-weight: bold;
                 }
-                .form__input__container__desc{
+
+                .form__input__container__desc {
                     color: gray;
                     font-size: 14px;
                     font-weight: 400;
@@ -159,21 +187,26 @@
                     font-style: 14px;
                 }
             }
-            .form__input__container__colorpicker{
+
+            .form__input__container__colorpicker {
                 display: flex;
-                border: 1px solid ;
+                border: 1px solid;
                 border-color: inherit;
                 padding: 6px;
                 border-radius: 0.375rem;
             }
         }
-        .form__input__flex{
+
+        .form__input__flex {
             display: flex;
-            .form__input__container{
-                margin-right: 24px;
+            padding: 0px 24px;
+            gap: 24px;
+
+
+            .form__input__container {
             }
         }
-       
+
 
         .form__btn__container {
             width: 100%;
@@ -181,13 +214,16 @@
             align-items: center;
             justify-content: center;
             margin-top: 24px;
+            padding: 0px 24px;
+
 
             .form__btn {
                 padding: 6px 36px;
                 background-color: $btn-color;
                 color: $font-color;
             }
-            .form__btn__delete{
+
+            .form__btn__delete {
                 margin-left: 12px;
                 border: 1px solid red !important;
                 color: red !important;
@@ -198,12 +234,14 @@
     }
 }
 
-.from__card__full{
+.from__card__full {
     width: 100%;
 }
-.hr_style{
+
+.hr_style {
     margin-bottom: 40px;
 }
-.rtl{
+
+.rtl {
     direction: rtl;
 }

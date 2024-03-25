@@ -12,11 +12,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
+import close from "../../../assets/icons-svgs/close.svg";
 
 const CreateEnterpraiseUser = () => {
   const initialValues = {
     name: "",
-    numOfUnits: "",
+    date: "",
     duration: "",
   };
 
@@ -32,21 +33,20 @@ const CreateEnterpraiseUser = () => {
   return (
     <div className="from__card from__card__full">
       <form onSubmit={formik.handleSubmit} className="form">
-        <div className="form__header">Create Enterpraise User</div>
-
+        <div className="form__header">
+          <div className="form__header_text">إضافة مؤسس جديد</div>
+          <div className="form__header_close">
+            <img src={close} alt="" width="40px" />
+          </div>
+        </div>
+        <div></div>
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
-            <FormLabel>
-              <Text className="form__input__container__label">
-                Enterpraise Name
-              </Text>
-            </FormLabel>
-
             <Input
               name="name"
               type="text"
               className="form__input__container__input"
-              placeholder="enter your Enterpraise name "
+              placeholder="اسم المؤسس "
               value={formik.values.name}
               onChange={formik.handleChange}
               isInvalid={formik.touched.name && !!formik.errors.name}
@@ -60,20 +60,37 @@ const CreateEnterpraiseUser = () => {
               ) : null}
             </div>
           </FormControl>
+        </div>
 
+        <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
-            <FormLabel>
-              <Text className="form__input__container__label">
-                {" "}
-                Number Of Units{" "}
-              </Text>
-            </FormLabel>
-
             <Input
               name="numOfUnits"
-              type="text"
+              type="number"
               className="form__input__container__input"
-              placeholder="enter your Number Of Units"
+              placeholder="عدد الوحدات"
+              value={formik.values.numOfUnits}
+              onChange={formik.handleChange}
+              isInvalid={
+                formik.touched.numOfUnits && !!formik.errors.numOfUnits
+              }
+            />
+
+            <div classeName="form__input__container__warn">
+              {formik.touched.numOfUnits && formik.errors.numOfUnits ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.numOfUnits}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
+
+          <FormControl className="form__input__container">
+            <Input
+              name="numOfUnits"
+              type="date"
+              className="form__input__container__input"
+              placeholder="موعد الإنتهاء"
               value={formik.values.numOfUnits}
               onChange={formik.handleChange}
               isInvalid={
@@ -91,29 +108,17 @@ const CreateEnterpraiseUser = () => {
           </FormControl>
         </div>
 
-        <div className="form__input form__input__flex">
-          <FormControl className="form__input__container">
-            <FormLabel>
-              <Text className="form__input__container__label">
-                Enterpraise Duration
-              </Text>
-            </FormLabel>
-
-            <RadioGroup onChange={setDuration} value={duration} marginTop='16px'>
-              <Stack direction="row">
-                <Radio value="1" marginRight='12px'>3 Months</Radio>
-                <Radio value="2" marginRight='12px'>6 Months</Radio>
-                <Radio value="3" marginRight='12px'>9 Months</Radio>
-                <Radio value="4" marginRight='12px'>12 Months</Radio>
-              </Stack>
-            </RadioGroup>
-          </FormControl>
-        </div>
-
         <div className="form__btn__container">
-          <Button className="form__btn " type="submit">
-            Create
-          </Button>
+         
+
+          <Stack direction="row" width='100%' justify='space-between'>
+            <Button padding='0px 49px' variant="solid" color='white' bg='#194C81' type="submit">
+              اضافه
+            </Button>
+            <Button padding='0px 26px' color={'#010B38'} variant="outline">
+              الغاء
+            </Button>
+          </Stack>
         </div>
       </form>
     </div>

@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
   TabList,
   TabPanel,
@@ -258,9 +259,8 @@ const UserEnterpraiseTable = () => {
      
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent maxWidth="700px">
-          <ModalCloseButton />
-          <ModalBody>
+        <ModalContent maxWidth="700px" >
+          <ModalBody padding='0px'>
             <CreateEnterpraiseUser />
           </ModalBody>
         </ModalContent>
