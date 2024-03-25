@@ -261,7 +261,7 @@ const UserEnterpraiseTable = () => {
         <ModalOverlay />
         <ModalContent maxWidth="700px" >
           <ModalBody padding='0px'>
-            <CreateEnterpraiseUser />
+            <CreateEnterpraiseUser onClose={onClose}/>
           </ModalBody>
         </ModalContent>
       </Modal>
