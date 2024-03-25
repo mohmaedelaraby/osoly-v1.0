@@ -32,12 +32,35 @@ const Pagination = ({
       {type === Pagination_Types.Pagination ? (
         <>
           <div className="pagination">
+          <Button
+              className="pagination_next"
+              variant="outline"
+              onClick={onNext}
+              isDisabled={currentPage === lastPage}
+            >
+               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M4.15332 13.4873L5.33332 14.6673L12 8.00065L5.33332 1.33398L4.15332 2.51398L9.63999 8.00065L4.15332 13.4873Z"
+                  fill="#15161E"
+                />
+              </svg>
+              
+             
+            </Button>
             <Button
               className="pagination_prev"
               variant="outline"
               onClick={onPrevious}
               isDisabled={currentPage === 1}
             >
+             
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="8"
@@ -50,29 +73,9 @@ const Pagination = ({
                   fill="#15161E"
                 />
               </svg>
-              perv
             </Button>
 
-            <Button
-              className="pagination_next"
-              variant="outline"
-              onClick={onNext}
-              isDisabled={currentPage === lastPage}
-            >
-              next
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  d="M4.15332 13.4873L5.33332 14.6673L12 8.00065L5.33332 1.33398L4.15332 2.51398L9.63999 8.00065L4.15332 13.4873Z"
-                  fill="#15161E"
-                />
-              </svg>
-            </Button>
+           
           </div>
         </>
       ) : (
