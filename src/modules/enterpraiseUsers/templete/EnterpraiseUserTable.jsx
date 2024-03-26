@@ -1,8 +1,6 @@
 import {
   Button,
   Card,
-  CardBody,
-  CardHeader,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,18 +10,12 @@ import {
   MenuList,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
-  TabList,
-  TabPanel,
-  TabPanels,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -33,15 +25,14 @@ import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
 import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { enterprise_users } from "../../../mocks/enterPraiseUsers";
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import money from "../../../assets/icons-svgs/money.svg";
 import user from "../../../assets/images/user.png";
 import Pagination from "../../../components/shared/Pagination";
-import CardWithImg from "../../../components/Cards/CardWithImg";
 import useClosePopUps from "../../../store/useClosePopups";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
+import usePlans from "../hooks/usePlans";
 
 const UserEnterpraiseTable = () => {
   const navigate = useNavigate();
@@ -57,13 +48,13 @@ const UserEnterpraiseTable = () => {
     limit: limit,
   });
   
+  const { PlansData, PlansisLoading, PlansRefetch } = usePlans();
   useEffect(() => {
-    console.log("first")
     usersEnterPrisesRefetch();
-    console.log("-->",usersEnterPrisesData)
+    PlansRefetch();
+    console.log("-->",PlansData)
     if (show && !usersEnterPrisesisLoading) {
       usersEnterPrisesRefetch();
-      console.log("-->",usersEnterPrisesData)
     }
     
   }, [currentPage, show]);
@@ -254,6 +245,7 @@ const UserEnterpraiseTable = () => {
                  
             </Card>
           </div>
+          
         </div>
       </div>
      
@@ -261,7 +253,7 @@ const UserEnterpraiseTable = () => {
         <ModalOverlay />
         <ModalContent maxWidth="700px" >
           <ModalBody padding='0px'>
-            <CreateEnterpraiseUser onClose={onClose}/>
+            <CreateEnterpraiseUser onClose={onClose} plans={PlansData?.plans}/>
           </ModalBody>
         </ModalContent>
       </Modal>
