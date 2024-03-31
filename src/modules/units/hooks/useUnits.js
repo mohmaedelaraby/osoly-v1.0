@@ -13,9 +13,9 @@ const useUnits = (params) => {
     });
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {
-        data:data,
-        isLoading: modifiedIsLoading,
-        refetch,
+        unitsData:data,
+        isUnitsLoading: modifiedIsLoading,
+        unitsReftch:refetch,
     };
 };
 

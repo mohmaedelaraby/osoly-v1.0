@@ -63,15 +63,8 @@ export const sidebarItems = [
         icon: buildSB,
         activeIcon: buildSB,
         isActive: false,
-        nestedChildern:[{
-            name:'عقارات',
-            active:['/propreties','/property'],
-            navTo:'/propreties'
-        },{
-            name:' وحدات',
-            active:['/units','/unit'],
-            navTo:'/units'
-        }]
+        activeRoutes:['/propreties'],
+   
        
     },
   

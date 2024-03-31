@@ -14,7 +14,7 @@ const useProperties = (params) => {
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {
         PropertiesData:data,
-        isLoading: modifiedIsLoading,
+        isPropertiesLoading: modifiedIsLoading,
         PropertiesRefetch:refetch,
     };
 };
