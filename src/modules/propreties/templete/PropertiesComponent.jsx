@@ -313,7 +313,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
                                   price={item.id}
                                   isBtns={false}
                                   isVertical={false}
-                                  currncy={'ريال سعودي'}
+                                  currncy={'وحده'}
                                   onClick={() => {
                                     navigate("/property", {
                                       state: {

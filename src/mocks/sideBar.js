@@ -59,7 +59,7 @@ export const sidebarItems = [
     {
         id: 5,
         name: "العقارات",
-        navTo:'/units',
+        navTo:'/propreties',
         icon: buildSB,
         activeIcon: buildSB,
         isActive: false,
