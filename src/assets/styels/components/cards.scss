@@ -43,6 +43,41 @@
 
         .cardWithimg_contanier__icon {
             border-radius: 8px;
+
+            position: relative;
+
+            .cardWithimg_contanier__icon_stats {
+
+                width: fit-content;
+                position: absolute;
+                top: 8px;
+                left: 70%;
+                padding: 8px;
+            }
+
+            .solved {
+                border-radius: 8px;
+                border: 1px solid var(---, #2FD976);
+                background: var(---1, #E5FFEE);
+            }
+
+            .canceled {
+                border-radius: 8px;
+                border: 1px solid var(---, #EB3E3E);
+                background: var(---1, #FFE5E5);
+            }
+
+            .processsing {
+                border-radius: 8px;
+                border: 1px solid var(---, #194C81);
+                background: var(---2, #E0F2FF);
+            }
+
+            .review {
+                border-radius: 8px;
+                border: 1px solid var(---, #FFBC1F);
+                background: var(---1, #FFF7E5);
+            }
         }
 
         .cardWithimg_contanier__text {
@@ -108,40 +143,50 @@
                 color: rgba(1, 11, 56, 0.60);
                 overflow: hidden;
                 display: -webkit-box;
-                -webkit-line-clamp: 2; /* number of lines to show */
-                        line-clamp: 2; 
+                -webkit-line-clamp: 2;
+                /* number of lines to show */
+                line-clamp: 2;
                 -webkit-box-orient: vertical;
                 width: 70%;
             }
 
 
         }
-        .cardWithimg_contanier__btns{
+
+        .cardWithimg_contanier__btns {
             margin-top: 16px;
             width: 100%;
         }
     }
 }
-.verticalCard{
+
+.verticalCard {
     flex-direction: row !important;
-    .cardWithimg_contanier__icon{
+
+    .cardWithimg_contanier__icon {
         height: 96px;
-        img{
+
+        img {
             height: 100%;
             width: 250px;
         }
+
     }
-    .cardWithimg_contanier__text{
+
+    .cardWithimg_contanier__text {
         padding-top: 0px !important;
         margin-right: 12px;
-        .cardWithimg_contanier__text_header{
+
+        .cardWithimg_contanier__text_header {
             font-size: 10px !important;
         }
-        .cardWithimg_contanier__text_title{
+
+        .cardWithimg_contanier__text_title {
             font-size: 12px !important;
         }
     }
-    .cardWithimg_contanier__btns{
+
+    .cardWithimg_contanier__btns {
         margin-top: 0px !important;
 
     }

@@ -16,6 +16,7 @@ function CardWithImg({
   isBtns = false,
   currncy,
   isVertical = false,
+ 
 }) {
   return (
     <Card width="-webkit-fit-content">
@@ -86,6 +87,7 @@ function CardWithImg({
                     backgroundColor="#2EA154"
                     color="white"
                     variant="solid"
+                  
                   >
                     قبول
                   </Button>
@@ -94,6 +96,7 @@ function CardWithImg({
                     leftIcon={<SmallCloseIcon />}
                     colorScheme="red"
                     variant="outline"
+                   
                   >
                     رفض
                   </Button>

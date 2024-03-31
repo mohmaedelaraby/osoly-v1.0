@@ -84,6 +84,31 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                .page_container_table__content_header{
+                    color: #000;
+                    font-size: 20px;
+                    font-weight: 700;
+                    margin-bottom: 24px;
+                    width: 100%;
+                }
+                .page_container_table__content_header_flex{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 24px;
+                    width: 100%;
+                    .page_container_table__content_header_flex_text{
+                        color: #000;
+                        font-size: 20px;
+                        font-weight: 700;
+                       
+                    }
+                    .page_container_table__content_header_flex_btn{
+                        
+                    }
+
+                }
+
                 .page_container_table__content__grid{
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
@@ -93,4 +118,13 @@
             }
         }
     }
+}
+
+.page_container_cards_four_items{
+   
+    grid-template-columns: repeat(4, 1fr) !important;
+  
+}
+.p-24{
+    padding: 24px;
 }
