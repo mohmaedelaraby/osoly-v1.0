@@ -182,7 +182,6 @@ function UserTable() {
       <Modal isOpen={isOpenUserModal && !show} onClose={onCloseUserModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalCloseButton />
           <ModalBody>
             <CreateUser />
           </ModalBody>

@@ -36,7 +36,6 @@ const UserComponent = ({ data }) => {
       desc: "مجموع الإيجار",
     },
   ];
-  const navigate = useNavigate();
 
   return (
     <>

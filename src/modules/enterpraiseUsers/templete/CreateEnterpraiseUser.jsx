@@ -1,24 +1,12 @@
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { userEnterpraiseValidation } from "../validation/schema";
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Radio,
-  RadioGroup,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Button, FormControl, Input, Stack, Text } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import close from "../../../assets/icons-svgs/close.svg";
 import goldCrown from "../../../assets/icons-svgs/goldCrown.svg";
 import silverCrown from "../../../assets/icons-svgs/silverCrown.svg";
 import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
-import CardWithNumber from "../../../components/Cards/CardWithNumber";
 
 const CreateEnterpraiseUser = ({ onClose, plans }) => {
   const initialValues = {
@@ -36,9 +24,9 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
   });
 
   const plansWihtCrowns = [];
-  useEffect(()=>{
-    console.log("first",plans)
-  },[])
+  useEffect(() => {
+    console.log("first", plans);
+  }, []);
 
   const [duration, setDuration] = useState("1");
 
@@ -75,57 +63,91 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
           </FormControl>
         </div>
 
-        
-
         <div className="from__card_plans">
           <div className="from__card_plans_title">حدد الباقة</div>
           <div className="from__card_plans_cards">
             {plans ? (
               <>
-             
-              <div key={plans[0]?.id} className="from__card_plans_cards_planCard">
-                <div className="from__card_plans_cards_planCard_contianer">
-                  <div className="from__card_plans_cards_planCard_contianer_img" style={{backgroundColor:'#FEF9E2'}}>
-                    <img src={goldCrown} alt="gold" width={'32px'} height={'32px'}/>
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_name">
-                    {plans[0]?.name}
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_desc">
-                  {plans[2]?.desc ?  plans[2]?.desc  :' وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة' }
+                <div
+                  key={plans[0]?.id}
+                  className="from__card_plans_cards_planCard"
+                >
+                  <div className="from__card_plans_cards_planCard_contianer">
+                    <div
+                      className="from__card_plans_cards_planCard_contianer_img"
+                      style={{ backgroundColor: "#FEF9E2" }}
+                    >
+                      <img
+                        src={goldCrown}
+                        alt="gold"
+                        width={"32px"}
+                        height={"32px"}
+                      />
                     </div>
+                    <div className="from__card_plans_cards_planCard_contianer_name">
+                      {plans[0]?.name}
+                    </div>
+                    <div className="from__card_plans_cards_planCard_contianer_desc">
+                      {plans[2]?.desc
+                        ? plans[2]?.desc
+                        : " وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة"}
+                    </div>
+                  </div>
                 </div>
-              </div>
-          
-              <div key={plans[1]?.id}  className="from__card_plans_cards_planCard">
-                <div className="from__card_plans_cards_planCard_contianer">
-                  <div className="from__card_plans_cards_planCard_contianer_img"  style={{backgroundColor:'#EDEEF2'}}>
-                    <img src={silverCrown} alt="gold" width={'32px'} height={'32px'}/>
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_name">
-                    {plans[1]?.name}
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_desc">
-                  {plans[1]?.desc ?  plans[1]?.desc  :' وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة' }
 
-                  </div>
-                </div>
-              </div>
-           
-              <div key={plans[2]?.id}  className="from__card_plans_cards_planCard">
-                <div className="from__card_plans_cards_planCard_contianer">
-                  <div className="from__card_plans_cards_planCard_contianer_img" style={{backgroundColor:'#EFF9FF'}}>
-                    <img src={blueCrown} alt="gold"  width={'32px'} height={'32px'}/>
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_name">
-                    {plans[2]?.name}
-                  </div>
-                  <div className="from__card_plans_cards_planCard_contianer_desc">
-                    {plans[2]?.desc ?  plans[2]?.desc  :' وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة' }
+                <div
+                  key={plans[1]?.id}
+                  className="from__card_plans_cards_planCard"
+                >
+                  <div className="from__card_plans_cards_planCard_contianer">
+                    <div
+                      className="from__card_plans_cards_planCard_contianer_img"
+                      style={{ backgroundColor: "#EDEEF2" }}
+                    >
+                      <img
+                        src={silverCrown}
+                        alt="gold"
+                        width={"32px"}
+                        height={"32px"}
+                      />
                     </div>
+                    <div className="from__card_plans_cards_planCard_contianer_name">
+                      {plans[1]?.name}
+                    </div>
+                    <div className="from__card_plans_cards_planCard_contianer_desc">
+                      {plans[1]?.desc
+                        ? plans[1]?.desc
+                        : " وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة"}
+                    </div>
+                  </div>
                 </div>
-              </div>
-                
+
+                <div
+                  key={plans[2]?.id}
+                  className="from__card_plans_cards_planCard"
+                >
+                  <div className="from__card_plans_cards_planCard_contianer">
+                    <div
+                      className="from__card_plans_cards_planCard_contianer_img"
+                      style={{ backgroundColor: "#EFF9FF" }}
+                    >
+                      <img
+                        src={blueCrown}
+                        alt="gold"
+                        width={"32px"}
+                        height={"32px"}
+                      />
+                    </div>
+                    <div className="from__card_plans_cards_planCard_contianer_name">
+                      {plans[2]?.name}
+                    </div>
+                    <div className="from__card_plans_cards_planCard_contianer_desc">
+                      {plans[2]?.desc
+                        ? plans[2]?.desc
+                        : " وصف الباقة وصف الباقة وصف الباقة وصف الباقة وصف الباقةوصف الباقة"}
+                    </div>
+                  </div>
+                </div>
               </>
             ) : (
               <></>
