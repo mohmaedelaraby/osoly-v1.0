@@ -36,16 +36,9 @@ export const sidebarItems = [
         navTo:'/users',
         icon: usersSB,
         activeIcon: usersSB,
+        activeRoutes:['/users'],
         isActive: false,
-        nestedChildern:[{
-            name:'المستأجرين',
-            active:['/users','/user'],
-            navTo:'/users'
-        },{
-            name:'مالكي العقار',
-            active:['/owner','/owners'],
-            navTo:'/owners'
-        }]
+        
     },
     {
         id: 4,
@@ -53,6 +46,7 @@ export const sidebarItems = [
         navTo:'/tickets',
         icon: ticketSB,
         activeIcon: ticketSB,
+        activeRoutes:['/tickets'],
         isActive: false,
        
     },
