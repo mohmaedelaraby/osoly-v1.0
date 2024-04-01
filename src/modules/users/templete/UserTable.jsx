@@ -1,8 +1,5 @@
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
   Input,
   InputGroup,
   InputLeftElement,
@@ -19,60 +16,57 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import "../../../assets/styels/components/Table.scss";
-import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import CreateOwner from "./CreateOwner";
 import useClosePopUps from "../../../store/useClosePopups";
-import { USER_ROLES } from "../../../enums/UserRoles";
-import useUsers from "../../users/hooks/useUsers";
+import useUsers from "../hooks/useUsers";
 import Pagination from "../../../components/shared/Pagination";
+import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import { USER_ROLES } from "../../../enums/UserRoles";
+import CreateUser from "./CreateUser";
 
-const OwnerTable = ({ data }) => {
+function UserTable() {
   const {
-    isOpen: isOpenOwnerModal,
-    onOpen: onOpenOwnerModal,
-    onClose: onCloseOwnerModal,
+    isOpen: isOpenUserModal,
+    onOpen: onOpenUserModal,
+    onClose: onCloseUserModal,
   } = useDisclosure();
 
   const { show, toggleShow } = useClosePopUps();
-
-  const openOwnerPopup = () => {
-    onOpenOwnerModal();
+  const openUserPopup = () => {
+    onOpenUserModal();
     if (show) {
       toggleShow();
     }
   };
 
-  //owner fetch data
-  const [currentOwnerPage, setCurrentOwnerPage] = useState(1);
-  const ownerlimit = 10;
+  const [currentUserPage, setCurrentUserPage] = useState(1);
+  const userlimit = 10;
+
   const {
-    usersData: ownerDataType,
-    usersisLoading: ownerDataLodaing,
-    usersRefetch: ownerDataReftech,
+    usersData: usersDataType,
+    usersisLoading: userDataLodaing,
+    usersRefetch: userDataReftech,
   } = useUsers({
-    pageNo: currentOwnerPage,
-    limit: ownerlimit,
+    pageNo: currentUserPage,
+    limit: userlimit,
   });
 
   useEffect(() => {
-    ownerDataReftech();
-    if (show && !ownerDataLodaing) {
-      ownerDataReftech();
+    userDataReftech();
+    if (show && !userDataLodaing) {
+      userDataReftech();
     }
-  }, [currentOwnerPage, show]);
+  }, [currentUserPage, show]);
 
-  const handlePageOwnerChange = (page) => {
-    setCurrentOwnerPage(page);
+  const handlePageUserChange = (page) => {
+    setCurrentUserPage(page);
   };
+
   return (
     <>
       <div className="page_container_table__header">
@@ -83,7 +77,7 @@ const OwnerTable = ({ data }) => {
             bg="#194C81"
             dir="rtl"
             onClick={() => {
-              openOwnerPopup();
+              openUserPopup();
             }}
           >
             إضافة جديد
@@ -138,16 +132,18 @@ const OwnerTable = ({ data }) => {
               <Tr>
                 <Th className="table_header_item">الاسم </Th>
                 <Th className="table_header_item">الهوية الوطنية</Th>
-                <Th className="table_header_item">البريد الإلكتروني</Th>
                 <Th className="table_header_item">رقم الجوال</Th>
-                <Th className="table_header_item">عقدد العقارات</Th>
-                <Th className="table_header_item">رقم عقد الوساطة</Th>
+                <Th className="table_header_item">قيمة المسدد</Th>
+                <Th className="table_header_item">موعد سداد الاستحقاق</Th>
+                <Th className="table_header_item">اسم العقار </Th>
+
+                <Th className="table_header_item">البريد الإلكتروني</Th>
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {ownerDataType &&
-                ownerDataType?.users
-                  ?.filter((i) => (i.role = USER_ROLES.OWNER))
+              {usersDataType &&
+                usersDataType?.users
+                  ?.filter((i) => (i.role = USER_ROLES.TENANT))
                   .map((item, index) => (
                     <Tr
                       key={index}
@@ -158,14 +154,15 @@ const OwnerTable = ({ data }) => {
                         {item.firstNameAr}
                       </Td>
                       <Td className="table_body_row_item">-</Td>
-                      <Td className="table_body_row_item">{item.email}</Td>
                       <Td className="table_body_row_item">
                         {item.phoneNumber}
                       </Td>
-                      <Td className="table_body_row_item">
-                        {item?.ownedProperties?.length}
-                      </Td>
                       <Td className="table_body_row_item">-</Td>
+                      <Td className="table_body_row_item">-</Td>
+                      <Td className="table_body_row_item">
+                        {item?.ownedUnits[0]?.name}
+                      </Td>
+                      <Td className="table_body_row_item">{item?.email}</Td>
                     </Tr>
                   ))}
             </Tbody>
@@ -174,25 +171,25 @@ const OwnerTable = ({ data }) => {
 
         {
           <Pagination
-            totalCount={ownerDataType?.paginationOption.count}
-            currentPage={currentOwnerPage}
+            totalCount={usersDataType?.paginationOption.count}
+            currentPage={currentUserPage}
             pageSize={10}
-            onPageChange={handlePageOwnerChange}
+            onPageChange={handlePageUserChange}
           />
         }
       </div>
 
-      <Modal isOpen={isOpenOwnerModal && !show} onClose={onCloseOwnerModal}>
+      <Modal isOpen={isOpenUserModal && !show} onClose={onCloseUserModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalCloseButton />
           <ModalBody>
-            <CreateOwner />
+            <CreateUser />
           </ModalBody>
         </ModalContent>
       </Modal>
     </>
   );
-};
+}
 
-export default OwnerTable;
+export default UserTable;
