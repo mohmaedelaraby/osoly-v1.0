@@ -1,11 +1,11 @@
-import UserTable from "../../modules/users/templete/UserTable";
+import UserComponent from "../../modules/users/templete/UserComponent";
 
 
 const UserTablePage = () => {
  
   return (
     <>
-      <UserTable />
+      <UserComponent />
     </>
   );
 };

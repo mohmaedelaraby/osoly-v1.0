@@ -41,7 +41,7 @@ import Pagination from "../../../components/shared/Pagination";
 import useUsers from "../hooks/useUsers";
 import CreateOwner from "../../owners/templete/CreateOwner";
 
-const UserTable = ({ data }) => {
+const UserComponent = ({ data }) => {
   const CardsDemo = [
     {
       img: money,
@@ -446,4 +446,4 @@ const UserTable = ({ data }) => {
   );
 };
 
-export default UserTable;
+export default UserComponent;
