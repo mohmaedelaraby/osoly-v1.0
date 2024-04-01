@@ -88,29 +88,34 @@ const Home = () => {
 
   const rentTable = [
     {
-      name: "عبد الله الشهراني",
-      role: "مالك عقار",
-      price: 1200,
+      name: "شقة 120",
+      date: "20-03-2024 ",
+      property: 'عمارة 20',
+      price:'120 '
     },
     {
-      name: "عبد الله الشهراني",
-      role: "مالك عقار",
-      price: 1200,
+      name: "شقة 120",
+      date: "20-03-2024 ",
+      property: 'عمارة 20',
+      price:'120 '
     },
     {
-      name: "عبد الله الشهراني",
-      role: "مالك عقار",
-      price: 1200,
+      name: "شقة 120",
+      date: "20-03-2024 ",
+      property: 'عمارة 20',
+      price:'120 '
     },
     {
-      name: "عبد الله الشهراني",
-      role: "مالك عقار",
-      price: 1200,
+      name: "شقة 120",
+      date: "20-03-2024 ",
+      property: 'عمارة 20',
+      price:'120 '
     },
     {
-      name: "عبد الله الشهراني",
-      role: "مالك عقار",
-      price: 1200,
+      name: "شقة 120",
+      date: "20-03-2024 ",
+      property: 'عمارة 20',
+      price:'120 '
     },
   ];
 
@@ -287,8 +292,14 @@ const Home = () => {
                       <Tbody padding="16px">
                         {rentTable.map((item, index) => (
                           <Tr>
-                            <Td>{item.name}</Td>
-                            <Td>{item.role}</Td>
+                            <Td>
+                              <div className="pt-8 pb-8">
+                              {item.name}
+                              </div>
+                             
+                              </Td>
+                            <Td>{item.date}</Td>
+                            <Td>{item.property}</Td>
                             <Td>{item.price}</Td>
                           </Tr>
                         ))}
