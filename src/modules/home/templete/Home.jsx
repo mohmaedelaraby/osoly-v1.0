@@ -18,8 +18,7 @@ import user from "../../../assets/images/user.png";
 import React, { useEffect, useState } from "react";
 import { FaBuilding, FaHouseUser, FaTicketAlt, FaUser } from "react-icons/fa";
 import "../style/Home.scss";
-import PieChartComponent from "../../../components/Charts/PieChart";
-import BarChartComponent from "../../../components/Charts/BarChart";
+
 import CardWithImg from "../../../components/Cards/CardWithImg";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import moneyIcon from "../../../assets/icons-svgs/money.svg";
@@ -28,6 +27,8 @@ import houseIcon from "../../../assets/icons-svgs/house.svg";
 import homesIcon from "../../../assets/icons-svgs/homes.svg";
 import LineChart from "../../../components/Charts/LineChart";
 import { useTranslation } from "react-i18next";
+import PieChartComponent from "../../../components/Charts/PieChart";
+import PieChartComponentWithOneValue from "../../../components/Charts/PieChartWithOneValue";
 const Home = () => {
   const {
     t,
@@ -90,50 +91,50 @@ const Home = () => {
     {
       name: "شقة 120",
       date: "20-03-2024 ",
-      property: 'عمارة 20',
-      price:'120 '
+      property: "عمارة 20",
+      price: "120 ",
     },
     {
       name: "شقة 120",
       date: "20-03-2024 ",
-      property: 'عمارة 20',
-      price:'120 '
+      property: "عمارة 20",
+      price: "120 ",
     },
     {
       name: "شقة 120",
       date: "20-03-2024 ",
-      property: 'عمارة 20',
-      price:'120 '
+      property: "عمارة 20",
+      price: "120 ",
     },
     {
       name: "شقة 120",
       date: "20-03-2024 ",
-      property: 'عمارة 20',
-      price:'120 '
+      property: "عمارة 20",
+      price: "120 ",
     },
     {
       name: "شقة 120",
       date: "20-03-2024 ",
-      property: 'عمارة 20',
-      price:'120 '
+      property: "عمارة 20",
+      price: "120 ",
     },
   ];
 
   const PieTest = [
     {
-      name: "solved",
+      label: "solved",
       value: 20,
     },
     {
-      name: "processing",
+      label: "processing",
       value: 40,
     },
     {
-      name: "canceled",
+      label: "canceled",
       value: 20,
     },
     {
-      name: "reviewing",
+      label: "reviewing",
       value: 20,
     },
   ];
@@ -164,13 +165,20 @@ const Home = () => {
     },
   ];
 
+  const datat = [
+    { value: 25, label: "A" },
+    { value: 25, label: "b" },
+    { value: 25, label: "c" },
+    { value: 25, label: "d" },
+  ];
+
   return (
     <>
       <div className="home">
         <div className="home_container">
           <div className="home_container_header">
             <div className="home_container_header__title">
-            {t("general.hello")} {homeData?.enterprise.name}
+              {t("general.hello")} {homeData?.enterprise.name}
             </div>
             <div className="home_container_header__icons">
               <img
@@ -226,26 +234,39 @@ const Home = () => {
               </Card>
             </div>
 
-            <div className="home_container_charts_table__chart">
+            <div className="home_container_charts_table__chart ml-24">
               <div className="home_container_charts_table__chart_header">
                 التذاكر
               </div>
 
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
-                  <PieChartComponent data={PieTest} />
+                  <PieChartComponent data={PieTest}></PieChartComponent>
                 </CardBody>
               </Card>
             </div>
 
             <div className="home_container_charts_table__chart">
               <div className="home_container_charts_table__chart_header">
-                التذاكر
+                المستخدمين الجدد
               </div>
 
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
-                  <PieChartComponent data={PieTest} />
+                  <div className="home_container_charts_table__chart_card_title">
+                    نسبة زيادة عدد المستخدمين الجدد لهذا الشهر
+                  </div>
+                  <PieChartComponentWithOneValue
+                    data={datat}
+                  ></PieChartComponentWithOneValue>
+                  <div className="home_container_charts_table__chart_card_footer">
+                  
+                    <div className="home_container_charts_table__chart_card_footer_txt">
+                   
+                    نسبة المستخدمين الجدد
+                    </div>
+                   
+                  </div>
                 </CardBody>
               </Card>
             </div>
@@ -293,11 +314,8 @@ const Home = () => {
                         {rentTable.map((item, index) => (
                           <Tr>
                             <Td>
-                              <div className="pt-8 pb-8">
-                              {item.name}
-                              </div>
-                             
-                              </Td>
+                              <div className="pt-8 pb-8">{item.name}</div>
+                            </Td>
                             <Td>{item.date}</Td>
                             <Td>{item.property}</Td>
                             <Td>{item.price}</Td>

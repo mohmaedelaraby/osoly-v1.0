@@ -1,8 +1,10 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { useDrawingArea } from "@mui/x-charts";
+import { styled } from '@mui/material/styles';
 
-function PieChartComponent({data}) {
+function PieChartComponentWithOneValue({data}) {
   const MuiTheme = createTheme({
     palette: {
       mode: "dark",
@@ -24,7 +26,7 @@ function PieChartComponent({data}) {
     margin: { right: 5 },
     stroke:0,
     width: 292,
-    height: 292,
+    height: 230,
     legend: { hidden: true },
   };
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
@@ -32,20 +34,24 @@ function PieChartComponent({data}) {
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
     //${(percent * 100).toFixed(0)}%
-    return `${params.label}  `;
+    return ``;
   };
 
+
   return (
-    <ThemeProvider theme={MuiTheme}>
+    <>
+    <div className="circl">25%</div>
+     <ThemeProvider theme={MuiTheme}>
       <PieChart
       
-        colors={["#194C81", "#85A5C7", "#3D6A98", "#A9C3DE"]}
+        colors={["#34B53A", "#E2FBD7", "#E2FBD7", "#E2FBD7"]}
         series={[
           {
-            outerRadius: 145,
+            outerRadius: 90,
             data,
             arcLabel: getArcLabel,
-            
+            innerRadius: 105 ,
+            cornerRadius:8
           },
         ]}
         sx={{
@@ -57,8 +63,11 @@ function PieChartComponent({data}) {
           },
         }}
         {...sizing}
-      />
+      >
+      </PieChart>
     </ThemeProvider>
+    </>
+   
   );
 }
-export default PieChartComponent;
+export default PieChartComponentWithOneValue;
