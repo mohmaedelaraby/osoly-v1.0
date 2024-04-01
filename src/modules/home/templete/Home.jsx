@@ -27,7 +27,19 @@ import interfaceIcon from "../../../assets/icons-svgs/interface.svg";
 import houseIcon from "../../../assets/icons-svgs/house.svg";
 import homesIcon from "../../../assets/icons-svgs/homes.svg";
 import LineChart from "../../../components/Charts/LineChart";
+import { useTranslation } from "react-i18next";
 const Home = () => {
+  const {
+    t,
+    i18n: { changeLanguage, language },
+  } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const handleChangeLanguage = () => {
+    const newLanguage = currentLanguage === "en" ? "ar" : "en";
+    setCurrentLanguage(newLanguage);
+    changeLanguage(newLanguage);
+  };
+
   const currentUserJson = localStorage.getItem("currentUser");
   const homeData = JSON.parse(currentUserJson);
   const [pieData, setPieData] = useState();
@@ -36,7 +48,7 @@ const Home = () => {
   const [tenantsCount, setTenantsCount] = useState(0);
   const [metricData, setMetricData] = useState();
   const [barData, setBarData] = useState();
-  
+
   const metircArr = [
     {
       tile: "Tenants",
@@ -122,44 +134,48 @@ const Home = () => {
   ];
   const Linedata = [
     {
-      name: 'Nov',
-      
+      name: "Nov",
+
       value: 2400,
-      
     },
     {
-      name: 'Dec',
+      name: "Dec",
       value: 1398,
-      
     },
     {
-      name: 'Jan',
+      name: "Jan",
       value: 9800,
     },
     {
-      name: 'Feb',
+      name: "Feb",
       value: 3908,
     },
     {
-      name: 'Mar',
+      name: "Mar",
       value: 4800,
     },
     {
-      name: 'Apr',
+      name: "Apr",
       value: 3800,
-    }
+    },
   ];
 
   return (
     <>
       <div className="home">
         <div className="home_container">
-        <div className="home_container_header">
+          <div className="home_container_header">
             <div className="home_container_header__title">
-              اهلا {homeData?.enterprise.name}
+            {t("general.hello")} {homeData?.enterprise.name}
             </div>
             <div className="home_container_header__icons">
-              <img src={user} alt="user" width="40px" height="40px" />
+              <img
+                src={user}
+                alt="user"
+                width="40px"
+                height="40px"
+                onClick={handleChangeLanguage}
+              />
             </div>
           </div>
           <div className="home_container_cards">
@@ -194,13 +210,12 @@ const Home = () => {
             ></CardWithNumber>
           </div>
           <div className="home_container_charts_table">
-            
             <div className="home_container_charts_table__chart w-100 ml-24">
               <div className="home_container_charts_table__chart_header">
-              الإيجار المحصل
+                الإيجار المحصل
               </div>
-             
-              <Card width="100%" borderRadius='14px' padding='36px'>
+
+              <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
                   <LineChart data={Linedata} />
                 </CardBody>
@@ -209,10 +224,10 @@ const Home = () => {
 
             <div className="home_container_charts_table__chart">
               <div className="home_container_charts_table__chart_header">
-              التذاكر
+                التذاكر
               </div>
-             
-              <Card width="100%" borderRadius='14px' padding='36px'>
+
+              <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
                   <PieChartComponent data={PieTest} />
                 </CardBody>
@@ -273,8 +288,6 @@ const Home = () => {
               </div>
             </div>
 
-            
-
             <div className="home_container_item_tables mr-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
@@ -312,7 +325,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-         
         </div>
       </div>
     </>

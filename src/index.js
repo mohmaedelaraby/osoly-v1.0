@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react';
 import { RootRoutes } from './routes/routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import './i18n/i18n.js'
 
 
 const queryClient = new QueryClient();
