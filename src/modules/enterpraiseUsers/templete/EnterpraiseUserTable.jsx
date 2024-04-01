@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -23,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
-import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import { AddIcon, ChevronDownIcon, DeleteIcon, SearchIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
@@ -33,30 +34,33 @@ import Pagination from "../../../components/shared/Pagination";
 import useClosePopUps from "../../../store/useClosePopups";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const UserEnterpraiseTable = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
- const { show, toggleShow } = useClosePopUps();
+  const { show, toggleShow } = useClosePopUps();
 
-  
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
-  const { usersEnterPrisesData, usersEnterPrisesisLoading, usersEnterPrisesRefetch } = useEnterPrisesUsers({
+  const {
+    usersEnterPrisesData,
+    usersEnterPrisesisLoading,
+    usersEnterPrisesRefetch,
+  } = useEnterPrisesUsers({
     pageNo: currentPage,
     limit: limit,
   });
-  
+
   const { PlansData, PlansisLoading, PlansRefetch } = usePlans();
   useEffect(() => {
     usersEnterPrisesRefetch();
     PlansRefetch();
-    console.log("-->",PlansData)
+    console.log("-->", PlansData);
     if (show && !usersEnterPrisesisLoading) {
       usersEnterPrisesRefetch();
     }
-    
   }, [currentPage, show]);
 
   const handlePageChange = (page) => {
@@ -69,7 +73,6 @@ const UserEnterpraiseTable = () => {
       toggleShow();
     }
   };
- 
 
   const CardsDemo = [
     {
@@ -117,143 +120,172 @@ const UserEnterpraiseTable = () => {
           </div>
 
           <div className="page_container_table">
-            <Card paddingBottom='16px'>
-                    <div className="page_container_table__header p-16 pb-0">
-                      <div className="page_container_table__header__btns">
-                        <Button
-                          leftIcon={<AddIcon />}
-                          className="page_container_table__header__btns__add"
-                          bg="#194C81"
-                          dir="rtl"
-                          onClick={() => {
-                            openPopup();
-                          }}
-                        >
-                          إضافة جديد
-                        </Button>
-                        <Menu>
-                          <MenuButton
-                            as={Button}
-                            marginRight='8px'
-                            marginLeft='8px'
-                            rightIcon={<ChevronDownIcon />}
-                          >
-                            فرز حسب
-                          </MenuButton>
-                          <MenuList>
-                            <MenuItem>الاسم</MenuItem>
-                            <MenuItem>العنوان</MenuItem>
-                            <MenuItem>التاريخ</MenuItem>
-                          </MenuList>
-                        </Menu>
+            <Card paddingBottom="16px">
+              <div className="page_container_table__header p-16 pb-0">
+                <div className="page_container_table__header__btns">
+                  <Button
+                    rightIcon={<AddIcon />}
+                    className="page_container_table__header__btns__add"
+                    bg="#194C81"
+                    dir="rtl"
+                    onClick={() => {
+                      openPopup();
+                    }}
+                  >
+                    إضافة مؤسس
+                  </Button>
+                  <Menu>
+                    <MenuButton
+                      as={Button}
+                      marginRight="8px"
+                      marginLeft="8px"
+                      rightIcon={<ChevronDownIcon />}
+                    >
+                      فرز حسب
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>الاسم</MenuItem>
+                      <MenuItem>العنوان</MenuItem>
+                      <MenuItem>التاريخ</MenuItem>
+                    </MenuList>
+                  </Menu>
 
-                        <Menu>
-                          <MenuButton
-                            as={Button}
-                            rightIcon={<ChevronDownIcon />}
-                          >
-                            ترتيب حسب
-                          </MenuButton>
-                          <MenuList>
-                            <MenuItem>الاسم</MenuItem>
-                            <MenuItem>العنوان</MenuItem>
-                            <MenuItem>التاريخ</MenuItem>
-                          </MenuList>
-                        </Menu>
-                      </div>
-                      <div className="page_container_table__header__search">
-                        <InputGroup>
-                          <InputLeftElement pointerEvents="none">
-                            <SearchIcon color="gray.300" />
-                          </InputLeftElement>
-                          <Input type="text" placeholder="" />
-                        </InputGroup>
-                      </div>
+                  <Menu>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                      ترتيب حسب
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>الاسم</MenuItem>
+                      <MenuItem>العنوان</MenuItem>
+                      <MenuItem>التاريخ</MenuItem>
+                    </MenuList>
+                  </Menu>
+                </div>
+                <div className="page_container_table__header__search">
+                  <InputGroup>
+                    <InputLeftElement pointerEvents="none">
+                      <SearchIcon color="gray.300" />
+                    </InputLeftElement>
+                    <Input type="text" placeholder="" />
+                  </InputGroup>
+                </div>
+              </div>
 
-                     
-                    </div>
+              <div className="page_container_table__content">
+                <>
+                  <TableContainer
+                    overflowY="auto"
+                    overflowX="scroll"
+                    minHeight="340px"
+                    maxHeight="340px"
+                    width="100%"
+                  >
+                    <Table className="table" variant="simple">
+                      <Thead className="table_header">
+                        <Tr>
+                          <Th className="table_header_item">الاسم</Th>
+                          <Th className="table_header_item">عدد الوحدات</Th>
+                          <Th className="table_header_item">الباقة</Th>
+                          <Th className="table_header_item">تاريخ الإنتهاء</Th>
+                          <Th className="table_header_item"> </Th>
+                        </Tr>
+                      </Thead>
+                      <Tbody className="table_body">
+                        {usersEnterPrisesData &&
+                          usersEnterPrisesData?.enterprises?.map(
+                            (item, index) => (
+                              <Tr
+                                key={index}
+                                className="table_body_row"
+                                onClick={() => {
+                                  navigate("/enterprise", {
+                                    state: {
+                                      id: item.id,
+                                      name: item.name,
+                                      role: item.role,
+                                      username: item.username,
+                                    },
+                                  });
+                                }}
+                              >
+                                <Td className="table_body_row_item">
+                                  {item.name}
+                                </Td>
+                                <Td className="table_body_row_item">
+                                  {item?.numOfUnits ? item?.numOfUnits : 0}
+                                </Td>
+                                <Td className="table_body_row_item">
+                                  {item?.plan ? item?.plan : "no plan"}
+                                </Td>
+                                <Td className="table_body_row_item">
+                                  {item?.endDate ? item?.endDate : "0-0-0000"}
+                                </Td>
 
-                    <div className="page_container_table__content">
-                    <>
-                          <TableContainer
-                            overflowY="auto"
-                            overflowX="scroll"
-                            minHeight="340px"
-                            maxHeight="340px"
-                            width='100%'
-                          >
-                            <Table className="table" variant="simple">
-                              <Thead className="table_header">
-                                <Tr>
-                                <Th className="table_header_item">الاسم</Th>
-                                  <Th className="table_header_item">عدد الوحدات</Th>
-                                  <Th className="table_header_item">الباقة</Th>
-                                  <Th className="table_header_item">تاريخ الإنتهاء</Th>
-                                
-                                </Tr>
-                              </Thead>
-                              <Tbody className="table_body">
-                                {usersEnterPrisesData &&
-                                  usersEnterPrisesData?.enterprises?.map(
-                                    (item, index) => (
-                                      <Tr
-                                        key={index}
-                                        className="table_body_row"
-                                        onClick={() => {
-                                          navigate("/enterprise", {
-                                            state: {
-                                              id: item.id,
-                                              name: item.name,
-                                              role: item.role,
-                                              username: item.username,
-                                             
-                                            },
-                                          });
-                                        }}
-                                      >
-                                        <Td className="table_body_row_item">
-                                          {item.name}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          {item?.numOfUnits? item?.numOfUnits : 0 }
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                        {item?.plan? item?.plan : 'no plan' }
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                        {item?.endDate? item?.endDate : '0-0-0000' }
-                                        </Td>
-                                       
-                                      </Tr>
-                                    )
-                                  )}
-                              </Tbody>
-                            </Table>
-                          </TableContainer>
-                        </>
-                    
+                                <Td className="table_body_row_item_btns">
+                                  <Stack
+                                    alignItems={"center"}
+                                    direction={"row"}
+                                    spacing={4}
+                                  >
+                                    <Button
+                                    className="table_body_row_item_btns_deletebtn"
+                                      width={"25%"}
+                                      leftIcon={<DeleteIcon />}
+                                      color="white"
+                                      variant="solid"
+                                      bg={'#CC3636'}
+                                      alignItems='center'
+                                      justifyContent='center'
+                                      onClick={() => {
+                                        
+                                      }}
+                                    >
+                                      
+                                    </Button>
+                                    <Button
+                                    className="table_body_row_item_btns_editbtn"
+                                      width={"25%"}
+                                      leftIcon={<EditOutlinedIcon />}
+                                      color="white"
+                                      variant="solid"
+                                      alignItems='center'
+                                      justifyContent='center'
+                                      bg={'#194C81'}
+                                      onClick={() => {
+                                        
+                                      }}
+                                    >
+                                      
+                                    </Button>
+                                  </Stack>
+                                </Td>
+                              </Tr>
+                            )
+                          )}
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+                </>
 
-                      {
-                        <Pagination
-                          totalCount={usersEnterPrisesData?.pagination.count}
-                          currentPage={currentPage}
-                          pageSize={10}
-                          onPageChange={handlePageChange}
-                        />
-                      }
-                    </div>
-                 
+                {
+                  <Pagination
+                    totalCount={usersEnterPrisesData?.pagination.count}
+                    currentPage={currentPage}
+                    pageSize={10}
+                    onPageChange={handlePageChange}
+                  />
+                }
+              </div>
             </Card>
           </div>
-          
         </div>
       </div>
-     
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent maxWidth="700px" >
-          <ModalBody padding='0px'>
-            <CreateEnterpraiseUser onClose={onClose} plans={PlansData?.plans}/>
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <CreateEnterpraiseUser onClose={onClose} plans={PlansData?.plans} />
           </ModalBody>
         </ModalContent>
       </Modal>

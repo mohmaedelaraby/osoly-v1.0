@@ -4,6 +4,7 @@ import {
   CardBody,
   CardHeader,
   Heading,
+  Icon,
   Table,
   TableContainer,
   Tbody,
@@ -29,6 +30,7 @@ import LineChart from "../../../components/Charts/LineChart";
 import { useTranslation } from "react-i18next";
 import PieChartComponent from "../../../components/Charts/PieChart";
 import PieChartComponentWithOneValue from "../../../components/Charts/PieChartWithOneValue";
+import LineChartWithDate from "../../../components/shared/LineChartWithDate";
 const Home = () => {
   const {
     t,
@@ -223,15 +225,7 @@ const Home = () => {
           </div>
           <div className="home_container_charts_table">
             <div className="home_container_charts_table__chart w-100 ml-24">
-              <div className="home_container_charts_table__chart_header">
-                الإيجار المحصل
-              </div>
-
-              <Card width="100%" borderRadius="14px" padding="36px">
-                <CardBody padding="0px">
-                  <LineChart data={Linedata} />
-                </CardBody>
-              </Card>
+              <LineChartWithDate />
             </div>
 
             <div className="home_container_charts_table__chart ml-24">
@@ -260,12 +254,17 @@ const Home = () => {
                     data={datat}
                   ></PieChartComponentWithOneValue>
                   <div className="home_container_charts_table__chart_card_footer">
-                  
                     <div className="home_container_charts_table__chart_card_footer_txt">
-                   
-                    نسبة المستخدمين الجدد
+                      <span>
+                        <Icon viewBox="0 0 200 200" color="green.500">
+                          <path
+                            fill="currentColor"
+                            d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+                          />
+                        </Icon>
+                      </span>
+                      <span> نسبة المستخدمين الجدد</span>
                     </div>
-                   
                   </div>
                 </CardBody>
               </Card>

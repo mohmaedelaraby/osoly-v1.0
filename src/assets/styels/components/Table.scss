@@ -13,6 +13,7 @@
 
     .tabel_header_addBtn {
         display: flex;
+
         .tabel_header_addBtn_btn {
             color: $font-color;
         }
@@ -22,6 +23,7 @@
 
 .table {
     overflow: scroll !important;
+
     .table_header {
         background-color: #EDEEF2;
 
@@ -36,15 +38,40 @@
         .table_body_row {
             padding: 8px;
 
+
             &:hover {
-                background-color: rgba(174, 183, 245, 0.1);
+                background-color: #EFF9FF;
                 transition: 0.1s all;
                 cursor: pointer;
+
+                .table_body_row_item_btns{
+                    opacity: 1;
+                }
+
             }
 
             .table_body_row_item {
-                padding: 14px;
                 font-size: medium;
+            }
+
+            .table_body_row_item_btns {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-left: 0px;
+                opacity: 0;
+                .table_body_row_item_btns_deletebtn{
+                    &:hover{
+                        cursor: pointer;
+                        background-color: #CC3636 !important;
+                    }
+                }
+                .table_body_row_item_btns_editbtn{
+                    &:hover{
+                        cursor: pointer;
+                        background-color: #194C81 !important;
+                    }
+                }
             }
         }
 
