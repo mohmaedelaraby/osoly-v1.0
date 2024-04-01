@@ -77,8 +77,8 @@ const OwnerTable = ({ data }) => {
     <>
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
-          <Button
-            leftIcon={<AddIcon />}
+        <Button
+            rightIcon={<AddIcon />}
             className="page_container_table__header__btns__add"
             bg="#194C81"
             dir="rtl"
@@ -86,7 +86,7 @@ const OwnerTable = ({ data }) => {
               openOwnerPopup();
             }}
           >
-            إضافة جديد
+            <span className="pl-8"> إضافة جديد</span>
           </Button>
           <Menu>
             <MenuButton
@@ -95,7 +95,7 @@ const OwnerTable = ({ data }) => {
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              فرز حسب
+              <span className="pl-8"> فرز حسب</span>
             </MenuButton>
             <MenuList>
               <MenuItem>الاسم</MenuItem>
@@ -106,7 +106,7 @@ const OwnerTable = ({ data }) => {
 
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              ترتيب حسب
+              <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
               <MenuItem>الاسم</MenuItem>

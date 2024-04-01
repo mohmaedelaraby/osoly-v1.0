@@ -9,9 +9,9 @@ import {
   MenuList,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -25,9 +25,16 @@ import React, { useEffect, useState } from "react";
 import useClosePopUps from "../../../store/useClosePopups";
 import useUsers from "../hooks/useUsers";
 import Pagination from "../../../components/shared/Pagination";
-import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  ChevronDownIcon,
+  DeleteIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import CreateUser from "./CreateUser";
+import EditUser from "./EditUser";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 function UserTable() {
   const {
@@ -36,9 +43,21 @@ function UserTable() {
     onClose: onCloseUserModal,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenUserModalEdit,
+    onOpen: onOpenUserModalEdit,
+    onClose: onCloseUserModalEdit,
+  } = useDisclosure();
+
   const { show, toggleShow } = useClosePopUps();
   const openUserPopup = () => {
     onOpenUserModal();
+    if (show) {
+      toggleShow();
+    }
+  };
+  const openUserEditPopup = () => {
+    onOpenUserModalEdit();
     if (show) {
       toggleShow();
     }
@@ -72,7 +91,7 @@ function UserTable() {
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
           <Button
-            leftIcon={<AddIcon />}
+            rightIcon={<AddIcon/>}
             className="page_container_table__header__btns__add"
             bg="#194C81"
             dir="rtl"
@@ -80,7 +99,7 @@ function UserTable() {
               openUserPopup();
             }}
           >
-            إضافة جديد
+            <span className="pl-8"> إضافة جديد</span>
           </Button>
           <Menu>
             <MenuButton
@@ -89,7 +108,7 @@ function UserTable() {
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              فرز حسب
+              <span className="pl-8"> فرز حسب</span>
             </MenuButton>
             <MenuList>
               <MenuItem>الاسم</MenuItem>
@@ -100,7 +119,7 @@ function UserTable() {
 
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              ترتيب حسب
+              <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
               <MenuItem>الاسم</MenuItem>
@@ -138,6 +157,7 @@ function UserTable() {
                 <Th className="table_header_item">اسم العقار </Th>
 
                 <Th className="table_header_item">البريد الإلكتروني</Th>
+                <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>
             <Tbody className="table_body">
@@ -163,6 +183,38 @@ function UserTable() {
                         {item?.ownedUnits[0]?.name}
                       </Td>
                       <Td className="table_body_row_item">{item?.email}</Td>
+                      <Td className="table_body_row_item_btns">
+                        <Stack
+                          alignItems={"center"}
+                          direction={"row"}
+                          spacing={4}
+                        >
+                          <Button
+                            className="table_body_row_item_btns_deletebtn"
+                            width={"25%"}
+                            leftIcon={<DeleteIcon />}
+                            color="white"
+                            variant="solid"
+                            bg={"#CC3636"}
+                            alignItems="center"
+                            justifyContent="center"
+                            onClick={() => {}}
+                          ></Button>
+                          <Button
+                            className="table_body_row_item_btns_editbtn"
+                            width={"25%"}
+                            leftIcon={<EditOutlinedIcon />}
+                            color="white"
+                            variant="solid"
+                            alignItems="center"
+                            justifyContent="center"
+                            bg={"#194C81"}
+                            onClick={() => {
+                              openUserEditPopup();
+                            }}
+                          ></Button>
+                        </Stack>
+                      </Td>
                     </Tr>
                   ))}
             </Tbody>
@@ -182,8 +234,20 @@ function UserTable() {
       <Modal isOpen={isOpenUserModal && !show} onClose={onCloseUserModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody>
-            <CreateUser />
+          <ModalBody padding="0px">
+            <CreateUser onClose={onCloseUserModal} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal
+        isOpen={isOpenUserModalEdit && !show}
+        onClose={onCloseUserModalEdit}
+      >
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <EditUser onClose={onCloseUserModalEdit} />
           </ModalBody>
         </ModalContent>
       </Modal>

@@ -129,3 +129,9 @@
 .chakra-button__icon{
     margin: 0px !important;
 }
+.chakra-tabs__tab {
+   &[aria-selected=true]{
+    background-color: #E0F2FF !important;
+    border-color: transparent !important;
+  }
+}

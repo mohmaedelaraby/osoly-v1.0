@@ -65,8 +65,8 @@ const UserComponent = ({ data }) => {
             <Card>
               <Tabs>
                 <TabList>
-                  <Tab>المستأجرين</Tab>
-                  <Tab>ملاك العقار</Tab>
+                  <Tab padding={'16px'}>المستأجرين</Tab>
+                  <Tab padding={'16px'}>ملاك العقار</Tab>
                 </TabList>
 
                 <TabPanels>

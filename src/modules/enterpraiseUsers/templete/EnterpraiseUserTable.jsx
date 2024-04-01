@@ -24,7 +24,12 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
-import { AddIcon, ChevronDownIcon, DeleteIcon, SearchIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  ChevronDownIcon,
+  DeleteIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
@@ -34,7 +39,7 @@ import Pagination from "../../../components/shared/Pagination";
 import useClosePopUps from "../../../store/useClosePopups";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 const UserEnterpraiseTable = () => {
   const navigate = useNavigate();
@@ -132,7 +137,7 @@ const UserEnterpraiseTable = () => {
                       openPopup();
                     }}
                   >
-                    إضافة مؤسس
+                    <span className="pl-8"> إضافة مؤسس</span>
                   </Button>
                   <Menu>
                     <MenuButton
@@ -141,7 +146,7 @@ const UserEnterpraiseTable = () => {
                       marginLeft="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      فرز حسب
+                      <span className="pl-8">فرز حسب</span> 
                     </MenuButton>
                     <MenuList>
                       <MenuItem>الاسم</MenuItem>
@@ -152,7 +157,7 @@ const UserEnterpraiseTable = () => {
 
                   <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                      ترتيب حسب
+                    <span className="pl-8">ترتيب حسب</span>
                     </MenuButton>
                     <MenuList>
                       <MenuItem>الاسم</MenuItem>
@@ -228,35 +233,27 @@ const UserEnterpraiseTable = () => {
                                     spacing={4}
                                   >
                                     <Button
-                                    className="table_body_row_item_btns_deletebtn"
+                                      className="table_body_row_item_btns_deletebtn"
                                       width={"25%"}
                                       leftIcon={<DeleteIcon />}
                                       color="white"
                                       variant="solid"
-                                      bg={'#CC3636'}
-                                      alignItems='center'
-                                      justifyContent='center'
-                                      onClick={() => {
-                                        
-                                      }}
-                                    >
-                                      
-                                    </Button>
+                                      bg={"#CC3636"}
+                                      alignItems="center"
+                                      justifyContent="center"
+                                      onClick={() => {}}
+                                    ></Button>
                                     <Button
-                                    className="table_body_row_item_btns_editbtn"
+                                      className="table_body_row_item_btns_editbtn"
                                       width={"25%"}
                                       leftIcon={<EditOutlinedIcon />}
                                       color="white"
                                       variant="solid"
-                                      alignItems='center'
-                                      justifyContent='center'
-                                      bg={'#194C81'}
-                                      onClick={() => {
-                                        
-                                      }}
-                                    >
-                                      
-                                    </Button>
+                                      alignItems="center"
+                                      justifyContent="center"
+                                      bg={"#194C81"}
+                                      onClick={() => {}}
+                                    ></Button>
                                   </Stack>
                                 </Td>
                               </Tr>

@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -13,178 +14,168 @@ import { useLocation } from "react-router-dom";
 import useGetUser from "../hooks/useGetUser";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import { userEditValidation } from "../validation/schema";
+import { USER_ROLES } from "../../../enums/UserRoles";
+import close from "../../../assets/icons-svgs/close.svg";
 
-const EditUser = () => {
-  const { state } = useLocation();
-  const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr} = state;
+const EditUser = ({onClose , id}) => {
 
-  const { mutate } = useUpdateUser();
+ /*  const { mutate } = useUpdateUser();
   const { data, isLoading, refetch } = useGetUser(id);
   useEffect(() => {
     refetch();
-  }, []);
+  }, []); */
   const initialValues = {
-    firstNameEn: firstNameEn,
-    lastNameEn: lastNameEn,
-    firstNameAr: firstNameAr,
-    lastNameAr: lastNameAr,
+    name: "",
+    password: "",
+    phoneNumber:"",
+    email: "",
+    nationltyId: "",
+    unitName: "",
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: userEditValidation,
     onSubmit: (values) => {
-     mutate({id:id,body:values})
+     //mutate({id:id,body:values})
     },
   });
 
   return (
     <>
-      {data && !isLoading ? (
-        <>
-          <Card className="from__card ">
-            <CardBody>
-              <form onSubmit={formik.handleSubmit} className="form">
-                <div className="form__header">Edit User</div>
+     <div className="from__card from__card__full">
+        <div className="from__card from__card__full">
+      <form onSubmit={formik.handleSubmit} className="form">
+        <div className="form__header">
+          <div className="form__header_text">تعديل مستأجر جديد</div>
+          <div className="form__header_close">
+            <img src={close} alt="" width="40px" onClick={onClose} />
+          </div>
+        </div>
 
-                <div className="form__input form__input__flex">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label rtl">
-                        اسمك الاول
-                      </Text>
-                    </FormLabel>
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <Input
+              name="name"
+              size="lg"
+              _placeholder={{color:'#77797E'}}
+              type="text"
+              className="form__input__container__input"
+              placeholder="اسم المؤسس "
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.name && !!formik.errors.name}
+            />
 
-                    <Input
-                      name="firstNameAr"
-                      type="text"
-                      className="form__input__container__input"
-                      placeholder="ادخل اسمك الاول باللغه العربيه"
-                      dir="rtl"
-                      value={formik.values.firstNameAr}
-                      onChange={formik.handleChange}
-                      isInvalid={
-                        formik.touched.firstNameAr &&
-                        !!formik.errors.firstNameAr
-                      }
-                    />
+            <div className="form__input__container__warn">
+              {formik.touched.name && formik.errors.name ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.name}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
+        </div>
 
-                    <div className="form__input__container__warn">
-                      {formik.touched.firstNameAr &&
-                      formik.errors.firstNameAr ? (
-                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                          {formik.errors.firstNameAr}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </FormControl>
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <Input
+              name="name"
+              size="lg"
+              _placeholder={{color:'#77797E'}}
+              type="text"
+              className="form__input__container__input"
+              placeholder="البريد الإلكتروني  "
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.email && !!formik.errors.email}
+            />
 
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label rtl">
-                        اسمك الاخير
-                      </Text>
-                    </FormLabel>
+            <div className="form__input__container__warn">
+              {formik.touched.email && formik.errors.email ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.email}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
 
-                    <Input
-                      name="lastNameAr"
-                      type="text"
-                      className="form__input__container__input"
-                      dir="rtl"
-                      placeholder="ادخل اسمك الاخير باللغه العربيه"
-                      value={formik.values.lastNameAr}
-                      onChange={formik.handleChange}
-                      isInvalid={
-                        formik.touched.lastNameAr && !!formik.errors.lastNameAr
-                      }
-                    />
+          <FormControl className="form__input__container">
+            <Input
+              name="name"
+              size="lg"
+              type="text"
+              className="form__input__container__input"
+              placeholder="رقم الجوال"
+              _placeholder={{color:'#77797E'}}
+              value={formik.values.phoneNumber}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.phoneNumber && !!formik.errors.phoneNumber}
+            />
 
-                    <div classeName="form__input__container__warn">
-                      {formik.touched.lastNameAr && formik.errors.lastNameAr ? (
-                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                          {formik.errors.lastNameAr}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </FormControl>
-                </div>
+            <div className="form__input__container__warn">
+              {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.phoneNumber}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
+        </div>
 
-                <div className="form__input form__input__flex">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label rtl">
-                        First Name (EN)
-                      </Text>
-                    </FormLabel>
+       
 
-                    <Input
-                      name="firstNameEn"
-                      type="text"
-                      className="form__input__container__input"
-                      placeholder="Please enter your first name "
-                      value={formik.values.firstNameEn}
-                      onChange={formik.handleChange}
-                      isInvalid={
-                        formik.touched.firstNameEn &&
-                        !!formik.errors.firstNameEn
-                      }
-                    />
+        <div className="form__input form__input__flex">
+          <FormControl className="form__input__container">
+            <Input
+              name="name"
+              size="lg"
+              type="text"
+              className="form__input__container__input"
+              placeholder="رقم العقار "
+              value={formik.values.unitName}
+              _placeholder={{color:'#77797E'}}
+              onChange={formik.handleChange}
+              isInvalid={formik.touched.unitName && !!formik.errors.unitName}
+            />
 
-                    <div className="form__input__container__warn">
-                      {formik.touched.firstNameEn &&
-                      formik.errors.firstNameEn ? (
-                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                          {formik.errors.firstNameEn}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </FormControl>
+            <div className="form__input__container__warn">
+              {formik.touched.unitName && formik.errors.unitName ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {formik.errors.unitName}
+                </Text>
+              ) : null}
+            </div>
+          </FormControl>
 
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label">
-                        Last Name (EN)
-                      </Text>
-                    </FormLabel>
+         
+        </div>
+      
 
-                    <Input
-                      name="lastNameEn"
-                      type="text"
-                      className="form__input__container__input"
-                      placeholder="enter your last name in En"
-                      value={formik.values.lastNameEn}
-                      onChange={formik.handleChange}
-                      isInvalid={
-                        formik.touched.lastNameEn && !!formik.errors.lastNameEn
-                      }
-                    />
-
-                    <div classeName="form__input__container__warn">
-                      {formik.touched.lastNameEn && formik.errors.lastNameEn ? (
-                        <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                          {formik.errors.lastNameEn}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </FormControl>
-                </div>
-
-                
-                <div className="form__btn__container">
-                <Button className="form__btn " type="submit">
-                  Edit
-                </Button>
-                {/*   <Button className="form__btn form__btn__delete ">
-                    Delete
-                  </Button> */}
-                </div>
-              </form>
-            </CardBody>
-          </Card>
-        </>
-      ) : (
-        <></>
-      )}
+        <div className="form__btn__container">
+          <Stack direction="row" width="100%" justify="space-between">
+            <Button
+              padding="0px 49px"
+              variant="solid"
+              color="white"
+              bg="#194C81"
+              type="submit"
+            >
+              اضافه
+            </Button>
+            <Button
+              onClick={onClose}
+              padding="0px 26px"
+              color={"#010B38"}
+              variant="outline"
+            >
+              الغاء
+            </Button>
+          </Stack>
+        </div>
+      </form>
+    </div>
+    </div>
     </>
   );
 };
