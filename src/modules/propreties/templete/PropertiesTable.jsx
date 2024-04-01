@@ -1,9 +1,7 @@
+import React, { useEffect, useState } from "react";
+import CardWithImg from "../../../components/Cards/CardWithImg";
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Checkbox,
   Input,
   InputGroup,
   InputLeftElement,
@@ -26,8 +24,8 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import "../../../assets/styels/components/Table.scss";
+import useProperties from "../hooks/useAllProperties";
+import useClosePopUps from "../../../store/useClosePopups";
 import {
   AddIcon,
   CalendarIcon,
@@ -36,63 +34,58 @@ import {
   DragHandleIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import CreateUnit from "./CreateUnit";
-import useClosePopUps from "../../../store/useClosePopups";
-import useUnits from "../hooks/useUnits";
+import CreateProperty from "./CreateProperty";
 import Pagination from "../../../components/shared/Pagination";
-import CardWithImg from "../../../components/Cards/CardWithImg";
-import EditUnit from "./EditUnit";
+import EditProperty from "./EditProperty";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
-  const {
-    isOpen: isOpenUnitModal,
-    onOpen: onOpenUnitModal,
-    onClose: onCloseUnitModal,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenUnitModalEdit,
-    onOpen: onOpenUnitModalEdit,
-    onClose: onCloseUnitModalEdit,
-  } = useDisclosure();
-
+function PropertiesTable() {
   const { show, toggleShow } = useClosePopUps();
   const [isGrid, setIsGrid] = useState(false);
 
-  const openUnitPopup = () => {
-    onOpenUnitModal();
-    if (show) {
-      toggleShow();
-    }
-  };
-  const openUnitEditPopup = () => {
-    onOpenUnitModalEdit();
-    if (show) {
-      toggleShow();
-    }
-  };
+  const {
+    isOpen: isOpenProperyModal,
+    onOpen: onOpenProperyModal,
+    onClose: onCloseProperyModal,
+  } = useDisclosure();
 
-  //units
-  const [currentUnitPage, setCurrentUnitPage] = useState(1);
+  const {
+    isOpen: isOpenProperyModalEdit,
+    onOpen: onOpenProperyModalEdit,
+    onClose: onCloseProperyModalEdit,
+  } = useDisclosure();
 
-  const unitLimit = 10;
+  const [currentPropertyPage, setCurrentPropertyPage] = useState(1);
+  const propertylimit = 10;
 
-  const { unitsData, isUnitsLoading, unitsReftch } = useUnits({
-    pageNo: currentUnitPage,
-    limit: unitLimit,
-  });
+  const { PropertiesData, isPropertiesLoading, PropertiesRefetch } =
+    useProperties({
+      pageNo: currentPropertyPage,
+      limit: propertylimit,
+    });
   useEffect(() => {
-    unitsReftch();
-    if (show && !isUnitsLoading) {
-      unitsReftch();
+    PropertiesRefetch();
+    if (show && !isPropertiesLoading) {
+      PropertiesRefetch();
     }
-  }, [currentUnitPage, show]);
+  }, [currentPropertyPage, show]);
 
-  const handleUnitPageChange = (page) => {
-    setCurrentUnitPage(page);
+  const handlePropertyPageChange = (page) => {
+    setCurrentPropertyPage(page);
   };
 
+  const openPropertyPopup = () => {
+    onOpenProperyModal();
+    if (show) {
+      toggleShow();
+    }
+  };
+  const openPropertyEditPopup = () => {
+    onOpenProperyModalEdit();
+    if (show) {
+      toggleShow();
+    }
+  };
   return (
     <>
       <div className="page_container_table__header">
@@ -103,7 +96,7 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
             bg="#194C81"
             dir="rtl"
             onClick={() => {
-              openUnitPopup();
+              openPropertyPopup();
             }}
           >
             <span className="pl-8"> إضافة جديد</span>
@@ -172,21 +165,16 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
                 <Thead className="table_header">
                   <Tr>
                     <Th className="table_header_item">الاسم</Th>
-                    <Th className="table_header_item">موعد الاستحقاق</Th>
-                    <Th className="table_header_item">الإيجار</Th>
-                    <Th className="table_header_item">العنوان</Th>
-                    <Th className="table_header_item">المساحة</Th>
-                    <Th className="table_header_item">حساب فاتورة الكهرباء</Th>
-                    <Th className="table_header_item">حساب المياه</Th>
-                    <Th className="table_header_item">الغرف</Th>
-                    <Th className="table_header_item">المطبخ</Th>
-                    <Th className="table_header_item">التكييفات</Th>
-                    <Th className="table_header_item"></Th>
+                    <Th className="table_header_item">عدد الوحدات</Th>
+                    <Th className="table_header_item">إجمالي الإيجار</Th>
+                    <Th className="table_header_item">العنوان </Th>
+                    <Th className="table_header_item">المالك</Th>
+                    <Th className="table_header_item"> </Th>
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {unitsData &&
-                    unitsData?.units?.map((item, index) => (
+                  {PropertiesData &&
+                    PropertiesData?.updatedProperties?.map((item, index) => (
                       <Tr
                         key={index}
                         className="table_body_row"
@@ -194,33 +182,14 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
                       >
                         <Td className="table_body_row_item">{item.name}</Td>
                         <Td className="table_body_row_item">
-                          {item.rentCollectionDate}
+                          {item?.units?.length}
                         </Td>
-                        <Td className="table_body_row_item">{item.rent}</Td>
+                        <Td className="table_body_row_item">
+                          {item.totalRent}
+                        </Td>
                         <Td className="table_body_row_item">{item.address}</Td>
-                        <Td className="table_body_row_item">{item.space}</Td>
-                        <Td className="table_body_row_item">
-                          {item.electricityAccount}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.waterAccount}
-                        </Td>
-                        <Td className="table_body_row_item">{item.rooms}</Td>
+                        <Td className="table_body_row_item">-</Td>
 
-                        <Td className="table_body_row_item">
-                          {item.kitchen ? (
-                            <>
-                              <Checkbox defaultChecked isDisabled></Checkbox>
-                            </>
-                          ) : (
-                            <>
-                              <Checkbox isDisabled></Checkbox>
-                            </>
-                          )}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.conditioners}
-                        </Td>
                         <Td className="table_body_row_item_btns">
                           <Stack
                             alignItems={"center"}
@@ -248,7 +217,7 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
                               justifyContent="center"
                               bg={"#194C81"}
                               onClick={() => {
-                                openUnitEditPopup();
+                                openPropertyEditPopup();
                               }}
                             ></Button>
                           </Stack>
@@ -262,16 +231,16 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
         ) : (
           <>
             <div className="page_container_table__content__grid">
-              {unitsData &&
-                unitsData?.units?.map((item, index) => (
+              {PropertiesData &&
+                PropertiesData?.updatedProperties?.map((item, index) => (
                   <CardWithImg
                     key={index}
                     address={item.address}
                     title={item.name}
-                    price={item.rent}
+                    price={item.id}
                     isBtns={false}
                     isVertical={false}
-                    currncy={"ريال/شهري"}
+                    currncy={"وحده"}
                     onClick={() => {}}
                   ></CardWithImg>
                 ))}
@@ -281,35 +250,34 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
 
         {
           <Pagination
-            totalCount={unitsData?.pagination.count}
-            currentPage={currentUnitPage}
+            totalCount={PropertiesData?.pagination.count}
+            currentPage={currentPropertyPage}
             pageSize={10}
-            onPageChange={handleUnitPageChange}
+            onPageChange={handlePropertyPageChange}
           />
         }
       </div>
-
-      <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
+      <Modal isOpen={isOpenProperyModal && !show} onClose={onCloseProperyModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody>
-            <CreateUnit />
+          <ModalBody padding={'0px'}>
+            <CreateProperty onClose={onCloseProperyModal}/>
           </ModalBody>
         </ModalContent>
       </Modal>
       <Modal
-        isOpen={isOpenUnitModalEdit && !show}
-        onClose={onCloseUnitModalEdit}
+        isOpen={isOpenProperyModalEdit && !show}
+        onClose={onCloseProperyModalEdit}
       >
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody>
-            <EditUnit />
+          <ModalBody padding={'0px'}>
+            <EditProperty  onClose={onCloseProperyModalEdit}/>
           </ModalBody>
         </ModalContent>
       </Modal>
     </>
   );
-};
+}
 
-export default UnitsTable;
+export default PropertiesTable;
