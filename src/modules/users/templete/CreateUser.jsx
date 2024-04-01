@@ -6,13 +6,16 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUser } from "../hooks/useCreateUsers";
 import { USER_ROLES } from "../../../enums/UserRoles";
+import close from "../../../assets/icons-svgs/close.svg";
 
-const CreateUser = () => {
+
+const CreateUser = ({onClose}) => {
 
   const { mutate } = useCreateUser();
   const initialValues = {
@@ -36,13 +39,16 @@ const CreateUser = () => {
   return (
     <div className="from__card from__card__full">
         <form onSubmit={formik.handleSubmit} className="form">
-          <div className="form__header">Create User</div>
+        <div className="form__header">
+          <div className="form__header_text">إضافة مؤسس جديد</div>
+          <div className="form__header_close">
+            <img src={close} alt="" width="40px" onClick={onClose} />
+          </div>
+        </div>
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label rtl">اسمك الاول</Text>
-              </FormLabel>
+             
 
               <Input
                 name="firstNameAr"
@@ -59,31 +65,6 @@ const CreateUser = () => {
                 {formik.touched.firstNameAr && formik.errors.firstNameAr ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
                     {formik.errors.firstNameAr}
-                  </Text>
-                ) : null}
-              </div>
-            </FormControl>
-
-            <FormControl className="form__input__container">
-              <FormLabel>
-                <Text className="form__input__container__label rtl"> اسمك الاخير </Text>
-              </FormLabel>
-
-              <Input
-                name="lastNameAr"
-                type="text"
-                className="form__input__container__input"
-                dir="rtl"
-                placeholder="ادخل اسمك الاخير باللغه العربيه"
-                value={formik.values.lastNameAr}
-                onChange={formik.handleChange}
-                isInvalid={formik.touched.lastNameAr && !!formik.errors.lastNameAr}
-              />
-
-              <div classeName="form__input__container__warn">
-                {formik.touched.lastNameAr && formik.errors.lastNameAr ? (
-                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.lastNameAr}
                   </Text>
                 ) : null}
               </div>
@@ -140,7 +121,6 @@ const CreateUser = () => {
             </FormControl>
           </div>
 
-          <hr className="hr_style"/>
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
@@ -216,15 +196,55 @@ const CreateUser = () => {
                 ) : null}
               </div>
             </FormControl>
+          </div>
+          <div className="form__input form__input__flex">
+            <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">Phone Number </Text>
+              </FormLabel>
 
+              <Input
+                name="phoneNumber"
+                type="text"
+                className="form__input__container__input"
+                placeholder="enter your Phone Number"
+                value={formik.values.phoneNumber}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.phoneNumber && !!formik.errors.phoneNumber}
+              />
+
+              <div className="form__input__container__warn">
+                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                    {formik.errors.phoneNumber}
+                  </Text>
+                ) : null}
+              </div>
+            </FormControl>
           </div>
 
 
           <div className="form__btn__container">
-            <Button className="form__btn " type="submit">
-              Create
+          <Stack direction="row" width="100%" justify="space-between">
+            <Button
+              padding="0px 49px"
+              variant="solid"
+              color="white"
+              bg="#194C81"
+              type="submit"
+            >
+              اضافه
             </Button>
-          </div>
+            <Button
+              onClick={onClose}
+              padding="0px 26px"
+              color={"#010B38"}
+              variant="outline"
+            >
+              الغاء
+            </Button>
+          </Stack>
+        </div>
         </form>
     </div>
   );

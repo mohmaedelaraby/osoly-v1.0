@@ -6,14 +6,13 @@ import { PieChart, Pie, Cell, Tooltip } from "recharts";
 const PieChartComponent =({data}) =>{
   const COLORS = ["#194C81", "#3D6A98", "#85A5C7", "#85A5C7"];
   
-  const RADIAN = Math.PI / 200;
+  const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,
     cy,
     midAngle,
     innerRadius,
     outerRadius,
-    percent,
     index
   }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;

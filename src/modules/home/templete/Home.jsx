@@ -121,21 +121,20 @@ const Home = () => {
     },
     {
       name: "processing",
-      value: 80,
+      value: 40,
     },
     {
       name: "canceled",
-      value: 0,
+      value: 20,
     },
     {
       name: "reviewing",
-      value: 0,
+      value: 20,
     },
   ];
   const Linedata = [
     {
       name: "Nov",
-
       value: 2400,
     },
     {
@@ -218,6 +217,18 @@ const Home = () => {
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
                   <LineChart data={Linedata} />
+                </CardBody>
+              </Card>
+            </div>
+
+            <div className="home_container_charts_table__chart">
+              <div className="home_container_charts_table__chart_header">
+                التذاكر
+              </div>
+
+              <Card width="100%" borderRadius="14px" padding="36px">
+                <CardBody padding="0px">
+                  <PieChartComponent data={PieTest} />
                 </CardBody>
               </Card>
             </div>
