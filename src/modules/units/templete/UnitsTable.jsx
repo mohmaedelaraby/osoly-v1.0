@@ -292,8 +292,8 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
       <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody>
-            <CreateUnit />
+          <ModalBody padding={'0px'}>
+            <CreateUnit onClose={onCloseUnitModal}/>
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -304,7 +304,7 @@ const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody>
-            <EditUnit />
+            <EditUnit onClose={onCloseUnitModalEdit}/>
           </ModalBody>
         </ModalContent>
       </Modal>
