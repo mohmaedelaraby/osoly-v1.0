@@ -40,6 +40,7 @@ import useClosePopUps from "../../../store/useClosePopups";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { FormControl, InputLabel, Select, ThemeProvider, createTheme } from "@mui/material";
 
 const UserEnterpraiseTable = () => {
   const navigate = useNavigate();
@@ -100,6 +101,18 @@ const UserEnterpraiseTable = () => {
     },
   ];
 
+  const MuiTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+    components: {
+      MuiDataGrid: {
+        styleOverrides: {
+          root: {},
+        },
+      },
+    },
+  });
   return (
     <>
       <div className="page">
@@ -144,27 +157,98 @@ const UserEnterpraiseTable = () => {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={'white'}
-                      border={'1px solid #C8C9CC'} borderRadius='8px'
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">فرز حسب</span> 
+                      <span className="pl-8">فرز حسب</span>
                     </MenuButton>
-                    <MenuList padding={'24px'}>
-                      <MenuItem>الاسم</MenuItem>
-                      <MenuItem>العنوان</MenuItem>
-                      <MenuItem>التاريخ</MenuItem>
+                    <MenuList padding={"24px"}>
+                      <MenuItem>
+                        <ThemeProvider theme={MuiTheme}>
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                            النوع
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              //value={age}
+                              label="النوع"
+                              //onChange={handleChange}
+                            >
+                              <MenuItem value={10}> الاسم</MenuItem>
+                              <MenuItem value={20}>الباقه</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </ThemeProvider>
+                      </MenuItem>
+                      <MenuItem> <ThemeProvider theme={MuiTheme}>
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                            النوع
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              //value={age}
+                              label="النوع"
+                              //onChange={handleChange}
+                            >
+                              <MenuItem value={10}> الاسم</MenuItem>
+                              <MenuItem value={20}>الباقه</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </ThemeProvider></MenuItem>
                     </MenuList>
                   </Menu>
 
                   <Menu>
-                    <MenuButton as={Button} bg={'white'} border={'1px solid #C8C9CC'} borderRadius='8px' rightIcon={<ChevronDownIcon />}>
-                    <span className="pl-8">ترتيب حسب</span>
+                    <MenuButton
+                      as={Button}
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
+                      rightIcon={<ChevronDownIcon />}
+                    >
+                      <span className="pl-8">ترتيب حسب</span>
                     </MenuButton>
-                    <MenuList padding={'24px'}>
-                      <MenuItem>الاسم</MenuItem>
-                      <MenuItem>العنوان</MenuItem>
-                      <MenuItem>التاريخ</MenuItem>
+                    <MenuList padding={"24px"}>
+                      <MenuItem> <ThemeProvider theme={MuiTheme}>
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                            النوع
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              //value={age}
+                              label="النوع"
+                              //onChange={handleChange}
+                            >
+                              <MenuItem value={10}> الاسم</MenuItem>
+                              <MenuItem value={20}>الباقه</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </ThemeProvider></MenuItem>
+                      <MenuItem> <ThemeProvider theme={MuiTheme}>
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                            النوع
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              //value={age}
+                              label="النوع"
+                              //onChange={handleChange}
+                            >
+                              <MenuItem value={10}> الاسم</MenuItem>
+                              <MenuItem value={20}>الباقه</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </ThemeProvider></MenuItem>
                     </MenuList>
                   </Menu>
                 </div>

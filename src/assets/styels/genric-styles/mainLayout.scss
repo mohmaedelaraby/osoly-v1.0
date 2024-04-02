@@ -37,6 +37,42 @@
 }
 
 .MuiPieArcLabel-root {}
+.MuiFormControl-root{
+    background-color: white !important;
+    border: 1px solid #E0F2FF !important;
+    color: #77797E !important;
+
+}
+.MuiFormLabel-root {
+    color: #77797E !important;
+    left: 0% !important;
+}
+.MuiPaper-root{
+    background-color: white !important;
+    border: 1px solid #E0F2FF !important;
+    color: #77797E !important;
+}
+.MuiSelect-select{
+    color: #77797E !important;
+    text-align: left !important;
+}
+.MuiSvgIcon-root{
+    color: #77797E !important;
+    position: absolute !important;
+    left: -500px !important;
+
+}
+.chakra-menu__menuitem {
+    &:hover{
+        background-color: white !important;
+    }
+    &:active{
+        background-color: white !important;
+    }
+    &:focus{
+        background-color: white !important;
+    }
+}
 
 .pr-16 {
     padding-right: 16px;
