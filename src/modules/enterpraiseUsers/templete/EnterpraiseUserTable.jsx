@@ -144,11 +144,13 @@ const UserEnterpraiseTable = () => {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
+                      bg={'white'}
+                      border={'1px solid #C8C9CC'} borderRadius='8px'
                       rightIcon={<ChevronDownIcon />}
                     >
                       <span className="pl-8">فرز حسب</span> 
                     </MenuButton>
-                    <MenuList>
+                    <MenuList padding={'24px'}>
                       <MenuItem>الاسم</MenuItem>
                       <MenuItem>العنوان</MenuItem>
                       <MenuItem>التاريخ</MenuItem>
@@ -156,10 +158,10 @@ const UserEnterpraiseTable = () => {
                   </Menu>
 
                   <Menu>
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                    <MenuButton as={Button} bg={'white'} border={'1px solid #C8C9CC'} borderRadius='8px' rightIcon={<ChevronDownIcon />}>
                     <span className="pl-8">ترتيب حسب</span>
                     </MenuButton>
-                    <MenuList>
+                    <MenuList padding={'24px'}>
                       <MenuItem>الاسم</MenuItem>
                       <MenuItem>العنوان</MenuItem>
                       <MenuItem>التاريخ</MenuItem>
