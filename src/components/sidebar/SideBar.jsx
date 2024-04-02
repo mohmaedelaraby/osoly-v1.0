@@ -5,6 +5,13 @@ import "../../assets/styels/components/Sidebar.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/originallogo.png";
 import HomeSidebar from "../../assets/icons/HomeSidebar";
+import EnterPrisesSidebar from "../../assets/icons/EnterPrisesSidebar";
+import UsersSidebar from "../../assets/icons/usersSidebar";
+import PropertiesSideBar from "../../assets/icons/PropertiesSideBar";
+import SettingsSidebar from "../../assets/icons/SettingsSidebar";
+import TicketsSidebar from "../../assets/icons/TicketsSidebar";
+import InfoSidebar from "../../assets/icons/InfoSidebar";
+import LogoutSidebar from "../../assets/icons/logoutSidebar";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -18,6 +25,32 @@ function SideBar() {
   const [sbColor, setSbcolor] = useState("#194C81");
   const [sbFontColor, setSbFontcolor] = useState("#EFF9FF");
 
+  function iconChecker(icon , fill ){
+    if(icon == 'home'){
+      return <HomeSidebar fill={fill}/>
+    }
+    if(icon == 'enterprise'){
+      return <EnterPrisesSidebar fill={fill}/>
+    }
+    if(icon == 'users'){
+      return <UsersSidebar fill={fill}/>
+    }
+    if(icon == 'tickets'){
+      return <TicketsSidebar fill={fill}/>
+    }
+    if(icon == 'propreties'){
+      return <PropertiesSideBar fill={fill}/>
+    }
+    if(icon == 'settings'){
+      return <SettingsSidebar fill={fill}/>
+    }
+    if(icon == 'info'){
+      return <InfoSidebar fill={fill}/>
+    }
+    if(icon == 'logout'){
+      return <LogoutSidebar fill={fill}/>
+    }
+  }
   useEffect(()=>{
   
     if(sessionStorage.getItem("sbColor")){
@@ -100,10 +133,8 @@ function SideBar() {
                         navigate(item.navTo);
                       }}
                     >
-                      <div className="sidebar__items__container__item__icon">
-                        { checkIsActive(item.activeRoutes)
-                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
-                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
+                      <div onMouseOver={ ()=> {checkIsActive(item.activeRoutes)?  iconChecker(item.icon ,"#194C81") : iconChecker(item.icon , "#EFF9FF")}} className="sidebar__items__container__item__icon">
+                        { checkIsActive(item.activeRoutes)?  iconChecker(item.icon ,"#194C81") : iconChecker(item.icon , "#EFF9FF") }
                       </div>
                       {/* <div><HomeSidebar fill="red"/></div> */}
                       <div className="sidebar__items__container__item__text" >
@@ -157,9 +188,7 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        { checkIsActive(item.activeRoutes)
-                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
-                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
+                        { checkIsActive(item.activeRoutes)?  iconChecker(item.icon ,"#194C81") : iconChecker(item.icon , "#EFF9FF")}
                       </div>
                       {/* <div><HomeSidebar fill="red"/></div> */}
                       <div className="sidebar__items__container__item__text" >
@@ -214,9 +243,7 @@ function SideBar() {
                       }}
                     >
                       <div className="sidebar__items__container__item__icon">
-                        {selected === i || checkIsActive(item.activeRoutes)
-                          ? <img src={item.activeIcon} alt="" width='20px' height='20px' />
-                          : <img src={item.icon} alt=""  width='20px' height='20px' fill="red" />}
+                        {selected === i || checkIsActive(item.activeRoutes)?  iconChecker(item.icon ,"#194C81") : iconChecker(item.icon , "#EFF9FF")}
                       </div>
                       {/* <div><HomeSidebar fill="red"/></div> */}
                       <div className="sidebar__items__container__item__text" >
