@@ -16,6 +16,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import "../style/login.scss";
 import logo from "../../../assets/originallogo.png";
 import { useNavigate } from "react-router-dom";
+import whiteLogo from "../../../assets/images/whiteLogo.png";
 
 function LoginForm() {
   const [show, setShow] = useState(false);
@@ -40,60 +41,71 @@ function LoginForm() {
     },
   });
   return (
-    <Card padding="36px">
-      <form onSubmit={formik.handleSubmit} className="login_form">
-        <div className="login__form__icon__container">
-          <img src={logo} alt="logo" className="login__form__icon" />
-        </div>
-        <FormControl>
-          <Input
-            type="text"
-            name="username"
-            placeholder="Enter username"
-            className="login_form_input"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            isInvalid={formik.touched.username && !!formik.errors.username}
-          ></Input>
-          <div className="login_form_warn">
-            {formik.touched.username && formik.errors.username ? (
-              <Text color="#EE2E2E" fontSize="sm" className="">
-                {formik.errors.username}
-              </Text>
-            ) : null}
-          </div>
-        </FormControl>
-        <FormControl marginTop='12px'>
-          <InputGroup>
-            <Input
-              name="password"
-              pr="4.5rem"
-              className="login_form_input"
-              type={show ? "text" : "password"}
-              placeholder="Enter password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              isInvalid={formik.touched.password && !!formik.errors.password}
-            />
-            <InputRightElement>
-              <Button size="sm" variant="unstyled" onClick={handleClick}>
-                {!show ? <ViewIcon /> : <ViewOffIcon />}
+    <>
+      <div className="login_page">
+        <div className="login_page_form">
+          <form onSubmit={formik.handleSubmit} className="login_form">
+            <div className="login__form__icon__text">مرحباً بك في أصولي</div>
+            <div className="login__form__icon__login_field">
+              <Input
+                type="text"
+                name="username"
+                placeholder="البريد الإلكتروني"
+                className="login_form_input"
+                bg={"white"}
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.username && !!formik.errors.username}
+              ></Input>
+              <div className="login_form_warn">
+                {formik.touched.username && formik.errors.username ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="">
+                    {formik.errors.username}
+                  </Text>
+                ) : null}
+              </div>
+            </div>
+            <div className="login__form__icon__login_field">
+              <Input
+                name="password"
+                pr="4.5rem"
+                className="login_form_input mb-0"
+                type={show ? "text" : "password"}
+                placeholder="كلمة المرور"
+                bg={"white"}
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.password && !!formik.errors.password}
+              />
+
+              <div className="login_form_warn">
+                {formik.touched.password && formik.errors.password ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="">
+                    {formik.errors.password}
+                  </Text>
+                ) : null}
+              </div>
+            </div>
+            <div className="login__form__icon__login_field_start ">
+            <div className="login_form_forget">نسيت كلمة المرور؟</div>
+            </div>
+           
+            <div className="login__form__icon__login_field">
+              <Button
+                className="login_form_btn"
+                type="submit"
+                isLoading={isLoading}
+              >
+                تسجيل الدخول
               </Button>
-            </InputRightElement>
-          </InputGroup>
-          <div className="login_form_warn">
-            {formik.touched.password && formik.errors.password ? (
-              <Text color="#EE2E2E" fontSize="sm" className="">
-                {formik.errors.password}
-              </Text>
-            ) : null}
-          </div>
-        </FormControl>
-        <Button className="login_form_btn" type="submit" isLoading={isLoading}>
-          Login
-        </Button>
-      </form>
-    </Card>
+            </div>
+          </form>
+        </div>
+        <div className="login_page_image">
+          <img src={whiteLogo} alt="logo" srcset="" />
+        </div>
+      </div>
+    </>
   );
 }
 
