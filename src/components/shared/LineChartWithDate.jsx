@@ -48,7 +48,16 @@ function LineChartWithDate() {
 
         <div className="home_container_charts_table__chart_header">
           <Menu>
-            <MenuButton bg={'white'} as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton bg={'white'} as={Button}
+              marginRight="8px"
+              marginLeft="8px"
+              rightIcon={<ChevronDownIcon />}
+              borderRadius='md'
+              borderWidth='1px'
+              bg='white'
+              _hover={{ bg: 'gray.400' }}
+              _expanded={{ bg: 'blue.400' }}
+              _focus={{ boxShadow: 'outline' }}>
               آخر 5 شهور
             </MenuButton>
             <MenuList>

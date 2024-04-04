@@ -105,7 +105,16 @@ const OwnerTable = ({ data }) => {
           </Menu>
 
           <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton as={Button}
+              marginRight="8px"
+              marginLeft="8px"
+              rightIcon={<ChevronDownIcon />}
+              borderRadius='md'
+              borderWidth='1px'
+              bg='white'
+              _hover={{ bg: 'gray.400' }}
+              _expanded={{ bg: 'blue.400' }}
+              _focus={{ boxShadow: 'outline' }}>
               <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
