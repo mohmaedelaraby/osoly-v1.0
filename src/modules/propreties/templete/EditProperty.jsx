@@ -34,6 +34,8 @@ import CreateUnit from "../../units/templete/CreateUnit";
 const EditProperty = ({ id , onClose }) => {
  // const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+
 
   const { usersData, usersRefetch } = useUsers({
     pageNo: 1,
@@ -93,23 +95,37 @@ const EditProperty = ({ id , onClose }) => {
             
 
             <div className="form__input form__input__flex mt-24">
-              <div className="form__input__flex_fileUpload">
-                <img src={bell} alt="" width={"66px"} />
-                <p className="form__input__flex_fileUpload_text">رفع صورة</p>
-                <p className="form__input__flex_fileUpload_desc">
-                  يفضل ان يكون قياس الصورة 320X120
-                </p>
-                <Input
-                  className="form__input__flex_fileUpload_input"
-                  type="file"
-                  name="image"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={(event) => {
-                    console.log(event.target.files[0]);
-                    //setSelectedLogo(event.target.files[0]);
-                  }}
-                />
-              </div>
+            {!selectedImage ? (
+                <div className="form__input__flex_fileUpload">
+                  <img src={bell} alt="" width={"66px"} />
+                  <p className="form__input__flex_fileUpload_text">رفع صورة</p>
+                  <p className="form__input__flex_fileUpload_desc">
+                    يفضل ان يكون قياس الصورة 320X120
+                  </p>
+                  <Input
+                    className="form__input__flex_fileUpload_input"
+                    type="file"
+                    name="image"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={(event) => {
+                      console.log(event.target.files[0]);
+                      setSelectedImage(event.target.files[0]);
+                      //setSelectedLogo(event.target.files[0]);
+                    }}
+                  />
+                </div>
+              ) : (
+                <div style={{padding:`${selectedImage ? '0px' : ''}` , borderRadius:'12px'}} className="form__input__flex_fileUpload">
+                  <div className="form__input__flex_fileUpload_image">
+                    <img
+                      alt="not found"
+                      width={"auto"}
+                      height={"285px"}
+                      src={URL.createObjectURL(selectedImage)}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="form__input form__input__flex">
