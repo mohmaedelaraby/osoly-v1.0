@@ -5,31 +5,31 @@ import {
   Button,
   Checkbox,
   FormControl,
-  FormLabel,
   Input,
   InputGroup,
   InputLeftAddon,
   InputLeftElement,
-  Radio,
-  RadioGroup,
   Select,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import "../../../assets/styels/components/forms.scss";
 import { useCreateUnit } from "../hooks/useCreateUnit";
-import useUsers from "../../users/hooks/useUsers";
-import useProperties from "../../propreties/hooks/useAllProperties";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
-import { AddIcon } from "@chakra-ui/icons";
-import useClosePopUps from "../../../store/useClosePopups";
+import useUsers from "../../users/hooks/useUsers";
+import useProperties from "../../propreties/hooks/useAllProperties";
 
 const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
   const { mutate } = useCreateUnit();
-  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
-  const [selectedProbertyId, setSelectedPropertyId] = useState(0);
+
+  const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
+  const [selectedProbertyId, setSelectedPropertyId] = useState(propPropertyId);
+  const [loungeChoice, setLoungeChoice] = useState(true);
+  const [kitchenChoice, setKitchenChoice] = useState(false);
+  const [unitImage, setUnitImage] = useState();
+
   const { usersData, usersRefetch } = useUsers({
     pageNo: 1,
     limit: 1000,
@@ -44,8 +44,12 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     usersRefetch();
     PropertiesRefetch();
   }, []);
-  const [loungeChoice, setLoungeChoice] = useState("true");
-  const [kitchenChoice, setKitchenChoice] = useState("true");
+
+
+  useEffect(() => {
+ console.log(kitchenChoice)
+  }, [kitchenChoice]);
+
 
   const initialValues = {
     name: "",
@@ -58,8 +62,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     rooms: null,
     bathrooms: null,
     conditioners: null,
-    waterCost: null,
-    profitShare: null,
+    Image:null,
+    maintenanceMan: USER_ROLES.OWNER,
   };
 
   const formik = useFormik({
@@ -70,20 +74,25 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
       let lounge = loungeChoice == "true" ? true : false;
       let data = {
         body: {
-          lounge: lounge,
-          kitchen: kitchen,
-          ownerId: propOwenerId
-            ? parseInt(propOwenerId)
-            : parseInt(selectedOwnerId),
-          propertyId: propPropertyId
-            ? parseInt(propPropertyId)
-            : parseInt(selectedProbertyId),
+          lounge: loungeChoice,
+          kitchen: kitchenChoice,
+          ownerId: selectedOwnerId,
+          propertyId: selectedProbertyId,
+          //image:formData,
           ...values,
         },
       };
-      mutate(data);
+      console.log(data)
+      //mutate(data);
     },
   });
+
+/*   function updateImage(){
+    const f = new FormData()
+
+    f.append('image', unitImage)
+    console.log(f)
+  } */
   return (
     <div className="from__card from__card__full">
       <form onSubmit={formik.handleSubmit} className="form">
@@ -95,23 +104,38 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         </div>
 
         <div className="form__input form__input__flex">
-          <div className="form__input__flex_fileUpload">
-            <img src={bell} alt="" width={"66px"} />
-            <p className="form__input__flex_fileUpload_text">رفع صورة</p>
-            <p className="form__input__flex_fileUpload_desc">
-              يفضل ان يكون قياس الصورة 320X120
-            </p>
-            <Input
-              className="form__input__flex_fileUpload_input"
-              type="file"
-              name="image"
-              accept=".png, .jpg, .jpeg"
-              onChange={(event) => {
-                console.log(event.target.files[0]);
-                //setSelectedLogo(event.target.files[0]);
+          {!unitImage ? (
+            <div className="form__input__flex_fileUpload">
+              <img src={bell} alt="" width={"66px"} />
+              <p className="form__input__flex_fileUpload_text">رفع صورة</p>
+              <p className="form__input__flex_fileUpload_desc">
+                يفضل ان يكون قياس الصورة 320X120
+              </p>
+              <Input
+                className="form__input__flex_fileUpload_input"
+                type="file"
+                name="image"
+                accept=".png, .jpg, .jpeg"
+                value={formik.values.Image}
+                onChange={formik.handleChange}
+              />
+            </div>
+          ) : (
+            <div
+              style={{
+                padding: `${unitImage ? "0px" : ""}`,
+                borderRadius: "12px",
               }}
-            />
-          </div>
+              className="form__input__flex_fileUpload"
+            >
+              <div className="form__input__flex_fileUpload_image">
+                <img
+                  alt="not found"
+                  src={URL.createObjectURL(unitImage)}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="form__input form__input__flex">
@@ -141,7 +165,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="rent"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -163,28 +187,28 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="rentCollectionDate"
               size="lg"
               type="date"
               className="form__input__container__input"
               placeholder="موعد تحصيل الإيجار"
               _placeholder={{ color: "#77797E" }}
-              value={formik.values.skNumber}
+              value={formik.values.rentCollectionDate}
               onChange={formik.handleChange}
-              isInvalid={formik.touched.skNumber && !!formik.errors.skNumber}
+              isInvalid={formik.touched.rentCollectionDate && !!formik.errors.rentCollectionDate}
             />
 
             <div className="form__input__container__warn">
-              {formik.touched.skNumber && formik.errors.skNumber ? (
+              {formik.touched.rentCollectionDate && formik.errors.rentCollectionDate ? (
                 <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                  {formik.errors.skNumber}
+                  {formik.errors.rentCollectionDate}
                 </Text>
               ) : null}
             </div>
           </FormControl>
         </div>
 
-        <div className="form__input form__input__flex">
+        {/* <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <InputGroup>
               <Input
@@ -221,12 +245,12 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               ) : null}
             </div>
           </FormControl>
-        </div>
+        </div> */}
 
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="address"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -250,21 +274,21 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="waterAccount"
               size="lg"
               type="text"
               className="form__input__container__input"
               placeholder="حساب فاتورة المياه"
               _placeholder={{ color: "#77797E" }}
-              value={formik.values.waterCost}
+              value={formik.values.waterAccount}
               onChange={formik.handleChange}
-              isInvalid={formik.touched.waterCost && !!formik.errors.waterCost}
+              isInvalid={formik.touched.waterAccount && !!formik.errors.waterAccount}
             />
 
             <div className="form__input__container__warn">
-              {formik.touched.waterCost && formik.errors.waterCost ? (
+              {formik.touched.waterAccount && formik.errors.waterAccount ? (
                 <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                  {formik.errors.waterCost}
+                  {formik.errors.waterAccount}
                 </Text>
               ) : null}
             </div>
@@ -272,7 +296,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="electricityAccount"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -301,7 +325,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
           <FormControl className="form__input__container">
             <InputGroup>
               <Input
-                name="name"
+                name="space"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
@@ -336,7 +360,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="rooms"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -358,7 +382,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="bathrooms"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -380,7 +404,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <Input
-              name="name"
+              name="conditioners"
               size="lg"
               type="text"
               className="form__input__container__input"
@@ -405,13 +429,13 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
         <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
-            <Checkbox defaultChecked>
+            <Checkbox value={kitchenChoice} onChange={(e)=>{setKitchenChoice(!kitchenChoice)}} defaultChecked>
               <span className="form__input__container__checkbox_txt">مطيخ</span>
             </Checkbox>
           </FormControl>
 
-          <FormControl className="form__input__container">
-            <Checkbox defaultChecked>
+          <FormControl  value={loungeChoice} className="form__input__container">
+            <Checkbox onChange={(e)=>{setLoungeChoice(!loungeChoice)}} defaultChecked>
               <span className="form__input__container__checkbox_txt">
                 تكييفات راكبه
               </span>
@@ -424,11 +448,9 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               iconSize="0px"
-              name="propertyOwner"
-              value={formik.values.ownerId}
+              name="ownerId"
               dir="rtl"
               onChange={(e) => {
-                formik.handleChange(e.target.value);
                 setSelectedOwnerId(e.target.value);
                 setTimeout(() => {}, 0);
               }}
@@ -448,28 +470,25 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               iconSize="0px"
-              name="propertyOwner"
-              value={formik.values.ownerId}
+              name="updatedProperties"
               dir="rtl"
               onChange={(e) => {
-                formik.handleChange(e.target.value);
-                setSelectedOwnerId(e.target.value);
+                setSelectedPropertyId(e.target.value);
                 setTimeout(() => {}, 0);
               }}
             >
-              <option value={0}>المالك</option>
-              {usersData?.users
-                .filter((s) => s.role == USER_ROLES.TENANT)
+              <option value={0}>العقار</option>
+              {PropertiesData?.updatedProperties
                 ?.map((i, index) => (
                   <option value={i.id} key={index}>
-                    {i.firstNameAr}
+                    {i.name}
                   </option>
                 ))}
             </Select>
           </FormControl>
         </div>
 
-        <div className="form__input form__input__flex mb-24">
+        {/* <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
             <Select
               height={"56px"}
@@ -517,7 +536,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 ))}
             </Select>
           </FormControl>
-        </div>
+        </div> */}
 
         <div className="form__btn__container">
           <Stack direction="row" width="100%" justify="space-between">
