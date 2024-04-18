@@ -1,6 +1,8 @@
 import {
   Button,
   Card,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,11 +14,15 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Radio,
+  RadioGroup,
+  Select,
   Stack,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -38,7 +44,6 @@ import Pagination from "../../../components/shared/Pagination";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { FormControl, InputLabel, Select, ThemeProvider, createTheme } from "@mui/material";
 import EditEnterpraiseUser from "./EditEnterpraiseUser";
 
 const UserEnterpraiseTable = () => {
@@ -53,28 +58,32 @@ const UserEnterpraiseTable = () => {
     onOpen: onOpenModalEdit,
     onClose: onCloseModalEdit,
   } = useDisclosure();
+  const [sortBy, setSortBy] = useState();
+  const [sortDierction, setSortDierction] = useState("asc");
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
   const [selectedPlan, setSelectedPlan] = useState();
 
-  const {
-    usersEnterPrisesData,
-    usersEnterPrisesRefetch,
-  } = useEnterPrisesUsers({
-    pageNo: currentPage,
-    limit: limit,
-  });
+  const { usersEnterPrisesData, usersEnterPrisesRefetch } = useEnterPrisesUsers(
+    {
+      pageNo: currentPage,
+      limit: limit,
+      sortBy:sortBy,
+      sortDierction:sortDierction
+    }
+  );
 
   const { PlansData, PlansRefetch } = usePlans();
-  useEffect(()=>{
+  useEffect(() => {
     PlansRefetch();
-  },[PlansData])
+  }, [PlansData]);
 
   useEffect(() => {
     usersEnterPrisesRefetch();
-  }, [currentPage , isOpenModalEdit , isOpenModal]);
+    console.log("first")
+  }, [currentPage, isOpenModalEdit, isOpenModal , sortBy]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -84,7 +93,7 @@ const UserEnterpraiseTable = () => {
     onOpenModal();
   };
   const openEditPopup = (plan) => {
-    setSelectedPlan(plan)
+    setSelectedPlan(plan);
     onOpenModalEdit();
   };
 
@@ -109,18 +118,6 @@ const UserEnterpraiseTable = () => {
     },
   ];
 
-  const MuiTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-    components: {
-      MuiDataGrid: {
-        styleOverrides: {
-          root: {},
-        },
-      },
-    },
-  });
   return (
     <>
       <div className="page">
@@ -160,7 +157,8 @@ const UserEnterpraiseTable = () => {
                   >
                     <span className="pl-8"> إضافة مؤسس</span>
                   </Button>
-                  <Menu>
+
+                  <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
                       marginRight="8px"
@@ -174,45 +172,47 @@ const UserEnterpraiseTable = () => {
                     </MenuButton>
                     <MenuList padding={"24px"}>
                       <MenuItem>
-                        <ThemeProvider theme={MuiTheme}>
-                          <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">
-                            النوع
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              //value={age}
-                              label="النوع"
-                              //onChange={handleChange}
-                            >
-                              <MenuItem value={10}> الاسم</MenuItem>
-                              <MenuItem value={20}>الباقه</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </ThemeProvider>
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              نوع الفرز
+                            </Text>
+                          </FormLabel>
+                          <RadioGroup
+                            onChange={setSortDierction}
+                            value={sortDierction}
+                          >
+                            <Stack direction="row">
+                              <Radio value="asc">تصاعدي</Radio>
+                              <Radio value="desc">تنازلي</Radio>
+                            </Stack>
+                          </RadioGroup>
+                        </FormControl>
                       </MenuItem>
-                      <MenuItem> <ThemeProvider theme={MuiTheme}>
-                          <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">
-                            النوع
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              //value={age}
-                              label="النوع"
-                              //onChange={handleChange}
-                            >
-                              <MenuItem value={10}> الاسم</MenuItem>
-                              <MenuItem value={20}>الباقه</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </ThemeProvider></MenuItem>
+                      <div className="menu-select">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              فرز حسب
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            placeholder="فرز حسب"
+                            dir="ltr"
+                            name="sortBY"
+                            onChange={(e) => {
+                              setSortBy(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            <option value="expireDate">تاريخ الانتهاء</option>
+                          </Select>
+                        </FormControl>
+                      </div>
                     </MenuList>
                   </Menu>
 
-                  <Menu>
+                  {/*  <Menu>
                     <MenuButton
                       as={Button}
                       bg={"white"}
@@ -258,7 +258,7 @@ const UserEnterpraiseTable = () => {
                           </FormControl>
                         </ThemeProvider></MenuItem>
                     </MenuList>
-                  </Menu>
+                  </Menu> */}
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
@@ -290,24 +290,21 @@ const UserEnterpraiseTable = () => {
                         </Tr>
                       </Thead>
                       <Tbody className="table_body">
-                        {usersEnterPrisesData ? ( usersEnterPrisesData?.enterprises?.map(
-                            (item) => (
-                              <>
-                              
-                               <Tr
-                                className="table_body_row"
-                              >
+                        {usersEnterPrisesData ? (
+                          usersEnterPrisesData?.enterprises?.map((item) => (
+                            <>
+                              <Tr className="table_body_row">
                                 <Td className="table_body_row_item">
                                   {item?.username}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                {item?.units?.length}
+                                  {item?.units?.length}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                {item?.plan? item?.plan?.name:'-'}
+                                  {item?.plan ? item?.plan?.name : "-"}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                {item?.users?.length}
+                                  {item?.users?.length}
                                 </Td>
 
                                 <Td className="table_body_row_item_btns">
@@ -325,7 +322,6 @@ const UserEnterpraiseTable = () => {
                                       bg={"#CC3636"}
                                       alignItems="center"
                                       justifyContent="center"
-                                      
                                     ></Button>
                                     <Button
                                       className="table_body_row_item_btns_editbtn"
@@ -339,14 +335,15 @@ const UserEnterpraiseTable = () => {
                                       onClick={() => {
                                         openEditPopup(item);
                                       }}
-                                      
                                     ></Button>
                                   </Stack>
                                 </Td>
-                              </Tr> 
-                            </>)
-                          )):(<></>)
-                         }
+                              </Tr>
+                            </>
+                          ))
+                        ) : (
+                          <></>
+                        )}
                       </Tbody>
                     </Table>
                   </TableContainer>
@@ -370,7 +367,10 @@ const UserEnterpraiseTable = () => {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
-            <CreateEnterpraiseUser onClose={onCloseModal} plans={PlansData?.plans} />
+            <CreateEnterpraiseUser
+              onClose={onCloseModal}
+              plans={PlansData?.plans}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -378,7 +378,11 @@ const UserEnterpraiseTable = () => {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
-            <EditEnterpraiseUser onClose={onCloseModalEdit} plans={PlansData?.plans} item={selectedPlan} />
+            <EditEnterpraiseUser
+              onClose={onCloseModalEdit}
+              plans={PlansData?.plans}
+              item={selectedPlan}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
