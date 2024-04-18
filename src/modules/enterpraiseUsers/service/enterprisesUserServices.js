@@ -32,7 +32,8 @@ export const updateEnterprisesUser = (data) => {
 
 //create enterprises
 export const createEnterprisesUser = (data) => {
-  return api.post(`${apiUrl}dashboard/enterprises`, data?.body)
+  console.log(data)
+  return api.post(`${apiUrl}dashboard/enterprises`, data)
 }
 //create enterprises
 export const createEnterprisesSettings = (data) => {

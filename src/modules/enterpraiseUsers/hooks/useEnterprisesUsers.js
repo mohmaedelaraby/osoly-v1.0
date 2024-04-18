@@ -8,8 +8,8 @@ const fetchEnterPrisesUsers = async (params) => {
 
 const useEnterPrisesUsers = (params) => {
     const { data, refetch, status } = useQuery(['enterprises-users', params], () => fetchEnterPrisesUsers(params), {
-        refetchOnWindowFocus: false,
-        enabled: false
+        refetchOnWindowFocus: true,
+        refetchOnMount:false
     });
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {

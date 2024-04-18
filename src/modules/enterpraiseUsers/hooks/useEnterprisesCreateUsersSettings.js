@@ -3,7 +3,7 @@ import { useToastMessage } from "../../../hooks/useToastMessage";
 import { createUser } from "../service/userServices";
 import useClosePopUps from "../../../store/useClosePopups";
 
-export const useCreateUser = () => {
+export const useCreateUserSettings = () => {
     const { successToast, errorToast } = useToastMessage()
     const {toggleShow}=useClosePopUps()
 

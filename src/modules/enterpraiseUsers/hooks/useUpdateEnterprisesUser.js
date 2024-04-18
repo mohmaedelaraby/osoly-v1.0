@@ -1,18 +1,18 @@
 import { useMutation } from "react-query";
 import { useToastMessage } from "../../../hooks/useToastMessage";
-import { updateUser } from "../service/userServices";
+import { updateEnterprisesUser } from "../service/enterprisesUserServices";
 
-export const useUpdateUser = () => {
+export const useEnterprisesUpdateUser = () => {
     const { successToast, errorToast } = useToastMessage()
 
-    const mutation = useMutation(updateUser, {
+    const mutation = useMutation(updateEnterprisesUser, {
         onSuccess: (res) => {
             if (res.status === 201 || res.status === 200) {
                 successToast()
             } 
         },
-        onError: () => {
-            errorToast()
+        onError: (error) => {
+            errorToast(error.response.data.message)
         }
     });
     return {

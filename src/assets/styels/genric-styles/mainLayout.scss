@@ -25,6 +25,15 @@
 .w-100 {
     width: 100%;
 }
+.disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+.not_allow{
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .mb-0{
     margin-bottom: 0;
 }
@@ -174,4 +183,20 @@
     background-color: #E0F2FF !important;
     border-color: transparent !important;
   }
+
+}
+
+.chakra-input__right-element{
+    height: 56px !important;
+    background-color: transparent !important;
+    .chakra-button{
+        background: transparent !important;
+    }
+}
+.chakra-input__left-element{
+    height: 56px !important;
+    background-color: transparent !important;
+    .chakra-button{
+        background: transparent !important;
+    }
 }

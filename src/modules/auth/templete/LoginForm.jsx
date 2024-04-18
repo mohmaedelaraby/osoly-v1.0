@@ -20,6 +20,7 @@ import whiteLogo from "../../../assets/images/whiteLogo.png";
 
 function LoginForm() {
   const [show, setShow] = useState(false);
+  const [removeReadOnly , setRemoveReadOnly]=useState(true)
   //const nav = useNavigate()
 
   const { mutate, isLoading } = useLoginMutation();
@@ -44,12 +45,15 @@ function LoginForm() {
     <>
       <div className="login_page">
         <div className="login_page_form">
-          <form onSubmit={formik.handleSubmit} className="login_form">
+          <form onSubmit={formik.handleSubmit} className="login_form"  autoComplete="false">
             <div className="login__form__icon__text">مرحباً بك في أصولي</div>
             <div className="login__form__icon__login_field">
               <Input
                 type="text"
                 name="username"
+                dir="rtl"
+                readOnly={removeReadOnly}
+                onFocus={()=>{setRemoveReadOnly(false)}}
                 placeholder="البريد الإلكتروني"
                 className="login_form_input"
                 bg={"white"}
@@ -57,6 +61,7 @@ function LoginForm() {
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.username && !!formik.errors.username}
               ></Input>
+              
               <div className="login_form_warn">
                 {formik.touched.username && formik.errors.username ? (
                   <Text color="#EE2E2E" fontSize="sm" className="">
@@ -68,6 +73,7 @@ function LoginForm() {
             <div className="login__form__icon__login_field">
               <Input
                 name="password"
+                dir="rtl"
                 pr="4.5rem"
                 className="login_form_input mb-0"
                 type={show ? "text" : "password"}
@@ -102,7 +108,7 @@ function LoginForm() {
           </form>
         </div>
         <div className="login_page_image">
-          <img src={whiteLogo} alt="logo" srcset="" />
+          <img src={whiteLogo} alt="logo" />
         </div>
       </div>
     </>

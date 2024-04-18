@@ -30,54 +30,62 @@ import {
   DeleteIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import money from "../../../assets/icons-svgs/money.svg";
 import user from "../../../assets/images/user.png";
 import Pagination from "../../../components/shared/Pagination";
-import useClosePopUps from "../../../store/useClosePopups";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { FormControl, InputLabel, Select, ThemeProvider, createTheme } from "@mui/material";
+import EditEnterpraiseUser from "./EditEnterpraiseUser";
 
 const UserEnterpraiseTable = () => {
-  const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { show, toggleShow } = useClosePopUps();
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModalEdit,
+    onOpen: onOpenModalEdit,
+    onClose: onCloseModalEdit,
+  } = useDisclosure();
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
+  const [selectedPlan, setSelectedPlan] = useState();
+
   const {
     usersEnterPrisesData,
-    usersEnterPrisesisLoading,
     usersEnterPrisesRefetch,
   } = useEnterPrisesUsers({
     pageNo: currentPage,
     limit: limit,
   });
 
-  const { PlansData, PlansisLoading, PlansRefetch } = usePlans();
+  const { PlansData, PlansRefetch } = usePlans();
+  useEffect(()=>{
+    PlansRefetch();
+  },[PlansData])
+
   useEffect(() => {
     usersEnterPrisesRefetch();
-    PlansRefetch();
-    console.log("-->", PlansData);
-    if (show && !usersEnterPrisesisLoading) {
-      usersEnterPrisesRefetch();
-    }
-  }, [currentPage, show]);
+  }, [currentPage , isOpenModalEdit , isOpenModal]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const openPopup = () => {
-    onOpen();
-    if (show) {
-      toggleShow();
-    }
+  const openCreatePopup = () => {
+    onOpenModal();
+  };
+  const openEditPopup = (plan) => {
+    setSelectedPlan(plan)
+    onOpenModalEdit();
   };
 
   const CardsDemo = [
@@ -147,7 +155,7 @@ const UserEnterpraiseTable = () => {
                     bg="#194C81"
                     dir="rtl"
                     onClick={() => {
-                      openPopup();
+                      openCreatePopup();
                     }}
                   >
                     <span className="pl-8"> إضافة مؤسس</span>
@@ -277,39 +285,29 @@ const UserEnterpraiseTable = () => {
                           <Th className="table_header_item">الاسم</Th>
                           <Th className="table_header_item">عدد الوحدات</Th>
                           <Th className="table_header_item">الباقة</Th>
-                          <Th className="table_header_item">تاريخ الإنتهاء</Th>
+                          <Th className="table_header_item">عدد المستخدمين </Th>
                           <Th className="table_header_item"> </Th>
                         </Tr>
                       </Thead>
                       <Tbody className="table_body">
-                        {usersEnterPrisesData &&
-                          usersEnterPrisesData?.enterprises?.map(
-                            (item, index) => (
-                              <Tr
-                                key={index}
+                        {usersEnterPrisesData ? ( usersEnterPrisesData?.enterprises?.map(
+                            (item) => (
+                              <>
+                              
+                               <Tr
                                 className="table_body_row"
-                                onClick={() => {
-                                  navigate("/enterprise", {
-                                    state: {
-                                      id: item.id,
-                                      name: item.name,
-                                      role: item.role,
-                                      username: item.username,
-                                    },
-                                  });
-                                }}
                               >
                                 <Td className="table_body_row_item">
-                                  {item.name}
+                                  {item?.username}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.numOfUnits ? item?.numOfUnits : 0}
+                                {item?.units?.length}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.plan ? item?.plan : "no plan"}
+                                {item?.plan? item?.plan?.name:'-'}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.endDate ? item?.endDate : "0-0-0000"}
+                                {item?.users?.length}
                                 </Td>
 
                                 <Td className="table_body_row_item_btns">
@@ -327,7 +325,7 @@ const UserEnterpraiseTable = () => {
                                       bg={"#CC3636"}
                                       alignItems="center"
                                       justifyContent="center"
-                                      onClick={() => {}}
+                                      
                                     ></Button>
                                     <Button
                                       className="table_body_row_item_btns_editbtn"
@@ -338,13 +336,17 @@ const UserEnterpraiseTable = () => {
                                       alignItems="center"
                                       justifyContent="center"
                                       bg={"#194C81"}
-                                      onClick={() => {}}
+                                      onClick={() => {
+                                        openEditPopup(item);
+                                      }}
+                                      
                                     ></Button>
                                   </Stack>
                                 </Td>
-                              </Tr>
-                            )
-                          )}
+                              </Tr> 
+                            </>)
+                          )):(<></>)
+                         }
                       </Tbody>
                     </Table>
                   </TableContainer>
@@ -364,11 +366,19 @@ const UserEnterpraiseTable = () => {
         </div>
       </div>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpenModal} onClose={onCloseModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
-            <CreateEnterpraiseUser onClose={onClose} plans={PlansData?.plans} />
+            <CreateEnterpraiseUser onClose={onCloseModal} plans={PlansData?.plans} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenModalEdit} onClose={onCloseModalEdit}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <EditEnterpraiseUser onClose={onCloseModalEdit} plans={PlansData?.plans} item={selectedPlan} />
           </ModalBody>
         </ModalContent>
       </Modal>
