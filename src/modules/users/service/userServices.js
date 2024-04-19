@@ -3,8 +3,8 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all users
 export const getUsers = (params) => {
-  const { pageNo, limit } = params;
-  return api.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}`, {
+  const { pageNo, limit ,sortDirection,sortBy} = params;
+  return api.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}`, {
   }).then(res => res.data.data)
 }
 

@@ -1,5 +1,7 @@
 import {
   Button,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
@@ -11,11 +13,15 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Radio,
+  RadioGroup,
+  Select,
   Stack,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -56,6 +62,22 @@ function UserTable() {
     setSelectedUser(user);
     onOpenUserModalEdit();
   };
+  //sorting and filtering local
+  const sortItems = [
+    "phoneNumber",
+    "email",
+    "phoneNumber",
+    "firstNameEn",
+    "lastNameEn",
+    "firstNameAr",
+    "lastNameAr",
+  ];
+
+  const [sortByTmp, setSortByTmp] = useState(null);
+  const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+  //sorting and filtering param data
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
 
   const [currentUserPage, setCurrentUserPage] = useState(1);
   const userlimit = 10;
@@ -67,11 +89,21 @@ function UserTable() {
   } = useUsers({
     pageNo: currentUserPage,
     limit: userlimit,
+    sortDirection: sortDirection,
+    sortBy: sortBy,
   });
 
   useEffect(() => {
-    setTimeout(()=>{userDataReftech()},500)
-  }, [currentUserPage, isOpenUserModal, isOpenUserModalEdit]);
+    setTimeout(() => {
+      userDataReftech();
+    }, 500);
+  }, [
+    currentUserPage,
+    isOpenUserModal,
+    isOpenUserModalEdit,
+    sortBy,
+    sortDirection,
+  ]);
 
   const handlePageUserChange = (page) => {
     setCurrentUserPage(page);
@@ -87,48 +119,171 @@ function UserTable() {
             bg="#194C81"
             dir="rtl"
             onClick={() => {
+              setSortByTmp(null)
+              setSortByTmp(null)
               openUserPopup();
             }}
           >
             <span className="pl-8"> إضافة جديد</span>
           </Button>
-          <Menu>
+          <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
               marginRight="8px"
               marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8"> فرز حسب</span>
+              <span className="pl-8">فرز حسب</span>
             </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
+            <MenuList padding={"24px"} width="257px">
+              <MenuItem>
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      نوع الفرز
+                    </Text>
+                  </FormLabel>
+                  <RadioGroup
+                    onChange={setSortDirectionTmp}
+                    value={sortDirectionTmp}
+                  >
+                    <Stack direction="row">
+                      <Radio value="asc">تصاعدي</Radio>
+                      <Radio value="desc">تنازلي</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              </MenuItem>
+              <div className="menu-select mb-24">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      فرز حسب
+                    </Text>
+                  </FormLabel>
+                  {sortByTmp}
+                  <Select
+                    dir="ltr"
+                    name="sortBY"
+                    onChange={(e) => {
+                      setSortByTmp(e.target.value);
+                      setTimeout(() => {}, 0);
+                    }}
+                  >
+                    <option value={null}>فرز حسب</option>
+                    {sortItems.map((item, index) => (
+                      <option id={index} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <MenuItem closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setSortDirection(sortDirectionTmp);
+                      setSortBy(sortByTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setSortDirection("asc");
+                      setSortDirectionTmp("asc");
+                      setSortBy(null);
+                      setSortByTmp(null)
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
             </MenuList>
           </Menu>
 
-          <Menu>
-            <MenuButton
-              as={Button}
-              marginRight="8px"
-              marginLeft="8px"
-              rightIcon={<ChevronDownIcon />}
-              borderRadius="md"
-              borderWidth="1px"
-              bg="white"
-              _hover={{ bg: "gray.400" }}
-              _expanded={{ bg: "blue.400" }}
-              _focus={{ boxShadow: "outline" }}
-            >
-              <span className="pl-8"> ترتيب حسب</span>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
-            </MenuList>
-          </Menu>
+          {/* <Menu closeOnSelect={false}>
+                    <MenuButton
+                      as={Button}
+                      marginRight="8px"
+                      marginLeft="8px"
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
+                      rightIcon={<ChevronDownIcon />}
+                    >
+                      <span className="pl-8">ترتيب حسب</span>
+                    </MenuButton>
+                    <MenuList padding={"24px"} width="257px">
+                      <div className="menu-select">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              ترتيب حسب الخطه
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            placeholder="فرز حسب"
+                            dir="ltr"
+                            name="sortBY"
+                            onChange={(e) => {
+                              setPlanIdTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            {PlansData?.plans?.map((item, index) => (
+                              <option id={index} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <div className="menu-select mt-24">
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color="white"
+                            bg="#194C81"
+                            type="submit"
+                            onClick={() => {
+                              setPlanId(planIdTmp);
+                            }}
+                          >
+                            تطبيق
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setPlanId(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            مسح
+                          </Button>
+                        </Stack>
+                      </div>
+                    </MenuList>
+                  </Menu> */}
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
