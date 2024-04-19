@@ -90,7 +90,7 @@ const UserEnterpraiseTable = () => {
   }, [PlansData]);
 
   useEffect(() => {
-    usersEnterPrisesRefetch();
+    setTimeout(()=>{usersEnterPrisesRefetch();},500)
   }, [
     currentPage,
     isOpenModalEdit,

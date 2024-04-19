@@ -37,7 +37,6 @@ function LoginForm() {
     validationSchema: loginValidation,
     onSubmit: (values) => {
       mutate({ username: values.username, password: values.password });
-      console.log(values);
       //nav('/home')
     },
   });
