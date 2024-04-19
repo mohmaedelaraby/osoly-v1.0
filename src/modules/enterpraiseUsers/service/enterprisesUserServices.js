@@ -3,8 +3,9 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all enterprises
 export const getEnterprisesUsers = (params) => {
-  const { pageNo, limit , sortDierction,sortBy } = params;
-  return api.get(`${apiUrl}dashboard/enterprises?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}&sortDierction=${sortDierction}`:``}`, {
+  const { pageNo, limit , sortDirection,sortBy ,planId} = params;
+  console.log(params)
+  return api.get(`${apiUrl}dashboard/enterprises?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}${planId?`&planId=${planId}`:``}`, {
   }).then(res => res.data.data)
 }
 

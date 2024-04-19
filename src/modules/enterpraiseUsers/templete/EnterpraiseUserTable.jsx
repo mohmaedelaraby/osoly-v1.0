@@ -17,6 +17,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -58,8 +59,15 @@ const UserEnterpraiseTable = () => {
     onOpen: onOpenModalEdit,
     onClose: onCloseModalEdit,
   } = useDisclosure();
+
+  //sorting and filtering local
+  const [sortByTmp, setSortByTmp] = useState();
+  const [planIdTmp, setPlanIdTmp] = useState();
+  const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+  //sorting and filtering param data
   const [sortBy, setSortBy] = useState();
-  const [sortDierction, setSortDierction] = useState("asc");
+  const [planId, setPlanId] = useState();
+  const [sortDirection, setSortDirection] = useState("asc");
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
@@ -70,8 +78,9 @@ const UserEnterpraiseTable = () => {
     {
       pageNo: currentPage,
       limit: limit,
-      sortBy:sortBy,
-      sortDierction:sortDierction
+      sortBy: sortBy,
+      sortDirection: sortDirection,
+      planId: planId,
     }
   );
 
@@ -82,8 +91,14 @@ const UserEnterpraiseTable = () => {
 
   useEffect(() => {
     usersEnterPrisesRefetch();
-    console.log("first")
-  }, [currentPage, isOpenModalEdit, isOpenModal , sortBy]);
+  }, [
+    currentPage,
+    isOpenModalEdit,
+    isOpenModal,
+    sortBy,
+    sortDirection,
+    planId,
+  ]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -170,7 +185,7 @@ const UserEnterpraiseTable = () => {
                     >
                       <span className="pl-8">فرز حسب</span>
                     </MenuButton>
-                    <MenuList padding={"24px"}>
+                    <MenuList padding={"24px"} width="257px">
                       <MenuItem>
                         <FormControl className="form__input__container">
                           <FormLabel>
@@ -179,8 +194,8 @@ const UserEnterpraiseTable = () => {
                             </Text>
                           </FormLabel>
                           <RadioGroup
-                            onChange={setSortDierction}
-                            value={sortDierction}
+                            onChange={setSortDirectionTmp}
+                            value={sortDirectionTmp}
                           >
                             <Stack direction="row">
                               <Radio value="asc">تصاعدي</Radio>
@@ -201,7 +216,7 @@ const UserEnterpraiseTable = () => {
                             dir="ltr"
                             name="sortBY"
                             onChange={(e) => {
-                              setSortBy(e.target.value);
+                              setSortByTmp(e.target.value);
                               setTimeout(() => {}, 0);
                             }}
                           >
@@ -209,12 +224,46 @@ const UserEnterpraiseTable = () => {
                           </Select>
                         </FormControl>
                       </div>
+                      <div className="menu-select mt-24">
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color="white"
+                            bg="#194C81"
+                            type="submit"
+                            onClick={() => {
+                              setSortDirection(sortDirectionTmp);
+                              setSortBy(sortByTmp);
+                            }}
+                          >
+                            تطبيق
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setSortDirection("asc");
+                              setSortBy(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            مسح
+                          </Button>
+                        </Stack>
+                      </div>
                     </MenuList>
                   </Menu>
 
-                  {/*  <Menu>
+                  <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
+                      marginRight="8px"
+                      marginLeft="8px"
                       bg={"white"}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
@@ -222,43 +271,63 @@ const UserEnterpraiseTable = () => {
                     >
                       <span className="pl-8">ترتيب حسب</span>
                     </MenuButton>
-                    <MenuList padding={"24px"}>
-                      <MenuItem> <ThemeProvider theme={MuiTheme}>
-                          <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">
-                            النوع
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              //value={age}
-                              label="النوع"
-                              //onChange={handleChange}
-                            >
-                              <MenuItem value={10}> الاسم</MenuItem>
-                              <MenuItem value={20}>الباقه</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </ThemeProvider></MenuItem>
-                      <MenuItem> <ThemeProvider theme={MuiTheme}>
-                          <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">
-                            النوع
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-label"
-                              id="demo-simple-select"
-                              //value={age}
-                              label="النوع"
-                              //onChange={handleChange}
-                            >
-                              <MenuItem value={10}> الاسم</MenuItem>
-                              <MenuItem value={20}>الباقه</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </ThemeProvider></MenuItem>
+                    <MenuList padding={"24px"} width="257px">
+                      <div className="menu-select">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              ترتيب حسب الخطه
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            placeholder="فرز حسب"
+                            dir="ltr"
+                            name="sortBY"
+                            onChange={(e) => {
+                              setPlanIdTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            {PlansData?.plans?.map((item, index) => (
+                              <option id={index} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <div className="menu-select mt-24">
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color="white"
+                            bg="#194C81"
+                            type="submit"
+                            onClick={() => {
+                              setPlanId(planIdTmp);
+                            }}
+                          >
+                            تطبيق
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setPlanId(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            مسح
+                          </Button>
+                        </Stack>
+                      </div>
                     </MenuList>
-                  </Menu> */}
+                  </Menu>
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
@@ -342,7 +411,17 @@ const UserEnterpraiseTable = () => {
                             </>
                           ))
                         ) : (
-                          <></>
+                          <>
+                            <div className="flex-center spinner-table">
+                              <Spinner
+                                thickness="4px"
+                                speed="0.65s"
+                                emptyColor="gray.200"
+                                color="blue.500"
+                                size="xl"
+                              />
+                            </div>
+                          </>
                         )}
                       </Tbody>
                     </Table>
