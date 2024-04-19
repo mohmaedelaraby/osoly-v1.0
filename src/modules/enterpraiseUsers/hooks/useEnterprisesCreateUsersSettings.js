@@ -14,8 +14,8 @@ export const useCreateUserSettings = () => {
                 toggleShow()
             } 
         },
-        onError: () => {
-            errorToast()
+        onError: (error) => {
+            errorToast(error.response.data.message)
         }
     });
     return {

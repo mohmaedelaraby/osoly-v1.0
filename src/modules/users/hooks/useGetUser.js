@@ -12,9 +12,9 @@ const useGetUser = (id) => {
     });
     const modifiedIsLoading = status === 'loading' || status === 'idle';
     return {
-        data:data,
-        isLoading: modifiedIsLoading,
-        refetch,
+        userData:data,
+        userIsLoading: modifiedIsLoading,
+        userRefetch:refetch,
     };
 };
 

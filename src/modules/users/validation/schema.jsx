@@ -12,7 +12,10 @@ export const userCreateValidation = Yup.object({
   firstNameAr: Yup.string().required("يجب ادخال اسمك الاول"),
   lastNameAr: Yup.string().required("يجب ادخال اسمك الاخير"),
   password: Yup.string().min(8).required("You should enter password"),
-  phoneNumber: Yup.string().required("You should enter phone number"),
+  phoneNumber: Yup.string().min(11).required("You should enter phone number"),
   role: Yup.string().required("You should enter role"),
   email: Yup.string().email().required("You should enter email"),
+  identityId: Yup.string().required("You should enter identity Number"),
 });
+
+

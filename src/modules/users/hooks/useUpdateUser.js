@@ -11,8 +11,8 @@ export const useUpdateUser = () => {
                 successToast()
             } 
         },
-        onError: () => {
-            errorToast()
+        onError: (error) => {
+            errorToast(error.response.data.message)
         }
     });
     return {

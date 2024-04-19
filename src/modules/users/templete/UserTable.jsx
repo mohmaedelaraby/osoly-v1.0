@@ -22,7 +22,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import useClosePopUps from "../../../store/useClosePopups";
 import useUsers from "../hooks/useUsers";
 import Pagination from "../../../components/shared/Pagination";
 import {
@@ -37,6 +36,7 @@ import EditUser from "./EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 function UserTable() {
+  const [selectedUser, setSelectedUser] = useState();
   const {
     isOpen: isOpenUserModal,
     onOpen: onOpenUserModal,
@@ -49,18 +49,12 @@ function UserTable() {
     onClose: onCloseUserModalEdit,
   } = useDisclosure();
 
-  const { show, toggleShow } = useClosePopUps();
   const openUserPopup = () => {
     onOpenUserModal();
-    if (show) {
-      toggleShow();
-    }
   };
-  const openUserEditPopup = () => {
+  const openUserEditPopup = (user) => {
+    setSelectedUser(user);
     onOpenUserModalEdit();
-    if (show) {
-      toggleShow();
-    }
   };
 
   const [currentUserPage, setCurrentUserPage] = useState(1);
@@ -76,11 +70,8 @@ function UserTable() {
   });
 
   useEffect(() => {
-    userDataReftech();
-    if (show && !userDataLodaing) {
-      userDataReftech();
-    }
-  }, [currentUserPage, show]);
+    setTimeout(()=>{userDataReftech()},500)
+  }, [currentUserPage, isOpenUserModal, isOpenUserModalEdit]);
 
   const handlePageUserChange = (page) => {
     setCurrentUserPage(page);
@@ -91,7 +82,7 @@ function UserTable() {
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
           <Button
-            rightIcon={<AddIcon/>}
+            rightIcon={<AddIcon />}
             className="page_container_table__header__btns__add"
             bg="#194C81"
             dir="rtl"
@@ -118,16 +109,18 @@ function UserTable() {
           </Menu>
 
           <Menu>
-            <MenuButton as={Button}
+            <MenuButton
+              as={Button}
               marginRight="8px"
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}>
+              borderRadius="md"
+              borderWidth="1px"
+              bg="white"
+              _hover={{ bg: "gray.400" }}
+              _expanded={{ bg: "blue.400" }}
+              _focus={{ boxShadow: "outline" }}
+            >
               <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
@@ -219,7 +212,7 @@ function UserTable() {
                             justifyContent="center"
                             bg={"#194C81"}
                             onClick={() => {
-                              openUserEditPopup();
+                              openUserEditPopup(item);
                             }}
                           ></Button>
                         </Stack>
@@ -240,7 +233,7 @@ function UserTable() {
         }
       </div>
 
-      <Modal isOpen={isOpenUserModal && !show} onClose={onCloseUserModal}>
+      <Modal isOpen={isOpenUserModal} onClose={onCloseUserModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
@@ -249,14 +242,15 @@ function UserTable() {
         </ModalContent>
       </Modal>
 
-      <Modal
-        isOpen={isOpenUserModalEdit && !show}
-        onClose={onCloseUserModalEdit}
-      >
+      <Modal isOpen={isOpenUserModalEdit} onClose={onCloseUserModalEdit}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
-            <EditUser onClose={onCloseUserModalEdit} />
+            <EditUser
+              onClose={onCloseUserModalEdit}
+              user={selectedUser}
+              id={selectedUser?.id}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
