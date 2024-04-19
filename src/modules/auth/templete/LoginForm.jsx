@@ -20,7 +20,7 @@ import whiteLogo from "../../../assets/images/whiteLogo.png";
 
 function LoginForm() {
   const [show, setShow] = useState(false);
-  const [removeReadOnly , setRemoveReadOnly]=useState(true)
+  const [removeReadOnly, setRemoveReadOnly] = useState(true);
   //const nav = useNavigate()
 
   const { mutate, isLoading } = useLoginMutation();
@@ -45,15 +45,21 @@ function LoginForm() {
     <>
       <div className="login_page">
         <div className="login_page_form">
-          <form onSubmit={formik.handleSubmit} className="login_form"  autoComplete="false">
+          <form
+            onSubmit={formik.handleSubmit}
+            className="login_form"
+            autoComplete="false"
+          >
             <div className="login__form__icon__text">مرحباً بك في أصولي</div>
-            <div className="login__form__icon__login_field">
+            <div className="login__form__icon__login_field mb-24">
               <Input
                 type="text"
                 name="username"
                 dir="rtl"
                 readOnly={removeReadOnly}
-                onFocus={()=>{setRemoveReadOnly(false)}}
+                onFocus={() => {
+                  setRemoveReadOnly(false);
+                }}
                 placeholder="البريد الإلكتروني"
                 className="login_form_input"
                 bg={"white"}
@@ -61,8 +67,16 @@ function LoginForm() {
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.username && !!formik.errors.username}
               ></Input>
-              
-              <div className="login_form_warn">
+
+              <div
+                className="login_form_warn"
+                style={{
+                  height:
+                    formik.touched.username && formik.errors.username
+                      ? "16px"
+                      : "0px",
+                }}
+              >
                 {formik.touched.username && formik.errors.username ? (
                   <Text color="#EE2E2E" fontSize="sm" className="">
                     {formik.errors.username}
@@ -84,7 +98,15 @@ function LoginForm() {
                 isInvalid={formik.touched.password && !!formik.errors.password}
               />
 
-              <div className="login_form_warn">
+              <div
+                className="login_form_warn"
+                style={{
+                  height:
+                    formik.touched.password && formik.errors.password
+                      ? "16px"
+                      : "0px",
+                }}
+              >
                 {formik.touched.password && formik.errors.password ? (
                   <Text color="#EE2E2E" fontSize="sm" className="">
                     {formik.errors.password}
@@ -93,9 +115,10 @@ function LoginForm() {
               </div>
             </div>
             <div className="login__form__icon__login_field_start ">
-            <div className="login_form_forget">نسيت كلمة المرور؟</div>
+              {/*             <div className="login_form_forget">نسيت كلمة المرور؟</div>
+               */}{" "}
             </div>
-           
+
             <div className="login__form__icon__login_field">
               <Button
                 className="login_form_btn"

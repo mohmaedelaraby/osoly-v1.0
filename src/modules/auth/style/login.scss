@@ -54,8 +54,9 @@
             .login__form__icon__login_field {
 
                 display: flex;
-                align-items: center;
+                align-items: flex-end;
                 justify-content: center;
+                flex-direction: column;
                 .login_form_forget {
                     color: #194C81;
                     text-align: right;
@@ -101,12 +102,10 @@
                 border-radius: 8px;
                 background: #FFF;
                 height: 56px;
-                margin-bottom: 32px;
             }
 
             .login_form_warn {
                 margin-top: 4px;
-                height: 16px;
             }
 
            
