@@ -7,8 +7,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
-  InputRightAddon,
   InputRightElement,
   Modal,
   ModalBody,
@@ -44,34 +42,30 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
   const initialValues = {
     name: "",
-    space: "",
     address: "",
+    unitsCount: "",
+    instrumentNumber: "",
     postalCode: "",
-    skNumber: "",
-    owner: "",
+    blockNumber: " ",
+    street: " ",
+    district: " ",
+    city: " ",
+    ownerId: " ",
+    image: "",
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
+      formik.values.ownerId=selectedOwnerId
       let data = {
-        ownerId: propOwenerId ? propOwenerId : parseInt(selectedOwnerId),
         ...values,
       };
-      mutate({ body: data });
+      console.log(data)
+      //mutate({ body: data });
     },
   });
-
-  const onUpload = () => {
-    document.getElementById("uploadFile").click();
-  };
-
-  const selectFile = () => {
-    const [file] = document.getElementById("uploadFile").files;
-    console.log(file);
-  };
-  const { show, toggleShow } = useClosePopUps();
 
   const {
     isOpen: isOpenUnitModal,
@@ -81,9 +75,6 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
   const openUnitPopup = () => {
     onOpenUnitModal();
-    if (show) {
-      toggleShow();
-    }
   };
 
   return (
@@ -99,7 +90,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             </div>
 
             <div className="form__input form__input__flex">
-              {!selectedImage ? (
+              {!formik.values.image ? (
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
                   <p className="form__input__flex_fileUpload_text">رفع صورة</p>
@@ -111,30 +102,37 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     type="file"
                     name="image"
                     accept=".png, .jpg, .jpeg"
-                    onChange={(event) => {
-                      console.log(event.target.files[0]);
-                      setSelectedImage(event.target.files[0]);
-                      //setSelectedLogo(event.target.files[0]);
-                    }}
+                    value={formik.values.image}
+                    onChange={formik.handleChange}
                   />
                 </div>
               ) : (
-                <div style={{padding:`${selectedImage ? '0px' : ''}` , borderRadius:'12px'}} className="form__input__flex_fileUpload">
+                <div
+                  style={{
+                    padding: `${formik.values.image ? "0px" : ""}`,
+                    borderRadius: "12px",
+                  }}
+                  className="form__input__flex_fileUpload"
+                >
                   <div className="form__input__flex_fileUpload_image">
                     <img
                       alt="not found"
                       width={"auto"}
                       height={"285px"}
-                      src={URL.createObjectURL(selectedImage)}
+                      src={formik.values.image}
                     />
                   </div>
                 </div>
               )}
-             
             </div>
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    اسم العقار
+                  </Text>
+                </FormLabel>
                 <Input
                   name="name"
                   size="lg"
@@ -159,44 +157,11 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
-                <InputGroup>
-                  <Input
-                    name="name"
-                    size="lg"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder="مساحة العقار   "
-                    _placeholder={{ color: "#77797E" }}
-                    value={formik.values.space}
-                    padding={"8px"}
-                    onChange={formik.handleChange}
-                    isInvalid={formik.touched.space && !!formik.errors.space}
-                  />
-                  <InputLeftElement
-                    color={"#77797E"}
-                    width={"100px"}
-                    height="100%"
-                    justifyContent="center"
-                    borderRadius={"12px"}
-                  >
-                    متر مربع
-                  </InputLeftElement>
-                </InputGroup>
-
-                <div className="form__input__container__warn">
-                  {formik.touched.space && formik.errors.space ? (
-                    <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.space}
-                    </Text>
-                  ) : null}
-                </div>
-              </FormControl>
-            </div>
-
-            <div className="form__input form__input__flex">
-              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">العنوان</Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="address"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
@@ -219,8 +184,82 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    مساحة العقار
+                  </Text>
+                </FormLabel>
+                <InputGroup>
+                  <Input
+                    name="unitsCount"
+                    size="lg"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder="مساحة العقار   "
+                    _placeholder={{ color: "#77797E" }}
+                    value={formik.values.unitsCount}
+                    padding={"8px"}
+                    onChange={formik.handleChange}
+                    isInvalid={formik.touched.unitsCount && !!formik.errors.unitsCount}
+                  />
+                  <InputRightElement
+                    color={"#77797E"}
+                    width={"100px"}
+                    height="100%"
+                    justifyContent="center"
+                    borderRadius={"12px"}
+                  >
+                    متر مربع
+                  </InputRightElement>
+                </InputGroup>
+
+                <div className="form__input__container__warn">
+                  {formik.touched.unitsCount && formik.errors.unitsCount ? (
+                    <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                      {formik.errors.unitsCount}
+                    </Text>
+                  ) : null}
+                </div>
+              </FormControl>
+            </div>
+
+            <div className="form__input form__input__flex mb-24">
+              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    مالك العقار
+                  </Text>
+                </FormLabel>
+                <Select
+                  height={"56px"}
+                  name="owner"
+                  dir="rtl"
+                  onChange={(e) => {
+                    setSelectedOwnerId(e.target.value)
+                    setTimeout(() => {}, 0);
+                  }}
+                >
+                  <option value={0}>المالك </option>
+                  {usersData?.users
+                    .filter((s) => s.role == USER_ROLES.OWNER)
+                    ?.map((i, index) => (
+                      <option value={i.id} key={index}>
+                        {i.firstNameAr} {i.id}
+                      </option>
+                    ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div className="form__input form__input__flex">
+              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    الرمز البريدي
+                  </Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="postalCode"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
@@ -243,53 +282,34 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               </FormControl>
 
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    رقم الصك
+                  </Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="instrumentNumber"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
                   placeholder=" رقم الصك"
                   _placeholder={{ color: "#77797E" }}
-                  value={formik.values.skNumber}
+                  value={formik.values.instrumentNumber}
                   onChange={formik.handleChange}
                   isInvalid={
-                    formik.touched.skNumber && !!formik.errors.skNumber
+                    formik.touched.instrumentNumber &&
+                    !!formik.errors.instrumentNumber
                   }
                 />
 
                 <div className="form__input__container__warn">
-                  {formik.touched.skNumber && formik.errors.skNumber ? (
+                  {formik.touched.instrumentNumber &&
+                  formik.errors.instrumentNumber ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.skNumber}
+                      {formik.errors.instrumentNumber}
                     </Text>
                   ) : null}
                 </div>
-              </FormControl>
-            </div>
-
-            <div className="form__input form__input__flex mb-24">
-              <FormControl className="form__input__container">
-                <Select
-                  height={"56px"}
-                  iconSize="0px"
-                  name="propertyOwner"
-                  value={formik.values.ownerId}
-                  dir="rtl"
-                  onChange={(e) => {
-                    formik.handleChange(e.target.value);
-                    setSelectedOwnerId(e.target.value);
-                    setTimeout(() => {}, 0);
-                  }}
-                >
-                  <option value={0}>المالك</option>
-                  {usersData?.users
-                    .filter((s) => s.role == USER_ROLES.OWNER)
-                    ?.map((i, index) => (
-                      <option value={i.id} key={index}>
-                        {i.firstNameAr}
-                      </option>
-                    ))}
-                </Select>
               </FormControl>
             </div>
 
@@ -297,7 +317,6 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               <div className="flex-between">
                 <div className="form__input__flex_text">الوحدات</div>
                 <div className="form__input__flex_text">
-                  {" "}
                   <Button
                     rightIcon={<AddIcon />}
                     bg="white"
@@ -339,7 +358,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
         </div>
       </div>
 
-      <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
+      <Modal isOpen={isOpenUnitModal} onClose={onCloseUnitModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody>

@@ -7,7 +7,7 @@ export const useToastMessage = () => {
         toast({
             description,
             status: 'success',
-            isClosable: true
+            isClosable: true,
         })
     }
 
@@ -15,7 +15,7 @@ export const useToastMessage = () => {
         toast({
             description,
             status: 'error',
-            isClosable: true
+            isClosable: true,
         })
     }
     const handleInfo = (description = "") => {

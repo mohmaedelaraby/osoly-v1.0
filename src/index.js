@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { RootRoutes } from './routes/routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './i18n/i18n.js'
@@ -28,7 +28,7 @@ const MuiTheme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
-    <ChakraProvider>
+    <ChakraProvider  theme={extendTheme({ direction: "rtl" })}>
       <BrowserRouter>
         <RootRoutes />
       </BrowserRouter>
