@@ -40,6 +40,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 function PropertiesTable() {
   const { show, toggleShow } = useClosePopUps();
+  const [selectId,setSelectedId]=useState()
   const [isGrid, setIsGrid] = useState(false);
 
   const {
@@ -79,11 +80,9 @@ function PropertiesTable() {
       toggleShow();
     }
   };
-  const openPropertyEditPopup = () => {
+  const openPropertyEditPopup = (user) => {
     onOpenProperyModalEdit();
-    if (show) {
-      toggleShow();
-    }
+    setSelectedId(user.id)
   };
   return (
     <>
@@ -232,7 +231,7 @@ function PropertiesTable() {
                               justifyContent="center"
                               bg={"#194C81"}
                               onClick={() => {
-                                openPropertyEditPopup();
+                                openPropertyEditPopup(item);
                               }}
                             ></Button>
                           </Stack>
@@ -281,13 +280,13 @@ function PropertiesTable() {
         </ModalContent>
       </Modal>
       <Modal
-        isOpen={isOpenProperyModalEdit && !show}
+        isOpen={isOpenProperyModalEdit}
         onClose={onCloseProperyModalEdit}
       >
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding={'0px'}>
-            <EditProperty  onClose={onCloseProperyModalEdit}/>
+            <EditProperty  onClose={onCloseProperyModalEdit} id={selectId}/>
           </ModalBody>
         </ModalContent>
       </Modal>

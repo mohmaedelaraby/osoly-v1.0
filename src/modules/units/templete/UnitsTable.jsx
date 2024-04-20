@@ -36,7 +36,6 @@ import {
   DragHandleIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
 import CreateUnit from "./CreateUnit";
 import useClosePopUps from "../../../store/useClosePopups";
 import useUnits from "../hooks/useUnits";
@@ -45,7 +44,7 @@ import CardWithImg from "../../../components/Cards/CardWithImg";
 import EditUnit from "./EditUnit";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-const UnitsTable = ({ data, propOwenerId, propPropertyId }) => {
+const UnitsTable = ({}) => {
   const {
     isOpen: isOpenUnitModal,
     onOpen: onOpenUnitModal,

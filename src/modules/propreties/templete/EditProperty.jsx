@@ -3,10 +3,13 @@ import {
   Card,
   CardBody,
   FormControl,
+ 
   FormLabel,
+ 
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalContent,
@@ -18,32 +21,34 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { propertyEditValidation } from "../validation/schema";
-import UnitsTable from "../../units/templete/UnitsTable";
 import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
 import useGetPropertey from "../hooks/useGetPropertey";
 import useUsers from "../../users/hooks/useUsers";
 import { USER_ROLES } from "../../../enums/UserRoles";
-import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
 import useClosePopUps from "../../../store/useClosePopups";
 import CreateUnit from "../../units/templete/CreateUnit";
+import close from "../../../assets/icons-svgs/close.svg";
+
 
 const EditProperty = ({ id , onClose }) => {
  // const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-
-  const { usersData, usersRefetch } = useUsers({
-    pageNo: 1,
-    limit: 10000,
-  });
+ const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+ const [selectedImage, setSelectedImage] = useState(null);
+ const { usersData, usersRefetch } = useUsers({
+   pageNo: 1,
+   limit: 1000,
+   count: 12,
+ });
+ useEffect(() => {
+   usersRefetch();
+ }, []);
 
   const { mutate } = useUpdatePropertey();
   const { data, isLoading, refetch } = useGetPropertey(id);
+
   useEffect(() => {
     refetch();
     usersRefetch();
@@ -51,30 +56,37 @@ const EditProperty = ({ id , onClose }) => {
 
   useEffect(() => {
     if (data) {
+      console.log(data)
       setSelectedOwnerId(data?.ownerId);
     }
   }, [data]);
 
-  const initialValues = {
-    name: "",
-    space: "",
-    address: "",
-    postalCode: "",
-    skNumber: "",
-    owner: "",
+ const initialValues = {
+    name: data?.name,
+    address: data?.address,
+    unitsCount:  data?.unitsCount,
+    instrumentNumber:  data?.instrumentNumber,
+    postalCode:  data?.postalCode,
+    blockNumber:  data?.blockNumber,
+    street:  data?.street,
+    district:  data?.district,
+    city:  data?.city,
+    ownerId:  data?.ownerId,
+    image:  data?.image,
   };
 
   const formik = useFormik({
+    enableReinitialize:true,
     initialValues: initialValues,
     validationSchema: propertyEditValidation,
     onSubmit: (values) => {
       let data = { ...values };
+      console.log(data)
 
       //mutate({id:id? id:data?.id ,body:data});
       //mutate({ id: data?.id, body: values });
     },
   });
-  const { show, toggleShow } = useClosePopUps();
   const {
     isOpen: isOpenUnitModal,
     onOpen: onOpenUnitModal,
@@ -83,19 +95,21 @@ const EditProperty = ({ id , onClose }) => {
 
   const openUnitPopup = () => {
     onOpenUnitModal();
-    if (show) {
-      toggleShow();
-    }
   };
   return (
     <>
-      <div className="from__card from__card__full">
+       <div className="from__card from__card__full">
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
-            
+            <div className="form__header">
+              <div className="form__header_text">إضافة عقار جديد</div>
+              <div className="form__header_close">
+                <img src={close} alt="" width="40px" onClick={onClose} />
+              </div>
+            </div>
 
-            <div className="form__input form__input__flex mt-24">
-            {!selectedImage ? (
+            <div className="form__input form__input__flex">
+              {!selectedImage ? (
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
                   <p className="form__input__flex_fileUpload_text">رفع صورة</p>
@@ -107,15 +121,17 @@ const EditProperty = ({ id , onClose }) => {
                     type="file"
                     name="image"
                     accept=".png, .jpg, .jpeg"
-                    onChange={(event) => {
-                      console.log(event.target.files[0]);
-                      setSelectedImage(event.target.files[0]);
-                      //setSelectedLogo(event.target.files[0]);
-                    }}
+                    onChange={(e)=>{setSelectedImage(e.target.files[0])}}
                   />
                 </div>
               ) : (
-                <div style={{padding:`${selectedImage ? '0px' : ''}` , borderRadius:'12px'}} className="form__input__flex_fileUpload">
+                <div
+                  style={{
+                    padding: `${selectedImage ? "0px" : ""}`,
+                    borderRadius: "12px",
+                  }}
+                  className="form__input__flex_fileUpload"
+                >
                   <div className="form__input__flex_fileUpload_image">
                     <img
                       alt="not found"
@@ -130,6 +146,11 @@ const EditProperty = ({ id , onClose }) => {
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    اسم العقار
+                  </Text>
+                </FormLabel>
                 <Input
                   name="name"
                   size="lg"
@@ -154,44 +175,11 @@ const EditProperty = ({ id , onClose }) => {
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
-                <InputGroup>
-                  <Input
-                    name="name"
-                    size="lg"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder="مساحة العقار   "
-                    _placeholder={{ color: "#77797E" }}
-                    value={formik.values.space}
-                    padding={"8px"}
-                    onChange={formik.handleChange}
-                    isInvalid={formik.touched.space && !!formik.errors.space}
-                  />
-                  <InputLeftElement
-                    color={"#77797E"}
-                    width={"100px"}
-                    height="100%"
-                    justifyContent="center"
-                    borderRadius={"12px"}
-                  >
-                    متر مربع
-                  </InputLeftElement>
-                </InputGroup>
-
-                <div className="form__input__container__warn">
-                  {formik.touched.space && formik.errors.space ? (
-                    <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.space}
-                    </Text>
-                  ) : null}
-                </div>
-              </FormControl>
-            </div>
-
-            <div className="form__input form__input__flex">
-              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">العنوان</Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="address"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
@@ -214,8 +202,82 @@ const EditProperty = ({ id , onClose }) => {
 
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    مساحة العقار
+                  </Text>
+                </FormLabel>
+                <InputGroup>
+                  <Input
+                    name="unitsCount"
+                    size="lg"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder="مساحة العقار   "
+                    _placeholder={{ color: "#77797E" }}
+                    value={formik.values.unitsCount}
+                    padding={"8px"}
+                    onChange={formik.handleChange}
+                    isInvalid={formik.touched.unitsCount && !!formik.errors.unitsCount}
+                  />
+                  <InputRightElement
+                    color={"#77797E"}
+                    width={"100px"}
+                    height="100%"
+                    justifyContent="center"
+                    borderRadius={"12px"}
+                  >
+                    متر مربع
+                  </InputRightElement>
+                </InputGroup>
+
+                <div className="form__input__container__warn">
+                  {formik.touched.unitsCount && formik.errors.unitsCount ? (
+                    <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                      {formik.errors.unitsCount}
+                    </Text>
+                  ) : null}
+                </div>
+              </FormControl>
+            </div>
+
+            <div className="form__input form__input__flex mb-24">
+              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    مالك العقار
+                  </Text>
+                </FormLabel>
+                <Select
+                  height={"56px"}
+                  name="owner"
+                  dir="rtl"
+                  onChange={(e) => {
+                    setSelectedOwnerId(e.target.value)
+                    setTimeout(() => {}, 0);
+                  }}
+                >
+                  <option value={0}>المالك </option>
+                  {usersData?.users
+                    .filter((s) => s.role == USER_ROLES.OWNER)
+                    ?.map((i, index) => (
+                      <option value={i.id} key={index}>
+                        {i.firstNameAr} {i.id}
+                      </option>
+                    ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div className="form__input form__input__flex">
+              <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    الرمز البريدي
+                  </Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="postalCode"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
@@ -238,53 +300,34 @@ const EditProperty = ({ id , onClose }) => {
               </FormControl>
 
               <FormControl className="form__input__container">
+                <FormLabel>
+                  <Text className="form__input__container__label">
+                    رقم الصك
+                  </Text>
+                </FormLabel>
                 <Input
-                  name="name"
+                  name="instrumentNumber"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
                   placeholder=" رقم الصك"
                   _placeholder={{ color: "#77797E" }}
-                  value={formik.values.skNumber}
+                  value={formik.values.instrumentNumber}
                   onChange={formik.handleChange}
                   isInvalid={
-                    formik.touched.skNumber && !!formik.errors.skNumber
+                    formik.touched.instrumentNumber &&
+                    !!formik.errors.instrumentNumber
                   }
                 />
 
                 <div className="form__input__container__warn">
-                  {formik.touched.skNumber && formik.errors.skNumber ? (
+                  {formik.touched.instrumentNumber &&
+                  formik.errors.instrumentNumber ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.skNumber}
+                      {formik.errors.instrumentNumber}
                     </Text>
                   ) : null}
                 </div>
-              </FormControl>
-            </div>
-
-            <div className="form__input form__input__flex mb-24">
-              <FormControl className="form__input__container">
-                <Select
-                  height={"56px"}
-                  iconSize="0px"
-                  name="propertyOwner"
-                  value={formik.values.ownerId}
-                  dir="rtl"
-                  onChange={(e) => {
-                    formik.handleChange(e.target.value);
-                    setSelectedOwnerId(e.target.value);
-                    setTimeout(() => {}, 0);
-                  }}
-                >
-                  <option value={0}>المالك</option>
-                  {usersData?.users
-                    .filter((s) => s.role == USER_ROLES.OWNER)
-                    ?.map((i, index) => (
-                      <option value={i.id} key={index}>
-                        {i.firstNameAr}
-                      </option>
-                    ))}
-                </Select>
               </FormControl>
             </div>
 
@@ -292,7 +335,6 @@ const EditProperty = ({ id , onClose }) => {
               <div className="flex-between">
                 <div className="form__input__flex_text">الوحدات</div>
                 <div className="form__input__flex_text">
-                  {" "}
                   <Button
                     rightIcon={<AddIcon />}
                     bg="white"
@@ -309,18 +351,10 @@ const EditProperty = ({ id , onClose }) => {
               </div>
             </div>
 
-            <div className="formWithTable_container__table">
-              <Card>
-                <Card>
-                  <CardBody>
-                    {/*   <UnitsTable
-                        data={units}
-                        propOwenerId={owenerId ? owenerId : data?.ownerId}
-                        propPropertyId={data?.id}
-                      /> */}
-                  </CardBody>
-                </Card>
-              </Card>
+            <div className="form__input form__input__flex">
+              <div className="flex-between">
+                
+              </div>
             </div>
 
             <div className="form__btn__container">
@@ -346,13 +380,13 @@ const EditProperty = ({ id , onClose }) => {
             </div>
           </form>
         </div>
-        </div>
+      </div>
 
-      <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
+      <Modal isOpen={isOpenUnitModal} onClose={onCloseUnitModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody padding={'0px'}>
-            <CreateUnit />
+          <ModalBody>
+            <CreateUnit onClose={onCloseUnitModal} />
           </ModalBody>
         </ModalContent>
       </Modal>

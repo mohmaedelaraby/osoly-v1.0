@@ -24,7 +24,6 @@ import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
-import useClosePopUps from "../../../store/useClosePopups";
 import CreateUnit from "../../units/templete/CreateUnit";
 
 const CreateProperty = ({ onClose, propOwenerId }) => {
@@ -330,6 +329,12 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     <span className="pl-8"> إضافة جديد</span>
                   </Button>
                 </div>
+              </div>
+            </div>
+
+            <div className="form__input form__input__flex">
+              <div className="flex-between">
+                
               </div>
             </div>
 
