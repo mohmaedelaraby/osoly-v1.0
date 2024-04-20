@@ -6,16 +6,16 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import "../../../assets/styels/components/Table.scss";
-import { useNavigate } from "react-router-dom";
 import money from "../../../assets/icons-svgs/money.svg";
 import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import UserTable from "./UserTable";
 import OwnerTable from "../../owners/templete/OwnerTable";
 
-const UserComponent = ({ data }) => {
+const UserComponent = () => {
+
   const CardsDemo = [
     {
       img: money,
@@ -63,7 +63,7 @@ const UserComponent = ({ data }) => {
 
           <div className="page_container_table">
             <Card>
-              <Tabs>
+              <Tabs isLazy>
                 <TabList>
                   <Tab padding={'16px'}>المستأجرين</Tab>
                   <Tab padding={'16px'}>ملاك العقار</Tab>
@@ -71,11 +71,11 @@ const UserComponent = ({ data }) => {
 
                 <TabPanels>
                   <TabPanel>
-                    <UserTable></UserTable>
+                    <UserTable switchTo={true}></UserTable>
                   </TabPanel>
 
                   <TabPanel>
-                    <OwnerTable></OwnerTable>
+                    <OwnerTable switchTo={true}></OwnerTable>
                   </TabPanel>
                 </TabPanels>
               </Tabs>

@@ -41,7 +41,7 @@ import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-function UserTable() {
+function UserTable({switchTo}) {
   const [selectedUser, setSelectedUser] = useState();
   const {
     isOpen: isOpenUserModal,
@@ -111,7 +111,9 @@ function UserTable() {
     setTimeout(() => {
       userDataReftech();
     }, 500);
+    console.log(switchTo)
   }, [
+    switchTo,
     currentUserPage,
     isOpenUserModal,
     isOpenUserModalEdit,

@@ -42,7 +42,7 @@ import CreateUser from "../../users/templete/CreateUser";
 import EditUser from "../../users/templete/EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-const OwnerTable = ({ data }) => {
+const OwnerTable = ({ switchTo }) => {
   const [selectedUser, setSelectedUser] = useState();
 
   //sorting and filtering local
@@ -129,7 +129,9 @@ const OwnerTable = ({ data }) => {
     setTimeout(() => {
       ownerDataReftech();
     }, 500);
+    console.log(switchTo)
   }, [
+    switchTo,
     currentOwnerPage,
     isOpenOwnerEditModal,
     isOpenOwnerModal,
