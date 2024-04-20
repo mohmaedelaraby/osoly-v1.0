@@ -6,7 +6,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import "../../../assets/styels/components/Table.scss";
 import money from "../../../assets/icons-svgs/money.svg";
 import user from "../../../assets/images/user.png";
