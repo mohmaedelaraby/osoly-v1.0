@@ -75,9 +75,19 @@ function UserTable() {
 
   const [sortByTmp, setSortByTmp] = useState(null);
   const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+
+  const [phoneNumberTmp, setPhoneNumberTmp] = useState(null);
+  const [emailTmp, setEmailTmp] = useState(null);
+  const [identityIdTmp, setIdentityIdTmp] = useState(null);
+  const [contractNumberTmp, setContractNumberTmp] = useState(null);
   //sorting and filtering param data
   const [sortBy, setSortBy] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
+
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [identityId, setIdentityId] = useState(null);
+  const [contractNumber, setContractNumber] = useState(null);
 
   const [currentUserPage, setCurrentUserPage] = useState(1);
   const userlimit = 10;
@@ -91,6 +101,10 @@ function UserTable() {
     limit: userlimit,
     sortDirection: sortDirection,
     sortBy: sortBy,
+    phoneNumber: phoneNumber,
+    email: email,
+    identityId: identityId,
+    contractNumber: contractNumber,
   });
 
   useEffect(() => {
@@ -103,6 +117,10 @@ function UserTable() {
     isOpenUserModalEdit,
     sortBy,
     sortDirection,
+    phoneNumber,
+    email,
+    identityId,
+    contractNumber,
   ]);
 
   const handlePageUserChange = (page) => {
@@ -119,8 +137,8 @@ function UserTable() {
             bg="#194C81"
             dir="rtl"
             onClick={() => {
-              setSortByTmp(null)
-              setSortByTmp(null)
+              setSortByTmp(null);
+              setSortByTmp(null);
               openUserPopup();
             }}
           >
@@ -164,7 +182,6 @@ function UserTable() {
                       فرز حسب
                     </Text>
                   </FormLabel>
-                  {sortByTmp}
                   <Select
                     dir="ltr"
                     name="sortBY"
@@ -202,7 +219,7 @@ function UserTable() {
                       setSortDirection("asc");
                       setSortDirectionTmp("asc");
                       setSortBy(null);
-                      setSortByTmp(null)
+                      setSortByTmp(null);
                     }}
                     padding="0px 16px"
                     color={"#010B38"}
@@ -215,75 +232,129 @@ function UserTable() {
             </MenuList>
           </Menu>
 
-          {/* <Menu closeOnSelect={false}>
-                    <MenuButton
-                      as={Button}
-                      marginRight="8px"
-                      marginLeft="8px"
-                      bg={"white"}
-                      border={"1px solid #C8C9CC"}
-                      borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}
-                    >
-                      <span className="pl-8">ترتيب حسب</span>
-                    </MenuButton>
-                    <MenuList padding={"24px"} width="257px">
-                      <div className="menu-select">
-                        <FormControl className="form__input__container">
-                          <FormLabel>
-                            <Text className="form__input__container__label">
-                              ترتيب حسب الخطه
-                            </Text>
-                          </FormLabel>
-                          <Select
-                            placeholder="فرز حسب"
-                            dir="ltr"
-                            name="sortBY"
-                            onChange={(e) => {
-                              setPlanIdTmp(e.target.value);
-                              setTimeout(() => {}, 0);
-                            }}
-                          >
-                            {PlansData?.plans?.map((item, index) => (
-                              <option id={index} value={item.id}>
-                                {item.name}
-                              </option>
-                            ))}
-                          </Select>
-                        </FormControl>
-                      </div>
-                      <div className="menu-select mt-24">
-                        <Stack
-                          direction="row"
-                          width="100%"
-                          justify="space-between"
-                        >
-                          <Button
-                            padding="0px 16px"
-                            variant="solid"
-                            color="white"
-                            bg="#194C81"
-                            type="submit"
-                            onClick={() => {
-                              setPlanId(planIdTmp);
-                            }}
-                          >
-                            تطبيق
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              setPlanId(null);
-                            }}
-                            padding="0px 16px"
-                            color={"#010B38"}
-                            variant="outline"
-                          >
-                            مسح
-                          </Button>
-                        </Stack>
-                      </div>
-                    </MenuList>
-                  </Menu> */}
+          <Menu closeOnSelect={false}>
+            <MenuButton
+              as={Button}
+              marginRight="8px"
+              marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
+              rightIcon={<ChevronDownIcon />}
+            >
+              <span className="pl-8">ترتيب حسب</span>
+            </MenuButton>
+            <MenuList padding={"24px"} width="257px">
+              <div className="menu-select">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم التليفون
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setPhoneNumberTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب البريد الإلكتروني
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setEmailTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم العقد
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setContractNumberTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم الهيئه
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setIdentityIdTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <MenuItem marginTop={"24px"} closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setPhoneNumber(phoneNumberTmp);
+                      setEmail(emailTmp);
+                      setContractNumber(contractNumberTmp);
+                      setIdentityId(identityIdTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setPhoneNumber("");
+                      setEmail("");
+                      setContractNumber("");
+                      setIdentityId("");
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
