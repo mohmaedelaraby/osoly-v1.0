@@ -391,7 +391,7 @@ function UserTable() {
             <Tbody className="table_body">
               {usersDataType &&
                 usersDataType?.users
-                  ?.filter((i) => (i.role = USER_ROLES.TENANT))
+                  ?.filter((i) => i.role === USER_ROLES.TENANT)
                   .map((item, index) => (
                     <Tr
                       key={index}
@@ -399,7 +399,7 @@ function UserTable() {
                       onClick={() => {}}
                     >
                       <Td className="table_body_row_item">
-                        {item.firstNameAr}
+                        {item.firstNameAr} {item.role}
                       </Td>
                       <Td className="table_body_row_item">-</Td>
                       <Td className="table_body_row_item">
@@ -463,7 +463,10 @@ function UserTable() {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
-            <CreateUser onClose={onCloseUserModal} />
+            <CreateUser
+              onClose={onCloseUserModal}
+              userRule={USER_ROLES.TENANT}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -474,7 +477,7 @@ function UserTable() {
           <ModalBody padding="0px">
             <EditUser
               onClose={onCloseUserModalEdit}
-              user={selectedUser}
+              userRule={USER_ROLES.TENANT}
               id={selectedUser?.id}
             />
           </ModalBody>

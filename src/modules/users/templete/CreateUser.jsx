@@ -17,7 +17,7 @@ import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-const CreateUser = ({ onClose }) => {
+const CreateUser = ({ onClose , userRule }) => {
   const [showpassword, setShowPassword] = useState(false);
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
@@ -31,7 +31,7 @@ const CreateUser = ({ onClose }) => {
     phoneNumber: "",
     email: "",
     identityId: "",
-    role: USER_ROLES.TENANT,
+    role: userRule,
   };
 
   const formik = useFormik({
@@ -48,7 +48,9 @@ const CreateUser = ({ onClose }) => {
       <div className="from__card from__card__full">
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
-            <div className="form__header_text">إضافة مستأجر جديد</div>
+            <div className="form__header_text">
+              {userRule == USER_ROLES.OWNER ? ('اضافه مالك جديد'):('اضافه مستاجر جديد')}  
+            </div>
             <div className="form__header_close">
               <img src={close} alt="" width="40px" onClick={onClose} />
             </div>

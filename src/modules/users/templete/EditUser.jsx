@@ -17,7 +17,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import useGetUser from "../hooks/useGetUser";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 
-const EditUser = ({ onClose, id, user }) => {
+const EditUser = ({ onClose, id, userRule }) => {
   const [showpassword, setShowPassword] = useState(false);
 
   const {
@@ -41,7 +41,7 @@ const EditUser = ({ onClose, id, user }) => {
     phoneNumber: usersData?.phoneNumber,
     email: usersData?.email,
     identityId: usersData?.identityId,
-    role: USER_ROLES.TENANT,
+    role: userRule,
   };
 
   const formik = useFormik({
@@ -57,9 +57,9 @@ const EditUser = ({ onClose, id, user }) => {
           firstNameAr: values.firstNameAr,
           lastNameAr: " ",
         },
-      }
-      mutate(sentData)
-      onClose()
+      };
+      mutate(sentData);
+      onClose();
     },
   });
 
@@ -69,7 +69,9 @@ const EditUser = ({ onClose, id, user }) => {
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
-              <div className="form__header_text">تعديل مستأجر جديد</div>
+              <div className="form__header_text">
+              {userRule == USER_ROLES.OWNER ? ('تعديل مالك جديد'):('تعديل مستاجر جديد')} 
+              </div>
               <div className="form__header_close">
                 <img src={close} alt="" width="40px" onClick={onClose} />
               </div>

@@ -1,8 +1,7 @@
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,9 +11,12 @@ import {
   MenuList,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -27,33 +29,71 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
-import { AddIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import CreateOwner from "./CreateOwner";
-import useClosePopUps from "../../../store/useClosePopups";
+import {
+  AddIcon,
+  ChevronDownIcon,
+  DeleteIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import useUsers from "../../users/hooks/useUsers";
 import Pagination from "../../../components/shared/Pagination";
+import CreateUser from "../../users/templete/CreateUser";
+import EditUser from "../../users/templete/EditUser";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 const OwnerTable = ({ data }) => {
+  const [selectedUser, setSelectedUser] = useState();
+
+  //sorting and filtering local
+  const sortItems = [
+    "phoneNumber",
+    "email",
+    "phoneNumber",
+    "firstNameEn",
+    "lastNameEn",
+    "firstNameAr",
+    "lastNameAr",
+  ];
+
+  const [sortByTmp, setSortByTmp] = useState(null);
+  const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+
+  const [phoneNumberTmp, setPhoneNumberTmp] = useState(null);
+  const [emailTmp, setEmailTmp] = useState(null);
+  const [identityIdTmp, setIdentityIdTmp] = useState(null);
+  const [contractNumberTmp, setContractNumberTmp] = useState(null);
+  //sorting and filtering param data
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [identityId, setIdentityId] = useState(null);
+  const [contractNumber, setContractNumber] = useState(null);
   const {
     isOpen: isOpenOwnerModal,
     onOpen: onOpenOwnerModal,
     onClose: onCloseOwnerModal,
   } = useDisclosure();
-
-  const { show, toggleShow } = useClosePopUps();
+  const {
+    isOpen: isOpenOwnerEditModal,
+    onOpen: onOpenOwnerEditModal,
+    onClose: onCloseOwnerEditModal,
+  } = useDisclosure();
 
   const openOwnerPopup = () => {
     onOpenOwnerModal();
-    if (show) {
-      toggleShow();
-    }
+  };
+  const openOwnerEditPopup = (user) => {
+    onOpenOwnerEditModal();
+    setSelectedUser(user);
   };
 
   //owner fetch data
   const [currentOwnerPage, setCurrentOwnerPage] = useState(1);
   const ownerlimit = 10;
+
   const {
     usersData: ownerDataType,
     usersisLoading: ownerDataLodaing,
@@ -61,14 +101,45 @@ const OwnerTable = ({ data }) => {
   } = useUsers({
     pageNo: currentOwnerPage,
     limit: ownerlimit,
+    sortDirection: sortDirection,
+    sortBy: sortBy,
+    phoneNumber: phoneNumber,
+    email: email,
+    identityId: identityId,
+    contractNumber: contractNumber,
   });
 
   useEffect(() => {
-    ownerDataReftech();
-    if (show && !ownerDataLodaing) {
+    setTimeout(() => {
       ownerDataReftech();
-    }
-  }, [currentOwnerPage, show]);
+    }, 500);
+  }, [
+    currentOwnerPage,
+    isOpenOwnerEditModal,
+    isOpenOwnerModal,
+    sortBy,
+    sortDirection,
+    phoneNumber,
+    email,
+    identityId,
+    contractNumber,
+  ]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ownerDataReftech();
+    }, 500);
+  }, [
+    currentOwnerPage,
+    isOpenOwnerEditModal,
+    isOpenOwnerModal,
+    sortBy,
+    sortDirection,
+    phoneNumber,
+    email,
+    identityId,
+    contractNumber,
+  ]);
 
   const handlePageOwnerChange = (page) => {
     setCurrentOwnerPage(page);
@@ -77,7 +148,7 @@ const OwnerTable = ({ data }) => {
     <>
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
-        <Button
+          <Button
             rightIcon={<AddIcon />}
             className="page_container_table__header__btns__add"
             bg="#194C81"
@@ -88,39 +159,216 @@ const OwnerTable = ({ data }) => {
           >
             <span className="pl-8"> إضافة جديد</span>
           </Button>
-          <Menu>
+
+          <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
               marginRight="8px"
               marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8"> فرز حسب</span>
+              <span className="pl-8">فرز حسب</span>
             </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
+            <MenuList padding={"24px"} width="257px">
+              <MenuItem>
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      نوع الفرز
+                    </Text>
+                  </FormLabel>
+                  <RadioGroup
+                    onChange={setSortDirectionTmp}
+                    value={sortDirectionTmp}
+                  >
+                    <Stack direction="row">
+                      <Radio value="asc">تصاعدي</Radio>
+                      <Radio value="desc">تنازلي</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              </MenuItem>
+              <div className="menu-select mb-24">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      فرز حسب
+                    </Text>
+                  </FormLabel>
+                  <Select
+                    dir="ltr"
+                    name="sortBY"
+                    onChange={(e) => {
+                      setSortByTmp(e.target.value);
+                      setTimeout(() => {}, 0);
+                    }}
+                  >
+                    <option value={null}>فرز حسب</option>
+                    {sortItems.map((item, index) => (
+                      <option id={index} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <MenuItem closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setSortDirection(sortDirectionTmp);
+                      setSortBy(sortByTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setSortDirection("asc");
+                      setSortDirectionTmp("asc");
+                      setSortBy(null);
+                      setSortByTmp(null);
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
             </MenuList>
           </Menu>
 
-          <Menu>
-            <MenuButton as={Button}
+          <Menu closeOnSelect={false}>
+            <MenuButton
+              as={Button}
               marginRight="8px"
               marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}>
-              <span className="pl-8"> ترتيب حسب</span>
+            >
+              <span className="pl-8">ترتيب حسب</span>
             </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
+            <MenuList padding={"24px"} width="257px">
+              <div className="menu-select">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم التليفون
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setPhoneNumberTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب البريد الإلكتروني
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setEmailTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم العقد
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setContractNumberTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <div className="menu-select mt-8">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      ترتيب حسب رقم الهيئه
+                    </Text>
+                  </FormLabel>
+                  <Input
+                    name="subTitle"
+                    type="text"
+                    className="form__input__container__input"
+                    placeholder=""
+                    onChange={(e) => {
+                      setIdentityIdTmp(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+
+              <MenuItem marginTop={"24px"} closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setPhoneNumber(phoneNumberTmp);
+                      setEmail(emailTmp);
+                      setContractNumber(contractNumberTmp);
+                      setIdentityId(identityIdTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setPhoneNumber("");
+                      setEmail("");
+                      setContractNumber("");
+                      setIdentityId("");
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -151,12 +399,13 @@ const OwnerTable = ({ data }) => {
                 <Th className="table_header_item">رقم الجوال</Th>
                 <Th className="table_header_item">عقدد العقارات</Th>
                 <Th className="table_header_item">رقم عقد الوساطة</Th>
+                <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>
             <Tbody className="table_body">
               {ownerDataType &&
                 ownerDataType?.users
-                  ?.filter((i) => (i.role = USER_ROLES.OWNER))
+                  ?.filter((i) => i.role === USER_ROLES.OWNER)
                   .map((item, index) => (
                     <Tr
                       key={index}
@@ -164,7 +413,7 @@ const OwnerTable = ({ data }) => {
                       onClick={() => {}}
                     >
                       <Td className="table_body_row_item">
-                        {item.firstNameAr}
+                        {item.firstNameAr} {item.role}
                       </Td>
                       <Td className="table_body_row_item">-</Td>
                       <Td className="table_body_row_item">{item.email}</Td>
@@ -175,6 +424,38 @@ const OwnerTable = ({ data }) => {
                         {item?.ownedProperties?.length}
                       </Td>
                       <Td className="table_body_row_item">-</Td>
+                      <Td className="table_body_row_item_btns">
+                        <Stack
+                          alignItems={"center"}
+                          direction={"row"}
+                          spacing={4}
+                        >
+                          <Button
+                            className="table_body_row_item_btns_deletebtn"
+                            width={"25%"}
+                            leftIcon={<DeleteIcon />}
+                            color="white"
+                            variant="solid"
+                            bg={"#CC3636"}
+                            alignItems="center"
+                            justifyContent="center"
+                            onClick={() => {}}
+                          ></Button>
+                          <Button
+                            className="table_body_row_item_btns_editbtn"
+                            width={"25%"}
+                            leftIcon={<EditOutlinedIcon />}
+                            color="white"
+                            variant="solid"
+                            alignItems="center"
+                            justifyContent="center"
+                            bg={"#194C81"}
+                            onClick={() => {
+                              openOwnerEditPopup(item);
+                            }}
+                          ></Button>
+                        </Stack>
+                      </Td>
                     </Tr>
                   ))}
             </Tbody>
@@ -191,12 +472,27 @@ const OwnerTable = ({ data }) => {
         }
       </div>
 
-      <Modal isOpen={isOpenOwnerModal && !show} onClose={onCloseOwnerModal}>
+      <Modal isOpen={isOpenOwnerModal} onClose={onCloseOwnerModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalCloseButton />
-          <ModalBody>
-            <CreateOwner />
+          <ModalBody padding="0px">
+            <CreateUser
+              onClose={onCloseOwnerModal}
+              userRule={USER_ROLES.OWNER}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenOwnerEditModal} onClose={onCloseOwnerEditModal}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <EditUser
+              onClose={onCloseOwnerEditModal}
+              userRule={USER_ROLES.TENANT}
+              id={selectedUser?.id}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
