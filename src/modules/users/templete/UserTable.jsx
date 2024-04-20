@@ -16,6 +16,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -41,7 +42,7 @@ import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-function UserTable({switchTo}) {
+function UserTable({ switchTo }) {
   const [selectedUser, setSelectedUser] = useState();
   const {
     isOpen: isOpenUserModal,
@@ -111,7 +112,7 @@ function UserTable({switchTo}) {
     setTimeout(() => {
       userDataReftech();
     }, 500);
-    console.log(switchTo)
+    console.log(switchTo);
   }, [
     switchTo,
     currentUserPage,
@@ -391,62 +392,77 @@ function UserTable({switchTo}) {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {usersDataType &&
-                usersDataType?.users
-                  ?.filter((i) => i.role === USER_ROLES.TENANT)
-                  .map((item, index) => (
-                    <Tr
-                      key={index}
-                      className="table_body_row"
-                      onClick={() => {}}
-                    >
-                      <Td className="table_body_row_item">
-                        {item.firstNameAr} {item.role}
-                      </Td>
-                      <Td className="table_body_row_item">-</Td>
-                      <Td className="table_body_row_item">
-                        {item.phoneNumber}
-                      </Td>
-                      <Td className="table_body_row_item">-</Td>
-                      <Td className="table_body_row_item">-</Td>
-                      <Td className="table_body_row_item">
-                        {item?.ownedUnits[0]?.name}
-                      </Td>
-                      <Td className="table_body_row_item">{item?.email}</Td>
-                      <Td className="table_body_row_item_btns">
-                        <Stack
-                          alignItems={"center"}
-                          direction={"row"}
-                          spacing={4}
-                        >
-                          <Button
-                            className="table_body_row_item_btns_deletebtn"
-                            width={"25%"}
-                            leftIcon={<DeleteIcon />}
-                            color="white"
-                            variant="solid"
-                            bg={"#CC3636"}
-                            alignItems="center"
-                            justifyContent="center"
-                            onClick={() => {}}
-                          ></Button>
-                          <Button
-                            className="table_body_row_item_btns_editbtn"
-                            width={"25%"}
-                            leftIcon={<EditOutlinedIcon />}
-                            color="white"
-                            variant="solid"
-                            alignItems="center"
-                            justifyContent="center"
-                            bg={"#194C81"}
-                            onClick={() => {
-                              openUserEditPopup(item);
-                            }}
-                          ></Button>
-                        </Stack>
-                      </Td>
-                    </Tr>
-                  ))}
+              {usersDataType ? (
+                <>
+                  {usersDataType?.users
+                    ?.filter((i) => i.role === USER_ROLES.TENANT)
+                    .map((item, index) => (
+                      <Tr
+                        key={index}
+                        className="table_body_row"
+                        onClick={() => {}}
+                      >
+                        <Td className="table_body_row_item">
+                          {item.firstNameAr} {item.role}
+                        </Td>
+                        <Td className="table_body_row_item">-</Td>
+                        <Td className="table_body_row_item">
+                          {item.phoneNumber}
+                        </Td>
+                        <Td className="table_body_row_item">-</Td>
+                        <Td className="table_body_row_item">-</Td>
+                        <Td className="table_body_row_item">
+                          {item?.ownedUnits[0]?.name}
+                        </Td>
+                        <Td className="table_body_row_item">{item?.email}</Td>
+                        <Td className="table_body_row_item_btns">
+                          <Stack
+                            alignItems={"center"}
+                            direction={"row"}
+                            spacing={4}
+                          >
+                            <Button
+                              className="table_body_row_item_btns_deletebtn"
+                              width={"25%"}
+                              leftIcon={<DeleteIcon />}
+                              color="white"
+                              variant="solid"
+                              bg={"#CC3636"}
+                              alignItems="center"
+                              justifyContent="center"
+                              onClick={() => {}}
+                            ></Button>
+                            <Button
+                              className="table_body_row_item_btns_editbtn"
+                              width={"25%"}
+                              leftIcon={<EditOutlinedIcon />}
+                              color="white"
+                              variant="solid"
+                              alignItems="center"
+                              justifyContent="center"
+                              bg={"#194C81"}
+                              onClick={() => {
+                                openUserEditPopup(item);
+                              }}
+                            ></Button>
+                          </Stack>
+                        </Td>
+                      </Tr>
+                    ))}{" "}
+                </>
+              ) : (
+                <>
+                  <div className="flex-center spinner-table">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </div>
+                </>
+              )}
             </Tbody>
           </Table>
         </TableContainer>
