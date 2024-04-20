@@ -51,7 +51,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     district: " ",
     city: " ",
     ownerId: " ",
-    image: "",
+    image: " ",
   };
 
   const formik = useFormik({
@@ -59,6 +59,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
       formik.values.ownerId=selectedOwnerId
+      formik.values.image=selectedImage
       let data = {
         ...values,
       };
@@ -90,7 +91,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             </div>
 
             <div className="form__input form__input__flex">
-              {!formik.values.image ? (
+              {!selectedImage ? (
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
                   <p className="form__input__flex_fileUpload_text">رفع صورة</p>
@@ -102,14 +103,13 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     type="file"
                     name="image"
                     accept=".png, .jpg, .jpeg"
-                    value={formik.values.image}
-                    onChange={formik.handleChange}
+                    onChange={(e)=>{setSelectedImage(e.target.files[0])}}
                   />
                 </div>
               ) : (
                 <div
                   style={{
-                    padding: `${formik.values.image ? "0px" : ""}`,
+                    padding: `${selectedImage ? "0px" : ""}`,
                     borderRadius: "12px",
                   }}
                   className="form__input__flex_fileUpload"
@@ -119,7 +119,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                       alt="not found"
                       width={"auto"}
                       height={"285px"}
-                      src={formik.values.image}
+                      src={URL.createObjectURL(selectedImage)}
                     />
                   </div>
                 </div>
