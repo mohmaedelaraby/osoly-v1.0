@@ -58,12 +58,19 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
       formik.values.ownerId = selectedOwnerId;
-      formik.values.image = uploadImage(selectedImage);
-      let data = {
-        ...values,
-      };
-      console.log(data);
-      mutate({ body: data });
+      const formData = new FormData();
+      formData.append("image", selectedImage, selectedImage.name);
+      formData.append("name",'Mohamed');
+      formData.append("address", formik.values.address);
+      formData.append("blockNumber", formik.values.blockNumber);
+      formData.append("city", formik.values.city);
+      formData.append("district", formik.values.district);
+      formData.append("instrumentNumber", formik.values.instrumentNumber);
+      formData.append("ownerId", formik.values.ownerId);
+      formData.append("postalCode", formik.values.postalCode);
+      formData.append("street", formik.values.street);
+      formData.append("unitsCount", formik.values.unitsCount);
+      mutate({ body: formData });
     },
   });
 
@@ -78,12 +85,21 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
   };
 
   const uploadImage = (file) => {
-    console.log(file);
 
     const formData = new FormData();
 
     if (file.name) {
       formData.append("image", file, file.name);
+      formData.append("name",'Mohamed');
+      formData.append("address", formik.values.address);
+      formData.append("blockNumber", formik.values.blockNumber);
+      formData.append("city", formik.values.city);
+      formData.append("district", formik.values.district);
+      formData.append("instrumentNumber", formik.values.instrumentNumber);
+      formData.append("ownerId", formik.values.ownerId);
+      formData.append("postalCode", formik.values.postalCode);
+      formData.append("street", formik.values.street);
+      formData.append("unitsCount", formik.values.unitsCount);
     } else {
       formData.append(
         "Image",
@@ -91,6 +107,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
         Math.floor(Math.random() * 1000).toString() + ".png"
       );
     }
+    console.log(  formData,formData.entries())
     /*  console.log(  formData,formData.entries())
     // Display the key/value pairs
     for (var pair of formData.entries()) {
@@ -205,7 +222,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               </FormControl>
             </div>
 
-           {/*  <div className="form__input form__input__flex">
+            {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
