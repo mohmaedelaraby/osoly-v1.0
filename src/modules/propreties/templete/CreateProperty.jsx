@@ -57,13 +57,13 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     initialValues: initialValues,
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
-      formik.values.ownerId=selectedOwnerId
-      formik.values.image=selectedImage
+      formik.values.ownerId = selectedOwnerId;
+      formik.values.image = uploadImage(selectedImage);
       let data = {
         ...values,
       };
-      console.log(data)
-      //mutate({ body: data });
+      console.log(data);
+      mutate({ body: data });
     },
   });
 
@@ -75,6 +75,28 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
   const openUnitPopup = () => {
     onOpenUnitModal();
+  };
+
+  const uploadImage = (file) => {
+    console.log(file);
+
+    const formData = new FormData();
+
+    if (file.name) {
+      formData.append("image", file, file.name);
+    } else {
+      formData.append(
+        "Image",
+        file,
+        Math.floor(Math.random() * 1000).toString() + ".png"
+      );
+    }
+    /*  console.log(  formData,formData.entries())
+    // Display the key/value pairs
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    } */
+    return formData;
   };
 
   return (
@@ -102,7 +124,9 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     type="file"
                     name="image"
                     accept=".png, .jpg, .jpeg"
-                    onChange={(e)=>{setSelectedImage(e.target.files[0])}}
+                    onChange={(e) => {
+                      setSelectedImage(e.target.files[0]);
+                    }}
                   />
                 </div>
               ) : (
@@ -199,7 +223,9 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     value={formik.values.unitsCount}
                     padding={"8px"}
                     onChange={formik.handleChange}
-                    isInvalid={formik.touched.unitsCount && !!formik.errors.unitsCount}
+                    isInvalid={
+                      formik.touched.unitsCount && !!formik.errors.unitsCount
+                    }
                   />
                   <InputRightElement
                     color={"#77797E"}
@@ -234,7 +260,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   name="owner"
                   dir="rtl"
                   onChange={(e) => {
-                    setSelectedOwnerId(e.target.value)
+                    setSelectedOwnerId(e.target.value);
                     setTimeout(() => {}, 0);
                   }}
                 >
@@ -333,9 +359,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             </div>
 
             <div className="form__input form__input__flex">
-              <div className="flex-between">
-                
-              </div>
+              <div className="flex-between"></div>
             </div>
 
             <div className="form__btn__container">
