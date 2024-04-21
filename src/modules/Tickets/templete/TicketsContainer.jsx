@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
@@ -9,15 +11,18 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Radio,
+  RadioGroup,
+  Select,
   Stack,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
-  useBoolean,
 } from "@chakra-ui/react";
 import {
   CalendarIcon,
@@ -34,35 +39,45 @@ import money from "../../../assets/icons-svgs/money.svg";
 import "../../../assets/styels/components/page.scss";
 import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
-import CardWithImg from "../../../components/Cards/CardWithImg";
 import useTickets from "../hooks/useTickets";
 import Pagination from "../../../components/shared/Pagination";
 import { useUpdateTickets } from "../hooks/useUpdateTickets";
 import TicketCard from "./TicketCard";
 
 function TicketsContainer() {
-  const [isEditingFilter, setIsEditingFilter] = useBoolean();
-  const [isEditingSort, setIsEditingSort] = useBoolean();
-  const [statuss, setStatus] = useState("All");
-  const [typee, setType] = useState("All");
-  const [filterdTickets, setFilterdTickets] = useState();
   const [isGrid, setIsGrid] = useState(false);
   const [showOpenTickets, setShowIsTickets] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
   const { mutate, isSuccess } = useUpdateTickets();
-  const [tickets, setTickets] = useState();
+
+  //sorting and filtering local
+  const [sortByTmp, setSortByTmp] = useState(null);
+  const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+
+  const [typeTmp, setTypeTmp] = useState(null);
+  const [statusTmp, setStatusTmp] = useState(null);
+  //sorting and filtering param data
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const [type, setType] = useState(null);
+  const [status, setStatus] = useState(null);
 
   const { data, isLoading, refetch } = useTickets({
     pageNo: currentPage,
     limit: limit,
+    sortBy: sortBy,
+    sortDirection: sortDirection,
+    type: type,
+    status: status,
   });
 
   useEffect(() => {
-    refetch();
-    if (data) {
-    }
-  }, [currentPage, isSuccess]);
+    setTimeout(() => {
+      refetch();
+    }, 500);
+  }, [currentPage, isSuccess, sortBy, sortDirection, type, status]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -73,29 +88,7 @@ function TicketsContainer() {
     mutate({ id: item?.id, body: body });
     refetch();
   };
-  useEffect(() => {
-    if (statuss !== "All") {
-      const newFiltered = data?.tickets.filter((s) => s.status == statuss);
-      setFilterdTickets(newFiltered);
-    } else {
-      setFilterdTickets(data?.tickets);
-    }
-  }, [statuss]);
-  useEffect(() => {
-    let newFiltered;
-    if (typee !== "All") {
-      if (typee == "processing") {
-        newFiltered = data?.tickets.sort(function (a, b) {
-          return a.type - b.type;
-        });
-      } else {
-        newFiltered = data?.tickets.sort(function (a, b) {
-          return b.type - a.type;
-        });
-      }
-      setFilterdTickets(newFiltered);
-    }
-  }, [typee]);
+
   return (
     <>
       <div className="page">
@@ -144,39 +137,195 @@ function TicketsContainer() {
             <Card>
               <div className="page_container_table__header pr-16 pl-16 pb-16 pt-16">
                 <div className="page_container_table__header__btns">
-                  <Menu>
+                  <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      فرز حسب
+                      <span className="pl-8">فرز حسب</span>
                     </MenuButton>
-                    <MenuList>
-                      <MenuItem>الاسم</MenuItem>
-                      <MenuItem>العنوان</MenuItem>
-                      <MenuItem>التاريخ</MenuItem>
+                    <MenuList padding={"24px"} width="257px">
+                      <MenuItem>
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              نوع الفرز
+                            </Text>
+                          </FormLabel>
+                          <RadioGroup
+                            onChange={setSortDirectionTmp}
+                            value={sortDirectionTmp}
+                          >
+                            <Stack direction="row">
+                              <Radio value="asc">تصاعدي</Radio>
+                              <Radio value="desc">تنازلي</Radio>
+                            </Stack>
+                          </RadioGroup>
+                        </FormControl>
+                      </MenuItem>
+                      <div className="menu-select mb-24">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              فرز حسب
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            dir="rtl"
+                            name="sortBY"
+                            onChange={(e) => {
+                              setSortByTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            <option value={null}> ترتيب حسب</option>
+
+                            <option value={"createdAt"}> التاريخ</option>
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <MenuItem closeOnSelect={true}>
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color="white"
+                            bg="#194C81"
+                            type="submit"
+                            onClick={() => {
+                              setSortDirection(sortDirectionTmp);
+                              setSortBy(sortByTmp);
+                            }}
+                          >
+                            تطبيق
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setSortDirection(null);
+                              setSortBy(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            مسح
+                          </Button>
+                        </Stack>
+                      </MenuItem>
                     </MenuList>
                   </Menu>
 
-                  <Menu>
-                    <MenuButton as={Button}
-              marginRight="8px"
-              marginLeft="8px"
-              rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}>
-                      ترتيب حسب
+                  <Menu closeOnSelect={false}>
+                    <MenuButton
+                      as={Button}
+                      marginRight="8px"
+                      marginLeft="8px"
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
+                      rightIcon={<ChevronDownIcon />}
+                    >
+                      <span className="pl-8">ترتيب حسب</span>
                     </MenuButton>
-                    <MenuList>
-                      <MenuItem>الاسم</MenuItem>
-                      <MenuItem>العنوان</MenuItem>
-                      <MenuItem>التاريخ</MenuItem>
+                    <MenuList padding={"24px"} width="257px">
+                      <div className="menu-select mb-24">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              {Object.entries(ticketsTypes).map((item) => (
+                                <></>
+                              ))}
+                              ترتيب حسب النوع
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            dir="rtl"
+                            name="type"
+                            onChange={(e) => {
+                              setTypeTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            <option value={null}> النوع</option>
+                            {Object.values(ticketsTypes).map((item, index) => (
+                              <>
+                                <option id={index} value={item}>
+                                  {item}
+                                </option>
+                                ;
+                              </>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <div className="menu-select mb-24">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label">
+                              ترتيب حسب الحاله
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            dir="rtl"
+                            name="status"
+                            onChange={(e) => {
+                              setStatusTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            <option value={null}> الحاله</option>
+                            {Object.values(ticketsStatus).map((item, index) => (
+                              <>
+                                <option id={index} value={item}>
+                                  {item}
+                                </option>
+                                ;
+                              </>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <MenuItem closeOnSelect={true}>
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color="white"
+                            bg="#194C81"
+                            type="submit"
+                            onClick={() => {
+                              setStatus(statusTmp);
+                              setType(typeTmp);
+                            }}
+                          >
+                            تطبيق
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setStatus(null);
+                              setType(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            مسح
+                          </Button>
+                        </Stack>
+                      </MenuItem>
                     </MenuList>
                   </Menu>
                 </div>
@@ -278,8 +427,7 @@ function TicketsContainer() {
                                 {data?.tickets &&
                                   data?.tickets
                                     .filter(
-                                      (i) =>
-                                        i.status == ticketsStatus.solved
+                                      (i) => i.status == ticketsStatus.ACTIVE
                                     )
                                     .map((item, index) => (
                                       <Tr
@@ -320,7 +468,7 @@ function TicketsContainer() {
                                               variant="outline"
                                               onClick={() => {
                                                 updateStatus(
-                                                  ticketsStatus.canceled,
+                                                  ticketsStatus.CLOSED,
                                                   item
                                                 );
                                               }}
@@ -335,7 +483,7 @@ function TicketsContainer() {
                                               variant="solid"
                                               onClick={() => {
                                                 updateStatus(
-                                                  ticketsStatus.solved,
+                                                  ticketsStatus.PROCESSING,
                                                   item
                                                 );
                                               }}
@@ -356,11 +504,11 @@ function TicketsContainer() {
                             {data?.tickets &&
                               data?.tickets
                                 ?.filter(
-                                  (i) => i.status == ticketsStatus.solved
+                                  (i) => i.status == ticketsStatus.ACTIVE
                                 )
                                 .map((item, index) => (
                                   <>
-                                  {/*  <CardWithImg
+                                    {/*  <CardWithImg
                                     key={index}
                                     address={item.description}
                                     title={item.unit.address}
@@ -370,9 +518,8 @@ function TicketsContainer() {
                                     header={item.type}
                                   ></CardWithImg> */}
 
-                                  <TicketCard item={item}></TicketCard>
+                                    <TicketCard item={item}></TicketCard>
                                   </>
-                                 
                                 ))}
                           </div>
                         </>
@@ -461,9 +608,9 @@ function TicketsContainer() {
                         {data?.tickets &&
                           data?.tickets?.map((item, index) => (
                             <>
-                             <TicketCard item={item}></TicketCard>
+                              <TicketCard item={item}></TicketCard>
                             </>
-                           /*  <CardWithImg
+                            /*  <CardWithImg
                               key={index}
                               address={item.description}
                               title={item.unit.address}

@@ -112,7 +112,6 @@ function UserTable({ switchTo }) {
     setTimeout(() => {
       userDataReftech();
     }, 500);
-    console.log(switchTo);
   }, [
     switchTo,
     currentUserPage,

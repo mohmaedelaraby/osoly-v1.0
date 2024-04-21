@@ -3,8 +3,8 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all Tickets
 export const getTickets = (params) => {
-  const { pageNo, limit } = params;
-  return api.get(`${apiUrl}dashboard/tickets?page=${pageNo}&limit=${limit}`, {
+  const { pageNo, limit ,sortDirection,sortBy,type,status} = params;
+  return api.get(`${apiUrl}dashboard/tickets?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}${type?`&type=${type}`:``}${status?`&status=${status}`:``}`, {
   }).then(res => res.data.data)
 }
 
