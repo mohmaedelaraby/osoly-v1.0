@@ -42,7 +42,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
   const initialValues = {
     name: "",
     address: "",
-    unitsCount: "",
+    unitsCount: 0,
     instrumentNumber: "",
     postalCode: "",
     blockNumber: " ",
@@ -205,7 +205,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               </FormControl>
             </div>
 
-            <div className="form__input form__input__flex">
+           {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
@@ -246,7 +246,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   ) : null}
                 </div>
               </FormControl>
-            </div>
+            </div> */}
 
             <div className="form__input form__input__flex mb-24">
               <FormControl className="form__input__container">

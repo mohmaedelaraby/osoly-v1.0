@@ -2,6 +2,7 @@ import {
   Button,
   Card,
   CardBody,
+  Checkbox,
   FormControl,
  
   FormLabel,
@@ -16,7 +17,14 @@ import {
   ModalOverlay,
   Select,
   Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -58,6 +66,7 @@ const EditProperty = ({ id , onClose }) => {
     if (data) {
       console.log(data)
       setSelectedOwnerId(data?.ownerId);
+      setSelectedImage(data.image)
     }
   }, [data]);
 
@@ -137,7 +146,7 @@ const EditProperty = ({ id , onClose }) => {
                       alt="not found"
                       width={"auto"}
                       height={"285px"}
-                      src={URL.createObjectURL(selectedImage)}
+                      src={selectedImage}
                     />
                   </div>
                 </div>
@@ -200,7 +209,7 @@ const EditProperty = ({ id , onClose }) => {
               </FormControl>
             </div>
 
-            <div className="form__input form__input__flex">
+           {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
@@ -239,7 +248,7 @@ const EditProperty = ({ id , onClose }) => {
                   ) : null}
                 </div>
               </FormControl>
-            </div>
+            </div> */}
 
             <div className="form__input form__input__flex mb-24">
               <FormControl className="form__input__container">
@@ -252,15 +261,14 @@ const EditProperty = ({ id , onClose }) => {
                   height={"56px"}
                   name="owner"
                   dir="rtl"
+                  value={selectedOwnerId}
                   onChange={(e) => {
                     setSelectedOwnerId(e.target.value)
                     setTimeout(() => {}, 0);
                   }}
                 >
                   <option value={0}>المالك </option>
-                  {usersData?.users
-                    .filter((s) => s.role == USER_ROLES.OWNER)
-                    ?.map((i, index) => (
+                  {usersData?.users?.map((i, index) => (
                       <option value={i.id} key={index}>
                         {i.firstNameAr} {i.id}
                       </option>
@@ -351,8 +359,75 @@ const EditProperty = ({ id , onClose }) => {
               </div>
             </div>
 
-            <div className="form__input form__input__flex">
+            <div className="form__input form__input__flex mt-24">
               <div className="flex-between">
+
+              <TableContainer
+              width="100%"
+              overflowY="auto"
+              overflowX="auto"
+              minHeight="340px"
+              maxHeight="340px"
+            >
+              <Table className="table" variant="simple">
+                <Thead className="table_header">
+                  <Tr>
+                    <Th className="table_header_item">الاسم</Th>
+                    <Th className="table_header_item">موعد الاستحقاق</Th>
+                    <Th className="table_header_item">الإيجار</Th>
+                    <Th className="table_header_item">العنوان</Th>
+                    <Th className="table_header_item">المساحة</Th>
+                    <Th className="table_header_item">حساب فاتورة الكهرباء</Th>
+                    <Th className="table_header_item">حساب المياه</Th>
+                    <Th className="table_header_item">الغرف</Th>
+                    <Th className="table_header_item">المطبخ</Th>
+                    <Th className="table_header_item">التكييفات</Th>
+                    <Th className="table_header_item"></Th>
+                  </Tr>
+                </Thead>
+                <Tbody className="table_body">
+                  {data &&
+                    data?.units?.map((item, index) => (
+                      <Tr
+                        key={index}
+                        className="table_body_row"
+                        onClick={() => {}}
+                      >
+                        <Td className="table_body_row_item">{item.name}</Td>
+                        <Td className="table_body_row_item">
+                          {item.rentCollectionDate}
+                        </Td>
+                        <Td className="table_body_row_item">{item.rent}</Td>
+                        <Td className="table_body_row_item">{item.address}</Td>
+                        <Td className="table_body_row_item">{item.space}</Td>
+                        <Td className="table_body_row_item">
+                          {item.electricityAccount}
+                        </Td>
+                        <Td className="table_body_row_item">
+                          {item.waterAccount}
+                        </Td>
+                        <Td className="table_body_row_item">{item.rooms}</Td>
+
+                        <Td className="table_body_row_item">
+                          {item.kitchen ? (
+                            <>
+                              <Checkbox defaultChecked isDisabled></Checkbox>
+                            </>
+                          ) : (
+                            <>
+                              <Checkbox isDisabled></Checkbox>
+                            </>
+                          )}
+                        </Td>
+                        <Td className="table_body_row_item">
+                          {item.conditioners}
+                        </Td>
+                       
+                      </Tr>
+                    ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
                 
               </div>
             </div>
