@@ -209,3 +209,31 @@
 .menu-select{
     padding: 4px 8px;
 }
+
+.active {
+    border-radius: 8px;
+    border: 1px solid #FFBC1F;
+    background:  #FFF7E5;
+    position: absolute;
+    top: 7px;
+    left: 59%;
+}
+
+.closed {
+    border-radius: 8px;
+    border: 1px solid #2FD976;
+    background:  #E5FFEE;
+    position: absolute;
+    top: 7px;
+    left: 59%;
+}
+
+.process {
+    border-radius: 8px;
+    border: 1px solid #194C81;
+    background:  #E0F2FF;
+    left: 47%;
+    position: absolute;
+    top: 7px;
+
+}

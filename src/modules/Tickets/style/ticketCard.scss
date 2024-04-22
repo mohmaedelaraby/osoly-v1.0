@@ -34,18 +34,18 @@
                 .card__container__header__title__type {
                     font-size: 14px;
                     font-weight: bold;
-                   
+
                 }
-                
-                
+
+
                 .complain {
                     color: rgb(187, 2, 2);
                 }
-                
+
                 .service {
                     color: rgb(187, 156, 2);
                 }
-                
+
                 .other {
                     color: rgb(26, 146, 226);
                 }
@@ -61,21 +61,9 @@
                 align-items: center;
                 justify-content: center;
             }
-            .solved {
-                background-color: rgb(2, 187, 2);
-            }
+
             
-            .canceled {
-                background-color: rgb(187, 2, 2);
-            }
-            
-            .processsing {
-                background-color: rgb(187, 156, 2);
-            }
-            
-            .review {
-                background-color: rgb(26, 146, 226);
-            }
+
         }
 
         .card__container__body {
@@ -94,31 +82,32 @@
                 max-height: 84px;
                 overflow-y: auto;
 
-            
+
             }
-                /* width */
-                ::-webkit-scrollbar {
-                    width: 4px;
-                }
 
-                /* Track */
-                ::-webkit-scrollbar-track {
-                    box-shadow: inset 0 0 2px $font-color;
-                    border-radius: 10px;
-                }
+            /* width */
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
 
-                /* Handle */
-                ::-webkit-scrollbar-thumb {
-                    background: #858585;
-                    ;
-                    border-radius: 10px;
-                }
+            /* Track */
+            ::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 2px $font-color;
+                border-radius: 10px;
+            }
 
-                /* Handle on hover */
-                ::-webkit-scrollbar-thumb:hover {
-                    background: #858585;
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #858585;
+                ;
+                border-radius: 10px;
+            }
 
-                }
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #858585;
+
+            }
 
             .card__container__body__imgs {
                 display: flex;
@@ -152,7 +141,8 @@
                 }
             }
         }
-        .card_container__btns{
+
+        .card_container__btns {
             margin-top: 12px;
             display: flex;
             align-items: center;
@@ -162,3 +152,5 @@
 
 
 }
+
+

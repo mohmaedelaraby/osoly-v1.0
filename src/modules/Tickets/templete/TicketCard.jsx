@@ -43,14 +43,12 @@ const TicketCard = ({ item, img = image }) => {
               <img src={img} alt="desc" />
               <div
                 className={
-                  status === TICKET_STATUS.solved
-                    ? "cardWithimg_contanier__icon_stats solved"
-                    : status === TICKET_STATUS.review
-                    ? "cardWithimg_contanier__icon_stats review"
-                    : status === TICKET_STATUS.processing
-                    ? "cardWithimg_contanier__icon_stats processing"
-                    : status === TICKET_STATUS.canceled
-                    ? "cardWithimg_contanier__icon_stats canceled"
+                  status == TICKET_STATUS.CLOSED
+                    ? "cardWithimg_contanier__icon_stats closed"
+                    : status == TICKET_STATUS.ACTIVE
+                    ? "cardWithimg_contanier__icon_stats active"
+                    : status == TICKET_STATUS.PROCESSING
+                    ? "cardWithimg_contanier__icon_stats process"
                     : " "
                 }
               >
@@ -83,7 +81,7 @@ const TicketCard = ({ item, img = image }) => {
             </div>
 
             <>
-              <div className="cardWithimg_contanier__btns">
+              <div className="cardWithimg_contanier__btns" style={{marginTop : status === TICKET_STATUS.CLOSED ? '0px':''}}>
                 {status === TICKET_STATUS.ACTIVE || status === TICKET_STATUS.PROCESSING ? (
                   <>
                     <Button
