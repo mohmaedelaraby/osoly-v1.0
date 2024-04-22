@@ -1,8 +1,6 @@
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
+ 
   Checkbox,
   Input,
   InputGroup,
@@ -13,7 +11,6 @@ import {
   MenuList,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Stack,
@@ -30,10 +27,8 @@ import React, { useEffect, useState } from "react";
 import "../../../assets/styels/components/Table.scss";
 import {
   AddIcon,
-  CalendarIcon,
   ChevronDownIcon,
   DeleteIcon,
-  DragHandleIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
 import CreateUnit from "./CreateUnit";
@@ -43,7 +38,8 @@ import Pagination from "../../../components/shared/Pagination";
 import CardWithImg from "../../../components/Cards/CardWithImg";
 import EditUnit from "./EditUnit";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 const UnitsTable = ({}) => {
   const {
     isOpen: isOpenUnitModal,
@@ -155,12 +151,12 @@ const UnitsTable = ({}) => {
         <div className="page_container_table__header__switcher">
           <div className="page_container_table__header__switcher_grid">
             <Button onClick={() => setIsGrid(false)}>
-              <CalendarIcon />
+              <MenuIcon />
             </Button>
           </div>
           <div className="page_container_table__header__switcher_table">
             <Button onClick={() => setIsGrid(true)}>
-              <DragHandleIcon />
+              <GridViewOutlinedIcon />
             </Button>
           </div>
         </div>

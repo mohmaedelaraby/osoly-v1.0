@@ -27,16 +27,16 @@ import useProperties from "../hooks/useAllProperties";
 import useClosePopUps from "../../../store/useClosePopups";
 import {
   AddIcon,
-  CalendarIcon,
   ChevronDownIcon,
   DeleteIcon,
-  DragHandleIcon,
   SearchIcon,
 } from "@chakra-ui/icons";
 import CreateProperty from "./CreateProperty";
 import Pagination from "../../../components/shared/Pagination";
 import EditProperty from "./EditProperty";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import MenuIcon from '@mui/icons-material/Menu';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 
 function PropertiesTable() {
   const { show, toggleShow } = useClosePopUps();
@@ -154,12 +154,12 @@ function PropertiesTable() {
         <div className="page_container_table__header__switcher">
           <div className="page_container_table__header__switcher_grid">
             <Button onClick={() => setIsGrid(false)}>
-              <CalendarIcon />
+              <MenuIcon />
             </Button>
           </div>
           <div className="page_container_table__header__switcher_table">
             <Button onClick={() => setIsGrid(true)}>
-              <DragHandleIcon />
+              <GridViewOutlinedIcon />
             </Button>
           </div>
         </div>

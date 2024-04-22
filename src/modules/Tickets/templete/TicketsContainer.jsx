@@ -25,10 +25,8 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import {
-  CalendarIcon,
   CheckIcon,
   ChevronDownIcon,
-  DragHandleIcon,
   SearchIcon,
   SmallCloseIcon,
   ViewIcon,
@@ -43,6 +41,8 @@ import useTickets from "../hooks/useTickets";
 import Pagination from "../../../components/shared/Pagination";
 import { useUpdateTickets } from "../hooks/useUpdateTickets";
 import TicketCard from "./TicketCard";
+import MenuIcon from '@mui/icons-material/Menu';
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 
 function TicketsContainer() {
   const [isGrid, setIsGrid] = useState(false);
@@ -368,12 +368,12 @@ function TicketsContainer() {
                 <div className="page_container_table__header__switcher">
                   <div className="page_container_table__header__switcher_grid">
                     <Button onClick={() => setIsGrid(false)}>
-                      <CalendarIcon />
+                      <MenuIcon />
                     </Button>
                   </div>
                   <div className="page_container_table__header__switcher_table">
                     <Button onClick={() => setIsGrid(true)}>
-                      <DragHandleIcon />
+                      <GridViewOutlinedIcon />
                     </Button>
                   </div>
                 </div>
