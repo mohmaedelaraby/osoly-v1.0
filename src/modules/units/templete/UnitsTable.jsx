@@ -1,6 +1,5 @@
 import {
   Button,
- 
   Checkbox,
   Input,
   InputGroup,
@@ -38,8 +37,8 @@ import Pagination from "../../../components/shared/Pagination";
 import CardWithImg from "../../../components/Cards/CardWithImg";
 import EditUnit from "./EditUnit";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import MenuIcon from '@mui/icons-material/Menu';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
+import MenuIcon from "@mui/icons-material/Menu";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 const UnitsTable = ({}) => {
   const {
     isOpen: isOpenUnitModal,
@@ -120,16 +119,18 @@ const UnitsTable = ({}) => {
           </Menu>
 
           <Menu>
-            <MenuButton as={Button}
+            <MenuButton
+              as={Button}
               marginRight="8px"
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}>
+              borderRadius="md"
+              borderWidth="1px"
+              bg="white"
+              _hover={{ bg: "gray.400" }}
+              _expanded={{ bg: "blue.400" }}
+              _focus={{ boxShadow: "outline" }}
+            >
               <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
@@ -149,14 +150,14 @@ const UnitsTable = ({}) => {
         </div>
 
         <div className="page_container_table__header__switcher">
-          <div className="page_container_table__header__switcher_grid">
-            <Button onClick={() => setIsGrid(false)}>
-              <MenuIcon />
+          <div className="page_container_table__header__switcher_table">
+            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(true)}>
+              <GridViewOutlinedIcon />
             </Button>
           </div>
-          <div className="page_container_table__header__switcher_table">
-            <Button onClick={() => setIsGrid(true)}>
-              <GridViewOutlinedIcon />
+          <div className="page_container_table__header__switcher_grid">
+            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(false)}>
+              <MenuIcon />
             </Button>
           </div>
         </div>
@@ -296,8 +297,8 @@ const UnitsTable = ({}) => {
       <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody padding={'0px'}>
-            <CreateUnit onClose={onCloseUnitModal}/>
+          <ModalBody padding={"0px"}>
+            <CreateUnit onClose={onCloseUnitModal} />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -308,7 +309,7 @@ const UnitsTable = ({}) => {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody>
-            <EditUnit onClose={onCloseUnitModalEdit}/>
+            <EditUnit onClose={onCloseUnitModalEdit} />
           </ModalBody>
         </ModalContent>
       </Modal>

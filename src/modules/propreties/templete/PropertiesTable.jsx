@@ -35,12 +35,12 @@ import CreateProperty from "./CreateProperty";
 import Pagination from "../../../components/shared/Pagination";
 import EditProperty from "./EditProperty";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import MenuIcon from '@mui/icons-material/Menu';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
+import MenuIcon from "@mui/icons-material/Menu";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 
 function PropertiesTable() {
   const { show, toggleShow } = useClosePopUps();
-  const [selectId,setSelectedId]=useState()
+  const [selectId, setSelectedId] = useState();
   const [isGrid, setIsGrid] = useState(false);
 
   const {
@@ -82,7 +82,7 @@ function PropertiesTable() {
   };
   const openPropertyEditPopup = (user) => {
     onOpenProperyModalEdit();
-    setSelectedId(user.id)
+    setSelectedId(user.id);
   };
   return (
     <>
@@ -105,13 +105,12 @@ function PropertiesTable() {
               marginRight="8px"
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}
-
+              borderRadius="md"
+              borderWidth="1px"
+              bg="white"
+              _hover={{ bg: "gray.400" }}
+              _expanded={{ bg: "blue.400" }}
+              _focus={{ boxShadow: "outline" }}
             >
               <span className="pl-8"> فرز حسب</span>
             </MenuButton>
@@ -123,16 +122,18 @@ function PropertiesTable() {
           </Menu>
 
           <Menu>
-            <MenuButton as={Button}
+            <MenuButton
+              as={Button}
               marginRight="8px"
               marginLeft="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius='md'
-              borderWidth='1px'
-              bg='white'
-              _hover={{ bg: 'gray.400' }}
-              _expanded={{ bg: 'blue.400' }}
-              _focus={{ boxShadow: 'outline' }}>
+              borderRadius="md"
+              borderWidth="1px"
+              bg="white"
+              _hover={{ bg: "gray.400" }}
+              _expanded={{ bg: "blue.400" }}
+              _focus={{ boxShadow: "outline" }}
+            >
               <span className="pl-8"> ترتيب حسب</span>
             </MenuButton>
             <MenuList>
@@ -152,14 +153,14 @@ function PropertiesTable() {
         </div>
 
         <div className="page_container_table__header__switcher">
-          <div className="page_container_table__header__switcher_grid">
-            <Button onClick={() => setIsGrid(false)}>
-              <MenuIcon />
+          <div className="page_container_table__header__switcher_table">
+            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(true)}>
+              <GridViewOutlinedIcon />
             </Button>
           </div>
-          <div className="page_container_table__header__switcher_table">
-            <Button onClick={() => setIsGrid(true)}>
-              <GridViewOutlinedIcon />
+          <div className="page_container_table__header__switcher_grid">
+            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(false)}>
+              <MenuIcon />
             </Button>
           </div>
         </div>
@@ -274,19 +275,16 @@ function PropertiesTable() {
       <Modal isOpen={isOpenProperyModal && !show} onClose={onCloseProperyModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody padding={'0px'}>
-            <CreateProperty onClose={onCloseProperyModal}/>
+          <ModalBody padding={"0px"}>
+            <CreateProperty onClose={onCloseProperyModal} />
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Modal
-        isOpen={isOpenProperyModalEdit}
-        onClose={onCloseProperyModalEdit}
-      >
+      <Modal isOpen={isOpenProperyModalEdit} onClose={onCloseProperyModalEdit}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody padding={'0px'}>
-            <EditProperty  onClose={onCloseProperyModalEdit} id={selectId}/>
+          <ModalBody padding={"0px"}>
+            <EditProperty onClose={onCloseProperyModalEdit} id={selectId} />
           </ModalBody>
         </ModalContent>
       </Modal>
