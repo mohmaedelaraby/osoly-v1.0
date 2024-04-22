@@ -31,17 +31,9 @@ import { useTranslation } from "react-i18next";
 import PieChartComponent from "../../../components/Charts/PieChart";
 import PieChartComponentWithOneValue from "../../../components/Charts/PieChartWithOneValue";
 import LineChartWithDate from "../../../components/shared/LineChartWithDate";
+import PageHeader from "../../../components/shared/PageHeader";
 const Home = () => {
-  const {
-    t,
-    i18n: { changeLanguage, language },
-  } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState(language);
-  const handleChangeLanguage = () => {
-    const newLanguage = currentLanguage === "en" ? "ar" : "en";
-    setCurrentLanguage(newLanguage);
-    changeLanguage(newLanguage);
-  };
+  const { t } = useTranslation();
 
   const currentUserJson = localStorage.getItem("currentUser");
   const homeData = JSON.parse(currentUserJson);
@@ -178,18 +170,7 @@ const Home = () => {
       <div className="home">
         <div className="home_container">
           <div className="home_container_header">
-            <div className="home_container_header__title">
-              {t("general.hello")} {homeData?.enterprise.name}
-            </div>
-            <div className="home_container_header__icons">
-              <img
-                src={user}
-                alt="user"
-                width="40px"
-                height="40px"
-                onClick={handleChangeLanguage}
-              />
-            </div>
+            <PageHeader title={homeData?.enterprise.username}></PageHeader>
           </div>
           <div className="home_container_cards">
             {/* {metricData && metircArr?.map((item, i) => (
