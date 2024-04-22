@@ -49,6 +49,9 @@ function TicketsContainer() {
   const [showOpenTickets, setShowIsTickets] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
+
+  const [currentActivePage, setCurrentActivePage] = useState(1);
+  const activeLimit = 1000;
   const { mutate, isSuccess } = useUpdateTickets();
 
   //sorting and filtering local
@@ -64,7 +67,11 @@ function TicketsContainer() {
   const [type, setType] = useState(null);
   const [status, setStatus] = useState(null);
 
-  const { data, isLoading, refetch } = useTickets({
+  const {
+    data: allData,
+    isLoading: allLoading,
+    refetch: allrefetch,
+  } = useTickets({
     pageNo: currentPage,
     limit: limit,
     sortBy: sortBy,
@@ -73,11 +80,30 @@ function TicketsContainer() {
     status: status,
   });
 
+  const {
+    data: activeData,
+    isLoading: activeLoading,
+    refetch: activerefetch,
+  } = useTickets({
+    pageNo: currentActivePage,
+    limit: activeLimit,
+    sortBy: sortBy,
+    sortDirection: sortDirection,
+    type: type,
+    status: status,
+  });
+
   useEffect(() => {
     setTimeout(() => {
-      refetch();
+      allrefetch();
     }, 500);
   }, [currentPage, isSuccess, sortBy, sortDirection, type, status]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      activerefetch();
+    }, 500);
+  }, [currentActivePage, isSuccess, sortBy, sortDirection, type, status]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -86,7 +112,8 @@ function TicketsContainer() {
   const updateStatus = (status, item) => {
     let body = { status: status };
     mutate({ id: item?.id, body: body });
-    refetch();
+    /*  activerefetch();
+    allrefetch(); */
   };
 
   return (
@@ -424,8 +451,8 @@ function TicketsContainer() {
                                 </Tr>
                               </Thead>
                               <Tbody className="table_body">
-                                {data?.tickets &&
-                                  data?.tickets
+                                {activeData?.tickets &&
+                                  activeData?.tickets
                                     .filter(
                                       (i) => i.status == ticketsStatus.ACTIVE
                                     )
@@ -463,7 +490,7 @@ function TicketsContainer() {
                                           >
                                             <Button
                                               width={"100%"}
-                                              leftIcon={<SmallCloseIcon />}
+                                              rightIcon={<SmallCloseIcon />}
                                               colorScheme="red"
                                               variant="outline"
                                               onClick={() => {
@@ -477,7 +504,7 @@ function TicketsContainer() {
                                             </Button>
                                             <Button
                                               width={"100%"}
-                                              leftIcon={<CheckIcon />}
+                                              rightIcon={<CheckIcon />}
                                               backgroundColor="#2EA154"
                                               color="white"
                                               variant="solid"
@@ -501,23 +528,13 @@ function TicketsContainer() {
                       ) : (
                         <>
                           <div className="page_container_table__content__grid">
-                            {data?.tickets &&
-                              data?.tickets
+                            {activeData?.tickets &&
+                              activeData?.tickets
                                 ?.filter(
                                   (i) => i.status == ticketsStatus.ACTIVE
                                 )
                                 .map((item, index) => (
                                   <>
-                                    {/*  <CardWithImg
-                                    key={index}
-                                    address={item.description}
-                                    title={item.unit.address}
-                                    isBtns={true}
-                                    isVertical={false}
-                                    name={item.unit.tenant.firstNameAr}
-                                    header={item.type}
-                                  ></CardWithImg> */}
-
                                     <TicketCard item={item}></TicketCard>
                                   </>
                                 ))}
@@ -528,8 +545,8 @@ function TicketsContainer() {
                       {
                         <div className="flex-center mt-8">
                           <Pagination
-                            totalCount={data?.pagination.count}
-                            currentPage={currentPage}
+                            totalCount={activeData?.pagination.count}
+                            currentPage={currentActivePage}
                             pageSize={10}
                             onPageChange={handlePageChange}
                           />
@@ -574,8 +591,8 @@ function TicketsContainer() {
                             </Tr>
                           </Thead>
                           <Tbody className="table_body">
-                            {data?.tickets &&
-                              data?.tickets.map((item, index) => (
+                            {allData?.tickets &&
+                              allData?.tickets.map((item, index) => (
                                 <Tr key={index} className="table_body_row">
                                   <Td className="table_body_row_item">
                                     {item.id}
@@ -596,6 +613,55 @@ function TicketsContainer() {
                                   <Td className="table_body_row_item">
                                     {item.unit?.tenant?.firstNameAr}
                                   </Td>
+
+                                  <Td className="table_body_row_item">
+                                    {status === ticketsStatus.ACTIVE ||
+                                    status === ticketsStatus.PROCESSING ? (
+                                      <>
+                                        {" "}
+                                        <Stack
+                                          alignItems={"center"}
+                                          direction={"row"}
+                                          spacing={4}
+                                        >
+                                          <Button
+                                            width={"100%"}
+                                            rightIcon={<SmallCloseIcon />}
+                                            colorScheme="red"
+                                            variant="outline"
+                                            onClick={() => {
+                                              updateStatus(
+                                                ticketsStatus.CLOSED,
+                                                item
+                                              );
+                                            }}
+                                          >
+                                            رفض
+                                          </Button>
+                                          <Button
+                                            width={"100%"}
+                                            rightIcon={<CheckIcon />}
+                                            backgroundColor="#2EA154"
+                                            color="white"
+                                            variant="solid"
+                                            onClick={() => {
+                                              updateStatus(
+                                                item.status ==
+                                                  ticketsStatus.ACTIVE
+                                                  ? ticketsStatus.PROCESSING
+                                                  : ticketsStatus.CLOSED,
+                                                item
+                                              );
+                                            }}
+                                          >
+                                            قبول
+                                          </Button>
+                                        </Stack>
+                                      </>
+                                    ) : (
+                                      <></>
+                                    )}
+                                  </Td>
                                 </Tr>
                               ))}
                           </Tbody>
@@ -605,20 +671,11 @@ function TicketsContainer() {
                   ) : (
                     <>
                       <div className="page_container_table__content__grid">
-                        {data?.tickets &&
-                          data?.tickets?.map((item, index) => (
+                        {allData?.tickets &&
+                          allData?.tickets?.map((item, index) => (
                             <>
                               <TicketCard item={item}></TicketCard>
                             </>
-                            /*  <CardWithImg
-                              key={index}
-                              address={item.description}
-                              title={item.unit.address}
-                              isBtns={true}
-                              isVertical={false}
-                              name={item.unit.tenant.firstNameAr}
-                              header={item.type}
-                            ></CardWithImg> */
                           ))}
                       </div>
                     </>
@@ -628,7 +685,7 @@ function TicketsContainer() {
                     <>
                       <div className="flex-center mt-8 mb-8">
                         <Pagination
-                          totalCount={data?.pagination.count}
+                          totalCount={allData?.pagination.count}
                           currentPage={currentPage}
                           pageSize={10}
                           onPageChange={handlePageChange}

@@ -52,7 +52,7 @@ const AdsTable = ({ data }) => {
           <span className="tabel_header_addBtn">
             <Button
               onClick={onOpen}
-              leftIcon={<AddIcon />}
+              rightIcon={<AddIcon />}
               className="tabel_header_addBtn_btn"
             >
               Add Ad

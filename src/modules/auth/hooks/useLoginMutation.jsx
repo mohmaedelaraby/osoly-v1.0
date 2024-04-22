@@ -18,7 +18,6 @@ export const useLoginMutation = () => {
 
   const mutation = useMutation(loginApi, {
     onSuccess: (res) => {
-      console.log(res)
       if (res.data.data.accessToken) {
         const currentUser= res.data.data
         localStorage.setItem("currentUser", JSON.stringify(currentUser));

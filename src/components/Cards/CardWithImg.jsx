@@ -83,7 +83,7 @@ function CardWithImg({
                 <Stack alignItems={isVertical ? "flex-end" : "center"} direction={isVertical ? "column" : "row"} spacing={4}>
                   <Button
                     width={isVertical ? "50%" : "100%"}
-                    leftIcon={<CheckIcon />}
+                    rightIcon={<CheckIcon />}
                     backgroundColor="#2EA154"
                     color="white"
                     variant="solid"
@@ -93,7 +93,7 @@ function CardWithImg({
                   </Button>
                   <Button
                     width={isVertical ? "50%" : "100%"}
-                    leftIcon={<SmallCloseIcon />}
+                    rightIcon={<SmallCloseIcon />}
                     colorScheme="red"
                     variant="outline"
                    

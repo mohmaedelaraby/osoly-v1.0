@@ -6,9 +6,7 @@ const TicketsPage = () => {
   /*  */
   return (
     <>
-      <>
-        <TicketsContainer />
-      </>
+      <TicketsContainer />
     </>
   );
 };

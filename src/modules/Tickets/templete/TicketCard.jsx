@@ -35,16 +35,7 @@ const TicketCard = ({ item, img = image }) => {
   };
   return (
     <>
-      {/*    className={
-                  item?.type === TICKET_TYPES.complain
-                    ? "card__container__header__title__type complain"
-                    : item?.type === TICKET_TYPES.service
-                    ? "card__container__header__title__type service"
-                    : item?.type === TICKET_TYPES.other
-                    ? "card__container__header__title__type other"
-                    : " "
-                } */}
-
+  
       <Card width="-webkit-fit-content">
         <div className="cardWithimg">
           <div className={"cardWithimg_contanier"}>
@@ -93,29 +84,30 @@ const TicketCard = ({ item, img = image }) => {
 
             <>
               <div className="cardWithimg_contanier__btns">
-                {status === TICKET_STATUS.review ? (
+                {status === TICKET_STATUS.ACTIVE || status === TICKET_STATUS.PROCESSING ? (
                   <>
                     <Button
                       variant="solid"
-                      leftIcon={<CheckIcon />}
+                      rightIcon={<CheckIcon />}
                       colorScheme="blue"
                       marginLeft="8px"
                       width="100%"
                       onClick={() => {
-                        setStatus(TICKET_STATUS.solved);
-                        updateStatus(TICKET_STATUS.solved);
+                        let sentStatus = status === TICKET_STATUS.ACTIVE ? TICKET_STATUS.PROCESSING : TICKET_STATUS.CLOSED
+                        setStatus(sentStatus);
+                        updateStatus(sentStatus);
                       }}
                     >
                       قبول
                     </Button>
                     <Button
                       variant="outline"
-                      leftIcon={<CloseIcon />}
+                      rightIcon={<CloseIcon />}
                       colorScheme="red"
                       width="100%"
                       onClick={() => {
-                        setStatus(TICKET_STATUS.canceled);
-                        updateStatus(TICKET_STATUS.canceled);
+                        setStatus(TICKET_STATUS.CLOSED);
+                        updateStatus(TICKET_STATUS.CLOSED);
                       }}
                     >
                       رفض
@@ -129,7 +121,7 @@ const TicketCard = ({ item, img = image }) => {
                   <>
                     <Button
                       variant="solid"
-                      leftIcon={<CheckIcon />}
+                      rightIcon={<CheckIcon />}
                       colorScheme="blue"
                       marginLeft="8px"
                       width="100%"
@@ -142,7 +134,7 @@ const TicketCard = ({ item, img = image }) => {
                     </Button>
                     <Button
                       variant="outline"
-                      leftIcon={<CloseIcon />}
+                      rightIcon={<CloseIcon />}
                       colorScheme="red"
                       width="100%"
                       onClick={() => {

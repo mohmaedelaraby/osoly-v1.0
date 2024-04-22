@@ -74,7 +74,6 @@ const Home = () => {
   ];
   const metricVals = [];
   useEffect(() => {
-    console.log(homeData.stats);
     setPieData(homeData?.stats?.ticketsStats);
     setBarData(homeData?.stats?.unitsStats);
     setOwnersCount(homeData?.stats?.ownersCount);

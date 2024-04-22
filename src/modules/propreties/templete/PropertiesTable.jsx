@@ -213,7 +213,7 @@ function PropertiesTable() {
                             <Button
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
-                              leftIcon={<DeleteIcon />}
+                              rightIcon={<DeleteIcon />}
                               color="white"
                               variant="solid"
                               bg={"#CC3636"}
@@ -224,7 +224,7 @@ function PropertiesTable() {
                             <Button
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
-                              leftIcon={<EditOutlinedIcon />}
+                              rightIcon={<EditOutlinedIcon />}
                               color="white"
                               variant="solid"
                               alignItems="center"
