@@ -46,7 +46,7 @@ const TicketCard = ({ item, img = image }) => {
                   status == TICKET_STATUS.CLOSED
                     ? "cardWithimg_contanier__icon_stats closed"
                     : status == TICKET_STATUS.ACTIVE
-                    ? "cardWithimg_contanier__icon_stats active"
+                    ? "cardWithimg_contanier__icon_stats activecard"
                     : status == TICKET_STATUS.PROCESSING
                     ? "cardWithimg_contanier__icon_stats process"
                     : " "
