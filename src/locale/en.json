@@ -1,10 +1,26 @@
-
-
-  {
-    "translation": {
-      "general": {
-        "add":"Add",
-        "hello":"Hello"
+{
+  "translation": {
+    "general": {
+      "add": "add",
+      "hello": "Hello",
+      "tickets": "tickets",
+      "show_all": "Show all",
+      "latest": "latest",
+      "ask_service": "Service Request"
+    },
+    "home": {
+      "cards": {
+        "total_numbers_of_rent_units": "Total rental units",
+        "total_numbers_of_units": "Total Properties",
+        "total_money": "current month's collection",
+        "total_open_tickets": "Total open tickets"
+      },
+      "charts": {
+        "new_users_title": "New Users",
+        "new_users_desc": "Percentage increase in the number of new users this month",
+        "new_users_discalmer": "percentage of new users",
+        "rent_title": "Rents Due"
       }
     }
   }
+}

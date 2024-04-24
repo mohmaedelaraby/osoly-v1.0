@@ -173,33 +173,28 @@ const Home = () => {
             <PageHeader title={homeData?.enterprise.username}></PageHeader>
           </div>
           <div className="home_container_cards">
-            {/* {metricData && metircArr?.map((item, i) => (
-              <div key={i} className="home_container_cards_card">
-                <CardWithNumber></CardWithNumber>
-              </div>
-            ))} */}
             <CardWithNumber
               icon={houseIcon}
               number={250}
-              desc={"إجمالي الوحدات المؤجرة"}
+              desc={t("home.cards.total_numbers_of_rent_units")}
               bg={"#E2FBD7"}
             ></CardWithNumber>
             <CardWithNumber
               icon={homesIcon}
               number={170}
-              desc={"  إجمالي العقارات"}
+              desc={t("home.cards.total_numbers_of_units")}
               bg={"#EFF9FF"}
             ></CardWithNumber>
             <CardWithNumber
               icon={moneyIcon}
               number={"20k"}
-              desc={"  تحصيل الشهر الحالي"}
+              desc={t("home.cards.total_money")}
               bg={"#F3EBFF"}
             ></CardWithNumber>
             <CardWithNumber
               icon={interfaceIcon}
               number={120}
-              desc={"إجمالي التذاكر المفتوحة"}
+              desc={t("home.cards.total_open_tickets")}
               bg={"#FFE4CE"}
             ></CardWithNumber>
           </div>
@@ -210,7 +205,7 @@ const Home = () => {
 
             <div className="home_container_charts_table__chart ml-24">
               <div className="home_container_charts_table__chart_header">
-                التذاكر
+                {t("general.tickets")}
               </div>
 
               <Card width="100%" borderRadius="14px" padding="36px">
@@ -222,13 +217,13 @@ const Home = () => {
 
             <div className="home_container_charts_table__chart">
               <div className="home_container_charts_table__chart_header">
-                المستخدمين الجدد
+                {t("home.charts.new_users_title")}
               </div>
 
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
                   <div className="home_container_charts_table__chart_card_title">
-                    نسبة زيادة عدد المستخدمين الجدد لهذا الشهر
+                    {t("home.charts.new_users_desc")}
                   </div>
                   <PieChartComponentWithOneValue
                     data={datat}
@@ -243,37 +238,18 @@ const Home = () => {
                           />
                         </Icon>
                       </span>
-                      <span> نسبة المستخدمين الجدد</span>
+                      <span> {t("home.charts.new_users_discalmer")} </span>
                     </div>
                   </div>
                 </CardBody>
               </Card>
             </div>
-
-            {/* <div className="home_container_charts_table__table">
-              <Card width="100%">
-                <CardHeader paddingBottom="8px">
-                  <Heading>
-                    <Text fontSize="24px" fontWeight="bold">
-                      Units
-                    </Text>
-                  </Heading>
-                </CardHeader>
-                <CardBody paddingTop="0px">
-                  <BarChartComponent
-                    data={barData}
-                    dataKeyValue={"value"}
-                    name={"name"}
-                  />
-                </CardBody>
-              </Card>
-            </div> */}
           </div>
           <div className="home_container_tables">
             <div className="home_container_item_tables ml-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
-                  الإيجارات المستحقة
+                {t("home.charts.rent_title")}
                 </div>
                 <div className="home_container_tables_item_header_btn">
                   <Button
@@ -281,7 +257,7 @@ const Home = () => {
                     colorScheme="gray"
                     variant="outline"
                   >
-                    عرض الكل
+                     {t("general.show_all")} 
                   </Button>
                 </div>
               </div>
@@ -310,7 +286,7 @@ const Home = () => {
             <div className="home_container_item_tables mr-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
-                  أحدث التذاكر
+                {t("general.latest")}  {t("general.tickets")}
                 </div>
                 <div className="home_container_tables_item_header_btn">
                   <Button
@@ -318,7 +294,7 @@ const Home = () => {
                     colorScheme="gray"
                     variant="outline"
                   >
-                    عرض الكل
+                     {t("general.show_all")}
                   </Button>
                 </div>
               </div>

@@ -1,8 +1,26 @@
 {
   "translation": {
     "general": {
-      "add":"اضافه",
-      "hello":"اهلا"
+      "add": "اضافه",
+      "hello": "اهلا",
+      "tickets": "التذاكر",
+      "show_all": " عرض الكل ",
+      "latest": "أحدث",
+      "ask_service": "طلب خدمة"
+    },
+    "home": {
+      "cards": {
+        "total_numbers_of_rent_units": "إجمالي الوحدات المؤجرة",
+        "total_numbers_of_units": "  إجمالي العقارات",
+        "total_money": "  تحصيل الشهر الحالي",
+        "total_open_tickets": "إجمالي التذاكر المفتوحة"
+      },
+      "charts": {
+        "new_users_title": "المستخدمين الجدد",
+        "new_users_desc": " نسبة زيادة عدد المستخدمين الجدد لهذا الشهر ",
+        "new_users_discalmer": " نسبة المستخدمين الجد",
+        "rent_title": "الإيجارات المستحقة "
+      }
     }
   }
 }
