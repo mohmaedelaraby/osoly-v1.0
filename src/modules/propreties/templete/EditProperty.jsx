@@ -61,17 +61,17 @@ const EditProperty = ({ id, onClose }) => {
   }, [data]);
 
   const initialValues = {
-    name: data?.name,
-    address: data?.address,
-    unitsCount: data?.unitsCount,
-    instrumentNumber: data?.instrumentNumber,
-    postalCode: data?.postalCode,
-    blockNumber: data?.blockNumber,
-    street: data?.street,
-    district: data?.district,
-    city: data?.city,
-    ownerId: data?.ownerId,
-    image: data?.image,
+    name: data?.name || " ",
+    address: data?.address || " ",
+    unitsCount: data?.unitsCount || 0,
+    instrumentNumber: data?.instrumentNumber || " ",
+    postalCode: data?.postalCode || " ",
+    blockNumber: data?.blockNumber || " ",
+    street: data?.street || " ",
+    district: data?.district || " ",
+    city: data?.city || " ",
+    ownerId: data?.ownerId || " ",
+    image: data?.image  || " ",
   };
 
   const formik = useFormik({
@@ -92,7 +92,9 @@ const EditProperty = ({ id, onClose }) => {
       formData.append("postalCode", formik.values.postalCode);
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
+      console.log(formData)
       mutate({ id:id , body: formData });
+      onClose()
       //mutate({id:id? id:data?.id ,body:data});
       //mutate({ id: data?.id, body: values });
     },

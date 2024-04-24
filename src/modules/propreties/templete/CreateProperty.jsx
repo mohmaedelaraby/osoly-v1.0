@@ -60,7 +60,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
       formik.values.ownerId = selectedOwnerId;
       const formData = new FormData();
       formData.append("image", selectedImage, selectedImage.name);
-      formData.append("name",'Mohamed');
+      formData.append("name", "Mohamed");
       formData.append("address", formik.values.address);
       formData.append("blockNumber", formik.values.blockNumber);
       formData.append("city", formik.values.city);
@@ -71,6 +71,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
       mutate({ body: formData });
+      onClose()
     },
   });
 
@@ -82,38 +83,6 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
   const openUnitPopup = () => {
     onOpenUnitModal();
-  };
-
-  const uploadImage = (file) => {
-
-    const formData = new FormData();
-
-    if (file.name) {
-      formData.append("image", file, file.name);
-      formData.append("name",'Mohamed');
-      formData.append("address", formik.values.address);
-      formData.append("blockNumber", formik.values.blockNumber);
-      formData.append("city", formik.values.city);
-      formData.append("district", formik.values.district);
-      formData.append("instrumentNumber", formik.values.instrumentNumber);
-      formData.append("ownerId", formik.values.ownerId);
-      formData.append("postalCode", formik.values.postalCode);
-      formData.append("street", formik.values.street);
-      formData.append("unitsCount", formik.values.unitsCount);
-    } else {
-      formData.append(
-        "Image",
-        file,
-        Math.floor(Math.random() * 1000).toString() + ".png"
-      );
-    }
-    console.log(  formData,formData.entries())
-    /*  console.log(  formData,formData.entries())
-    // Display the key/value pairs
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    } */
-    return formData;
   };
 
   return (
