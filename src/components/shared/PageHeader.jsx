@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next';
-import user from "../../assets/images/user.png";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import '../../assets/styels/components/pageHeader.scss'
 
-
-function PageHeader({title}) {
-    const {
-        t,
-        i18n: { changeLanguage, language },
-      } = useTranslation();
-      const [currentLanguage, setCurrentLanguage] = useState(language);
-      const handleChangeLanguage = () => {
-        const newLanguage = currentLanguage === "en" ? "ar" : "en";
-        setCurrentLanguage(newLanguage);
-        changeLanguage(newLanguage);
-      };
+function PageHeader({ title, addtionTitle }) {
+  const {
+    t,
+    i18n: { changeLanguage, language },
+  } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const handleChangeLanguage = () => {
+    const newLanguage = currentLanguage === "en" ? "ar" : "en";
+    setCurrentLanguage(newLanguage);
+    changeLanguage(newLanguage);
+  };
   return (
-    <div className="home_container_header">
-    <div className="home_container_header__title">
-      {t("general.hello")} {title}
-    </div>
-    <div className="home_container_header__icons">
-        <div className='home_container_header__icons_lang' onClick={handleChangeLanguage}>
-            {currentLanguage === "en" ? (<>US</>):(<>AR</>)}
+    <div className="page_heading_header">
+      <div className="page_heading_header__title">
+        {addtionTitle} {title}
+      </div>
+      <div className="page_heading_header__icons">
+        <div
+          className="page_heading_header__icons_lang"
+          onClick={handleChangeLanguage}
+        >
+          {currentLanguage === "en" ? <>US</> : <>AR</>}
         </div>
-     
-    
+      </div>
     </div>
-  </div>
-  )
+  );
 }
 
-export default PageHeader
+export default PageHeader;

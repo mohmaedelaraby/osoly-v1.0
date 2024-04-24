@@ -170,7 +170,7 @@ const Home = () => {
       <div className="home">
         <div className="home_container">
           <div className="home_container_header">
-            <PageHeader title={homeData?.enterprise.username}></PageHeader>
+            <PageHeader title={homeData?.enterprise.username} addtionTitle={t("general.hello")}></PageHeader>
           </div>
           <div className="home_container_cards">
             <CardWithNumber

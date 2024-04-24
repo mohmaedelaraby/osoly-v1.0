@@ -2,11 +2,25 @@
   "translation": {
     "general": {
       "add": "add",
+      "cancel": "cancel",
       "hello": "Hello",
       "tickets": "tickets",
       "show_all": "Show all",
       "latest": "latest",
-      "ask_service": "Service Request"
+      "ask_service": "Service Request",
+      "sort": "sort by",
+      "sort_type": "sort type",
+      "asc": "asc",
+      "desc": "desc",
+      "filter": "Sort by",
+      "expire_date": "expiry date",
+      "apply": "application",
+      "delete": "delete",
+      "plan": "plan",
+      "name": "Name",
+      "num_of_units": "number of units",
+      "plan_type": "Package",
+      "num_of_users": "number of users"
     },
     "home": {
       "cards": {
@@ -20,6 +34,18 @@
         "new_users_desc": "Percentage increase in the number of new users this month",
         "new_users_discalmer": "percentage of new users",
         "rent_title": "Rents Due"
+      }
+    },
+    "enterprise": {
+      "page": {
+        "header": "organization",
+        "add_user": "Add founder"
+      },
+      "create": {
+        "title": "Add a new founder",
+        "plan_desc_one": "This plan allows you to add",
+        "plan_desc_two": "used within",
+        "plan_desc_three": "months"
       }
     }
   }

@@ -2,11 +2,27 @@
   "translation": {
     "general": {
       "add": "اضافه",
+      "cancel": "الغاء",
       "hello": "اهلا",
       "tickets": "التذاكر",
       "show_all": " عرض الكل ",
       "latest": "أحدث",
-      "ask_service": "طلب خدمة"
+      "ask_service": "طلب خدمة",
+      "sort": "فرز حسب",
+      "sort_type": "نوع الفرز",
+      "asc": "تصاعدي",
+      "desc": "تنازلي",
+      "filter": "ترتيب حسب",
+      "expire_date": "تاريخ الانتهاء",
+      "apply": "تطبيق",
+      "delete": "مسح",
+      "plan": "الخطه",
+      "name": "الاسم",
+      "num_of_units": "عدد الوحدات",
+      "plan_type": "الباقة",
+      "num_of_users": "عدد المستخدمين ",
+      "password": "كلمة المرور",
+      "decide": "حدد"
     },
     "home": {
       "cards": {
@@ -20,6 +36,18 @@
         "new_users_desc": " نسبة زيادة عدد المستخدمين الجدد لهذا الشهر ",
         "new_users_discalmer": " نسبة المستخدمين الجد",
         "rent_title": "الإيجارات المستحقة "
+      }
+    },
+    "enterprise": {
+      "page": {
+        "header": "المؤسسة",
+        "add_user": " إضافة مؤسس"
+      },
+      "create": {
+        "title": "إضافة مؤسس جديد",
+        "plan_desc_one": "هذه الخطه تسمحلك ب اضافه",
+        "plan_desc_two": "مستخدم في خلال ",
+        "plan_desc_three": " اشهر  "
       }
     }
   }

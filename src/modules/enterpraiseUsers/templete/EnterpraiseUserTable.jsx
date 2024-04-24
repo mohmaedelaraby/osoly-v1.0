@@ -46,8 +46,11 @@ import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import EditEnterpraiseUser from "./EditEnterpraiseUser";
+import { useTranslation } from "react-i18next";
+import PageHeader from "../../../components/shared/PageHeader";
 
 const UserEnterpraiseTable = () => {
+  const { t } = useTranslation();
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -90,7 +93,9 @@ const UserEnterpraiseTable = () => {
   }, [PlansData]);
 
   useEffect(() => {
-    setTimeout(()=>{usersEnterPrisesRefetch();},500)
+    setTimeout(() => {
+      usersEnterPrisesRefetch();
+    }, 500);
   }, [
     currentPage,
     isOpenModalEdit,
@@ -138,10 +143,7 @@ const UserEnterpraiseTable = () => {
       <div className="page">
         <div className="page_container">
           <div className="page_container_header">
-            <div className="page_container_header__title">المؤسسة</div>
-            <div className="page_container_header__icons">
-              <img src={user} alt="user" width="40px" height="40px" />
-            </div>
+            <PageHeader title={t("enterprise.page.header")}></PageHeader>
           </div>
           <div className="page_container_cards">
             {CardsDemo?.map((card, index) => (
@@ -170,7 +172,7 @@ const UserEnterpraiseTable = () => {
                       openCreatePopup();
                     }}
                   >
-                    <span className="pl-8"> إضافة مؤسس</span>
+                    <span className="pl-8">{t("enterprise.page.add_user")}</span>
                   </Button>
 
                   <Menu closeOnSelect={false}>
@@ -183,14 +185,14 @@ const UserEnterpraiseTable = () => {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">فرز حسب</span>
+                      <span className="pl-8">{t("general.sort")}</span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <MenuItem>
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              نوع الفرز
+                              {t("general.sort_type")}
                             </Text>
                           </FormLabel>
                           <RadioGroup
@@ -198,8 +200,8 @@ const UserEnterpraiseTable = () => {
                             value={sortDirectionTmp}
                           >
                             <Stack direction="row">
-                              <Radio value="asc">تصاعدي</Radio>
-                              <Radio value="desc">تنازلي</Radio>
+                              <Radio value="asc"> {t("general.asc")}</Radio>
+                              <Radio value="desc"> {t("general.desc")}</Radio>
                             </Stack>
                           </RadioGroup>
                         </FormControl>
@@ -208,11 +210,11 @@ const UserEnterpraiseTable = () => {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              فرز حسب
+                              {t("general.sort")}
                             </Text>
                           </FormLabel>
                           <Select
-                            placeholder="فرز حسب"
+                            placeholder={t("general.sort")}
                             dir="ltr"
                             name="sortBY"
                             onChange={(e) => {
@@ -220,7 +222,10 @@ const UserEnterpraiseTable = () => {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value="expireDate">تاريخ الانتهاء</option>
+                            <option value="expireDate">
+                              {" "}
+                              {t("general.expire_date")}{" "}
+                            </option>
                           </Select>
                         </FormControl>
                       </div>
@@ -241,7 +246,7 @@ const UserEnterpraiseTable = () => {
                               setSortBy(sortByTmp);
                             }}
                           >
-                            تطبيق
+                            {t("general.apply")}
                           </Button>
                           <Button
                             onClick={() => {
@@ -252,7 +257,7 @@ const UserEnterpraiseTable = () => {
                             color={"#010B38"}
                             variant="outline"
                           >
-                            مسح
+                            {t("general.delete")}
                           </Button>
                         </Stack>
                       </div>
@@ -269,18 +274,19 @@ const UserEnterpraiseTable = () => {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">ترتيب حسب</span>
+                      <span className="pl-8">{t("general.filter")} </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <div className="menu-select">
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              ترتيب حسب الخطه
+                              {t("general.filter")}
+                              {t("general.plan")}
                             </Text>
                           </FormLabel>
                           <Select
-                            placeholder="فرز حسب"
+                            placeholder={t("general.sort")}
                             dir="ltr"
                             name="sortBY"
                             onChange={(e) => {
@@ -312,7 +318,7 @@ const UserEnterpraiseTable = () => {
                               setPlanId(planIdTmp);
                             }}
                           >
-                            تطبيق
+                            {t("general.apply")}
                           </Button>
                           <Button
                             onClick={() => {
@@ -322,7 +328,7 @@ const UserEnterpraiseTable = () => {
                             color={"#010B38"}
                             variant="outline"
                           >
-                            مسح
+                            {t("general.delete")}
                           </Button>
                         </Stack>
                       </div>
@@ -351,10 +357,19 @@ const UserEnterpraiseTable = () => {
                     <Table className="table" variant="simple">
                       <Thead className="table_header">
                         <Tr>
-                          <Th className="table_header_item">الاسم</Th>
-                          <Th className="table_header_item">عدد الوحدات</Th>
-                          <Th className="table_header_item">الباقة</Th>
-                          <Th className="table_header_item">عدد المستخدمين </Th>
+                          <Th className="table_header_item">
+                            {t("general.name")}{" "}
+                          </Th>
+                          <Th className="table_header_item">
+                            {" "}
+                            {t("general.num_of_units")}{" "}
+                          </Th>
+                          <Th className="table_header_item">
+                            {t("general.plan_type")}
+                          </Th>
+                          <Th className="table_header_item">
+                            {t("general.num_of_users")}{" "}
+                          </Th>
                           <Th className="table_header_item"> </Th>
                         </Tr>
                       </Thead>

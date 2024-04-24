@@ -9,16 +9,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useEnterprisesUpdateUser } from "../hooks/useUpdateEnterprisesUser";
-import { userEnterpraiseValidationCreate, userEnterpraiseValidationEdit } from "../validation/schema";
+import { userEnterpraiseValidationEdit } from "../validation/schema";
 import close from "../../../assets/icons-svgs/close.svg";
 import goldCrown from "../../../assets/icons-svgs/goldCrown.svg";
 import silverCrown from "../../../assets/icons-svgs/silverCrown.svg";
 import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-const EditEnterpraiseUser = ({ onClose, plans,item }) => {
+const EditEnterpraiseUser = ({ onClose, plans, item }) => {
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
   const initialValues = {
@@ -33,7 +33,7 @@ const EditEnterpraiseUser = ({ onClose, plans,item }) => {
     initialValues: initialValues,
     validationSchema: userEnterpraiseValidationEdit,
     onSubmit: (values) => {
-      let data = {id:item.id , body:{...values}};
+      let data = { id: item.id, body: { ...values } };
       mutate(data);
       onClose();
     },
@@ -98,7 +98,6 @@ const EditEnterpraiseUser = ({ onClose, plans,item }) => {
                   setRemoveReadOnly(false);
                 }}
                 className="form__input__container__input"
-            
               />
               <InputLeftElement width="4.5rem">
                 <Button
@@ -120,7 +119,6 @@ const EditEnterpraiseUser = ({ onClose, plans,item }) => {
                 </Button>
               </InputLeftElement>
             </InputGroup>
-
           </FormControl>
         </div>
 
