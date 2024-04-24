@@ -3,8 +3,18 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all properties
 export const getProperties = (params) => {
-  const { pageNo, limit } = params;
-  return api.get(`${apiUrl}dashboard/properties?page=${pageNo}&limit=${limit}`, {
+  const { pageNo, limit, sortBy,
+    sortDirection,
+    name,
+    address,
+    street,
+    unitsCount,
+    district,
+    instrumentNumber,
+    city,
+    blockNumber,
+    postalCode } = params;
+  return api.get(`${apiUrl}dashboard/properties?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}${name?`&name=${name}`:``}${address?`&address=${address}`:``}${street?`&street=${street}`:``}${postalCode?`&postalCode=${postalCode}`:``}${instrumentNumber?`&instrumentNumber=${instrumentNumber}`:``}${unitsCount?`&unitsCount=${unitsCount}`:``}${blockNumber?`&blockNumber=${blockNumber}`:``}${district?`&district=${district}`:``}${city?`&city=${city}`:``}`, {
   }).then(res => res.data.data)
 }
 
@@ -37,7 +47,7 @@ export const createPropertey = (data) => {
 
 //delete Propertey
 export const deletePropertey = (data) => {
-    return api.delete(`${apiUrl}dashboard/properties/${data?.id}`)
-  }
+  return api.delete(`${apiUrl}dashboard/properties/${data?.id}`)
+}
 
 

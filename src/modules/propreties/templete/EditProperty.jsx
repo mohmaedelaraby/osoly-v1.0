@@ -1,16 +1,9 @@
 import {
   Button,
-  Card,
-  CardBody,
   Checkbox,
   FormControl,
- 
   FormLabel,
- 
   Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
   Modal,
   ModalBody,
   ModalContent,
@@ -33,26 +26,24 @@ import { propertyEditValidation } from "../validation/schema";
 import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
 import useGetPropertey from "../hooks/useGetPropertey";
 import useUsers from "../../users/hooks/useUsers";
-import { USER_ROLES } from "../../../enums/UserRoles";
 import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
-import useClosePopUps from "../../../store/useClosePopups";
 import CreateUnit from "../../units/templete/CreateUnit";
 import close from "../../../assets/icons-svgs/close.svg";
 
-
-const EditProperty = ({ id , onClose }) => {
- // const { isOpen, onOpen, onClose } = useDisclosure();
- const [selectedOwnerId, setSelectedOwnerId] = useState(0);
- const [selectedImage, setSelectedImage] = useState(null);
- const { usersData, usersRefetch } = useUsers({
-   pageNo: 1,
-   limit: 1000,
-   count: 12,
- });
- useEffect(() => {
-   usersRefetch();
- }, []);
+const EditProperty = ({ id, onClose }) => {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedOwnerId, setSelectedOwnerId] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [loadedImage, setLoadedImage] = useState(null);
+  const { usersData, usersRefetch } = useUsers({
+    pageNo: 1,
+    limit: 1000,
+    count: 12,
+  });
+  useEffect(() => {
+    usersRefetch();
+  }, []);
 
   const { mutate } = useUpdatePropertey();
   const { data, isLoading, refetch } = useGetPropertey(id);
@@ -64,34 +55,44 @@ const EditProperty = ({ id , onClose }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data)
       setSelectedOwnerId(data?.ownerId);
-      setSelectedImage(data.image)
+      setLoadedImage(data.image);
     }
   }, [data]);
 
- const initialValues = {
+  const initialValues = {
     name: data?.name,
     address: data?.address,
-    unitsCount:  data?.unitsCount,
-    instrumentNumber:  data?.instrumentNumber,
-    postalCode:  data?.postalCode,
-    blockNumber:  data?.blockNumber,
-    street:  data?.street,
-    district:  data?.district,
-    city:  data?.city,
-    ownerId:  data?.ownerId,
-    image:  data?.image,
+    unitsCount: data?.unitsCount,
+    instrumentNumber: data?.instrumentNumber,
+    postalCode: data?.postalCode,
+    blockNumber: data?.blockNumber,
+    street: data?.street,
+    district: data?.district,
+    city: data?.city,
+    ownerId: data?.ownerId,
+    image: data?.image,
   };
 
   const formik = useFormik({
-    enableReinitialize:true,
+    enableReinitialize: true,
     initialValues: initialValues,
     validationSchema: propertyEditValidation,
     onSubmit: (values) => {
-      let data = { ...values };
-      console.log(data)
-
+      formik.values.ownerId = selectedOwnerId;
+      const formData = new FormData();
+      formData.append("image", selectedImage, selectedImage.name);
+      formData.append("name", "Mohamed");
+      formData.append("address", formik.values.address);
+      formData.append("blockNumber", formik.values.blockNumber);
+      formData.append("city", formik.values.city);
+      formData.append("district", formik.values.district);
+      formData.append("instrumentNumber", formik.values.instrumentNumber);
+      formData.append("ownerId", formik.values.ownerId);
+      formData.append("postalCode", formik.values.postalCode);
+      formData.append("street", formik.values.street);
+      formData.append("unitsCount", formik.values.unitsCount);
+      mutate({ id:id , body: formData });
       //mutate({id:id? id:data?.id ,body:data});
       //mutate({ id: data?.id, body: values });
     },
@@ -107,7 +108,7 @@ const EditProperty = ({ id , onClose }) => {
   };
   return (
     <>
-       <div className="from__card from__card__full">
+      <div className="from__card from__card__full">
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
@@ -118,7 +119,7 @@ const EditProperty = ({ id , onClose }) => {
             </div>
 
             <div className="form__input form__input__flex">
-              {!selectedImage ? (
+              {!selectedImage && !loadedImage ? (
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
                   <p className="form__input__flex_fileUpload_text">رفع صورة</p>
@@ -130,13 +131,15 @@ const EditProperty = ({ id , onClose }) => {
                     type="file"
                     name="image"
                     accept=".png, .jpg, .jpeg"
-                    onChange={(e)=>{setSelectedImage(e.target.files[0])}}
+                    onChange={(e) => {
+                      setSelectedImage(e.target.files[0]);
+                    }}
                   />
                 </div>
               ) : (
                 <div
                   style={{
-                    padding: `${selectedImage ? "0px" : ""}`,
+                    padding: `${selectedImage || loadedImage ? "0px" : ""}`,
                     borderRadius: "12px",
                   }}
                   className="form__input__flex_fileUpload"
@@ -146,7 +149,11 @@ const EditProperty = ({ id , onClose }) => {
                       alt="not found"
                       width={"auto"}
                       height={"285px"}
-                      src={selectedImage}
+                      src={
+                        selectedImage
+                          ? URL.createObjectURL(selectedImage)
+                          : loadedImage
+                      }
                     />
                   </div>
                 </div>
@@ -209,7 +216,7 @@ const EditProperty = ({ id , onClose }) => {
               </FormControl>
             </div>
 
-           {/*  <div className="form__input form__input__flex">
+            {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
@@ -263,16 +270,16 @@ const EditProperty = ({ id , onClose }) => {
                   dir="rtl"
                   value={selectedOwnerId}
                   onChange={(e) => {
-                    setSelectedOwnerId(e.target.value)
+                    setSelectedOwnerId(e.target.value);
                     setTimeout(() => {}, 0);
                   }}
                 >
                   <option value={0}>المالك </option>
                   {usersData?.users?.map((i, index) => (
-                      <option value={i.id} key={index}>
-                        {i.firstNameAr} {i.id}
-                      </option>
-                    ))}
+                    <option value={i.id} key={index}>
+                      {i.firstNameAr} {i.id}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -361,74 +368,82 @@ const EditProperty = ({ id , onClose }) => {
 
             <div className="form__input form__input__flex mt-24">
               <div className="flex-between">
-
-              <TableContainer
-              width="100%"
-              overflowY="auto"
-              overflowX="auto"
-              minHeight="340px"
-              maxHeight="340px"
-            >
-              <Table className="table" variant="simple">
-                <Thead className="table_header">
-                  <Tr>
-                    <Th className="table_header_item">الاسم</Th>
-                    <Th className="table_header_item">موعد الاستحقاق</Th>
-                    <Th className="table_header_item">الإيجار</Th>
-                    <Th className="table_header_item">العنوان</Th>
-                    <Th className="table_header_item">المساحة</Th>
-                    <Th className="table_header_item">حساب فاتورة الكهرباء</Th>
-                    <Th className="table_header_item">حساب المياه</Th>
-                    <Th className="table_header_item">الغرف</Th>
-                    <Th className="table_header_item">المطبخ</Th>
-                    <Th className="table_header_item">التكييفات</Th>
-                    <Th className="table_header_item"></Th>
-                  </Tr>
-                </Thead>
-                <Tbody className="table_body">
-                  {data &&
-                    data?.units?.map((item, index) => (
-                      <Tr
-                        key={index}
-                        className="table_body_row"
-                        onClick={() => {}}
-                      >
-                        <Td className="table_body_row_item">{item.name}</Td>
-                        <Td className="table_body_row_item">
-                          {item.rentCollectionDate}
-                        </Td>
-                        <Td className="table_body_row_item">{item.rent}</Td>
-                        <Td className="table_body_row_item">{item.address}</Td>
-                        <Td className="table_body_row_item">{item.space}</Td>
-                        <Td className="table_body_row_item">
-                          {item.electricityAccount}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.waterAccount}
-                        </Td>
-                        <Td className="table_body_row_item">{item.rooms}</Td>
-
-                        <Td className="table_body_row_item">
-                          {item.kitchen ? (
-                            <>
-                              <Checkbox defaultChecked isDisabled></Checkbox>
-                            </>
-                          ) : (
-                            <>
-                              <Checkbox isDisabled></Checkbox>
-                            </>
-                          )}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.conditioners}
-                        </Td>
-                       
+                <TableContainer
+                  width="100%"
+                  overflowY="auto"
+                  overflowX="auto"
+                  minHeight="340px"
+                  maxHeight="340px"
+                >
+                  <Table className="table" variant="simple">
+                    <Thead className="table_header">
+                      <Tr>
+                        <Th className="table_header_item">الاسم</Th>
+                        <Th className="table_header_item">موعد الاستحقاق</Th>
+                        <Th className="table_header_item">الإيجار</Th>
+                        <Th className="table_header_item">العنوان</Th>
+                        <Th className="table_header_item">المساحة</Th>
+                        <Th className="table_header_item">
+                          حساب فاتورة الكهرباء
+                        </Th>
+                        <Th className="table_header_item">حساب المياه</Th>
+                        <Th className="table_header_item">الغرف</Th>
+                        <Th className="table_header_item">المطبخ</Th>
+                        <Th className="table_header_item">التكييفات</Th>
+                        <Th className="table_header_item"></Th>
                       </Tr>
-                    ))}
-                </Tbody>
-              </Table>
-            </TableContainer>
-                
+                    </Thead>
+                    <Tbody className="table_body">
+                      {data &&
+                        data?.units?.map((item, index) => (
+                          <Tr
+                            key={index}
+                            className="table_body_row"
+                            onClick={() => {}}
+                          >
+                            <Td className="table_body_row_item">{item.name}</Td>
+                            <Td className="table_body_row_item">
+                              {item.rentCollectionDate}
+                            </Td>
+                            <Td className="table_body_row_item">{item.rent}</Td>
+                            <Td className="table_body_row_item">
+                              {item.address}
+                            </Td>
+                            <Td className="table_body_row_item">
+                              {item.space}
+                            </Td>
+                            <Td className="table_body_row_item">
+                              {item.electricityAccount}
+                            </Td>
+                            <Td className="table_body_row_item">
+                              {item.waterAccount}
+                            </Td>
+                            <Td className="table_body_row_item">
+                              {item.rooms}
+                            </Td>
+
+                            <Td className="table_body_row_item">
+                              {item.kitchen ? (
+                                <>
+                                  <Checkbox
+                                    defaultChecked
+                                    isDisabled
+                                  ></Checkbox>
+                                </>
+                              ) : (
+                                <>
+                                  <Checkbox isDisabled></Checkbox>
+                                </>
+                              )}
+                            </Td>
+                            <Td className="table_body_row_item">
+                              {item.conditioners}
+                            </Td>
+                          </Tr>
+                        ))}
+                    </Tbody>
+                  </Table>
+                </TableContainer>
               </div>
             </div>
 

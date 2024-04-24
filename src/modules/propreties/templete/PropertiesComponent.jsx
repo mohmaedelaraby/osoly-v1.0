@@ -1,54 +1,19 @@
 import {
-  Button,
   Card,
-  Checkbox,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
-  Table,
-  TableContainer,
   Tabs,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../../../assets/styels/components/Table.scss";
 import "../../../assets/styels/components/page.scss";
-import {
-  AddIcon,
-  CalendarIcon,
-  ChevronDownIcon,
-  DragHandleIcon,
-  SearchIcon,
-} from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
-import CreateProperty from "./CreateProperty";
-import useClosePopUps from "../../../store/useClosePopups";
+
 import money from "../../../assets/icons-svgs/money.svg";
 import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
-import Pagination from "../../../components/shared/Pagination";
-import useProperties from "../hooks/useAllProperties";
-import CardWithImg from "../../../components/Cards/CardWithImg";
-import CreateUnit from "../../units/templete/CreateUnit";
-import useUnits from "../../units/hooks/useUnits";
+
 import PropertiesTable from "./PropertiesTable";
 import UnitsTable from "../../units/templete/UnitsTable";
 
@@ -73,8 +38,6 @@ const PropertiesComponent = ({ data, owenerId }) => {
       desc: "مجموع الإيجار",
     },
   ];
-  const navigate = useNavigate();
-
 
   return (
     <>
@@ -101,19 +64,19 @@ const PropertiesComponent = ({ data, owenerId }) => {
           </div>
           <div className="page_container_table">
             <Card>
-              <Tabs>
+              <Tabs isLazy>
                 <TabList>
-                  <Tab padding={'16px'}>عقارات</Tab>
-                  <Tab padding={'16px'}>وحدات</Tab>
+                  <Tab padding={"16px"}>عقارات</Tab>
+                  <Tab padding={"16px"}>وحدات</Tab>
                 </TabList>
 
                 <TabPanels>
                   <TabPanel>
-                  <PropertiesTable/>
+                    <PropertiesTable />
                   </TabPanel>
 
                   <TabPanel>
-                   <UnitsTable></UnitsTable>
+                    <UnitsTable></UnitsTable>
                   </TabPanel>
                 </TabPanels>
               </Tabs>
@@ -121,10 +84,6 @@ const PropertiesComponent = ({ data, owenerId }) => {
           </div>
         </div>
       </div>
-
-      
-
-   
     </>
   );
 };
