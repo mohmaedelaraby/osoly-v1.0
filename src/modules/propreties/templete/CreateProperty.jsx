@@ -6,8 +6,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  InputRightElement,
   Modal,
   ModalBody,
   ModalContent,
@@ -60,7 +58,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
       formik.values.ownerId = selectedOwnerId;
       const formData = new FormData();
       formData.append("image", selectedImage, selectedImage.name);
-      formData.append("name", "Mohamed");
+      formData.append("name", formik.values.name);
       formData.append("address", formik.values.address);
       formData.append("blockNumber", formik.values.blockNumber);
       formData.append("city", formik.values.city);
@@ -250,7 +248,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     setTimeout(() => {}, 0);
                   }}
                 >
-                  <option value={0}>المالك </option>
+                  <option value={0} disabled>المالك </option>
                   {usersData?.users
                     .filter((s) => s.role == USER_ROLES.OWNER)
                     ?.map((i, index) => (

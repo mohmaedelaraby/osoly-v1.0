@@ -192,7 +192,7 @@ function UserTable({ switchTo }) {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>فرز حسب</option>
+                    <option value={null} disabled>فرز حسب</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
