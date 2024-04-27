@@ -2,13 +2,11 @@ import {
   Button,
   Card,
   CardBody,
-
   Icon,
   Table,
   TableContainer,
   Tbody,
   Td,
-
   Tr,
 } from "@chakra-ui/react";
 
@@ -56,11 +54,10 @@ const Home = () => {
     limit: 10,
   });
 
-  useEffect(()=>{
-    allrefetch()
-    unitsReftch()
-
-  },[])
+  useEffect(() => {
+    allrefetch();
+    unitsReftch();
+  }, []);
 
   const metircArr = [
     {
@@ -277,8 +274,8 @@ const Home = () => {
                     backgroundColor="white"
                     colorScheme="gray"
                     variant="outline"
-                    onClick={()=>{
-                      navigate("/propreties")
+                    onClick={() => {
+                      navigate("/propreties");
                     }}
                   >
                     {t("general.show_all")}
@@ -290,16 +287,17 @@ const Home = () => {
                   <TableContainer>
                     <Table variant="simple">
                       <Tbody padding="16px">
-                        {!isUnitsLoading && unitsData?.units?.slice(0,4).map((item, index) => (
-                          <Tr id={index}>
-                            <Td>
-                              <div className="pt-16 pb-16">{item.name}</div>
-                            </Td>
-                            <Td>{item.rentCollectionDate}</Td>
-                            <Td>{item.address}</Td>
-                            <Td>{item.rent} ر.س</Td>
-                          </Tr>
-                        ))}
+                        {!isUnitsLoading &&
+                          unitsData?.units?.slice(0, 4).map((item, index) => (
+                            <Tr id={index}>
+                              <Td>
+                                <div className="pt-16 pb-16">{item.name}</div>
+                              </Td>
+                              <Td>{item.rentCollectionDate}</Td>
+                              <Td>{item.address}</Td>
+                              <Td>{item.rent} ر.س</Td>
+                            </Tr>
+                          ))}
                       </Tbody>
                     </Table>
                   </TableContainer>
@@ -307,7 +305,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="home_container_item_tables mr-12">
+            <div className="home_container_item_tables_ticket mr-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
                   {t("general.latest")} {t("general.tickets")}
@@ -317,8 +315,8 @@ const Home = () => {
                     backgroundColor="white"
                     colorScheme="gray"
                     variant="outline"
-                    onClick={()=>{
-                      navigate("/tickets")
+                    onClick={() => {
+                      navigate("/tickets");
                     }}
                   >
                     {t("general.show_all")}
@@ -327,22 +325,24 @@ const Home = () => {
               </div>
               <div className="home_container_tables_item_table">
                 <div>
-                  {!allLoading && allData?.tickets?.slice(0,2).map((i) => (
-                    <>
-                      <div style={{ marginBottom: "16px" }}>
-                        <CardWithImg
-                          header="طلب خدمة"
-                          address=".دریگ رارق هدافتسا دروم اساسا یحارط دوجوم یایند لها هتسویپ تالاوس یوگباوج و یلصا یاهدرواتسد ینیچفورح لماش زاین دروم نامزو دسر نایاپ هب پیات تخس طیارش و اهراکهار هئارا"
-                          title=" شقة 107"
-                          name="محمد ممدوح"
-                          desc="شقه"
-                          height="100%"
-                          isBtns={true}
-                          isVertical={true}
-                        ></CardWithImg>
-                      </div>
-                    </>
-                  ))}
+                  {!allLoading &&
+                    allData?.tickets?.slice(0, 2).map((i, index) => (
+                      <>
+                        <div style={{ marginBottom: "16px" }}>
+                          <CardWithImg
+                            key={index}
+                            header={i?.type}
+                            address={i?.unit?.address}
+                            title={i?.unit?.name}
+                            name={i?.tenant?.firstNameAr}
+                            desc={i?.description}
+                            height="100%"
+                            isBtns={true}
+                            isVertical={true}
+                          ></CardWithImg>
+                        </div>
+                      </>
+                    ))}
                 </div>
               </div>
             </div>

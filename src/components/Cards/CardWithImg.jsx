@@ -19,8 +19,8 @@ function CardWithImg({
  
 }) {
   return (
-    <Card width="-webkit-fit-content">
-      <div className="cardWithimg">
+    <Card width={isVertical ? '100%' : '-webkit-fit-content'}>
+      <div className="cardWithimg"  style={{width: isVertical ? '100%' : ''}} >
         <div
           className={
             isVertical

@@ -70,7 +70,34 @@
 
 
             .home_container_item_tables {
-                width: 100%;
+                flex: 1;
+                max-width: 50%;
+
+                @media screen and (max-width : 770px) {
+                    margin-top: 24px;
+                }
+
+                .home_container_tables_item_header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .home_container_tables_item_header_title {
+                        color: #010B38;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 700;
+                    }
+
+                    .home_container_tables_item_header_btn {}
+                }
+
+                .home_container_tables_item_table {
+                    margin-top: 8px;
+                }
+            }
+            .home_container_item_tables_ticket {
+                flex: 1;
 
                 @media screen and (max-width : 770px) {
                     margin-top: 24px;
