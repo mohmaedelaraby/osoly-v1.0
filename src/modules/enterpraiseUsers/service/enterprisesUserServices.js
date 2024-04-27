@@ -3,8 +3,8 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all enterprises
 export const getEnterprisesUsers = (params) => {
-  const { pageNo, limit , sortDirection,sortBy ,planId} = params;
-  return api.get(`${apiUrl}dashboard/enterprises?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}${planId?`&planId=${planId}`:``}`, {
+  const { pageNo, limit , sortDirection,sortBy ,planId,name} = params;
+  return api.get(`${apiUrl}dashboard/enterprises?page=${pageNo}&limit=${limit}${sortBy?`&sortBy=${sortBy}`:``}${sortDirection?`&sortDirection=${sortDirection}`:``}${planId?`&planId=${planId}`:``}${name?`&username=${name}`:``}`, {
   }).then(res => res.data.data)
 }
 

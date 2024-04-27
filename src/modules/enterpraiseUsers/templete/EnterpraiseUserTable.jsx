@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
@@ -64,16 +65,20 @@ const UserEnterpraiseTable = () => {
     onClose: onCloseModalEdit,
   } = useDisclosure();
 
+  //search by name
+
   // delete user
   const { mutate, isSuccess } = useEnterprisesDeleteUser();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState();
   const [planIdTmp, setPlanIdTmp] = useState();
+  const [nameTmp, setNameTmp] = useState();
   const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
   //sorting and filtering param data
   const [sortBy, setSortBy] = useState();
   const [planId, setPlanId] = useState();
+  const [name, setName] = useState();
   const [sortDirection, setSortDirection] = useState("asc");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,6 +93,7 @@ const UserEnterpraiseTable = () => {
       sortBy: sortBy,
       sortDirection: sortDirection,
       planId: planId,
+      name: name,
     }
   );
 
@@ -107,6 +113,7 @@ const UserEnterpraiseTable = () => {
     sortBy,
     sortDirection,
     planId,
+    name,
     isSuccess,
   ]);
 
@@ -222,7 +229,6 @@ const UserEnterpraiseTable = () => {
                           </FormLabel>
                           <Select
                             placeholder={t("general.sort")}
-                            dir="ltr"
                             name="sortBY"
                             onChange={(e) => {
                               setSortByTmp(e.target.value);
@@ -294,7 +300,6 @@ const UserEnterpraiseTable = () => {
                           </FormLabel>
                           <Select
                             placeholder={t("general.sort")}
-                            dir="ltr"
                             name="sortBY"
                             onChange={(e) => {
                               setPlanIdTmp(e.target.value);
@@ -308,7 +313,26 @@ const UserEnterpraiseTable = () => {
                             ))}
                           </Select>
                         </FormControl>
+                       
                       </div>
+                      <div className="menu-select mt-8">
+                          <FormControl className="form__input__container">
+                            <FormLabel>
+                              <Text className="form__input__container__label">
+                                ترتيب حسب الاسم
+                              </Text>
+                            </FormLabel>
+                            <Input
+                              name="subTitle"
+                              type="text"
+                              className="form__input__container__input"
+                              placeholder=""
+                              onChange={(e) => {
+                                setNameTmp(e.target.value);
+                              }}
+                            />
+                          </FormControl>
+                        </div>
                       <div className="menu-select mt-24">
                         <Stack
                           direction="row"
@@ -323,6 +347,7 @@ const UserEnterpraiseTable = () => {
                             type="submit"
                             onClick={() => {
                               setPlanId(planIdTmp);
+                              setName(nameTmp);
                             }}
                           >
                             {t("general.apply")}
@@ -330,6 +355,9 @@ const UserEnterpraiseTable = () => {
                           <Button
                             onClick={() => {
                               setPlanId(null);
+                              setName(null);
+                              setPlanIdTmp(null);
+                              setNameTmp(null);
                             }}
                             padding="0px 16px"
                             color={"#010B38"}
@@ -344,10 +372,18 @@ const UserEnterpraiseTable = () => {
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
-                    <InputLeftElement pointerEvents="none">
+                    <InputRightElement pointerEvents="none">
                       <SearchIcon color="gray.300" />
-                    </InputLeftElement>
-                    <Input type="text" placeholder="" />
+                    </InputRightElement>
+                    <Input
+                      type="text"
+                      placeholder="ابحث ب اسم المؤسسه"
+                      onChange={(e) => {
+                        setTimeout(() => {
+                          setName(e.target.value);
+                        }, 200);
+                      }}
+                    />
                   </InputGroup>
                 </div>
               </div>
