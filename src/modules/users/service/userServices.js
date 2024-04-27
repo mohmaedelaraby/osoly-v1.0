@@ -35,8 +35,8 @@ export const createUser = (data) => {
   return api.post(`${apiUrl}dashboard/users`, data?.body)
 }
 //delete user
-export const deleteUser = (data) => {
-  return api.delete(`${apiUrl}dashboard/users`, data?.body)
+export const deleteUser = (id) => {
+  return api.delete(`${apiUrl}dashboard/users/${id}`)
 }
 
 

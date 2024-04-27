@@ -41,6 +41,7 @@ import { USER_ROLES } from "../../../enums/UserRoles";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { useDeleteUser } from "../hooks/useDeleteUser";
 
 function UserTable({ switchTo }) {
   const [selectedUser, setSelectedUser] = useState();
@@ -55,6 +56,10 @@ function UserTable({ switchTo }) {
     onOpen: onOpenUserModalEdit,
     onClose: onCloseUserModalEdit,
   } = useDisclosure();
+
+   // delete user
+   const { mutate, isSuccess } = useDeleteUser();
+
 
   const openUserPopup = () => {
     onOpenUserModal();
@@ -123,6 +128,7 @@ function UserTable({ switchTo }) {
     email,
     identityId,
     contractNumber,
+    isSuccess
   ]);
 
   const handlePageUserChange = (page) => {
@@ -429,7 +435,9 @@ function UserTable({ switchTo }) {
                               bg={"#CC3636"}
                               alignItems="center"
                               justifyContent="center"
-                              onClick={() => {}}
+                              onClick={() => {
+                                mutate(item.id);
+                              }}
                             ></Button>
                             <Button
                               className="table_body_row_item_btns_editbtn"
