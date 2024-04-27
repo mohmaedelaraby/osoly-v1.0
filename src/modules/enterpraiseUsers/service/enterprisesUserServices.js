@@ -39,8 +39,9 @@ export const createEnterprisesSettings = (data) => {
   return api.post(`${apiUrl}dashboard/enterprises/settings`, data?.body)
 }
 //delete enterprises
-export const deleteEnterprisesUser = (data) => {
-  return api.delete(`${apiUrl}dashboard/enterprises`, data?.body)
+export const deleteEnterprisesUser = (id) => {
+  return api.delete(`${apiUrl}dashboard/enterprises/${id}`)
+
 }
 
 

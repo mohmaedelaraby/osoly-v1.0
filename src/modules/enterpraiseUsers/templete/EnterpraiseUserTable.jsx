@@ -48,6 +48,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import EditEnterpraiseUser from "./EditEnterpraiseUser";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../../../components/shared/PageHeader";
+import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
@@ -62,6 +63,9 @@ const UserEnterpraiseTable = () => {
     onOpen: onOpenModalEdit,
     onClose: onCloseModalEdit,
   } = useDisclosure();
+
+  // delete user
+  const { mutate, isSuccess } = useEnterprisesDeleteUser();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState();
@@ -103,6 +107,7 @@ const UserEnterpraiseTable = () => {
     sortBy,
     sortDirection,
     planId,
+    isSuccess,
   ]);
 
   const handlePageChange = (page) => {
@@ -172,7 +177,9 @@ const UserEnterpraiseTable = () => {
                       openCreatePopup();
                     }}
                   >
-                    <span className="pl-8">{t("enterprise.page.add_user")}</span>
+                    <span className="pl-8">
+                      {t("enterprise.page.add_user")}
+                    </span>
                   </Button>
 
                   <Menu closeOnSelect={false}>
@@ -406,6 +413,9 @@ const UserEnterpraiseTable = () => {
                                       bg={"#CC3636"}
                                       alignItems="center"
                                       justifyContent="center"
+                                      onClick={() => {
+                                        mutate(item.id);
+                                      }}
                                     ></Button>
                                     <Button
                                       className="table_body_row_item_btns_editbtn"
