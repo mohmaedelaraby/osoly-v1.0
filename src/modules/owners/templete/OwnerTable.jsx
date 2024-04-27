@@ -42,6 +42,7 @@ import Pagination from "../../../components/shared/Pagination";
 import CreateUser from "../../users/templete/CreateUser";
 import EditUser from "../../users/templete/EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { useDeleteUser } from "../../users/hooks/useDeleteUser";
 
 const OwnerTable = ({ switchTo }) => {
   const [selectedUser, setSelectedUser] = useState();
@@ -94,6 +95,9 @@ const OwnerTable = ({ switchTo }) => {
   //owner fetch data
   const [currentOwnerPage, setCurrentOwnerPage] = useState(1);
   const ownerlimit = 10;
+
+    // delete user
+    const { mutate, isSuccess } = useDeleteUser();
 
   const {
     usersData: ownerDataType,
@@ -442,7 +446,9 @@ const OwnerTable = ({ switchTo }) => {
                               bg={"#CC3636"}
                               alignItems="center"
                               justifyContent="center"
-                              onClick={() => {}}
+                              onClick={() => {
+                                mutate(item.id);
+                              }}
                             ></Button>
                             <Button
                               className="table_body_row_item_btns_editbtn"
