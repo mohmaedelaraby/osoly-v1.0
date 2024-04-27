@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
@@ -106,7 +107,7 @@ const UnitsTable = () => {
   const [isGrid, setIsGrid] = useState(false);
 
   // delete user
-const { mutate, isSuccess } = useDeleteUnit();
+  const { mutate, isSuccess } = useDeleteUnit();
 
   //units
   const [currentUnitPage, setCurrentUnitPage] = useState(1);
@@ -152,7 +153,7 @@ const { mutate, isSuccess } = useDeleteUnit();
     space,
     bathrooms,
     rooms,
-    isSuccess
+    isSuccess,
   ]);
 
   const handleUnitPageChange = (page) => {
@@ -166,7 +167,7 @@ const { mutate, isSuccess } = useDeleteUnit();
     setSelectedId(user.id);
     setSelectedProbId(user.propertyId);
     setSelectedOwnId(user.ownerId);
-    onOpenUnitModalEdit()
+    onOpenUnitModalEdit();
   };
 
   return (
@@ -229,9 +230,7 @@ const { mutate, isSuccess } = useDeleteUnit();
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null} >
-                      فرز حسب
-                    </option>
+                    <option value={null}>فرز حسب</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -532,10 +531,18 @@ const { mutate, isSuccess } = useDeleteUnit();
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
-            <InputLeftElement pointerEvents="none">
+            <InputRightElement pointerEvents="none">
               <SearchIcon color="gray.300" />
-            </InputLeftElement>
-            <Input type="text" placeholder="" />
+            </InputRightElement>
+            <Input
+              type="text"
+              placeholder="ابحث ب اسم الوحده "
+              onChange={(e) => {
+                setTimeout(() => {
+                  setName(e.target.value);
+                }, 200);
+              }}
+            />
           </InputGroup>
         </div>
 

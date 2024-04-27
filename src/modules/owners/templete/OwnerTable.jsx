@@ -5,6 +5,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
@@ -96,8 +97,8 @@ const OwnerTable = ({ switchTo }) => {
   const [currentOwnerPage, setCurrentOwnerPage] = useState(1);
   const ownerlimit = 10;
 
-    // delete user
-    const { mutate, isSuccess } = useDeleteUser();
+  // delete user
+  const { mutate, isSuccess } = useDeleteUser();
 
   const {
     usersData: ownerDataType,
@@ -212,7 +213,7 @@ const OwnerTable = ({ switchTo }) => {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null} >فرز حسب</option>
+                    <option value={null}>فرز حسب</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -380,10 +381,18 @@ const OwnerTable = ({ switchTo }) => {
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
-            <InputLeftElement pointerEvents="none">
+            <InputRightElement pointerEvents="none">
               <SearchIcon color="gray.300" />
-            </InputLeftElement>
-            <Input type="text" placeholder="" />
+            </InputRightElement>
+            <Input
+              type="text"
+              placeholder="ابحث ب البريد الالكتروني لل مالك "
+              onChange={(e) => {
+                setTimeout(() => {
+                  setEmail(e.target.value);
+                }, 200);
+              }}
+            />
           </InputGroup>
         </div>
       </div>

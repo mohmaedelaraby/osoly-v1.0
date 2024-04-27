@@ -7,6 +7,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
@@ -482,11 +483,19 @@ function PropertiesTable() {
           </Menu>
         </div>
         <div className="page_container_table__header__search">
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
+        <InputGroup>
+            <InputRightElement pointerEvents="none">
               <SearchIcon color="gray.300" />
-            </InputLeftElement>
-            <Input type="text" placeholder="" />
+            </InputRightElement>
+            <Input
+              type="text"
+              placeholder="ابحث ب اسم العقار "
+              onChange={(e) => {
+                setTimeout(() => {
+                  setName(e.target.value);
+                }, 200);
+              }}
+            />
           </InputGroup>
         </div>
 
