@@ -93,7 +93,6 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
 
-      console.log({ body: formData });
       mutate({ body: formData });
       onClose()
     },

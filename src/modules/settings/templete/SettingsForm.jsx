@@ -161,7 +161,6 @@ const SettingsForm = () => {
                     name="image"
                     accept=".png, .jpg, .jpeg"
                     onChange={(event) => {
-                      console.log(event.target.files[0]);
                       setSelectedLogo(event.target.files[0]);
                     }}
                   />

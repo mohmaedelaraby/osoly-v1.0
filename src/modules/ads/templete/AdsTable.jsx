@@ -39,7 +39,6 @@ const AdsTable = ({ data }) => {
   };
 
   useEffect(() => {
-    //console.log(show )
   }, [show]);
 
   return (

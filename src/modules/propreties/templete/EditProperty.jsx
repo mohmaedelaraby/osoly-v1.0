@@ -92,7 +92,6 @@ const EditProperty = ({ id, onClose }) => {
       formData.append("postalCode", formik.values.postalCode);
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
-      console.log(formData)
       mutate({ id:id , body: formData });
       onClose()
       //mutate({id:id? id:data?.id ,body:data});

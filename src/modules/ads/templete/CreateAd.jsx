@@ -22,11 +22,8 @@ const CreateAd = () => {
     validationSchema: adsValidation,
     onSubmit: (values) => {
       formData.append('image', selectedImage);
-      //axios.post('http://localhost:3000/images/upload', formData)
-      //console.log(selectedImage.name,formData.append('image', selectedImage))
-      //console.log(img)
+     
       let ad = {...values , image:selectedImage.name }
-      console.log(ad)
       mutate({body:ad})
     },
   });
@@ -153,7 +150,6 @@ const CreateAd = () => {
                 name="image"
                 accept=".png, .jpg, .jpeg"
                 onChange={(event) => {
-                  console.log(event.target.files);
                   setSelectedImage(event.target.files[0]);
                 }}
               />

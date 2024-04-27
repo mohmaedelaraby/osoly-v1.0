@@ -40,7 +40,6 @@ const EditAd = () => {
     onSubmit: (values) => {
       let ad = { ...values, image: selectedImage };
       mutate({ id: id, body: ad });
-      console.log(ad);
     },
   });
   return (
@@ -183,7 +182,6 @@ const EditAd = () => {
                           name="image"
                           accept=".png, .jpg, .jpeg"
                           onChange={(event) => {
-                            console.log(event.target.files[0]);
                             setSelectedImage(event.target.files[0]);
                           }}
                         />

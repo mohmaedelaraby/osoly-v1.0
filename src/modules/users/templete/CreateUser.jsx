@@ -38,7 +38,6 @@ const CreateUser = ({ onClose , userRule }) => {
     initialValues: initialValues,
     validationSchema: userCreateValidation,
     onSubmit: (values) => {
-      //console.log(values);
       mutate({body:values})
       onClose()
     },

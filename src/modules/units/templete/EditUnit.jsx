@@ -111,7 +111,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
 
-      console.log({ body: formData });
       mutate({ body: formData });
       onClose()
     },

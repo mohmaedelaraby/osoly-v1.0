@@ -22,7 +22,6 @@ const TicketCard = ({ item, img = image }) => {
   }, [status]);
   useEffect(() => {
     //
-    console.log(item);
     setName(item.name);
     setType(item.type);
     setStatus(item.status);

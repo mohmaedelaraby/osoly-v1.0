@@ -130,7 +130,6 @@ const OwnerTable = ({ switchTo }) => {
     setTimeout(() => {
       ownerDataReftech();
     }, 500);
-    console.log(switchTo);
   }, [
     switchTo,
     currentOwnerPage,
