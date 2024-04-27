@@ -248,7 +248,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     setTimeout(() => {}, 0);
                   }}
                 >
-                  <option value={0} disabled>المالك </option>
+                  <option value={0} >المالك </option>
                   {usersData?.users
                     .filter((s) => s.role == USER_ROLES.OWNER)
                     ?.map((i, index) => (

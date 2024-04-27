@@ -3,8 +3,8 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all units
 export const getUnits = (params) => {
-  const { pageNo, limit } = params;
-  return api.get(`${apiUrl}dashboard/units?page=${pageNo}&limit=${limit}`, {
+  const { pageNo, limit, sortBy, sortDirection, name, rent, waterAccount, space, waterCost, lounge, kitchen, electricityAccount, bathrooms, rooms, conditioners } = params;
+  return api.get(`${apiUrl}dashboard/units?page=${pageNo}&limit=${limit}${sortBy ? `&sortBy=${sortBy}` : ``}${sortDirection ? `&sortDirection=${sortDirection}` : ``}${name ? `&name=${name}` : ``}${rent ? `&rent=${rent}` : ``}${waterAccount ? `&waterAccount=${waterAccount}` : ``}${waterCost ? `&waterCost=${waterCost}` : ``}${electricityAccount ? `&electricityAccount=${electricityAccount}` : ``}${rooms ? `&rooms=${rooms}` : ``}${kitchen ? `&kitchen=${kitchen}` : ``}${lounge ? `&lounge=${lounge}` : ``}${space ? `&space=${space}` : ``}${bathrooms ? `&bathrooms=${bathrooms}` : ``}${conditioners ? `&conditioners=${conditioners}` : ``}`, {
   }).then(res => res.data.data)
 }
 
@@ -37,7 +37,7 @@ export const createUnit = (data) => {
 
 //update Unit
 export const deleteUnit = (data) => {
-    return api.delete(`${apiUrl}dashboard/units/${data?.id}`)
-  }
+  return api.delete(`${apiUrl}dashboard/units/${data?.id}`)
+}
 
 

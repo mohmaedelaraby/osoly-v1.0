@@ -205,7 +205,7 @@ function PropertiesTable() {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null} disabled>فرز حسب</option>
+                    <option value={null} >فرز حسب</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}

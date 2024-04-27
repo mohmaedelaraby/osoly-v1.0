@@ -95,6 +95,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
       console.log({ body: formData });
       mutate({ body: formData });
+      onClose()
     },
   });
 

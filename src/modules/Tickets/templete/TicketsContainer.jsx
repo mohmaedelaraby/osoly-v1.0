@@ -210,7 +210,7 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} disabled> ترتيب حسب</option>
+                            <option value={null} > ترتيب حسب</option>
 
                             <option value={"createdAt"}> التاريخ</option>
                           </Select>
@@ -282,13 +282,13 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} disabled> النوع</option>
+                            <option value={null} > النوع</option>
                             {Object.values(ticketsTypes).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
                                   {item}
                                 </option>
-                                ;
+                                
                               </>
                             ))}
                           </Select>
@@ -309,7 +309,7 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} disabled> الحاله</option>
+                            <option value={null} > الحاله</option>
                             {Object.values(ticketsStatus).map((item, index) => (
                               <>
                                 <option id={index} value={item}>

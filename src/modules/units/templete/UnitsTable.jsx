@@ -1,6 +1,8 @@
 import {
   Button,
   Checkbox,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,11 +14,15 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Radio,
+  RadioGroup,
+  Select,
   Stack,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -31,7 +37,6 @@ import {
   SearchIcon,
 } from "@chakra-ui/icons";
 import CreateUnit from "./CreateUnit";
-import useClosePopUps from "../../../store/useClosePopups";
 import useUnits from "../hooks/useUnits";
 import Pagination from "../../../components/shared/Pagination";
 import CardWithImg from "../../../components/Cards/CardWithImg";
@@ -39,7 +44,53 @@ import EditUnit from "./EditUnit";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-const UnitsTable = ({}) => {
+const UnitsTable = () => {
+  const [selectId, setSelectedId] = useState();
+  const [selectprobId, setSelectedProbId] = useState();
+  const [selectOwnId, setSelectedOwnId] = useState();
+
+  //sorting and filtering local
+  const sortItems = [
+    "rent",
+    "rentCollectionDate",
+    "waterCost",
+    "space",
+    "rooms",
+    "bathrooms",
+    "conditioners",
+  ];
+
+  const [sortByTmp, setSortByTmp] = useState(null);
+  const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
+
+  const [rentTmp, setRentTmp] = useState(null);
+  const [nameTmp, setNameTmp] = useState(null);
+  const [electricityAccountTmp, setElectricityAccountTmp] = useState(null);
+  const [waterAccountTmp, setWaterAccountTmp] = useState(null);
+  const [waterCostTmp, setWaterCostTmp] = useState(null);
+  const [roomsTmp, setRoomsTmp] = useState(null);
+  const [spaceTmp, setSpaceTmp] = useState(null);
+  const [bathroomsTmp, setBathroomsTmp] = useState(null);
+  const [loungeTmp, setLoungeTmp] = useState(null);
+  const [kitchenTmp, setKitchenTmp] = useState(null);
+  const [conditionersTmp, setConditionersTmp] = useState(null);
+
+  //sorting and filtering param data
+  const [sortBy, setSortBy] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  const [rent, setRent] = useState(null);
+  const [name, setName] = useState(null);
+  const [electricityAccount, setElectricityAccount] = useState(null);
+  const [waterAccount, setWaterAccount] = useState(null);
+  const [waterCost, setWaterCost] = useState(null);
+  const [rooms, setRooms] = useState(null);
+  const [space, setSpace] = useState(null);
+  const [bathrooms, setBathrooms] = useState(null);
+  const [lounge, setLounge] = useState(false);
+  const [kitchen, setKitchen] = useState(false);
+  const [conditioners, setConditioners] = useState(null);
+
   const {
     isOpen: isOpenUnitModal,
     onOpen: onOpenUnitModal,
@@ -51,21 +102,7 @@ const UnitsTable = ({}) => {
     onClose: onCloseUnitModalEdit,
   } = useDisclosure();
 
-  const { show, toggleShow } = useClosePopUps();
   const [isGrid, setIsGrid] = useState(false);
-
-  const openUnitPopup = () => {
-    onOpenUnitModal();
-    if (show) {
-      toggleShow();
-    }
-  };
-  const openUnitEditPopup = () => {
-    onOpenUnitModalEdit();
-    if (show) {
-      toggleShow();
-    }
-  };
 
   //units
   const [currentUnitPage, setCurrentUnitPage] = useState(1);
@@ -75,16 +112,55 @@ const UnitsTable = ({}) => {
   const { unitsData, isUnitsLoading, unitsReftch } = useUnits({
     pageNo: currentUnitPage,
     limit: unitLimit,
+    sortBy: sortBy,
+    sortDirection: sortDirection,
+    name: name,
+    rent: rent,
+    space: space,
+    waterAccount: waterAccount,
+    waterCost: waterCost,
+    lounge: lounge,
+    kitchen: kitchen,
+    electricityAccount: electricityAccount,
+    bathrooms: bathrooms,
+    rooms: rooms,
+    conditioners: conditioners,
   });
+
   useEffect(() => {
-    unitsReftch();
-    if (show && !isUnitsLoading) {
+    setTimeout(() => {
       unitsReftch();
-    }
-  }, [currentUnitPage, show]);
+    }, 500);
+  }, [
+    currentUnitPage,
+    isOpenUnitModal,
+    isOpenUnitModalEdit,
+    sortBy,
+    sortDirection,
+    name,
+    rent,
+    waterAccount,
+    waterCost,
+    electricityAccount,
+    kitchen,
+    lounge,
+    conditioners,
+    space,
+    bathrooms,
+    rooms,
+  ]);
 
   const handleUnitPageChange = (page) => {
     setCurrentUnitPage(page);
+  };
+
+  const openUnitPopup = () => {
+    onOpenUnitModal();
+  };
+  const openUnitEditPopup = (user) => {
+    setSelectedId(user.id);
+    setSelectedProbId(user.propertyId);
+    setSelectedOwnId(user.ownerId);
   };
 
   return (
@@ -102,41 +178,349 @@ const UnitsTable = ({}) => {
           >
             <span className="pl-8"> إضافة جديد</span>
           </Button>
-          <Menu>
+          <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
               marginRight="8px"
               marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8"> فرز حسب</span>
+              <span className="pl-8">فرز حسب</span>
             </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
+            <MenuList padding={"24px"} width="257px">
+              <MenuItem>
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      نوع الفرز
+                    </Text>
+                  </FormLabel>
+                  <RadioGroup
+                    onChange={setSortDirectionTmp}
+                    value={sortDirectionTmp}
+                  >
+                    <Stack direction="row">
+                      <Radio value="asc">تصاعدي</Radio>
+                      <Radio value="desc">تنازلي</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              </MenuItem>
+              <div className="menu-select mb-24">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label">
+                      فرز حسب
+                    </Text>
+                  </FormLabel>
+                  <Select
+                    name="sortBY"
+                    onChange={(e) => {
+                      setSortByTmp(e.target.value);
+                      setTimeout(() => {}, 0);
+                    }}
+                  >
+                    <option value={null} >
+                      فرز حسب
+                    </option>
+                    {sortItems.map((item, index) => (
+                      <option id={index} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <MenuItem closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setSortDirection(sortDirectionTmp);
+                      setSortBy(sortByTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setSortDirection("asc");
+                      setSortDirectionTmp("asc");
+                      setSortBy(null);
+                      setSortByTmp(null);
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
             </MenuList>
           </Menu>
 
-          <Menu>
+          <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
               marginRight="8px"
               marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
-              borderRadius="md"
-              borderWidth="1px"
-              bg="white"
-              _hover={{ bg: "gray.400" }}
-              _expanded={{ bg: "blue.400" }}
-              _focus={{ boxShadow: "outline" }}
             >
-              <span className="pl-8"> ترتيب حسب</span>
+              <span className="pl-8">ترتيب حسب</span>
             </MenuButton>
-            <MenuList>
-              <MenuItem>الاسم</MenuItem>
-              <MenuItem>العنوان</MenuItem>
-              <MenuItem>التاريخ</MenuItem>
+            <MenuList width="257px">
+              <div className="menu-select-container">
+                <div className="menu-select">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب الاسم
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setNameTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب الايجار
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setRentTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب عدد الغرف
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setRoomsTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب عدد الحمامات
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setBathroomsTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب المطابخ
+                      </Text>
+                    </FormLabel>
+                    <RadioGroup onChange={setKitchenTmp} value={kitchenTmp}>
+                      <Stack direction="row">
+                        <Radio value={"false"}>يوجد</Radio>
+                        <Radio value={"true"}>لا يوجد</Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب تكييفات راكبه
+                      </Text>
+                    </FormLabel>
+                    <RadioGroup onChange={setLoungeTmp} value={loungeTmp}>
+                      <Stack direction="row">
+                        <Radio value={"false"}>يوجد</Radio>
+                        <Radio value={"true"}>لا يوجد</Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب عدد المكيفات
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setConditionersTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب فاتوره الكهرباء
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setElectricityAccountTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب فاتوره المياه
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setWaterCostTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label">
+                        ترتيب حسب عداد المياه
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setWaterAccountTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
+              </div>
+
+              <MenuItem marginTop={"24px"} closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color="white"
+                    bg="#194C81"
+                    type="submit"
+                    onClick={() => {
+                      setBathrooms(bathroomsTmp);
+                      setName(nameTmp);
+                      setRent(rentTmp);
+                      setWaterAccount(waterAccountTmp);
+                      setConditioners(conditionersTmp);
+                      setWaterCost(waterCostTmp);
+                      setElectricityAccount(electricityAccountTmp);
+                      setKitchen(kitchenTmp);
+                      setRooms(roomsTmp);
+                      setLounge(loungeTmp);
+                      setSpace(spaceTmp);
+                    }}
+                  >
+                    تطبيق
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setBathrooms(null);
+                      setName(null);
+                      setRent(null);
+                      setWaterAccount(null);
+                      setConditioners(null);
+                      setWaterCost(null);
+                      setElectricityAccount(null);
+                      setKitchen(null);
+                      setRooms(null);
+                      setLounge(null);
+                      setSpace(null);
+                      setBathroomsTmp(null);
+                      setNameTmp(null);
+                      setRentTmp(null);
+                      setWaterAccountTmp(null);
+                      setConditionersTmp(null);
+                      setWaterCostTmp(null);
+                      setElectricityAccountTmp(null);
+                      setKitchenTmp(null);
+                      setRoomsTmp(null);
+                      setLoungeTmp(null);
+                      setSpaceTmp(null);
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    مسح
+                  </Button>
+                </Stack>
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -151,12 +535,22 @@ const UnitsTable = ({}) => {
 
         <div className="page_container_table__header__switcher">
           <div className="page_container_table__header__switcher_table">
-            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(true)}>
+            <Button
+              backgroundColor="white"
+              border="1px solid gray"
+              padding="8px"
+              onClick={() => setIsGrid(true)}
+            >
               <GridViewOutlinedIcon />
             </Button>
           </div>
           <div className="page_container_table__header__switcher_grid">
-            <Button backgroundColor="white" border='1px solid gray' padding='8px' onClick={() => setIsGrid(false)}>
+            <Button
+              backgroundColor="white"
+              border="1px solid gray"
+              padding="8px"
+              onClick={() => setIsGrid(false)}
+            >
               <MenuIcon />
             </Button>
           </div>
@@ -294,22 +688,28 @@ const UnitsTable = ({}) => {
         }
       </div>
 
-      <Modal isOpen={isOpenUnitModal && !show} onClose={onCloseUnitModal}>
+      <Modal isOpen={isOpenUnitModal} onClose={onCloseUnitModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding={"0px"}>
-            <CreateUnit onClose={onCloseUnitModal} />
+            <CreateUnit
+              onClose={onCloseUnitModal}
+              propPropertyId={selectprobId}
+              propOwenerId={selectOwnId}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Modal
-        isOpen={isOpenUnitModalEdit && !show}
-        onClose={onCloseUnitModalEdit}
-      >
+      <Modal isOpen={isOpenUnitModalEdit} onClose={onCloseUnitModalEdit}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody>
-            <EditUnit onClose={onCloseUnitModalEdit} />
+            <EditUnit
+              onClose={onCloseUnitModalEdit}
+              id={selectId}
+              propPropertyId={selectprobId}
+              propOwenerId={selectOwnId}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>

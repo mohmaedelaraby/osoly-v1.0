@@ -276,7 +276,7 @@ const EditProperty = ({ id, onClose }) => {
                     setTimeout(() => {}, 0);
                   }}
                 >
-                  <option value={0} disabled>المالك </option>
+                  <option value={0} >المالك </option>
                   {usersData?.users?.map((i, index) => (
                     <option value={i.id} key={index}>
                       {i.firstNameAr} {i.id}
