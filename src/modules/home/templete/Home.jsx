@@ -238,7 +238,7 @@ const Home = () => {
                 {t("home.charts.new_users_title")}
               </div>
 
-              <Card width="100%" borderRadius="14px" padding="36px">
+              <Card width="100%" borderRadius="14px" padding="36px" maxHeight='364px'>
                 <CardBody padding="0px">
                   <div className="home_container_charts_table__chart_card_title">
                     {t("home.charts.new_users_desc")}
