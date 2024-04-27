@@ -42,6 +42,7 @@ import EditProperty from "./EditProperty";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import { useDeleteProperty } from "../hooks/useDeleteProperties";
 
 function PropertiesTable() {
   const [selectId, setSelectedId] = useState();
@@ -93,6 +94,8 @@ function PropertiesTable() {
     onOpen: onOpenProperyModalEdit,
     onClose: onCloseProperyModalEdit,
   } = useDisclosure();
+  // delete user
+  const { mutate, isSuccess } = useDeleteProperty();
 
   const [currentPropertyPage, setCurrentPropertyPage] = useState(1);
   const propertylimit = 10;
@@ -133,6 +136,7 @@ function PropertiesTable() {
     city,
     blockNumber,
     postalCode,
+    isSuccess
   ]);
 
   const handlePropertyPageChange = (page) => {
@@ -205,7 +209,7 @@ function PropertiesTable() {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null} >فرز حسب</option>
+                    <option value={null}>فرز حسب</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -564,7 +568,9 @@ function PropertiesTable() {
                               bg={"#CC3636"}
                               alignItems="center"
                               justifyContent="center"
-                              onClick={() => {}}
+                              onClick={() => {
+                                mutate(item.id);
+                              }}
                             ></Button>
                             <Button
                               className="table_body_row_item_btns_editbtn"

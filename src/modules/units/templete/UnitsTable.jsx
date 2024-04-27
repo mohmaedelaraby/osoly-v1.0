@@ -44,6 +44,7 @@ import EditUnit from "./EditUnit";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import { useDeleteUnit } from "../hooks/useDeleteUnit";
 const UnitsTable = () => {
   const [selectId, setSelectedId] = useState();
   const [selectprobId, setSelectedProbId] = useState();
@@ -104,6 +105,9 @@ const UnitsTable = () => {
 
   const [isGrid, setIsGrid] = useState(false);
 
+  // delete user
+const { mutate, isSuccess } = useDeleteUnit();
+
   //units
   const [currentUnitPage, setCurrentUnitPage] = useState(1);
 
@@ -148,6 +152,7 @@ const UnitsTable = () => {
     space,
     bathrooms,
     rooms,
+    isSuccess
   ]);
 
   const handleUnitPageChange = (page) => {
@@ -636,7 +641,9 @@ const UnitsTable = () => {
                               bg={"#CC3636"}
                               alignItems="center"
                               justifyContent="center"
-                              onClick={() => {}}
+                              onClick={() => {
+                                mutate(item.id);
+                              }}
                             ></Button>
                             <Button
                               className="table_body_row_item_btns_editbtn"

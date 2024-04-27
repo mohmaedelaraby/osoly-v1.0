@@ -36,8 +36,8 @@ export const createUnit = (data) => {
 }
 
 //update Unit
-export const deleteUnit = (data) => {
-  return api.delete(`${apiUrl}dashboard/units/${data?.id}`)
+export const deleteUnit = (id) => {
+  return api.delete(`${apiUrl}dashboard/units/${id}`)
 }
 
 

@@ -46,8 +46,8 @@ export const createPropertey = (data) => {
 }
 
 //delete Propertey
-export const deletePropertey = (data) => {
-  return api.delete(`${apiUrl}dashboard/properties/${data?.id}`)
+export const deletePropertey = (id) => {
+  return api.delete(`${apiUrl}dashboard/properties/${id}`)
 }
 
 
