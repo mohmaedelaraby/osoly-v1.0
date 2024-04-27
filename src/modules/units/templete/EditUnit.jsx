@@ -18,10 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { unitsValidation } from "../validation/schema";
 import { useUpdateUnit } from "../hooks/useUpdateUnit";
-import useGetUser from "../hooks/useGetUnit";
 import useGetUnit from "../hooks/useGetUnit";
 import useUsers from "../../users/hooks/useUsers";
 import useProperties from "../../propreties/hooks/useAllProperties";
@@ -31,7 +29,7 @@ import bell from "../../../assets/images/bell.png";
 const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const { mutate } = useUpdateUnit(id);
 
-  const { data, refetch } = useGetUnit();
+  const { data, refetch } = useGetUnit(id);
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
   const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =

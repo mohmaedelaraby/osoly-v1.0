@@ -161,6 +161,7 @@ const UnitsTable = () => {
     setSelectedId(user.id);
     setSelectedProbId(user.propertyId);
     setSelectedOwnId(user.ownerId);
+    onOpenUnitModalEdit()
   };
 
   return (
@@ -647,7 +648,7 @@ const UnitsTable = () => {
                               justifyContent="center"
                               bg={"#194C81"}
                               onClick={() => {
-                                openUnitEditPopup();
+                                openUnitEditPopup(item);
                               }}
                             ></Button>
                           </Stack>
@@ -703,7 +704,7 @@ const UnitsTable = () => {
       <Modal isOpen={isOpenUnitModalEdit} onClose={onCloseUnitModalEdit}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
-          <ModalBody>
+          <ModalBody padding={"0px"}>
             <EditUnit
               onClose={onCloseUnitModalEdit}
               id={selectId}
