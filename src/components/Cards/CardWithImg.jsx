@@ -80,7 +80,7 @@ function CardWithImg({
           {isBtns ? (
             <>
               <div className="cardWithimg_contanier__btns">
-                <Stack alignItems={isVertical ? "flex-end" : "center"} direction={isVertical ? "column" : "row"} spacing={4}>
+                <Stack alignItems={isVertical ? "flex-end" : "center"} direction={isVertical ? "column" : "row"} spacing={4} width='100%'>
                   <Button
                     width={isVertical ? "50%" : "100%"}
                     rightIcon={<CheckIcon />}

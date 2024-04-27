@@ -2,22 +2,18 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
-  Heading,
+
   Icon,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
-  Th,
-  Thead,
+
   Tr,
 } from "@chakra-ui/react";
-import user from "../../../assets/images/user.png";
 
 import React, { useEffect, useState } from "react";
-import { FaBuilding, FaHouseUser, FaTicketAlt, FaUser } from "react-icons/fa";
+import { FaBuilding, FaHouseUser, FaUser } from "react-icons/fa";
 import "../style/Home.scss";
 
 import CardWithImg from "../../../components/Cards/CardWithImg";
@@ -26,12 +22,14 @@ import moneyIcon from "../../../assets/icons-svgs/money.svg";
 import interfaceIcon from "../../../assets/icons-svgs/interface.svg";
 import houseIcon from "../../../assets/icons-svgs/house.svg";
 import homesIcon from "../../../assets/icons-svgs/homes.svg";
-import LineChart from "../../../components/Charts/LineChart";
 import { useTranslation } from "react-i18next";
 import PieChartComponent from "../../../components/Charts/PieChart";
 import PieChartComponentWithOneValue from "../../../components/Charts/PieChartWithOneValue";
 import LineChartWithDate from "../../../components/shared/LineChartWithDate";
 import PageHeader from "../../../components/shared/PageHeader";
+import useTickets from "../../Tickets/hooks/useTickets";
+import useUnits from "../../units/hooks/useUnits";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const { t } = useTranslation();
 
@@ -43,6 +41,26 @@ const Home = () => {
   const [tenantsCount, setTenantsCount] = useState(0);
   const [metricData, setMetricData] = useState();
   const [barData, setBarData] = useState();
+  const navigate = useNavigate();
+  const {
+    data: allData,
+    isLoading: allLoading,
+    refetch: allrefetch,
+  } = useTickets({
+    pageNo: 1,
+    limit: 10,
+  });
+
+  const { unitsData, isUnitsLoading, unitsReftch } = useUnits({
+    pageNo: 1,
+    limit: 10,
+  });
+
+  useEffect(()=>{
+    allrefetch()
+    unitsReftch()
+
+  },[])
 
   const metircArr = [
     {
@@ -170,7 +188,10 @@ const Home = () => {
       <div className="home">
         <div className="home_container">
           <div className="home_container_header">
-            <PageHeader title={homeData?.enterprise.username} addtionTitle={t("general.hello")}></PageHeader>
+            <PageHeader
+              title={homeData?.enterprise.username}
+              addtionTitle={t("general.hello")}
+            ></PageHeader>
           </div>
           <div className="home_container_cards">
             <CardWithNumber
@@ -249,15 +270,18 @@ const Home = () => {
             <div className="home_container_item_tables ml-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
-                {t("home.charts.rent_title")}
+                  {t("home.charts.rent_title")}
                 </div>
                 <div className="home_container_tables_item_header_btn">
                   <Button
                     backgroundColor="white"
                     colorScheme="gray"
                     variant="outline"
+                    onClick={()=>{
+                      navigate("/propreties")
+                    }}
                   >
-                     {t("general.show_all")} 
+                    {t("general.show_all")}
                   </Button>
                 </div>
               </div>
@@ -266,14 +290,14 @@ const Home = () => {
                   <TableContainer>
                     <Table variant="simple">
                       <Tbody padding="16px">
-                        {rentTable.map((item, index) => (
-                          <Tr>
+                        {!isUnitsLoading && unitsData?.units?.slice(0,4).map((item, index) => (
+                          <Tr id={index}>
                             <Td>
-                              <div className="pt-8 pb-8">{item.name}</div>
+                              <div className="pt-16 pb-16">{item.name}</div>
                             </Td>
-                            <Td>{item.date}</Td>
-                            <Td>{item.property}</Td>
-                            <Td>{item.price}</Td>
+                            <Td>{item.rentCollectionDate}</Td>
+                            <Td>{item.address}</Td>
+                            <Td>{item.rent} ر.س</Td>
                           </Tr>
                         ))}
                       </Tbody>
@@ -286,21 +310,24 @@ const Home = () => {
             <div className="home_container_item_tables mr-12">
               <div className="home_container_tables_item_header">
                 <div className="home_container_tables_item_header_title">
-                {t("general.latest")}  {t("general.tickets")}
+                  {t("general.latest")} {t("general.tickets")}
                 </div>
                 <div className="home_container_tables_item_header_btn">
                   <Button
                     backgroundColor="white"
                     colorScheme="gray"
                     variant="outline"
+                    onClick={()=>{
+                      navigate("/tickets")
+                    }}
                   >
-                     {t("general.show_all")}
+                    {t("general.show_all")}
                   </Button>
                 </div>
               </div>
               <div className="home_container_tables_item_table">
                 <div>
-                  {[1, 2].map((i) => (
+                  {!allLoading && allData?.tickets?.slice(0,2).map((i) => (
                     <>
                       <div style={{ marginBottom: "16px" }}>
                         <CardWithImg
