@@ -7,5 +7,5 @@ i18n.use(initReactI18next).init({
     en: { ...enJSON },
     ar: { ...arJSON },
   },
-  lng: "en",
+  lng: "ar",
 });
