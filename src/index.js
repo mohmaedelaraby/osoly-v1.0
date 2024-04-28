@@ -6,24 +6,9 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { RootRoutes } from './routes/routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './i18n/i18n.js'
-import { createTheme } from '@mui/material';
 
 
 const queryClient = new QueryClient();
-const MuiTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-  components: {
-    MuiDataGrid: {
-      styleOverrides: {
-        root: {
-         
-        },
-      },
-    },
-  },
-});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

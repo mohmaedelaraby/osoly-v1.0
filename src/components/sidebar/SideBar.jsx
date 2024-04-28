@@ -16,11 +16,20 @@ import SettingsSidebar from "../../assets/icons/SettingsSidebar";
 import TicketsSidebar from "../../assets/icons/TicketsSidebar";
 import InfoSidebar from "../../assets/icons/InfoSidebar";
 import LogoutSidebar from "../../assets/icons/logoutSidebar";
-import { Modal, ModalBody, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 import InfoModal from "../modals/InfoModal";
+import { useTranslation } from "react-i18next";
 
 function SideBar() {
   // eslint-disable-next-line
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const location = useLocation();
   const [selected, setSelected] = useState(false);
@@ -143,8 +152,9 @@ function SideBar() {
                         }`}
                         onClick={() => {
                           setSelected(i);
-                          item.navTo === "/info" ? onOpenInfoModal() :  navigate(item.navTo)
-                         
+                          item.navTo === "/info"
+                            ? onOpenInfoModal()
+                            : navigate(item.navTo);
                         }}
                       >
                         <div
@@ -161,7 +171,7 @@ function SideBar() {
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
                         <div className="sidebar__items__container__item__text">
-                          {item.name}
+                          {t(item.name)}
                         </div>
                       </div>
 
@@ -172,7 +182,7 @@ function SideBar() {
                             <>
                               <div
                                 onClick={() => {
-                                  navigate(child.navTo); 
+                                  navigate(child.navTo);
                                 }}
                                 className={`${
                                   checkIsActive(child.active)
@@ -206,7 +216,9 @@ function SideBar() {
                         }`}
                         onClick={() => {
                           setSelected(i);
-                          item.navTo === "/info" ? onOpenInfoModal() :  navigate(item.navTo)
+                          item.navTo === "/info"
+                            ? onOpenInfoModal()
+                            : navigate(item.navTo);
                         }}
                       >
                         <div className="sidebar__items__container__item__icon">
@@ -216,7 +228,7 @@ function SideBar() {
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
                         <div className="sidebar__items__container__item__text">
-                          {item.name}
+                          {t(item.name)}
                         </div>
                       </div>
 
@@ -262,17 +274,22 @@ function SideBar() {
                         }`}
                         onClick={() => {
                           setSelected(i);
-                          item.navTo === "/info" ? onOpenInfoModal() :  navigate(item.navTo)
+                          item.navTo === "/info"
+                            ? onOpenInfoModal()
+                            : navigate(item.navTo);
                         }}
                       >
                         <div className="sidebar__items__container__item__icon">
                           {selected === i || checkIsActive(item.activeRoutes)
-                            ? iconChecker(item.icon, item.navTo === "/info" ? "#EFF9FF": "#194C81")
+                            ? iconChecker(
+                                item.icon,
+                                item.navTo === "/info" ? "#EFF9FF" : "#194C81"
+                              )
                             : iconChecker(item.icon, "#EFF9FF")}
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
                         <div className="sidebar__items__container__item__text">
-                          {item.name}
+                          {t(item.name)}
                         </div>
                       </div>
 

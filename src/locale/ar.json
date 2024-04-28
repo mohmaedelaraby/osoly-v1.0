@@ -55,6 +55,16 @@
         "plan_desc_two": "مستخدم في خلال ",
         "plan_desc_three": " اشهر  "
       }
+    },
+    "sidebar":{
+      "home":"الرئيسية",
+      "enterprise":"المؤسسة",
+      "users":"المستخدمين",
+      "tickets":"التذاكر",
+      "propreties":"العقارات",
+      "settings": "الإعدادات",
+      "info":"مساعدة",
+      "logout":"تسجيل الخروج"
     }
   }
 }

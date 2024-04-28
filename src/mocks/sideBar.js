@@ -7,12 +7,11 @@ import settingsSB from '../assets/icons-svgs/settingsSB.svg'
 import logoout from '../assets/icons-svgs/logoutSb.svg'
 import infoSB from '../assets/icons-svgs/infoSB.svg'
 import enterprisesSB from '../assets/icons-svgs/enterpraiseSB.svg'
-import HomeSidebar from '../assets/icons/HomeSidebar'
 export const sidebarItems = [
     
     {
         id: 1,
-        name: "الرئيسية",
+        name:"sidebar.home",
         icon:'home',
         activeIcon: homeSB,
         navTo:'/home',
@@ -22,7 +21,7 @@ export const sidebarItems = [
     },
     {
         id: 2,
-        name: "المؤسسة",
+        name: "sidebar.enterprise",
         icon: 'enterprise',
         activeIcon: enterprisesSB,
         navTo:'/enterprises',
@@ -32,7 +31,7 @@ export const sidebarItems = [
 
     {
         id: 3,
-        name: "المستخدمين",
+        name: "sidebar.users",
         navTo:'/users',
         icon: 'users',
         activeIcon: usersSB,
@@ -42,7 +41,7 @@ export const sidebarItems = [
     },
     {
         id: 4,
-        name: "التذاكر",
+        name: "sidebar.tickets",
         navTo:'/tickets',
         icon: 'tickets',
         activeIcon: ticketSB,
@@ -52,7 +51,7 @@ export const sidebarItems = [
     },
     {
         id: 5,
-        name: "العقارات",
+        name: "sidebar.propreties",
         navTo:'/propreties',
         icon: 'propreties',
         activeIcon: buildSB,
@@ -66,7 +65,7 @@ export const sidebarItems = [
 
 export const sidebarSettings =[{
     id: 6,
-    name: "الإعدادات",
+    name: "sidebar.settings",
     icon:'settings',
     activeIcon: settingsSB,
     navTo:'/settings',
@@ -76,7 +75,7 @@ export const sidebarSettings =[{
 
 export const sidebarBottom =[{
     id: 7,
-    name: "مساعدة",
+    name: "sidebar.info",
     icon:'info',
     activeIcon: infoSB,
     navTo:'/info',
@@ -86,7 +85,7 @@ export const sidebarBottom =[{
 ,
 {
     id: 8,
-    name: "تسجيل الخروج",
+    name: "sidebar.logout",
     icon:'logout',
     activeIcon: logoout,
     navTo:'/login',

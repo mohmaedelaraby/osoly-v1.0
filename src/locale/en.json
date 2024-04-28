@@ -55,6 +55,16 @@
         "plan_desc_two": "used within",
         "plan_desc_three": "months"
       }
+    },
+    "sidebar":{
+      "home":"Home",
+      "enterprise":"Enterprise",
+      "users":"Users",
+      "tickets":"Tickets",
+      "propreties":"Real estate",
+      "settings": "Settings",
+      "info":"Help",
+      "logout":"Logout"
     }
   }
 }
