@@ -79,7 +79,22 @@
       "property_renter":"Unit tenant ",
       "renter":"tenant",
       "unit_property":"unit's property ",
-      "maintenance":"maintenance man " 
+      "maintenance":"maintenance man " ,
+      "accept":"accept",
+      "reject":"reject",
+      "total_number":"total number",
+      "date":"date",
+      "type":"type",
+      "status":"status",
+      "open_tickets": "Open tickets",
+      "hide":"hide",
+      "show":"show",
+      "ticket_number":"ticket number",
+      "unit_or_property":"unit/property",
+      "description":"description",
+      "attachment":"attachments",
+      "senter":"sender"
+
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -161,6 +176,14 @@
         "name": "unit name",
         "space": "unit area"
       }
+    },
+    "tickets":{
+      "ACTIVE":"active",
+      "CLOSED":"Closed",
+      "PROCESSING":"Processing",
+      "SERVICE":"Service Request",
+      "COMPLAIN":"complaint",
+      "OTHER":"Other"
     },
     "sidebar": {
       "home": "Home",

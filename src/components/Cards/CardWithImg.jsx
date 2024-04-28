@@ -4,6 +4,7 @@ import "../../assets/styels/components/cards.scss";
 
 import React from "react";
 import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 function CardWithImg({
   img = image,
@@ -18,6 +19,7 @@ function CardWithImg({
   isVertical = false,
  
 }) {
+  const { t } = useTranslation();
   return (
     <Card width={isVertical ? '100%' : '-webkit-fit-content'}>
       <div className="cardWithimg"  style={{width: isVertical ? '100%' : ''}} >
@@ -89,7 +91,7 @@ function CardWithImg({
                     variant="solid"
                   
                   >
-                    قبول
+                    {t("general.accept")}
                   </Button>
                   <Button
                     width={isVertical ? "50%" : "100%"}
@@ -98,7 +100,7 @@ function CardWithImg({
                     variant="outline"
                    
                   >
-                    رفض
+                    {t("general.reject")}
                   </Button>
                 </Stack>
               </div>

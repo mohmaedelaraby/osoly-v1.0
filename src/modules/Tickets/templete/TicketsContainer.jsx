@@ -44,6 +44,7 @@ import TicketCard from "./TicketCard";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import { useTranslation } from "react-i18next";
+import PageHeader from "../../../components/shared/PageHeader";
 
 function TicketsContainer() {
   const { t } = useTranslation();
@@ -123,16 +124,13 @@ function TicketsContainer() {
       <div className="page">
         <div className="page_container">
           <div className="page_container_header">
-            <div className="page_container_header__title">التذاكر</div>
-            <div className="page_container_header__icons">
-              <img src={user} alt="user" width="40px" height="40px" />
-            </div>
+            <PageHeader title={t("general.tickets")}></PageHeader>
           </div>
           <div className="page_container_cards page_container_cards_four_items">
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#FFE4CE"}
-                desc={"العدد الكلي"}
+                desc= {t("general.total_number")}
                 icon={money}
                 number={250}
               ></CardWithNumber>
@@ -140,7 +138,7 @@ function TicketsContainer() {
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#FFF7E5"}
-                desc={"النشطة"}
+                desc={t("tickets.ACTIVE")}
                 icon={money}
                 number={250}
               ></CardWithNumber>
@@ -148,7 +146,7 @@ function TicketsContainer() {
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#EFF9FF"}
-                desc={"قيد المعالجة"}
+                desc={t("tickets.PROCESSING")}
                 icon={money}
                 number={250}
               ></CardWithNumber>
@@ -156,7 +154,7 @@ function TicketsContainer() {
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#E5FFEE"}
-                desc={"مغلقه"}
+                desc={t("tickets.CLOSED")}
                 icon={money}
                 number={250}
               ></CardWithNumber>
@@ -212,9 +210,9 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} > {t("general.filter")}</option>
+                            <option value={null}> {t("general.filter")}</option>
 
-                            <option value={"createdAt"}> التاريخ</option>
+                            <option value={"createdAt"}> {t("general.date")}</option>
                           </Select>
                         </FormControl>
                       </div>
@@ -273,7 +271,7 @@ function TicketsContainer() {
                               {Object.entries(ticketsTypes).map((item) => (
                                 <></>
                               ))}
-                              {t("general.filter")} النوع
+                              {t("general.filter")} {t("general.type")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -284,13 +282,12 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} > النوع</option>
+                            <option value={null}> {t("general.type")}</option>
                             {Object.values(ticketsTypes).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
                                   {item}
                                 </option>
-                                
                               </>
                             ))}
                           </Select>
@@ -300,7 +297,7 @@ function TicketsContainer() {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              {t("general.filter")} الحاله
+                              {t("general.filter")} {t("general.status")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -311,7 +308,7 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} > الحاله</option>
+                            <option value={null}> {t("general.status")}</option>
                             {Object.values(ticketsStatus).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
@@ -371,8 +368,8 @@ function TicketsContainer() {
                   <div className="page_container_table__header__switcher_table">
                     <Button
                       backgroundColor="white"
-                      border='1px solid gray'
-                      padding='8px'
+                      border="1px solid gray"
+                      padding="8px"
                       onClick={() => setIsGrid(true)}
                     >
                       <GridViewOutlinedIcon />
@@ -381,8 +378,8 @@ function TicketsContainer() {
                   <div className="page_container_table__header__switcher_grid">
                     <Button
                       backgroundColor="white"
-                      border='1px solid gray'
-                      padding='8px'
+                      border="1px solid gray"
+                      padding="8px"
                       onClick={() => setIsGrid(false)}
                     >
                       <MenuIcon />
@@ -396,7 +393,7 @@ function TicketsContainer() {
                 <div className="w-100 mb-24">
                   <div className="page_container_table__content_header_flex">
                     <div className="page_container_table__content_header_flex_text">
-                      التذاكر المفتوحة
+                    {t("general.open_tickets")} 
                     </div>
                     <div className="page_container_table__content_header_flex_btn">
                       {showOpenTickets ? (
@@ -409,7 +406,7 @@ function TicketsContainer() {
                             setShowIsTickets(false);
                           }}
                         >
-                          اخفاء
+                          {t("general.hide")} 
                         </Button>
                       ) : (
                         <>
@@ -422,7 +419,7 @@ function TicketsContainer() {
                               setShowIsTickets(true);
                             }}
                           >
-                            اظهار
+                            {t("general.show")} 
                           </Button>
                         </>
                       )}
@@ -447,18 +444,18 @@ function TicketsContainer() {
                               <Thead className="table_header">
                                 <Tr>
                                   <Th className="table_header_item">
-                                    رقم التذكرة
+                                  {t("general.ticket_number")} 
                                   </Th>
-                                  <Th className="table_header_item">النوع</Th>
-                                  <Th className="table_header_item">الحالة</Th>
+                                  <Th className="table_header_item">{t("general.type")} </Th>
+                                  <Th className="table_header_item">{t("general.status")} </Th>
                                   <Th className="table_header_item">
-                                    الوحدة/العقار
+                                  {t("general.unit_or_property")} 
                                   </Th>
-                                  <Th className="table_header_item">الوصف</Th>
+                                  <Th className="table_header_item">{t("general.description")} </Th>
                                   <Th className="table_header_item">
-                                    المرفقات
+                                  {t("general.attachment")}
                                   </Th>
-                                  <Th className="table_header_item">المرسل</Th>
+                                  <Th className="table_header_item">{t("general.senter")}</Th>
                                   <Th className="table_header_item"> </Th>
                                 </Tr>
                               </Thead>
@@ -477,10 +474,10 @@ function TicketsContainer() {
                                           {item.id}
                                         </Td>
                                         <Td className="table_body_row_item">
-                                          {item.type}
+                                          {t(item.type)}
                                         </Td>
                                         <Td className="table_body_row_item">
-                                          {item.status}
+                                          {t(item.status)}
                                         </Td>
                                         <Td className="table_body_row_item">
                                           {item.unit.name}
@@ -512,7 +509,7 @@ function TicketsContainer() {
                                                 );
                                               }}
                                             >
-                                              رفض
+                                              {t("general.reject")}
                                             </Button>
                                             <Button
                                               width={"100%"}
@@ -527,7 +524,7 @@ function TicketsContainer() {
                                                 );
                                               }}
                                             >
-                                              قبول
+                                              {t("general.accept")}
                                             </Button>
                                           </Stack>
                                         </Td>
@@ -630,7 +627,6 @@ function TicketsContainer() {
                                     {status === ticketsStatus.ACTIVE ||
                                     status === ticketsStatus.PROCESSING ? (
                                       <>
-                                         
                                         <Stack
                                           alignItems={"center"}
                                           direction={"row"}
@@ -648,7 +644,7 @@ function TicketsContainer() {
                                               );
                                             }}
                                           >
-                                            رفض
+                                            {t("general.reject")}
                                           </Button>
                                           <Button
                                             width={"100%"}
@@ -666,7 +662,7 @@ function TicketsContainer() {
                                               );
                                             }}
                                           >
-                                            قبول
+                                            {t("general.accept")}
                                           </Button>
                                         </Stack>
                                       </>

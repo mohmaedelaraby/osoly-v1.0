@@ -79,7 +79,22 @@
       "property_renter":"مستأجر الوحدة",
       "renter":"المستأجر",
       "unit_property":"عقار الوحده",
-      "maintenance":"مسؤول الصيانة" 
+      "maintenance":"مسؤول الصيانة" ,
+      "accept":"قبول",
+      "reject":"رفض",
+      "total_number":"العدد الكلي",
+      "date":"تاريخ",
+      "type":"النوع",
+      "status":"الحاله",
+      "open_tickets": "إجمالي التذاكر المفتوحة",
+      "hide":"اخفاء",
+      "show":"اظهار",
+      "ticket_number":"رقم التذكرة",
+      "unit_or_property":"الوحدة/العقار",
+      "description":"الوصف",
+      "attachment":"المرفقات",
+      "senter":"المرسل"
+
       
     },
     "search": {
@@ -162,6 +177,14 @@
         "name": "اسم الوحده",
         "space": "مساحة الوحده"
       }
+    },
+    "tickets":{
+      "ACTIVE":"نشطه",
+      "CLOSED":"مغلقة ",
+      "PROCESSING":"قيد المعالجة",
+      "SERVICE":"طلب خدمة",
+      "COMPLAIN":"شكوي",
+      "OTHER":"اخري"
     },
     "sidebar": {
       "home": "الرئيسية",

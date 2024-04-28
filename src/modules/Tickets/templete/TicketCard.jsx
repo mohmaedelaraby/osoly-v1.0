@@ -5,8 +5,11 @@ import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
 import { useUpdateTickets } from "../hooks/useUpdateTickets";
 import "../../../assets/styels/components/cards.scss";
 import image from "../../../assets/images/houseImg.png";
+import { useTranslation } from "react-i18next";
 
 const TicketCard = ({ item, img = image }) => {
+  const { t } = useTranslation();
+
   const TICKET_STATUS = ticketsStatus;
   const TICKET_TYPES = ticketsTypes;
 
@@ -51,7 +54,7 @@ const TicketCard = ({ item, img = image }) => {
                     : " "
                 }
               >
-                {status}
+                {t(status)}
               </div>
             </div>
             <div className="cardWithimg_contanier__text">
@@ -95,7 +98,7 @@ const TicketCard = ({ item, img = image }) => {
                         updateStatus(sentStatus);
                       }}
                     >
-                      قبول
+                      {t("general.accept")}
                     </Button>
                     <Button
                       variant="outline"
@@ -107,7 +110,7 @@ const TicketCard = ({ item, img = image }) => {
                         updateStatus(TICKET_STATUS.CLOSED);
                       }}
                     >
-                      رفض
+                      {t("general.reject")}
                     </Button>
                   </>
                 ) : (
@@ -127,7 +130,7 @@ const TicketCard = ({ item, img = image }) => {
                         updateStatus(TICKET_STATUS.review);
                       }}
                     >
-                      قبول
+                      {t("general.accept")}
                     </Button>
                     <Button
                       variant="outline"
@@ -139,7 +142,7 @@ const TicketCard = ({ item, img = image }) => {
                         updateStatus(TICKET_STATUS.canceled);
                       }}
                     >
-                      رفض
+                      {t("general.reject")}
                     </Button>
                   </>
                 ) : (
