@@ -71,7 +71,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
       mutate({ body: formData });
-      onClose()
+      onClose();
     },
   });
 
@@ -91,7 +91,9 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
-              <div className="form__header_text">إضافة عقار جديد</div>
+              <div className="form__header_text">
+                {t("propreties.create.title")} 
+              </div>
               <div className="form__header_close">
                 <img src={close} alt="" width="40px" onClick={onClose} />
               </div>
@@ -101,9 +103,11 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               {!selectedImage ? (
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
-                  <p className="form__input__flex_fileUpload_text">رفع صورة</p>
+                  <p className="form__input__flex_fileUpload_text">
+                    {t("general.add_image")} 
+                  </p>
                   <p className="form__input__flex_fileUpload_desc">
-                    يفضل ان يكون قياس الصورة 320X120
+                    {t("general.image_disclaimer")} 
                   </p>
                   <Input
                     className="form__input__flex_fileUpload_input"
@@ -139,7 +143,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    اسم العقار
+                    {t("general.property_name")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -147,7 +151,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="اسم العقار  "
+                  placeholder={t("general.property_name")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.name}
                   onChange={formik.handleChange}
@@ -167,14 +171,16 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">العنوان</Text>
+                  <Text className="form__input__container__label">
+                    {t("general.address")}
+                  </Text>
                 </FormLabel>
                 <Input
                   name="address"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="العنوان"
+                  placeholder={t("general.address")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.address}
                   onChange={formik.handleChange}
@@ -238,7 +244,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    مالك العقار
+                    {t("general.property_owner")}
                   </Text>
                 </FormLabel>
                 <Select
@@ -250,7 +256,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     setTimeout(() => {}, 0);
                   }}
                 >
-                  <option value={0} >المالك </option>
+                  <option value={0}>{t("general.owner")} </option>
                   {usersData?.users
                     .filter((s) => s.role == USER_ROLES.OWNER)
                     ?.map((i, index) => (
@@ -266,7 +272,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    الرمز البريدي
+                    {t("general.postal_code")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -274,7 +280,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="الرمز البريدي"
+                  placeholder={t("general.postal_code")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.postalCode}
                   onChange={formik.handleChange}
@@ -295,7 +301,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    رقم الصك
+                    {t("general.sk_number")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -303,7 +309,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder=" رقم الصك"
+                  placeholder={t("general.sk_number")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.instrumentNumber}
                   onChange={formik.handleChange}
@@ -326,7 +332,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
             <div className="form__input form__input__flex">
               <div className="flex-between">
-                <div className="form__input__flex_text">الوحدات</div>
+                <div className="form__input__flex_text">{t("general.units")}</div>
                 <div className="form__input__flex_text">
                   <Button
                     rightIcon={<AddIcon />}
@@ -338,7 +344,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                       openUnitPopup();
                     }}
                   >
-                    <span className="pl-8"> إضافة جديد</span>
+                    <span className="pl-8"> {t("units.create.title")} </span>
                   </Button>
                 </div>
               </div>

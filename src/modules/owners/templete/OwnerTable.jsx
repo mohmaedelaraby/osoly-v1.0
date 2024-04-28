@@ -185,7 +185,7 @@ const OwnerTable = ({ switchTo }) => {
               openOwnerPopup();
             }}
           >
-            <span className="pl-8"> إضافة جديد</span>
+            <span className="pl-8">  {t("users.create.title_owner")} </span>
           </Button>
 
           <Button
@@ -214,14 +214,14 @@ const OwnerTable = ({ switchTo }) => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">فرز حسب</span>
+              <span className="pl-8">{t("general.sort")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      نوع الفرز
+                      {t("general.sort_type")}
                     </Text>
                   </FormLabel>
                   <RadioGroup
@@ -229,8 +229,8 @@ const OwnerTable = ({ switchTo }) => {
                     value={sortDirectionTmp}
                   >
                     <Stack direction="row">
-                      <Radio value="asc">تصاعدي</Radio>
-                      <Radio value="desc">تنازلي</Radio>
+                      <Radio value="asc">{t("general.asc")}</Radio>
+                      <Radio value="desc">{t("general.desc")}</Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
@@ -239,7 +239,7 @@ const OwnerTable = ({ switchTo }) => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      فرز حسب
+                      {t("general.sort")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -250,7 +250,7 @@ const OwnerTable = ({ switchTo }) => {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>فرز حسب</option>
+                    <option value={null}>{t("general.sort")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -272,7 +272,7 @@ const OwnerTable = ({ switchTo }) => {
                       setSortBy(sortByTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -285,7 +285,7 @@ const OwnerTable = ({ switchTo }) => {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -302,14 +302,14 @@ const OwnerTable = ({ switchTo }) => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">ترتيب حسب</span>
+              <span className="pl-8">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <div className="menu-select">
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم التليفون
+                      {t("general.filter")} {t("general.phone")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -328,7 +328,7 @@ const OwnerTable = ({ switchTo }) => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب البريد الإلكتروني
+                      {t("general.filter")} {t("general.email")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -347,7 +347,7 @@ const OwnerTable = ({ switchTo }) => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم العقد
+                      {t("general.filter")} {t("general.contract_number")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -366,7 +366,7 @@ const OwnerTable = ({ switchTo }) => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم الهيئه
+                      {t("general.filter")} {t("general.national_id")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -396,7 +396,7 @@ const OwnerTable = ({ switchTo }) => {
                       setIdentityId(identityIdTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -409,7 +409,7 @@ const OwnerTable = ({ switchTo }) => {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -423,7 +423,7 @@ const OwnerTable = ({ switchTo }) => {
             </InputRightElement>
             <Input
               type="text"
-              placeholder="ابحث ب البريد الالكتروني لل مالك "
+              placeholder={t("search.by_mail")}
               onChange={(e) => {
                 setTimeout(() => {
                   setEmail(e.target.value);
@@ -445,12 +445,12 @@ const OwnerTable = ({ switchTo }) => {
           <Table className="table" variant="simple">
             <Thead className="table_header">
               <Tr>
-                <Th className="table_header_item">الاسم </Th>
-                <Th className="table_header_item">الهوية الوطنية</Th>
-                <Th className="table_header_item">البريد الإلكتروني</Th>
-                <Th className="table_header_item">رقم الجوال</Th>
-                <Th className="table_header_item">عقدد العقارات</Th>
-                <Th className="table_header_item">رقم عقد الوساطة</Th>
+                <Th className="table_header_item">{t("general.name")} </Th>
+                <Th className="table_header_item">{t("general.national_id_text")}</Th>
+                <Th className="table_header_item">{t("general.email")}</Th>
+                <Th className="table_header_item">{t("general.phone")}</Th>
+                <Th className="table_header_item">{t("general.num_of_properties")} </Th>
+                <Th className="table_header_item"> {t("general.brokerage_contract_number")}</Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>

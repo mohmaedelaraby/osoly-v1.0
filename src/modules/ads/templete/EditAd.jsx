@@ -55,8 +55,8 @@ const EditAd = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        {" "}
-                        title{" "}
+                         
+                        title 
                       </Text>
                     </FormLabel>
 
@@ -84,8 +84,8 @@ const EditAd = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        {" "}
-                        sub Title{" "}
+                         
+                        sub Title 
                       </Text>
                     </FormLabel>
 
@@ -169,8 +169,8 @@ const EditAd = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        {" "}
-                        Image{" "}
+                         
+                        Image 
                       </Text>
                     </FormLabel>
 

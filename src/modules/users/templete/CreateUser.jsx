@@ -18,7 +18,7 @@ import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 
-const CreateUser = ({ onClose , userRule }) => {
+const CreateUser = ({ onClose, userRule }) => {
   const { t } = useTranslation();
   const [showpassword, setShowPassword] = useState(false);
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
@@ -40,8 +40,8 @@ const CreateUser = ({ onClose , userRule }) => {
     initialValues: initialValues,
     validationSchema: userCreateValidation,
     onSubmit: (values) => {
-      mutate({body:values})
-      onClose()
+      mutate({ body: values });
+      onClose();
     },
   });
   return (
@@ -50,7 +50,9 @@ const CreateUser = ({ onClose , userRule }) => {
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
             <div className="form__header_text">
-              {userRule == USER_ROLES.OWNER ? ('{t("general.add")} مالك جديد'):('{t("general.add")} مستاجر جديد')}  
+              {userRule == USER_ROLES.OWNER
+                ? t("users.create.title_owner")
+                : t("users.create.title")}
             </div>
             <div className="form__header_close">
               <img src={close} alt="" width="40px" onClick={onClose} />
@@ -61,7 +63,9 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  اسم المستأجر (العربية)
+                {userRule == USER_ROLES.OWNER
+                ? t("users.create.name_ar")
+                : t("users.create.name_ar_owner")}
                 </Text>
               </FormLabel>
               <Input
@@ -69,7 +73,9 @@ const CreateUser = ({ onClose , userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="اسم المستأجر (العربية)"
+                placeholder={userRule == USER_ROLES.OWNER
+                  ? t("users.create.name_ar")
+                  : t("users.create.name_ar_owner")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.firstNameAr}
                 onChange={formik.handleChange}
@@ -90,7 +96,9 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  اسم المستأجر (English)
+                {userRule == USER_ROLES.OWNER
+                ? t("users.create.name_en")
+                : t("users.create.name_en_owner")}
                 </Text>
               </FormLabel>
               <Input
@@ -98,7 +106,9 @@ const CreateUser = ({ onClose , userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="اسم المستأجر (English)"
+                placeholder={userRule == USER_ROLES.OWNER
+                  ? t("users.create.name_ar")
+                  : t("users.create.name_ar_owner")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.firstNameEn}
                 onChange={formik.handleChange}
@@ -121,7 +131,7 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  البريد الإلكتروني
+                  {t("general.email")}
                 </Text>
               </FormLabel>
               <Input
@@ -129,7 +139,7 @@ const CreateUser = ({ onClose , userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="البريد الإلكتروني  "
+                placeholder={t("general.email")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -148,7 +158,7 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  رقم الجوال{" "}
+                  {t("general.phone")} 
                 </Text>
               </FormLabel>
               <Input
@@ -156,7 +166,7 @@ const CreateUser = ({ onClose , userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="رقم الجوال"
+                placeholder={t("general.phone")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange}
@@ -179,7 +189,7 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  كلمة المرور
+                  {t("general.password")}
                 </Text>
               </FormLabel>
               <InputGroup size="md">
@@ -187,7 +197,7 @@ const CreateUser = ({ onClose , userRule }) => {
                   id="password"
                   pr="4.5rem"
                   type={showpassword ? "text" : "password"}
-                  placeholder=" كلمة المرور"
+                  placeholder={t("general.password")}
                   name="password"
                   size="lg"
                   readOnly={removeReadOnly}
@@ -236,7 +246,7 @@ const CreateUser = ({ onClose , userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  رقم الهوية الوطنية
+                  {t("general.national_id")}
                 </Text>
               </FormLabel>
               <Input
@@ -244,7 +254,7 @@ const CreateUser = ({ onClose , userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="رقم الهوية الوطنية  "
+                placeholder={t("general.national_id")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.identityId}
                 onChange={formik.handleChange}

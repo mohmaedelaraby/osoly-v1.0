@@ -1,17 +1,11 @@
 import {
   Button,
-  Card,
-  CardBody,
   Checkbox,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftAddon,
-  InputLeftElement,
   InputRightElement,
-  Radio,
-  RadioGroup,
   Select,
   Stack,
   Text,
@@ -36,7 +30,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
     useState(propOwenerId);
-    const [loadedImage, setLoadedImage] = useState(null);
+  const [loadedImage, setLoadedImage] = useState(null);
 
   const [selectedProbertyId, setSelectedPropertyId] = useState(propPropertyId);
   const [loungeChoice, setLoungeChoice] = useState(false);
@@ -54,7 +48,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     count: 12,
   });
   useEffect(() => {
-    refetch()
+    refetch();
     usersRefetch();
     PropertiesRefetch();
   }, []);
@@ -62,8 +56,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   useEffect(() => {
     if (data) {
       setSelectedOwnerId(data?.ownerId);
-      setSelectedMaintenanceManId(data?.maintenanceMan)
-      setSelectedPropertyId(data?.propertyId)
+      setSelectedMaintenanceManId(data?.maintenanceMan);
+      setSelectedPropertyId(data?.propertyId);
       setLoadedImage(data.image);
     }
   }, [data]);
@@ -74,10 +68,10 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const initialValues = {
     name: data?.name,
     rent: data?.rent,
-    rentCollectionDate:data?.rentCollectionDate,
-    electricityAccount:data?.electricityAccount,
-    waterAccount:data?.waterAccount,
-    address:data?.address,
+    rentCollectionDate: data?.rentCollectionDate,
+    electricityAccount: data?.electricityAccount,
+    waterAccount: data?.waterAccount,
+    address: data?.address,
     space: data?.space,
     rooms: data?.rooms,
     bathrooms: data?.bathrooms,
@@ -114,7 +108,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formData.append("lounge", loungeChoice);
 
       mutate({ body: formData });
-      onClose()
+      onClose();
     },
   });
   return (
@@ -122,62 +116,71 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       <div className="from__card from__card__full">
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
-            <div className="form__header_text">إضافة وحده جديد</div>
+            <div className="form__header_text">
+              {t("units.create.title_edit")} 
+            </div>
             <div className="form__header_close">
               <img src={close} alt="" width="40px" onClick={onClose} />
             </div>
           </div>
 
           <div className="form__input form__input__flex">
-          {!selectedImage && !loadedImage ? (
-                <div className="form__input__flex_fileUpload">
-                  <img src={bell} alt="" width={"66px"} />
-                  <p className="form__input__flex_fileUpload_text">رفع صورة</p>
-                  <p className="form__input__flex_fileUpload_desc">
-                    يفضل ان يكون قياس الصورة 320X120
-                  </p>
-                  <Input
-                    className="form__input__flex_fileUpload_input"
-                    type="file"
-                    name="image"
-                    accept=".png, .jpg, .jpeg"
-                    onChange={(e) => {
-                      setSelectedImage(e.target.files[0]);
-                    }}
+            {!selectedImage && !loadedImage ? (
+              <div className="form__input__flex_fileUpload">
+                <img src={bell} alt="" width={"66px"} />
+                <p className="form__input__flex_fileUpload_text">
+                  {t("general.add_image")} 
+                </p>
+                <p className="form__input__flex_fileUpload_desc">
+                  {t("general.image_disclaimer")} 
+                </p>
+                <Input
+                  className="form__input__flex_fileUpload_input"
+                  type="file"
+                  name="image"
+                  accept=".png, .jpg, .jpeg"
+                  onChange={(e) => {
+                    setSelectedImage(e.target.files[0]);
+                  }}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  padding: `${selectedImage || loadedImage ? "0px" : ""}`,
+                  borderRadius: "12px",
+                }}
+                className="form__input__flex_fileUpload"
+              >
+                <div className="form__input__flex_fileUpload_image">
+                  <img
+                    alt="not found"
+                    width={"auto"}
+                    height={"285px"}
+                    src={
+                      selectedImage
+                        ? URL.createObjectURL(selectedImage)
+                        : loadedImage
+                    }
                   />
                 </div>
-              ) : (
-                <div
-                  style={{
-                    padding: `${selectedImage || loadedImage ? "0px" : ""}`,
-                    borderRadius: "12px",
-                  }}
-                  className="form__input__flex_fileUpload"
-                >
-                  <div className="form__input__flex_fileUpload_image">
-                    <img
-                      alt="not found"
-                      width={"auto"}
-                      height={"285px"}
-                      src={
-                        selectedImage
-                          ? URL.createObjectURL(selectedImage)
-                          : loadedImage
-                      }
-                    />
-                  </div>
-                </div>
-              )}
+              </div>
+            )}
           </div>
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.property_name")}
+                </Text>
+              </FormLabel>
               <Input
                 name="name"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="اسم العقار  "
+                placeholder={t("general.property_name")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.name}
                 onChange={formik.handleChange}
@@ -196,12 +199,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.rent_cost")}
+                </Text>
+              </FormLabel>
               <Input
                 name="rent"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="قيمة الإيجار "
+                placeholder={t("general.rent_cost")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.rent}
                 onChange={formik.handleChange}
@@ -218,12 +226,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
 
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.rent_collect_date")}
+                </Text>
+              </FormLabel>
               <Input
                 name="rentCollectionDate"
                 size="lg"
                 type="date"
                 className="form__input__container__input"
-                placeholder="موعد تحصيل الإيجار"
+                placeholder={t("general.rent_collect_date")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.rentCollectionDate}
                 onChange={formik.handleChange}
@@ -285,12 +298,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.address")}
+                </Text>
+              </FormLabel>
               <Input
                 name="address"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="العنوان"
+                placeholder={t("general.address")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.address}
                 onChange={formik.handleChange}
@@ -309,12 +327,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.water_bill_cost")}
+                </Text>
+              </FormLabel>
               <Input
                 name="waterAccount"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="حساب فاتورة المياه"
+                placeholder={t("general.water_bill_cost")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.waterAccount}
                 onChange={formik.handleChange}
@@ -333,12 +356,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
 
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.electericty_cost_num")}
+                </Text>
+              </FormLabel>
               <Input
                 name="electricityAccount"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="رقم حساب فاتورة الكهرباء"
+                placeholder={t("general.electericty_cost_num")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.electricityAccount}
                 onChange={formik.handleChange}
@@ -361,13 +389,18 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.unit_space")}
+                </Text>
+              </FormLabel>
               <InputGroup>
                 <Input
                   name="space"
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="مساحة الوحدة    "
+                  placeholder={t("general.unit_space")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.space}
                   padding={"8px"}
@@ -381,7 +414,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   justifyContent="center"
                   borderRadius={"12px"}
                 >
-                  متر مربع
+                  {t("general.square_meter")}
                 </InputRightElement>
               </InputGroup>
 
@@ -397,12 +430,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.rooms_number")}
+                </Text>
+              </FormLabel>
               <Input
                 name="rooms"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="عدد الغرف"
+                placeholder={t("general.rooms_number")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.rooms}
                 onChange={formik.handleChange}
@@ -419,12 +457,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
 
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.bathrooms_number")}
+                </Text>
+              </FormLabel>
               <Input
                 name="bathrooms"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="عدد دورات المياه"
+                placeholder={t("general.bathrooms_number")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.bathrooms}
                 onChange={formik.handleChange}
@@ -443,12 +486,17 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
 
             <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label">
+                  {t("general.conditioners_number")}
+                </Text>
+              </FormLabel>
               <Input
                 name="conditioners"
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder="عدد المكيفات"
+                placeholder={t("general.conditioners_number")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.conditioners}
                 onChange={formik.handleChange}
@@ -477,7 +525,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 }}
               >
                 <span className="form__input__container__checkbox_txt">
-                  مطيخ
+                  {t("general.kitchen")}
                 </span>
               </Checkbox>
             </FormControl>
@@ -494,7 +542,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 }}
               >
                 <span className="form__input__container__checkbox_txt">
-                  تكييفات راكبه
+                  {t("general.lounge")}
                 </span>
               </Checkbox>
             </FormControl>
@@ -504,7 +552,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  مالك العقار
+                  {t("general.property_owner")}
                 </Text>
               </FormLabel>
               <Select
@@ -516,7 +564,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   setTimeout(() => {}, 0);
                 }}
               >
-                <option value={0}>المالك </option>
+                <option value={0}>{t("general.owner")} </option>
                 {usersData?.users
                   .filter((s) => s.role == USER_ROLES.OWNER)
                   ?.map((i, index) => (
@@ -530,7 +578,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  مستأجر الوحدة
+                  {t("general.property_renter")}
                 </Text>
               </FormLabel>
               <Select
@@ -542,7 +590,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   setTimeout(() => {}, 0);
                 }}
               >
-                <option value={0}>المستأجر </option>
+                <option value={0}>{t("general.renter")} </option>
                 {usersData?.users
                   .filter((s) => s.role == USER_ROLES.TENANT)
                   ?.map((i, index) => (
@@ -557,7 +605,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  عقار الوحدة
+                  {t("general.unit_property")}
                 </Text>
               </FormLabel>
               <Select
@@ -569,7 +617,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   setTimeout(() => {}, 0);
                 }}
               >
-                <option value={0}>عقار الوحدة </option>
+                <option value={0}> {t("general.unit_property")} </option>
                 {PropertiesData?.updatedProperties?.map((i, index) => (
                   <option value={i.id} key={index}>
                     {i.firstNameAr} {i.id}
@@ -581,7 +629,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label">
-                  مسؤول الصيانة
+                  {t("general.maintenance")}
                 </Text>
               </FormLabel>
               <Select
@@ -593,8 +641,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   setTimeout(() => {}, 0);
                 }}
               >
-                <option value={0}> المسؤول </option>
-                <option value={"ENTERPRISE"}> OWNER </option>
+                <option value={0}> {t("general.maintenance")} </option>
+                <option value={"OWNER"}> OWNER </option>
                 <option value={"ENTERPRISE"}> ENTERPRISE </option>
               </Select>
             </FormControl>

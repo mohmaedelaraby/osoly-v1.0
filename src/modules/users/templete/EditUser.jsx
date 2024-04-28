@@ -72,7 +72,9 @@ const EditUser = ({ onClose, id, userRule }) => {
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
               <div className="form__header_text">
-              {userRule == USER_ROLES.OWNER ? ('تعديل مالك جديد'):('تعديل مستاجر جديد')} 
+                {userRule == USER_ROLES.OWNER
+                  ? t("users.create.title_owner_edit")
+                  : t("users.create.title_edit")}
               </div>
               <div className="form__header_close">
                 <img src={close} alt="" width="40px" onClick={onClose} />
@@ -83,7 +85,9 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    اسم المستأجر (العربية)
+                    {userRule == USER_ROLES.OWNER
+                      ? t("users.create.name_ar")
+                      : t("users.create.name_ar_owner")} 
                   </Text>
                 </FormLabel>
                 <Input
@@ -91,7 +95,11 @@ const EditUser = ({ onClose, id, userRule }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="اسم المستأجر (العربية)"
+                  placeholder={
+                    userRule == USER_ROLES.OWNER
+                      ? t("users.create.name_ar")
+                      : t("users.create.name_ar_owner")
+                  }
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.firstNameAr}
                   onChange={formik.handleChange}
@@ -112,7 +120,9 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    اسم المستأجر (English)
+                    {userRule == USER_ROLES.OWNER
+                      ? t("users.create.name_en")
+                      : t("users.create.name_en_owner")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -120,7 +130,11 @@ const EditUser = ({ onClose, id, userRule }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="اسم المستأجر (English)"
+                  placeholder={
+                    userRule == USER_ROLES.OWNER
+                      ? t("users.create.name_en")
+                      : t("users.create.name_en_owner")
+                  }
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.firstNameEn}
                   onChange={formik.handleChange}
@@ -143,7 +157,7 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container disabled">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    البريد الإلكتروني
+                    {t("general.email")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -151,7 +165,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="البريد الإلكتروني  "
+                  placeholder={t("general.email")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.email}
                   onChange={formik.handleChange}
@@ -170,7 +184,7 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container disabled">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    رقم الجوال{" "}
+                    {t("general.phone")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -178,7 +192,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="رقم الجوال"
+                  placeholder={t("general.phone")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
@@ -201,7 +215,7 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container disabled">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    كلمة المرور
+                    {t("general.password")}
                   </Text>
                 </FormLabel>
                 <InputGroup size="md">
@@ -255,7 +269,7 @@ const EditUser = ({ onClose, id, userRule }) => {
               <FormControl className="form__input__container disabled">
                 <FormLabel>
                   <Text className="form__input__container__label">
-                    رقم الهوية الوطنية
+                    {t("general.national_id")}
                   </Text>
                 </FormLabel>
                 <Input
@@ -263,7 +277,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   size="lg"
                   type="text"
                   className="form__input__container__input"
-                  placeholder="رقم الهوية الوطنية  "
+                  placeholder={t("general.national_id")}
                   _placeholder={{ color: "#77797E" }}
                   value={formik.values.identityId}
                   onChange={formik.handleChange}

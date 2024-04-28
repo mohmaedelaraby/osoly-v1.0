@@ -11,13 +11,16 @@ import "../../../assets/styels/components/Table.scss";
 import "../../../assets/styels/components/page.scss";
 
 import money from "../../../assets/icons-svgs/money.svg";
-import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 
 import PropertiesTable from "./PropertiesTable";
 import UnitsTable from "../../units/templete/UnitsTable";
+import PageHeader from "../../../components/shared/PageHeader";
+import { useTranslation } from "react-i18next";
 
 const PropertiesComponent = ({ data, owenerId }) => {
+  const { t } = useTranslation();
+
   const CardsDemo = [
     {
       img: money,
@@ -44,10 +47,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
       <div className="page">
         <div className="page_container">
           <div className="page_container_header">
-            <div className="page_container_header__title">العقارات/الوحدات</div>
-            <div className="page_container_header__icons">
-              <img src={user} alt="user" width="40px" height="40px" />
-            </div>
+            <PageHeader title={t("propreties.page.header")}></PageHeader>
           </div>
           <div className="page_container_cards">
             {CardsDemo?.map((card, index) => (
@@ -66,8 +66,8 @@ const PropertiesComponent = ({ data, owenerId }) => {
             <Card>
               <Tabs isLazy>
                 <TabList>
-                  <Tab padding={"16px"}>عقارات</Tab>
-                  <Tab padding={"16px"}>وحدات</Tab>
+                  <Tab padding={"16px"}>{t("general.properties")}</Tab>
+                  <Tab padding={"16px"}>{t("general.units")}</Tab>
                 </TabList>
 
                 <TabPanels>

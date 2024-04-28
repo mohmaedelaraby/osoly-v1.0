@@ -234,8 +234,8 @@ const UserEnterpraiseTable = () => {
                             }}
                           >
                             <option value="expireDate">
-                              {" "}
-                              {t("general.expire_date")}{" "}
+                               
+                              {t("general.expire_date")} 
                             </option>
                           </Select>
                         </FormControl>
@@ -375,7 +375,7 @@ const UserEnterpraiseTable = () => {
                     </InputRightElement>
                     <Input
                       type="text"
-                      placeholder="ابحث ب اسم المؤسسه"
+                      placeholder={t("search.by_enterprise_name")}
                       onChange={(e) => {
                         setTimeout(() => {
                           setName(e.target.value);
@@ -399,17 +399,17 @@ const UserEnterpraiseTable = () => {
                       <Thead className="table_header">
                         <Tr>
                           <Th className="table_header_item">
-                            {t("general.name")}{" "}
+                            {t("general.name")} 
                           </Th>
                           <Th className="table_header_item">
-                            {" "}
-                            {t("general.num_of_units")}{" "}
+                             
+                            {t("general.num_of_units")} 
                           </Th>
                           <Th className="table_header_item">
                             {t("general.plan_type")}
                           </Th>
                           <Th className="table_header_item">
-                            {t("general.num_of_users")}{" "}
+                            {t("general.num_of_users")} 
                           </Th>
                           <Th className="table_header_item"> </Th>
                         </Tr>

@@ -43,8 +43,10 @@ import { useUpdateTickets } from "../hooks/useUpdateTickets";
 import TicketCard from "./TicketCard";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import { useTranslation } from "react-i18next";
 
 function TicketsContainer() {
+  const { t } = useTranslation();
   const [isGrid, setIsGrid] = useState(false);
   const [showOpenTickets, setShowIsTickets] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -174,14 +176,14 @@ function TicketsContainer() {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">فرز حسب</span>
+                      <span className="pl-8">{t("general.sort")}</span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <MenuItem>
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              نوع الفرز
+                              {t("general.sort_type")}
                             </Text>
                           </FormLabel>
                           <RadioGroup
@@ -189,8 +191,8 @@ function TicketsContainer() {
                             value={sortDirectionTmp}
                           >
                             <Stack direction="row">
-                              <Radio value="asc">تصاعدي</Radio>
-                              <Radio value="desc">تنازلي</Radio>
+                              <Radio value="asc">{t("general.asc")}</Radio>
+                              <Radio value="desc">{t("general.desc")}</Radio>
                             </Stack>
                           </RadioGroup>
                         </FormControl>
@@ -199,7 +201,7 @@ function TicketsContainer() {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              فرز حسب
+                              {t("general.sort")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -210,7 +212,7 @@ function TicketsContainer() {
                               setTimeout(() => {}, 0);
                             }}
                           >
-                            <option value={null} > ترتيب حسب</option>
+                            <option value={null} > {t("general.filter")}</option>
 
                             <option value={"createdAt"}> التاريخ</option>
                           </Select>
@@ -233,7 +235,7 @@ function TicketsContainer() {
                               setSortBy(sortByTmp);
                             }}
                           >
-                            تطبيق
+                            {t("general.apply")}
                           </Button>
                           <Button
                             onClick={() => {
@@ -244,7 +246,7 @@ function TicketsContainer() {
                             color={"#010B38"}
                             variant="outline"
                           >
-                            مسح
+                            {t("general.delete")}
                           </Button>
                         </Stack>
                       </MenuItem>
@@ -261,7 +263,7 @@ function TicketsContainer() {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">ترتيب حسب</span>
+                      <span className="pl-8">{t("general.filter")}</span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <div className="menu-select mb-24">
@@ -271,7 +273,7 @@ function TicketsContainer() {
                               {Object.entries(ticketsTypes).map((item) => (
                                 <></>
                               ))}
-                              ترتيب حسب النوع
+                              {t("general.filter")} النوع
                             </Text>
                           </FormLabel>
                           <Select
@@ -298,7 +300,7 @@ function TicketsContainer() {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label">
-                              ترتيب حسب الحاله
+                              {t("general.filter")} الحاله
                             </Text>
                           </FormLabel>
                           <Select
@@ -338,7 +340,7 @@ function TicketsContainer() {
                               setType(typeTmp);
                             }}
                           >
-                            تطبيق
+                            {t("general.apply")}
                           </Button>
                           <Button
                             onClick={() => {
@@ -349,7 +351,7 @@ function TicketsContainer() {
                             color={"#010B38"}
                             variant="outline"
                           >
-                            مسح
+                            {t("general.delete")}
                           </Button>
                         </Stack>
                       </MenuItem>
@@ -628,7 +630,7 @@ function TicketsContainer() {
                                     {status === ticketsStatus.ACTIVE ||
                                     status === ticketsStatus.PROCESSING ? (
                                       <>
-                                        {" "}
+                                         
                                         <Stack
                                           alignItems={"center"}
                                           direction={"row"}

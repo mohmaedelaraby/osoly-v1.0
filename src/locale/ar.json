@@ -19,11 +19,74 @@
       "plan": "الخطه",
       "name": "الاسم",
       "num_of_units": "عدد الوحدات",
+      "num_of_properties": "عدد العقارات",
       "plan_type": "الباقة",
       "num_of_users": "عدد المستخدمين ",
       "password": "كلمة المرور",
       "decide": "حدد",
-      "add_file":"اضافه ملف "
+      "add_file": "اضافه ملف",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الجوال",
+      "national_id": "رقم الهوية الوطنية",
+      "national_id_text": "الهوية الوطنية",
+      "price_value": "قيمة المسدد",
+      "rentDate": "موعد سداد الاستحقاق",
+      "property_name": "اسم العقار",
+      "renters": "المستأجرين",
+      "oweners": "ملاك العقار",
+      "contract_number": "رقم العقد",
+      "brokerage_contract_number": "رقم عقد الوساطة",
+      "properties": "عقارات",
+      "units": "وحدات",
+      "cover_photo": "صورة الغلاف",
+      "address": "العنوان",
+      "postal_code": "الرمز البريدي",
+      "sk_number": "رقم الصك",
+      "owner": "المالك",
+      "city": "المدينه",
+      "property_number": "رقم العقار",
+      "street": "الشارع",
+      "distract": "الحي",
+      "total_rent": "إجمالي الإيجار",
+      "single_unit": "وحده",
+      "add_image": "رفع صورة",
+      "image_disclaimer": "يفضل ان يكون قياس الصورة 320X120",
+      "property_owner": "مالك العقار",
+      "due_date": "موعد الاستحقاق",
+      "rent": "الإيجار",
+      "space": "المساحة",
+      "electericty_cost": "حساب فاتورة الكهرباء",
+      "electericty_bill": " فاتورة الكهرباء",
+      "electericty_cost_num": "رقم حساب فاتورة الكهرباء",
+      "water_cost": "حساب المياه",
+      "water_bill": "فاتورة المياه",
+      "water_bill_cost": "حساب فاتورة المياه ",
+      "water_meter":" عداد المياه",
+      "rooms": "الغرف",
+      "kitchen": "المطبخ",
+      "kitchens": "المطابخ",
+      "conditioners": "التكييفات",
+      "conditioners_number": "عدد التكييفات",
+      "rooms_number": "عدد الغرف",
+      "bathrooms_number": "عدد دورات المياه",
+      "exist":"يوجد",
+      "not_exist":"لا يوجد",
+      "lounge":"تكييفات راكبه",
+      "rent_cost":"قيمة الإيجار ",
+      "rent_collect_date":"موعد تحصيل الإيجار",
+      "unit_space":"مساحة الوحدة",
+      "square_meter":" متر مربع",
+      "property_renter":"مستأجر الوحدة",
+      "renter":"المستأجر",
+      "unit_property":"عقار الوحده",
+      "maintenance":"مسؤول الصيانة" 
+      
+    },
+    "search": {
+      "by_mail": "ابحث ب البريد الالكتروني لل مستخدم",
+      "by_property_name": "ابحث ب اسم العقار ",
+      "by_enterprise_name": "ابحث ب اسم المؤسسه",
+      "by_unit_name": "ابحث ب اسم الوحده "
     },
     "home": {
       "cards": {
@@ -51,22 +114,64 @@
       },
       "create": {
         "title": "إضافة مؤسس جديد",
-        "plan_desc_one": " هذه الخطه تسمحلك ب اضافه" ,
+        "plan_desc_one": " هذه الخطه تسمحلك ب اضافه",
         "plan_desc_two": " مستخدم في خلال ",
         "plan_desc_three": " اشهر ",
-        "enterprisename":"اسم المؤسس"
-
+        "enterprisename": "اسم المؤسس"
       }
     },
-    "sidebar":{
-      "home":"الرئيسية",
-      "enterprise":"المؤسسة",
-      "users":"المستخدمين",
-      "tickets":"التذاكر",
-      "propreties":"العقارات",
+    "users": {
+      "page": {
+        "header": "المستخدمين",
+        "add_user": " إضافة مستأجر "
+      },
+      "create": {
+        "title": "إضافة مستأجر جديد",
+        "title_owner": "إضافة مالك جديد",
+        "title_edit": "تعديل مستأجر جديد",
+        "title_owner_edit": "تعديل مالك جديد",
+        "name_ar": "اسم المستأجر (العربية)",
+        "name_en": "اسم المستأجر (English)",
+        "name_ar_owner": "اسم المالك (العربية)",
+        "name_en_owner": "اسم المالك (English)",
+        "plan_desc_two": " مستخدم في خلال ",
+        "plan_desc_three": " اشهر ",
+        "enterprisename": "اسم المؤسس"
+      }
+    },
+    "propreties": {
+      "page": {
+        "header": "العقارات/الوحدات",
+        "add_property": "  إضافة عقار "
+      },
+      "create": {
+        "title": "إضافة عقار جديد",
+        "title_edit": "تعديل عقار جديد",
+        "name": "اسم العقار",
+        "space": "مساحة العقار"
+      }
+    },
+    "units": {
+      "page": {
+        "header": "الوحدات",
+        "add_property": "إضافة وحده "
+      },
+      "create": {
+        "title": "إضافة وحده جديد",
+        "title_edit": "تعديل وحده جديد",
+        "name": "اسم الوحده",
+        "space": "مساحة الوحده"
+      }
+    },
+    "sidebar": {
+      "home": "الرئيسية",
+      "enterprise": "المؤسسة",
+      "users": "المستخدمين",
+      "tickets": "التذاكر",
+      "propreties": "العقارات",
       "settings": "الإعدادات",
-      "info":"مساعدة",
-      "logout":"تسجيل الخروج"
+      "info": "مساعدة",
+      "logout": "تسجيل الخروج"
     }
   }
 }

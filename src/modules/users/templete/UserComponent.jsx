@@ -9,13 +9,15 @@ import {
 import React from "react";
 import "../../../assets/styels/components/Table.scss";
 import money from "../../../assets/icons-svgs/money.svg";
-import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import UserTable from "./UserTable";
 import OwnerTable from "../../owners/templete/OwnerTable";
+import PageHeader from "../../../components/shared/PageHeader";
+import { useTranslation } from "react-i18next";
+
 
 const UserComponent = () => {
-
+  const { t } = useTranslation();
   const CardsDemo = [
     {
       img: money,
@@ -42,10 +44,7 @@ const UserComponent = () => {
       <div className="page">
         <div className="page_container">
           <div className="page_container_header">
-            <div className="page_container_header__title">المستخدمين</div>
-            <div className="page_container_header__icons">
-              <img src={user} alt="user" width="40px" height="40px" />
-            </div>
+            <PageHeader title={t("users.page.header")}></PageHeader>
           </div>
           <div className="page_container_cards">
             {CardsDemo?.map((card, index) => (
@@ -65,8 +64,8 @@ const UserComponent = () => {
             <Card>
               <Tabs isLazy>
                 <TabList>
-                  <Tab padding={'16px'}>المستأجرين</Tab>
-                  <Tab padding={'16px'}>ملاك العقار</Tab>
+                  <Tab padding={"16px"}> {t("general.renters")}</Tab>
+                  <Tab padding={"16px"}> {t("general.oweners")}</Tab>
                 </TabList>
 
                 <TabPanels>

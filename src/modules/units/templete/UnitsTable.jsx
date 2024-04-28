@@ -204,7 +204,7 @@ const UnitsTable = () => {
               openUnitPopup();
             }}
           >
-            <span className="pl-8"> إضافة جديد</span>
+            <span className="pl-8"> {t("units.page.add_property")}</span>
           </Button>
 
           <Button
@@ -232,14 +232,14 @@ const UnitsTable = () => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">فرز حسب</span>
+              <span className="pl-8">{t("general.sort")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      نوع الفرز
+                      {t("general.sort_type")}
                     </Text>
                   </FormLabel>
                   <RadioGroup
@@ -247,8 +247,8 @@ const UnitsTable = () => {
                     value={sortDirectionTmp}
                   >
                     <Stack direction="row">
-                      <Radio value="asc">تصاعدي</Radio>
-                      <Radio value="desc">تنازلي</Radio>
+                      <Radio value="asc">{t("general.asc")}</Radio>
+                      <Radio value="desc">{t("general.desc")}</Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
@@ -257,7 +257,7 @@ const UnitsTable = () => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      فرز حسب
+                      {t("general.sort")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -267,7 +267,7 @@ const UnitsTable = () => {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>فرز حسب</option>
+                    <option value={null}>{t("general.sort")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -289,7 +289,7 @@ const UnitsTable = () => {
                       setSortBy(sortByTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -302,7 +302,7 @@ const UnitsTable = () => {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -319,7 +319,7 @@ const UnitsTable = () => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">ترتيب حسب</span>
+              <span className="pl-8">{t("general.filter")}</span>
             </MenuButton>
             <MenuList width="257px">
               <div className="menu-select-container">
@@ -327,7 +327,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الاسم
+                        {t("general.filter")} {t("general.name")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -346,7 +346,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الايجار
+                        {t("general.filter")} {t("general.rent")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -365,7 +365,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب عدد الغرف
+                        {t("general.filter")} {t("general.rooms_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -384,7 +384,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب عدد الحمامات
+                        {t("general.filter")} {t("general.bathrooms_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -403,13 +403,13 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب المطابخ
+                        {t("general.filter")} {t("general.kitchens")}
                       </Text>
                     </FormLabel>
                     <RadioGroup onChange={setKitchenTmp} value={kitchenTmp}>
                       <Stack direction="row">
-                        <Radio value={"false"}>يوجد</Radio>
-                        <Radio value={"true"}>لا يوجد</Radio>
+                        <Radio value={"false"}>{t("general.exist")}</Radio>
+                        <Radio value={"true"}>{t("general.not_exist")}</Radio>
                       </Stack>
                     </RadioGroup>
                   </FormControl>
@@ -419,13 +419,13 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب تكييفات راكبه
+                        {t("general.filter")} {t("general.lounge")}
                       </Text>
                     </FormLabel>
                     <RadioGroup onChange={setLoungeTmp} value={loungeTmp}>
                       <Stack direction="row">
-                        <Radio value={"false"}>يوجد</Radio>
-                        <Radio value={"true"}>لا يوجد</Radio>
+                        <Radio value={"false"}>{t("general.exist")}</Radio>
+                        <Radio value={"true"}>{t("general.not_exist")}</Radio>
                       </Stack>
                     </RadioGroup>
                   </FormControl>
@@ -435,7 +435,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب عدد المكيفات
+                        {t("general.filter")} {t("general.conditioners_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -454,7 +454,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب فاتوره الكهرباء
+                        {t("general.filter")} {t("general.electericty_bill")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -472,7 +472,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب فاتوره المياه
+                        {t("general.filter")} {t("general.water_bill")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -490,7 +490,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب عداد المياه
+                        {t("general.filter")} {t("general.water_meter")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -528,7 +528,7 @@ const UnitsTable = () => {
                       setSpace(spaceTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -559,7 +559,7 @@ const UnitsTable = () => {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -573,7 +573,7 @@ const UnitsTable = () => {
             </InputRightElement>
             <Input
               type="text"
-              placeholder="ابحث ب اسم الوحده "
+              placeholder={t("search.by_unit_name")}
               onChange={(e) => {
                 setTimeout(() => {
                   setName(e.target.value);
@@ -620,16 +620,16 @@ const UnitsTable = () => {
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
-                    <Th className="table_header_item">الاسم</Th>
-                    <Th className="table_header_item">موعد الاستحقاق</Th>
-                    <Th className="table_header_item">الإيجار</Th>
-                    <Th className="table_header_item">العنوان</Th>
-                    <Th className="table_header_item">المساحة</Th>
-                    <Th className="table_header_item">حساب فاتورة الكهرباء</Th>
-                    <Th className="table_header_item">حساب المياه</Th>
-                    <Th className="table_header_item">الغرف</Th>
-                    <Th className="table_header_item">المطبخ</Th>
-                    <Th className="table_header_item">التكييفات</Th>
+                    <Th className="table_header_item">{t("general.name")}</Th>
+                    <Th className="table_header_item">{t("general.due_date")}</Th>
+                    <Th className="table_header_item">{t("general.rent")}</Th>
+                    <Th className="table_header_item">{t("general.address")}</Th>
+                    <Th className="table_header_item">{t("general.space")}</Th>
+                    <Th className="table_header_item">{t("general.electericty_cost")}</Th>
+                    <Th className="table_header_item">{t("general.water_cost")}</Th>
+                    <Th className="table_header_item">{t("general.rooms")}</Th>
+                    <Th className="table_header_item">{t("general.kitchen")}</Th>
+                    <Th className="table_header_item">{t("general.conditioners")}</Th>
                     <Th className="table_header_item"></Th>
                   </Tr>
                 </Thead>

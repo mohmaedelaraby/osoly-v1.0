@@ -184,7 +184,7 @@ function PropertiesTable() {
               openPropertyPopup();
             }}
           >
-            <span className="pl-8"> إضافة جديد</span>
+            <span className="pl-8"> {t("propreties.page.add_property")} </span>
           </Button>
           <Button
             marginRight="8px"
@@ -211,14 +211,14 @@ function PropertiesTable() {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">فرز حسب</span>
+              <span className="pl-8">{t("general.sort")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      نوع الفرز
+                      {t("general.sort_type")}
                     </Text>
                   </FormLabel>
                   <RadioGroup
@@ -226,8 +226,8 @@ function PropertiesTable() {
                     value={sortDirectionTmp}
                   >
                     <Stack direction="row">
-                      <Radio value="asc">تصاعدي</Radio>
-                      <Radio value="desc">تنازلي</Radio>
+                      <Radio value="asc">{t("general.asc")}</Radio>
+                      <Radio value="desc">{t("general.desc")}</Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
@@ -236,7 +236,7 @@ function PropertiesTable() {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      فرز حسب
+                      {t("general.sort")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -246,7 +246,7 @@ function PropertiesTable() {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>فرز حسب</option>
+                    <option value={null}>{t("general.sort")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -268,7 +268,7 @@ function PropertiesTable() {
                       setSortBy(sortByTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -281,7 +281,7 @@ function PropertiesTable() {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -298,7 +298,7 @@ function PropertiesTable() {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">ترتيب حسب</span>
+              <span className="pl-8">{t("general.filter")}</span>
             </MenuButton>
             <MenuList width="257px">
               <div className="menu-select-container">
@@ -306,7 +306,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الاسم
+                        {t("general.filter")} {t("general.name")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -325,7 +325,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب العنوان
+                        {t("general.filter")} {t("general.address")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -344,7 +344,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب عدد الوحدات
+                        {t("general.filter")} {t("general.num_of_units")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -363,7 +363,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب رقم الصك
+                        {t("general.filter")} {t("general.sk_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -382,7 +382,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب المدينه
+                        {t("general.filter")} {t("general.city")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -401,7 +401,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الرقم البريدي
+                        {t("general.filter")} {t("general.postal_code")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -420,7 +420,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب رقم العقار
+                        {t("general.filter")} {t("general.property_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -439,7 +439,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الشارع
+                        {t("general.filter")} {t("general.street")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -457,7 +457,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label">
-                        ترتيب حسب الحي
+                        {t("general.filter")} {t("general.distract")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -493,7 +493,7 @@ function PropertiesTable() {
                       setStreet(streetTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -511,7 +511,7 @@ function PropertiesTable() {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -525,7 +525,7 @@ function PropertiesTable() {
             </InputRightElement>
             <Input
               type="text"
-              placeholder="ابحث ب اسم العقار "
+              placeholder={t("search.by_property_name")}
               onChange={(e) => {
                 setTimeout(() => {
                   setName(e.target.value);
@@ -572,11 +572,11 @@ function PropertiesTable() {
               <Table className="table" variant="simple">
                 <Thead className="table_header">
                   <Tr>
-                    <Th className="table_header_item">الاسم</Th>
-                    <Th className="table_header_item">عدد الوحدات</Th>
-                    <Th className="table_header_item">إجمالي الإيجار</Th>
-                    <Th className="table_header_item">العنوان </Th>
-                    <Th className="table_header_item">المالك</Th>
+                    <Th className="table_header_item">{t("general.name")}</Th>
+                    <Th className="table_header_item">{t("general.num_of_units")}</Th>
+                    <Th className="table_header_item">{t("general.total_rent")}</Th>
+                    <Th className="table_header_item">{t("general.address")} </Th>
+                    <Th className="table_header_item">{t("general.owner")}</Th>
                     <Th className="table_header_item"> </Th>
                   </Tr>
                 </Thead>
@@ -650,7 +650,7 @@ function PropertiesTable() {
                     price={item.id}
                     isBtns={false}
                     isVertical={false}
-                    currncy={"وحده"}
+                    currncy={t("general.single_unit")}
                     onClick={() => {}}
                   ></CardWithImg>
                 ))}

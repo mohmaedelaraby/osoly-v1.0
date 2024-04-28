@@ -19,11 +19,73 @@
       "plan": "plan",
       "name": "name",
       "num_of_units": "number of units",
+      "num_of_properties": "number of propreties",
       "plan_type": "Package",
       "num_of_users": "number of users",
       "password": "password",
       "decide": "decide",
-      "add_file":"Add file"
+      "add_file": "Add file",
+      "email": "email",
+      "phone": "mobile number",
+      "national_id": "National ID number",
+      "national_id_text": "National ID",
+      "price_value": "paid value",
+      "rentDate": "Due payment date",
+      "property_name": "Property name",
+      "renters": "tenants",
+      "oweners": "property owners",
+      "contract_number": " contract number",
+      "brokerage_contract_number": "Brokerage contract number",
+      "properties": "properties",
+      "units": "units",
+      "cover_photo": "Cover Photo",
+      "address": "address",
+      "postal_code": "postal  p code",
+      "sk_number": "instrument number",
+      "owner": "owner",
+      "city": "city",
+      "property_number": "property number",
+      "street": "street",
+      "distract": "District",
+      "total_rent": "Total rent ",
+      "single_unit": "Unit",
+      "add_image": "Upload an image",
+      "image_disclaimer": "It is preferable that the image size be 320X120",
+      "property_owner": " Property Owner",
+      "due_date": "Due date ",
+      "rent": "rent",
+      "space": "space",
+      "electricity_cost": "Electricity bill calculation",
+      "electericty_bill": " Electricity bill ",
+      "electericty_cost_num": "Electricity bill calculation Number",
+      "water_cost": "water calculation",
+      "water_bill": "water Bill",
+      "water_bill_cost":"Water Bill Cost",
+      "water_meter":"Water meter",
+      "rooms": "rooms",
+      "kitchen": "kitchen",
+      "kitchens": "kitchens",
+      "conditioners": "conditioning",
+      "conditioners_number": "Numbers of conditioning",
+      "rooms_number": "Numbers of Rooms ",
+      "bathrooms_number": "Numbers of Bathrooms",
+      "exist":"exist",
+      "not_exist":"not exist",
+      "lounge":"lounge ",
+      "rent_cost":"rent cost",
+      "rent_collect_date":"Rent collection date",
+      "unit_space":"unit space",
+      "square_meter":"square meter",
+      "property_renter":"Unit tenant ",
+      "renter":"tenant",
+      "unit_property":"unit's property ",
+      "maintenance":"maintenance man " 
+    },
+    "search": {
+      "by_mail": "Search by user's email",
+      "by_property_name": "Search by property name",
+      "by_enterprise_name": "Search by enterprise name",
+      "by_unit_name": "Search by unit name"
     },
     "home": {
       "cards": {
@@ -54,19 +116,61 @@
         "plan_desc_one": "This plan allows you to add ",
         "plan_desc_two": " user used within",
         "plan_desc_three": " months",
-        "enterprisename":"Enterprise name "
-
+        "enterprisename": "Enterprise name "
       }
     },
-    "sidebar":{
-      "home":"Home",
-      "enterprise":"Enterprise",
-      "users":"Users",
-      "tickets":"Tickets",
-      "propreties":"Real estate",
+    "users": {
+      "page": {
+        "header": "users",
+        "add_user": "Add Tenant"
+      },
+      "create": {
+        "title": "Add a new tenant",
+        "title_owner": "Add a new owner",
+        "title_edit": "Edit New Tenant",
+        "title_owner_edit": "Edit new owner",
+        "name_ar": "Tenant's name (Arabic)",
+        "name_en": "Tenant Name (English)",
+        "name_ar_owner": "Owner's name (Arabic)",
+        "name_en_owner": "Owner Name (English)",
+        "plan_desc_two": "used within",
+        "plan_desc_three": "months",
+        "enterprisename": "Founder name"
+      }
+    },
+    "properties": {
+      "page": {
+        "header": "Properties/Units",
+        "add_property": "Add property"
+      },
+      "create": {
+        "title": "Add a new property",
+        "title_edit": "Editing a new property",
+        "name": "property name",
+        "space": "Property area"
+      }
+    },
+    "units": {
+      "page": {
+        "header": "units",
+        "add_property": "Add unit"
+      },
+      "create": {
+        "title": "Add a new unit",
+        "title_edit": "Edit a new unit",
+        "name": "unit name",
+        "space": "unit area"
+      }
+    },
+    "sidebar": {
+      "home": "Home",
+      "enterprise": "Enterprise",
+      "users": "Users",
+      "tickets": "Tickets",
+      "propreties": "Real estate",
       "settings": "Settings",
-      "info":"Help",
-      "logout":"Logout"
+      "info": "Help",
+      "logout": "Logout"
     }
   }
 }

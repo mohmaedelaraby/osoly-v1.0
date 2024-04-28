@@ -171,7 +171,7 @@ function UserTable({ switchTo }) {
               openUserPopup();
             }}
           >
-            <span className="pl-8"> إضافة جديد</span>
+            <span className="pl-8"> {t("users.create.title")} </span>
           </Button>
           <Button
             marginRight="8px"
@@ -198,14 +198,14 @@ function UserTable({ switchTo }) {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">فرز حسب</span>
+              <span className="pl-8">{t("general.sort")} </span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      نوع الفرز
+                      {t("general.sort_type")}
                     </Text>
                   </FormLabel>
                   <RadioGroup
@@ -213,8 +213,8 @@ function UserTable({ switchTo }) {
                     value={sortDirectionTmp}
                   >
                     <Stack direction="row">
-                      <Radio value="asc">تصاعدي</Radio>
-                      <Radio value="desc">تنازلي</Radio>
+                      <Radio value="asc">{t("general.asc")}</Radio>
+                      <Radio value="desc">{t("general.desc")}</Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
@@ -223,7 +223,7 @@ function UserTable({ switchTo }) {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      فرز حسب
+                      {t("general.sort")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -234,7 +234,7 @@ function UserTable({ switchTo }) {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>فرز حسب</option>
+                    <option value={null}>{t("general.sort")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -256,7 +256,7 @@ function UserTable({ switchTo }) {
                       setSortBy(sortByTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -269,7 +269,7 @@ function UserTable({ switchTo }) {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -286,14 +286,14 @@ function UserTable({ switchTo }) {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">ترتيب حسب</span>
+              <span className="pl-8">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <div className="menu-select">
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم التليفون
+                      {t("general.filter")} {t("general.phone")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -312,7 +312,7 @@ function UserTable({ switchTo }) {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب البريد الإلكتروني
+                      {t("general.filter")} {t("general.email")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -331,7 +331,7 @@ function UserTable({ switchTo }) {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم العقد
+                      {t("general.filter")} {t("general.contract_number")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -350,7 +350,7 @@ function UserTable({ switchTo }) {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label">
-                      ترتيب حسب رقم الهيئه
+                      {t("general.filter")} {t("general.national_id")}
                     </Text>
                   </FormLabel>
                   <Input
@@ -380,7 +380,7 @@ function UserTable({ switchTo }) {
                       setIdentityId(identityIdTmp);
                     }}
                   >
-                    تطبيق
+                    {t("general.apply")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -393,7 +393,7 @@ function UserTable({ switchTo }) {
                     color={"#010B38"}
                     variant="outline"
                   >
-                    مسح
+                    {t("general.delete")}
                   </Button>
                 </Stack>
               </MenuItem>
@@ -407,7 +407,7 @@ function UserTable({ switchTo }) {
             </InputRightElement>
             <Input
               type="text"
-              placeholder="ابحث ب البريد الالكتروني لل مستخدم "
+              placeholder={t("search.by_mail")}
               onChange={(e) => {
                 setTimeout(() => {
                   setEmail(e.target.value);
@@ -429,14 +429,14 @@ function UserTable({ switchTo }) {
           <Table className="table" variant="simple">
             <Thead className="table_header">
               <Tr>
-                <Th className="table_header_item">الاسم </Th>
-                <Th className="table_header_item">الهوية الوطنية</Th>
-                <Th className="table_header_item">رقم الجوال</Th>
-                <Th className="table_header_item">قيمة المسدد</Th>
-                <Th className="table_header_item">موعد سداد الاستحقاق</Th>
-                <Th className="table_header_item">اسم العقار </Th>
+                <Th className="table_header_item">{t("general.name")} </Th>
+                <Th className="table_header_item">{t("general.national_id_text")}</Th>
+                <Th className="table_header_item">{t("general.phone")}</Th>
+                <Th className="table_header_item">{t("general.price_value")}</Th>
+                <Th className="table_header_item">{t("general.rentDate")}</Th>
+                <Th className="table_header_item">{t("general.property_name")} </Th>
 
-                <Th className="table_header_item">البريد الإلكتروني</Th>
+                <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>
@@ -499,7 +499,7 @@ function UserTable({ switchTo }) {
                           </Stack>
                         </Td>
                       </Tr>
-                    ))}{" "}
+                    ))} 
                 </>
               ) : (
                 <>
