@@ -4,7 +4,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Menu,
   MenuButton,
@@ -43,9 +42,30 @@ import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useDeleteUser } from "../hooks/useDeleteUser";
+import { useTranslation } from "react-i18next";
+import { useUploadUsersFile } from "../hooks/useUploadUsersFile";
 
 function UserTable({ switchTo }) {
+  const { t } = useTranslation();
+
   const [selectedUser, setSelectedUser] = useState();
+  const [file, setFile] = useState("");
+
+  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
+    useUploadUsersFile();
+
+  const updateFile = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const choosenFile = event.target.files[0];
+      setFile(choosenFile);
+      let formData = new FormData();
+      formData.append("file", file);
+      uploadFiles({ body: formData });
+      setFile(null);
+      event.target.value = "";
+    }
+  };
+
   const {
     isOpen: isOpenUserModal,
     onOpen: onOpenUserModal,
@@ -151,6 +171,21 @@ function UserTable({ switchTo }) {
             }}
           >
             <span className="pl-8"> إضافة جديد</span>
+          </Button>
+          <Button
+            marginRight="8px"
+            rightIcon={<AddIcon />}
+            className="page_container_table__header__btns__add"
+            bg="#194C81"
+          >
+            <span className="pl-8"> {t("general.add_file")}</span>
+            <Input
+              className="form__input__flex_fileUpload_input"
+              type="file"
+              name="image"
+              accept=".csv"
+              onChange={updateFile}
+            />
           </Button>
           <Menu closeOnSelect={false}>
             <MenuButton

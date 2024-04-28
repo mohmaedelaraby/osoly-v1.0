@@ -8,19 +8,22 @@
       "show_all": "Show all",
       "latest": "latest",
       "ask_service": "Service Request",
-      "sort": "sort by",
+      "sort": "Sort by",
       "sort_type": "sort type",
       "asc": "asc",
       "desc": "desc",
-      "filter": "Sort by",
+      "filter": "sort by",
       "expire_date": "expiry date",
       "apply": "application",
       "delete": "delete",
       "plan": "plan",
-      "name": "Name",
+      "name": "name",
       "num_of_units": "number of units",
       "plan_type": "Package",
-      "num_of_users": "number of users"
+      "num_of_users": "number of users",
+      "password": "password",
+      "decide": "decide",
+      "add_file":"Add file"
     },
     "home": {
       "cards": {

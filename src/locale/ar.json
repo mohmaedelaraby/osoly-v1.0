@@ -22,7 +22,8 @@
       "plan_type": "الباقة",
       "num_of_users": "عدد المستخدمين ",
       "password": "كلمة المرور",
-      "decide": "حدد"
+      "decide": "حدد",
+      "add_file":"اضافه ملف "
     },
     "home": {
       "cards": {
