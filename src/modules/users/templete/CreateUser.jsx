@@ -16,8 +16,10 @@ import { useCreateUser } from "../hooks/useCreateUsers";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 const CreateUser = ({ onClose , userRule }) => {
+  const { t } = useTranslation();
   const [showpassword, setShowPassword] = useState(false);
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
@@ -48,7 +50,7 @@ const CreateUser = ({ onClose , userRule }) => {
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
             <div className="form__header_text">
-              {userRule == USER_ROLES.OWNER ? ('اضافه مالك جديد'):('اضافه مستاجر جديد')}  
+              {userRule == USER_ROLES.OWNER ? ('{t("general.add")} مالك جديد'):('{t("general.add")} مستاجر جديد')}  
             </div>
             <div className="form__header_close">
               <img src={close} alt="" width="40px" onClick={onClose} />
@@ -270,7 +272,7 @@ const CreateUser = ({ onClose , userRule }) => {
                 bg="#194C81"
                 type="submit"
               >
-                اضافه
+                {t("general.add")}
               </Button>
               <Button
                 onClick={onClose}
@@ -278,7 +280,7 @@ const CreateUser = ({ onClose , userRule }) => {
                 color={"#010B38"}
                 variant="outline"
               >
-                الغاء
+                {t("general.cancel")}
               </Button>
             </Stack>
           </div>

@@ -17,8 +17,11 @@ import goldCrown from "../../../assets/icons-svgs/goldCrown.svg";
 import silverCrown from "../../../assets/icons-svgs/silverCrown.svg";
 import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 const EditEnterpraiseUser = ({ onClose, plans, item }) => {
+  const { t } = useTranslation();
+
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
   const initialValues = {
@@ -56,7 +59,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">اسم المؤسس</Text>
+              <Text className="form__input__container__label">  {t("enterprise.create.enterprisename")}</Text>
             </FormLabel>
             <Input
               id="enterpraiseName"
@@ -64,7 +67,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
               size="lg"
               type="text"
               className="form__input__container__input"
-              placeholder="اسم المؤسس "
+              placeholder= {t("enterprise.create.enterprisename")}
               value={formik.values.username}
               onChange={formik.handleChange}
               isInvalid={formik.touched.username && !!formik.errors.username}
@@ -83,7 +86,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">كلمة المرور</Text>
+              <Text className="form__input__container__label"> {t("general.password")} </Text>
             </FormLabel>
             <InputGroup size="md">
               <Input
@@ -123,7 +126,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         </div>
 
         <div className="from__card_plans disabled">
-          <div className="from__card_plans_title">حدد الباقة</div>
+          <div className="from__card_plans_title"> {t("general.decide")} {t("general.plan_type")}</div>
           <div className="from__card_plans_cards">
             {plans ? (
               <>
@@ -155,11 +158,11 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                     <div className="from__card_plans_cards_planCard_contianer_desc">
                       {plans[0]?.desc
                         ? plans[0]?.desc
-                        : "  هذه الخطه تسمحلك ب اضافه" +
+                        : t("enterprise.create.plan_desc_one") +
                           plans[0]?.numberOfUsers +
-                          " مستخدم في خلال " +
+                          t("enterprise.create.plan_desc_two") +
                           plans[0]?.duration +
-                          " اشهر"}
+                            t("enterprise.create.plan_desc_three")}
                     </div>
                   </div>
                 </div>
@@ -192,11 +195,11 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                     <div className="from__card_plans_cards_planCard_contianer_desc">
                       {plans[1]?.desc
                         ? plans[1]?.desc
-                        : "  هذه الخطه تسمحلك ب اضافه" +
+                        : t("enterprise.create.plan_desc_one") +
                           plans[1]?.numberOfUsers +
-                          " مستخدم في خلال " +
+                          t("enterprise.create.plan_desc_two") +
                           plans[1]?.duration +
-                          " اشهر"}
+                            t("enterprise.create.plan_desc_three")}
                     </div>
                   </div>
                 </div>
@@ -229,11 +232,11 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                     <div className="from__card_plans_cards_planCard_contianer_desc">
                       {plans[2]?.desc
                         ? plans[2]?.desc
-                        : "  هذه الخطه تسمحلك ب اضافه" +
+                        : t("enterprise.create.plan_desc_one") +
                           plans[2]?.numberOfUsers +
-                          " مستخدم في خلال " +
+                          t("enterprise.create.plan_desc_two") +
                           plans[2]?.duration +
-                          " اشهر"}
+                            t("enterprise.create.plan_desc_three")}
                     </div>
                   </div>
                 </div>
@@ -253,7 +256,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
               bg="#194C81"
               type="submit"
             >
-              اضافه
+              {t("general.add")}
             </Button>
             <Button
               onClick={onClose}
@@ -261,7 +264,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
               color={"#010B38"}
               variant="outline"
             >
-              الغاء
+              {t("general.cancel")}
             </Button>
           </Stack>
         </div>

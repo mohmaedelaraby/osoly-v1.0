@@ -16,8 +16,10 @@ import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import useGetUser from "../hooks/useGetUser";
 import { useUpdateUser } from "../hooks/useUpdateUser";
+import { useTranslation } from "react-i18next";
 
 const EditUser = ({ onClose, id, userRule }) => {
+  const { t } = useTranslation();
   const [showpassword, setShowPassword] = useState(false);
 
   const {
@@ -289,7 +291,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   bg="#194C81"
                   type="submit"
                 >
-                  اضافه
+                  {t("general.add")}
                 </Button>
                 <Button
                   onClick={onClose}
@@ -297,7 +299,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   color={"#010B38"}
                   variant="outline"
                 >
-                  الغاء
+                  {t("general.cancel")}
                 </Button>
               </Stack>
             </div>

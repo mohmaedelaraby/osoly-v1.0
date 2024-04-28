@@ -30,8 +30,10 @@ import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
 import CreateUnit from "../../units/templete/CreateUnit";
 import close from "../../../assets/icons-svgs/close.svg";
+import { useTranslation } from "react-i18next";
 
 const EditProperty = ({ id, onClose }) => {
+  const { t } = useTranslation();
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -457,7 +459,7 @@ const EditProperty = ({ id, onClose }) => {
                   bg="#194C81"
                   type="submit"
                 >
-                  اضافه
+                  {t("general.add")}
                 </Button>
                 <Button
                   onClick={onClose}
@@ -465,7 +467,7 @@ const EditProperty = ({ id, onClose }) => {
                   color={"#010B38"}
                   variant="outline"
                 >
-                  الغاء
+                  {t("general.cancel")}
                 </Button>
               </Stack>
             </div>

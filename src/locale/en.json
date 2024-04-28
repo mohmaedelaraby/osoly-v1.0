@@ -51,9 +51,11 @@
       },
       "create": {
         "title": "Add a new founder",
-        "plan_desc_one": "This plan allows you to add",
-        "plan_desc_two": "used within",
-        "plan_desc_three": "months"
+        "plan_desc_one": "This plan allows you to add ",
+        "plan_desc_two": " user used within",
+        "plan_desc_three": " months",
+        "enterprisename":"Enterprise name "
+
       }
     },
     "sidebar":{

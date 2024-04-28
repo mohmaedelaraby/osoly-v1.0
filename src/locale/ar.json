@@ -51,9 +51,11 @@
       },
       "create": {
         "title": "إضافة مؤسس جديد",
-        "plan_desc_one": "هذه الخطه تسمحلك ب اضافه",
-        "plan_desc_two": "مستخدم في خلال ",
-        "plan_desc_three": " اشهر  "
+        "plan_desc_one": " هذه الخطه تسمحلك ب اضافه" ,
+        "plan_desc_two": " مستخدم في خلال ",
+        "plan_desc_three": " اشهر ",
+        "enterprisename":"اسم المؤسس"
+
       }
     },
     "sidebar":{

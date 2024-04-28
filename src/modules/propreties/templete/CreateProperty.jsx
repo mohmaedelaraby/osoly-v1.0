@@ -23,8 +23,10 @@ import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
 import CreateUnit from "../../units/templete/CreateUnit";
+import { useTranslation } from "react-i18next";
 
 const CreateProperty = ({ onClose, propOwenerId }) => {
+  const { t } = useTranslation();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const { usersData, usersRefetch } = useUsers({
@@ -355,7 +357,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   bg="#194C81"
                   type="submit"
                 >
-                  اضافه
+                  {t("general.add")}
                 </Button>
                 <Button
                   onClick={onClose}
@@ -363,7 +365,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   color={"#010B38"}
                   variant="outline"
                 >
-                  الغاء
+                  {t("general.cancel")}
                 </Button>
               </Stack>
             </div>

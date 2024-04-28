@@ -5,7 +5,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Menu,
   MenuButton,
@@ -41,7 +40,6 @@ import {
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import money from "../../../assets/icons-svgs/money.svg";
-import user from "../../../assets/images/user.png";
 import Pagination from "../../../components/shared/Pagination";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";

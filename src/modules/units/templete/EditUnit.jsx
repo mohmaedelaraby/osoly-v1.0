@@ -26,7 +26,9 @@ import useProperties from "../../propreties/hooks/useAllProperties";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
+import { useTranslation } from "react-i18next";
 const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
+  const { t } = useTranslation();
   const { mutate } = useUpdateUnit(id);
 
   const { data, refetch } = useGetUnit(id);
@@ -614,7 +616,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   !selectedRenterId
                 }
               >
-                اضافه
+                {t("general.add")}
               </Button>
               <Button
                 onClick={onClose}
@@ -622,7 +624,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 color={"#010B38"}
                 variant="outline"
               >
-                الغاء
+                {t("general.cancel")}
               </Button>
             </Stack>
           </div>

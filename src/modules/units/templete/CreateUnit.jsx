@@ -20,8 +20,10 @@ import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import useUsers from "../../users/hooks/useUsers";
 import useProperties from "../../propreties/hooks/useAllProperties";
+import { useTranslation } from "react-i18next";
 
 const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
+  const { t } = useTranslation();
   const { mutate } = useCreateUnit();
 
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
@@ -581,7 +583,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 !selectedRenterId
               }
             >
-              اضافه
+              {t("general.add")}
             </Button>
             <Button
               onClick={onClose}
@@ -589,7 +591,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               color={"#010B38"}
               variant="outline"
             >
-              الغاء
+              {t("general.cancel")}
             </Button>
           </Stack>
         </div>
