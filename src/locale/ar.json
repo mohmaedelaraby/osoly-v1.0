@@ -38,6 +38,11 @@
         "rent_title": "الإيجارات المستحقة "
       }
     },
+    "modals": {
+      "info": {
+        "title": "تواصل معنا"
+      }
+    },
     "enterprise": {
       "page": {
         "header": "المؤسسة",

@@ -36,6 +36,11 @@
         "rent_title": "Rents Due"
       }
     },
+    "modals": {
+      "info": {
+        "title": "Contact us"
+      }
+    },
     "enterprise": {
       "page": {
         "header": "organization",
