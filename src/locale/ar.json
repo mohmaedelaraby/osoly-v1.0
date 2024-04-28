@@ -157,7 +157,7 @@
     "propreties": {
       "page": {
         "header": "العقارات/الوحدات",
-        "add_property": "  إضافة عقار "
+        "add_property_title": "  إضافة عقار "
       },
       "create": {
         "title": "إضافة عقار جديد",

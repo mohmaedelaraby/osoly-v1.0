@@ -60,8 +60,8 @@
       "electericty_cost_num": "Electricity bill calculation Number",
       "water_cost": "water calculation",
       "water_bill": "water Bill",
-      "water_bill_cost":"Water Bill Cost",
-      "water_meter":"Water meter",
+      "water_bill_cost": "Water Bill Cost",
+      "water_meter": "Water meter",
       "rooms": "rooms",
       "kitchen": "kitchen",
       "kitchens": "kitchens",
@@ -69,32 +69,31 @@
       "conditioners_number": "Numbers of conditioning",
       "rooms_number": "Numbers of Rooms ",
       "bathrooms_number": "Numbers of Bathrooms",
-      "exist":"exist",
-      "not_exist":"not exist",
-      "lounge":"lounge ",
-      "rent_cost":"rent cost",
-      "rent_collect_date":"Rent collection date",
-      "unit_space":"unit space",
-      "square_meter":"square meter",
-      "property_renter":"Unit tenant ",
-      "renter":"tenant",
-      "unit_property":"unit's property ",
-      "maintenance":"maintenance man " ,
-      "accept":"accept",
-      "reject":"reject",
-      "total_number":"total number",
-      "date":"date",
-      "type":"type",
-      "status":"status",
+      "exist": "exist",
+      "not_exist": "not exist",
+      "lounge": "lounge ",
+      "rent_cost": "rent cost",
+      "rent_collect_date": "Rent collection date",
+      "unit_space": "unit space",
+      "square_meter": "square meter",
+      "property_renter": "Unit tenant ",
+      "renter": "tenant",
+      "unit_property": "unit's property ",
+      "maintenance": "maintenance man ",
+      "accept": "accept",
+      "reject": "reject",
+      "total_number": "total number",
+      "date": "date",
+      "type": "type",
+      "status": "status",
       "open_tickets": "Open tickets",
-      "hide":"hide",
-      "show":"show",
-      "ticket_number":"ticket number",
-      "unit_or_property":"unit/property",
-      "description":"description",
-      "attachment":"attachments",
-      "senter":"sender"
-
+      "hide": "hide",
+      "show": "show",
+      "ticket_number": "ticket number",
+      "unit_or_property": "unit/property",
+      "description": "description",
+      "attachment": "attachments",
+      "senter": "sender"
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -156,13 +155,13 @@
     "properties": {
       "page": {
         "header": "Properties/Units",
-        "add_property": "Add property"
+        "add_property_title": "Add property"
       },
       "create": {
         "title": "Add a new property",
-        "title_edit": "Editing a new property",
+        "title_edit": "Edit a new property",
         "name": "property name",
-        "space": "Property area"
+        "space": "property area"
       }
     },
     "units": {
@@ -177,13 +176,13 @@
         "space": "unit area"
       }
     },
-    "tickets":{
-      "ACTIVE":"active",
-      "CLOSED":"Closed",
-      "PROCESSING":"Processing",
-      "SERVICE":"Service Request",
-      "COMPLAIN":"complaint",
-      "OTHER":"Other"
+    "tickets": {
+      "ACTIVE": "active",
+      "CLOSED": "Closed",
+      "PROCESSING": "Processing",
+      "SERVICE": "Service Request",
+      "COMPLAIN": "complaint",
+      "OTHER": "Other"
     },
     "sidebar": {
       "home": "Home",

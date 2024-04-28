@@ -184,7 +184,7 @@ function PropertiesTable() {
               openPropertyPopup();
             }}
           >
-            <span className="pl-8"> {t("propreties.page.add_property")} </span>
+            <span className="pl-8"> {t("propreties.page.add_property_title")} </span>
           </Button>
           <Button
             marginRight="8px"
