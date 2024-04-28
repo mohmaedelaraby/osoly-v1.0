@@ -317,7 +317,7 @@ const UserEnterpraiseTable = () => {
                           <FormControl className="form__input__container">
                             <FormLabel>
                               <Text className="form__input__container__label">
-                                ترتيب حسب الاسم
+                              {t("general.filter")}  {t("general.name")}
                               </Text>
                             </FormLabel>
                             <Input
