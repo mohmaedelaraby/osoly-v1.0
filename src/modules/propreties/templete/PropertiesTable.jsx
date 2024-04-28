@@ -43,8 +43,12 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import { useDeleteProperty } from "../hooks/useDeleteProperties";
+import { useUploadProperteyFile } from "../hooks/useUploadProperteyFile";
+import { useTranslation } from "react-i18next";
 
 function PropertiesTable() {
+  const { t } = useTranslation();
+
   const [selectId, setSelectedId] = useState();
   const [isGrid, setIsGrid] = useState(false);
 
@@ -83,6 +87,23 @@ function PropertiesTable() {
   const [postalCode, setPostalCode] = useState(null);
   const [district, setDistrict] = useState(null);
 
+  const [file, setFile] = useState("");
+
+  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
+    useUploadProperteyFile();
+
+  const updateFile = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const choosenFile = event.target.files[0];
+      setFile(choosenFile);
+      let formData = new FormData();
+      formData.append("file", file);
+      uploadFiles({ body: formData });
+      setFile(null);
+      event.target.value = "";
+    }
+  };
+
   const {
     isOpen: isOpenProperyModal,
     onOpen: onOpenProperyModal,
@@ -115,6 +136,7 @@ function PropertiesTable() {
       city: city,
       blockNumber: blockNumber,
       postalCode: postalCode,
+      isSuccessFiles,
     });
 
   useEffect(() => {
@@ -136,7 +158,7 @@ function PropertiesTable() {
     city,
     blockNumber,
     postalCode,
-    isSuccess
+    isSuccess,
   ]);
 
   const handlePropertyPageChange = (page) => {
@@ -163,6 +185,21 @@ function PropertiesTable() {
             }}
           >
             <span className="pl-8"> إضافة جديد</span>
+          </Button>
+          <Button
+            marginRight="8px"
+            rightIcon={<AddIcon />}
+            className="page_container_table__header__btns__add"
+            bg="#194C81"
+          >
+            <span className="pl-8"> {t("general.add_file")}</span>
+            <Input
+              className="form__input__flex_fileUpload_input"
+              type="file"
+              name="image"
+              accept=".csv"
+              onChange={updateFile}
+            />
           </Button>
           <Menu closeOnSelect={false}>
             <MenuButton
@@ -482,7 +519,7 @@ function PropertiesTable() {
           </Menu>
         </div>
         <div className="page_container_table__header__search">
-        <InputGroup>
+          <InputGroup>
             <InputRightElement pointerEvents="none">
               <SearchIcon color="gray.300" />
             </InputRightElement>

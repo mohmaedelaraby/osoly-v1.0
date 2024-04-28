@@ -149,6 +149,7 @@ function UserTable({ switchTo }) {
     identityId,
     contractNumber,
     isSuccess,
+    isSuccessFiles
   ]);
 
   const handlePageUserChange = (page) => {

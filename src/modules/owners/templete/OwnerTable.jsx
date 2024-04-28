@@ -166,6 +166,7 @@ const OwnerTable = ({ switchTo }) => {
     email,
     identityId,
     contractNumber,
+    isSuccessFiles
   ]);
 
   const handlePageOwnerChange = (page) => {

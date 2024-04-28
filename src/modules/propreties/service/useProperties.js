@@ -50,4 +50,9 @@ export const deletePropertey = (id) => {
   return api.delete(`${apiUrl}dashboard/properties/${id}`)
 }
 
+//create user
+export const uploadPropertiesFile = (data) => {
+  return api.post(`${apiUrl}dashboard/properties/bulk-create`, data?.body)
+}
+
 

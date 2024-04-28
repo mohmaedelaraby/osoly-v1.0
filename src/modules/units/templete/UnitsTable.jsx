@@ -46,7 +46,11 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import { useDeleteUnit } from "../hooks/useDeleteUnit";
+import { useUploadUnitsFile } from "../hooks/useUploadUnitsFile";
+import { useTranslation } from "react-i18next";
 const UnitsTable = () => {
+  const { t } = useTranslation();
+
   const [selectId, setSelectedId] = useState();
   const [selectprobId, setSelectedProbId] = useState();
   const [selectOwnId, setSelectedOwnId] = useState();
@@ -92,6 +96,22 @@ const UnitsTable = () => {
   const [lounge, setLounge] = useState(false);
   const [kitchen, setKitchen] = useState(false);
   const [conditioners, setConditioners] = useState(null);
+  const [file, setFile] = useState("");
+
+  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
+    useUploadUnitsFile();
+
+  const updateFile = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const choosenFile = event.target.files[0];
+      setFile(choosenFile);
+      let formData = new FormData();
+      formData.append("file", file);
+      uploadFiles({ body: formData });
+      setFile(null);
+      event.target.value = "";
+    }
+  };
 
   const {
     isOpen: isOpenUnitModal,
@@ -154,6 +174,7 @@ const UnitsTable = () => {
     bathrooms,
     rooms,
     isSuccess,
+    isSuccessFiles,
   ]);
 
   const handleUnitPageChange = (page) => {
@@ -184,6 +205,22 @@ const UnitsTable = () => {
             }}
           >
             <span className="pl-8"> إضافة جديد</span>
+          </Button>
+
+          <Button
+            marginRight="8px"
+            rightIcon={<AddIcon />}
+            className="page_container_table__header__btns__add"
+            bg="#194C81"
+          >
+            <span className="pl-8"> {t("general.add_file")}</span>
+            <Input
+              className="form__input__flex_fileUpload_input"
+              type="file"
+              name="image"
+              accept=".csv"
+              onChange={updateFile}
+            />
           </Button>
           <Menu closeOnSelect={false}>
             <MenuButton

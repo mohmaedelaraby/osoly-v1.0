@@ -40,4 +40,9 @@ export const deleteUnit = (id) => {
   return api.delete(`${apiUrl}dashboard/units/${id}`)
 }
 
+//create user
+export const uploadUnitsFile = (data) => {
+  return api.post(`${apiUrl}dashboard/units/bulk-create`, data?.body)
+}
+
 
