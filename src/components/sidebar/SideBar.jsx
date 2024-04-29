@@ -25,6 +25,7 @@ import {
 } from "@chakra-ui/react";
 import InfoModal from "../modals/InfoModal";
 import { useTranslation } from "react-i18next";
+import useColorStore from "../../store/useColorStore";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -37,8 +38,18 @@ function SideBar() {
 
   /*  const [bgColor, setBgcolor] = useState("#f6f6f6a7");
   const [bgFontColor, setbgFontcolor] = useState("#707FDD"); */
-  const [sbColor, setSbcolor] = useState("#194C81");
-  const [sbFontColor, setSbFontcolor] = useState("#EFF9FF");
+
+  const [sbColor, setSbcolor] = useState();
+  const [sbFontColor, setSbFontcolor] = useState();
+  const [sbLogo, setSbLogo] = useState();
+
+  useEffect(()=>{
+    let dashboardSettings = localStorage.getItem("dashboardSettings");
+    dashboardSettings = JSON.parse(dashboardSettings)
+    setSbcolor(dashboardSettings?.sidebarColor)
+    setSbFontcolor(dashboardSettings?.sidebarFontColor)
+    setSbLogo(dashboardSettings?.logo)
+  },[])
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
@@ -66,14 +77,7 @@ function SideBar() {
       return <LogoutSidebar fill={fill} />;
     }
   }
-  useEffect(() => {
-    if (sessionStorage.getItem("sbColor")) {
-      setSbcolor(sessionStorage.getItem("sbColor"));
-    }
-    if (sessionStorage.getItem("sbFontColor")) {
-      setSbFontcolor(sessionStorage.getItem("sbFontColor"));
-    }
-  }, []);
+  
 
   const { width } = useWindowDimensions();
   const checkIsActive = (activeRoutes) => {
@@ -107,6 +111,7 @@ function SideBar() {
       )}
       {/*  style={{'background':sbColor}} */}
       <div
+      style={{background:sbColor ? sbColor : ""}}
         className={
           openSidebar === 0 && width < 427 ? "sidebar non-display" : "sidebar"
         }
@@ -117,7 +122,8 @@ function SideBar() {
               onClick={() => navigate("/home")}
               className="sidebar__logo__container"
             >
-              <img src={logo} alt="logo" className="sidebar__logo__img" />
+              {}
+              <img src={sbLogo ? sbLogo :logo} alt="logo" className="sidebar__logo__img" />
             </div>
             {width < 427 ? (
               <div
@@ -145,6 +151,7 @@ function SideBar() {
                     <>
                       <div
                         key={i}
+                        style={{background : checkIsActive(item.activeRoutes) ? sbFontColor : sbColor}}
                         className={`${
                           checkIsActive(item.activeRoutes)
                             ? " sidebar__items__container__item active"
@@ -158,19 +165,14 @@ function SideBar() {
                         }}
                       >
                         <div
-                          onMouseOver={() => {
-                            checkIsActive(item.activeRoutes)
-                              ? iconChecker(item.icon, "#194C81")
-                              : iconChecker(item.icon, "#EFF9FF");
-                          }}
                           className="sidebar__items__container__item__icon"
                         >
                           {checkIsActive(item.activeRoutes)
-                            ? iconChecker(item.icon, "#194C81")
-                            : iconChecker(item.icon, "#EFF9FF")}
+                            ? iconChecker(item.icon, sbColor)
+                            : iconChecker(item.icon, sbFontColor)}
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div className="sidebar__items__container__item__text">
+                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
                           {t(item.name)}
                         </div>
                       </div>
@@ -223,11 +225,11 @@ function SideBar() {
                       >
                         <div className="sidebar__items__container__item__icon">
                           {checkIsActive(item.activeRoutes)
-                            ? iconChecker(item.icon, "#194C81")
-                            : iconChecker(item.icon, "#EFF9FF")}
+                            ? iconChecker(item.icon, sbColor)
+                            : iconChecker(item.icon, sbFontColor)}
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div className="sidebar__items__container__item__text">
+                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
                           {t(item.name)}
                         </div>
                       </div>
@@ -283,12 +285,12 @@ function SideBar() {
                           {selected === i || checkIsActive(item.activeRoutes)
                             ? iconChecker(
                                 item.icon,
-                                item.navTo === "/info" ? "#EFF9FF" : "#194C81"
+                                item.navTo === "/info" ? sbFontColor : sbColor
                               )
-                            : iconChecker(item.icon, "#EFF9FF")}
+                            : iconChecker(item.icon, sbFontColor)}
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div className="sidebar__items__container__item__text">
+                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
                           {t(item.name)}
                         </div>
                       </div>
