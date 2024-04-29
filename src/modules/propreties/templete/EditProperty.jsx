@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
-import { propertyEditValidation } from "../validation/schema";
+import { propertyCreateValidation } from "../validation/schema";
 import { useUpdatePropertey } from "../hooks/useUpdatePropertey";
 import useGetPropertey from "../hooks/useGetPropertey";
 import useUsers from "../../users/hooks/useUsers";
@@ -79,18 +79,22 @@ const EditProperty = ({ id, onClose }) => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
-    validationSchema: propertyEditValidation,
+    validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
       formik.values.ownerId = selectedOwnerId;
       const formData = new FormData();
-      formData.append("image", selectedImage, selectedImage.name);
-      formData.append("name", "Mohamed");
+      if (selectedImage) {
+        formData.append("image", selectedImage, selectedImage.name);
+      } else {
+        formData.append("image", loadedImage);
+      }
+      formData.append("name", formik.values.name);
       formData.append("address", formik.values.address);
       formData.append("blockNumber", formik.values.blockNumber);
       formData.append("city", formik.values.city);
       formData.append("district", formik.values.district);
       formData.append("instrumentNumber", formik.values.instrumentNumber);
-      formData.append("ownerId", formik.values.ownerId);
+      //formData.append("ownerId", formik.values.ownerId);
       formData.append("postalCode", formik.values.postalCode);
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
@@ -116,7 +120,6 @@ const EditProperty = ({ id, onClose }) => {
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
               <div className="form__header_text">
-                 
                 {t("propreties.create.title_edit")}
               </div>
               <div className="form__header_close">
@@ -129,10 +132,10 @@ const EditProperty = ({ id, onClose }) => {
                 <div className="form__input__flex_fileUpload">
                   <img src={bell} alt="" width={"66px"} />
                   <p className="form__input__flex_fileUpload_text">
-                    {t("general.add_image")} 
+                    {t("general.add_image")}
                   </p>
                   <p className="form__input__flex_fileUpload_desc">
-                    {t("general.image_disclaimer")} 
+                    {t("general.image_disclaimer")}
                   </p>
                   <Input
                     className="form__input__flex_fileUpload_input"
@@ -163,6 +166,33 @@ const EditProperty = ({ id, onClose }) => {
                           : loadedImage
                       }
                     />
+                  </div>
+                  <div className="form__input__flex_imgUpload_btn">
+                    <Button background="transparent" color="white">
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                        >
+                          <path
+                            d="M19.4003 7.84376L16.6603 5.10376C16.3027 4.76786 15.8341 4.57512 15.3436 4.56222C14.8532 4.54931 14.3751 4.71713 14.0003 5.03376L5.0003 14.0338C4.67706 14.3597 4.4758 14.787 4.4303 15.2438L4.0003 19.4138C3.98683 19.5602 4.00583 19.7079 4.05596 19.8461C4.10608 19.9844 4.1861 20.1099 4.2903 20.2138C4.38374 20.3064 4.49455 20.3798 4.61639 20.4295C4.73823 20.4793 4.86869 20.5045 5.0003 20.5038H5.0903L9.2603 20.1238C9.71709 20.0783 10.1443 19.877 10.4703 19.5538L19.4703 10.5538C19.8196 10.1847 20.0084 9.69227 19.9953 9.1843C19.9822 8.67633 19.7682 8.19427 19.4003 7.84376ZM9.0803 18.1238L6.0803 18.4038L6.3503 15.4038L12.0003 9.82376L14.7003 12.5238L9.0803 18.1238ZM16.0003 11.1838L13.3203 8.50376L15.2703 6.50376L18.0003 9.23376L16.0003 11.1838Z"
+                            fill="#EFF9FF"
+                          />
+                        </svg>
+                      </span>
+                      <Input
+                        className="form__input__flex_imgUpload_file"
+                        type="file"
+                        name="image"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={(e) => {
+                          setSelectedImage(e.target.files[0]);
+                        }}
+                      />
+                    </Button>
                   </div>
                 </div>
               )}
@@ -268,7 +298,7 @@ const EditProperty = ({ id, onClose }) => {
             </div> */}
 
             <div className="form__input form__input__flex mb-24">
-              <FormControl className="form__input__container">
+              <FormControl className="form__input__container disabled">
                 <FormLabel>
                   <Text className="form__input__container__label">
                     {t("general.property_owner")}
@@ -358,7 +388,9 @@ const EditProperty = ({ id, onClose }) => {
 
             <div className="form__input form__input__flex">
               <div className="flex-between">
-                <div className="form__input__flex_text">{t("general.units")}</div>
+                <div className="form__input__flex_text">
+                  {t("general.units")}
+                </div>
                 <div className="form__input__flex_text">
                   <Button
                     rightIcon={<AddIcon />}
@@ -376,7 +408,8 @@ const EditProperty = ({ id, onClose }) => {
               </div>
             </div>
 
-            <div className="form__input form__input__flex mt-24">
+            {
+              data?.units?.length > 0? (<><div className="form__input form__input__flex mt-24">
               <div className="flex-between">
                 <TableContainer
                   width="100%"
@@ -391,19 +424,33 @@ const EditProperty = ({ id, onClose }) => {
                         <Th className="table_header_item">
                           {t("general.name")}
                         </Th>
-                        <Th className="table_header_item">{t("general.due_date")}</Th>
-                        <Th className="table_header_item">{t("general.rent")}</Th>
+                        <Th className="table_header_item">
+                          {t("general.due_date")}
+                        </Th>
+                        <Th className="table_header_item">
+                          {t("general.rent")}
+                        </Th>
                         <Th className="table_header_item">
                           {t("general.address")}
                         </Th>
-                        <Th className="table_header_item">{t("general.space")}</Th>
+                        <Th className="table_header_item">
+                          {t("general.space")}
+                        </Th>
                         <Th className="table_header_item">
                           {t("general.electericty_cost")}
                         </Th>
-                        <Th className="table_header_item">{t("general.water_cost")}</Th>
-                        <Th className="table_header_item">{t("general.rooms")}</Th>
-                        <Th className="table_header_item">{t("general.kitchen")}</Th>
-                        <Th className="table_header_item">{t("general.conditioners")}</Th>
+                        <Th className="table_header_item">
+                          {t("general.water_cost")}
+                        </Th>
+                        <Th className="table_header_item">
+                          {t("general.rooms")}
+                        </Th>
+                        <Th className="table_header_item">
+                          {t("general.kitchen")}
+                        </Th>
+                        <Th className="table_header_item">
+                          {t("general.conditioners")}
+                        </Th>
                         <Th className="table_header_item"></Th>
                       </Tr>
                     </Thead>
@@ -459,7 +506,9 @@ const EditProperty = ({ id, onClose }) => {
                   </Table>
                 </TableContainer>
               </div>
-            </div>
+            </div></>):(<></>)
+            }
+            
 
             <div className="form__btn__container">
               <Stack direction="row" width="100%" justify="space-between">

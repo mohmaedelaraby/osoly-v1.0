@@ -21,9 +21,12 @@ import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
+import { AddIcon } from "@chakra-ui/icons";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const { t } = useTranslation();
-  const { mutate } = useUpdateUnit(id);
+  const { mutate } = useUpdateUnit();
 
   const { data, refetch } = useGetUnit(id);
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
@@ -62,27 +65,30 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     }
   }, [data]);
 
-  useEffect(() => {}, [kitchenChoice]);
-  useEffect(() => {}, [loungeChoice]);
+  useEffect(() => {
+  }, [kitchenChoice]);
+  useEffect(() => {
+  }, [loungeChoice]);
 
   const initialValues = {
-    name: data?.name,
-    rent: data?.rent,
-    rentCollectionDate: data?.rentCollectionDate,
-    electricityAccount: data?.electricityAccount,
-    waterAccount: data?.waterAccount,
-    address: data?.address,
-    space: data?.space,
-    rooms: data?.rooms,
-    bathrooms: data?.bathrooms,
-    conditioners: data?.conditioners,
-    ownerId: data?.ownerId,
-    propertyId: data?.propertyId,
-    image: data?.image,
-    maintenanceMan: data?.maintenanceMan,
+    name: data?.name || " ",
+    rent: data?.rent || 0,
+    rentCollectionDate: data?.rentCollectionDate || " ",
+    electricityAccount: data?.electricityAccount || " ",
+    waterAccount: data?.waterAccount || " ",
+    address: data?.address || " ",
+    space: data?.space || 0,
+    rooms: data?.rooms || 0,
+    bathrooms: data?.bathrooms || 0,
+    conditioners: data?.conditioners || 0,
+    ownerId: data?.ownerId || " ",
+    propertyId: data?.propertyId || " ",
+    image: data?.image || " ",
+    maintenanceMan: data?.maintenanceMan || "OWNER",
   };
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: initialValues,
     validationSchema: unitsValidation,
     onSubmit: (values) => {
@@ -90,15 +96,20 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formik.values.propertyId = selectedProbertyId;
       formik.values.maintenanceMan = selectedMaintenanceManId;
       const formData = new FormData();
-      formData.append("image", selectedImage, selectedImage.name);
+      if (selectedImage) {
+        formData.append("image", selectedImage, selectedImage.name);
+      } else {
+        formData.append("image", loadedImage);
+      }
+
       formData.append("name", formik.values.name);
       formData.append("address", formik.values.address);
       formData.append("bathrooms", formik.values.bathrooms);
       formData.append("conditioners", formik.values.conditioners);
       formData.append("electricityAccount", formik.values.electricityAccount);
-      formData.append("maintenanceMan", formik.values.maintenanceMan);
-      formData.append("ownerId", formik.values.ownerId);
-      formData.append("propertyId", formik.values.propertyId);
+      //formData.append("maintenanceMan", formik.values.maintenanceMan);
+      // formData.append("ownerId", formik.values.ownerId);
+      //formData.append("propertyId", formik.values.propertyId);
       formData.append("rent", formik.values.rent);
       formData.append("rentCollectionDate", formik.values.rentCollectionDate);
       formData.append("rooms", formik.values.rooms);
@@ -106,8 +117,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formData.append("waterAccount", formik.values.waterAccount);
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
-
-      mutate({ body: formData });
+      console.log("data succsfuly", formData);
+      mutate({ id: id, body: formData });
       onClose();
     },
   });
@@ -117,7 +128,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
             <div className="form__header_text">
-              {t("units.create.title_edit")} 
+              {t("units.create.title_edit")}
             </div>
             <div className="form__header_close">
               <img src={close} alt="" width="40px" onClick={onClose} />
@@ -129,10 +140,10 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__flex_fileUpload">
                 <img src={bell} alt="" width={"66px"} />
                 <p className="form__input__flex_fileUpload_text">
-                  {t("general.add_image")} 
+                  {t("general.add_image")}
                 </p>
                 <p className="form__input__flex_fileUpload_desc">
-                  {t("general.image_disclaimer")} 
+                  {t("general.image_disclaimer")}
                 </p>
                 <Input
                   className="form__input__flex_fileUpload_input"
@@ -145,26 +156,55 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 />
               </div>
             ) : (
-              <div
-                style={{
-                  padding: `${selectedImage || loadedImage ? "0px" : ""}`,
-                  borderRadius: "12px",
-                }}
-                className="form__input__flex_fileUpload"
-              >
-                <div className="form__input__flex_fileUpload_image">
-                  <img
-                    alt="not found"
-                    width={"auto"}
-                    height={"285px"}
-                    src={
-                      selectedImage
-                        ? URL.createObjectURL(selectedImage)
-                        : loadedImage
-                    }
-                  />
+              <>
+                <div
+                  style={{
+                    padding: `${selectedImage || loadedImage ? "0px" : ""}`,
+                    borderRadius: "12px",
+                  }}
+                  className="form__input__flex_fileUpload"
+                >
+                  <div className="form__input__flex_fileUpload_image">
+                    <img
+                      alt="not found"
+                      width={"auto"}
+                      height={"285px"}
+                      src={
+                        selectedImage
+                          ? URL.createObjectURL(selectedImage)
+                          : loadedImage
+                      }
+                    />
+                  </div>
+                  <div className="form__input__flex_imgUpload_btn">
+                    <Button background="transparent" color="white">
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="25"
+                          viewBox="0 0 24 25"
+                          fill="none"
+                        >
+                          <path
+                            d="M19.4003 7.84376L16.6603 5.10376C16.3027 4.76786 15.8341 4.57512 15.3436 4.56222C14.8532 4.54931 14.3751 4.71713 14.0003 5.03376L5.0003 14.0338C4.67706 14.3597 4.4758 14.787 4.4303 15.2438L4.0003 19.4138C3.98683 19.5602 4.00583 19.7079 4.05596 19.8461C4.10608 19.9844 4.1861 20.1099 4.2903 20.2138C4.38374 20.3064 4.49455 20.3798 4.61639 20.4295C4.73823 20.4793 4.86869 20.5045 5.0003 20.5038H5.0903L9.2603 20.1238C9.71709 20.0783 10.1443 19.877 10.4703 19.5538L19.4703 10.5538C19.8196 10.1847 20.0084 9.69227 19.9953 9.1843C19.9822 8.67633 19.7682 8.19427 19.4003 7.84376ZM9.0803 18.1238L6.0803 18.4038L6.3503 15.4038L12.0003 9.82376L14.7003 12.5238L9.0803 18.1238ZM16.0003 11.1838L13.3203 8.50376L15.2703 6.50376L18.0003 9.23376L16.0003 11.1838Z"
+                            fill="#EFF9FF"
+                          />
+                        </svg>
+                      </span>
+                      <Input
+                        className="form__input__flex_imgUpload_file"
+                        type="file"
+                        name="image"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={(e) => {
+                          setSelectedImage(e.target.files[0]);
+                        }}
+                      />
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
 
@@ -238,7 +278,9 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 className="form__input__container__input"
                 placeholder={t("general.rent_collect_date")}
                 _placeholder={{ color: "#77797E" }}
-                value={formik.values.rentCollectionDate}
+                value={dayjs(new Date(formik.values.rentCollectionDate)).format(
+                  "YYYY-MM-DD"
+                )}
                 onChange={formik.handleChange}
                 isInvalid={
                   formik.touched.rentCollectionDate &&
@@ -549,7 +591,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           </div>
 
           <div className="form__input form__input__flex mb-24">
-            <FormControl className="form__input__container">
+            <FormControl className="form__input__container disabled">
               <FormLabel>
                 <Text className="form__input__container__label">
                   {t("general.property_owner")}
@@ -559,6 +601,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 height={"56px"}
                 name="owner"
                 dir="rtl"
+                value={selectedOwnerId}
                 onChange={(e) => {
                   setSelectedOwnerId(e.target.value);
                   setTimeout(() => {}, 0);
@@ -575,7 +618,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               </Select>
             </FormControl>
 
-            <FormControl className="form__input__container">
+            <FormControl className="form__input__container disabled">
               <FormLabel>
                 <Text className="form__input__container__label">
                   {t("general.property_renter")}
@@ -585,6 +628,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 height={"56px"}
                 name="owner"
                 dir="rtl"
+                value={selectedRenterId}
                 onChange={(e) => {
                   setSelectedRenterId(e.target.value);
                   setTimeout(() => {}, 0);
@@ -602,7 +646,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
           </div>
           <div className="form__input form__input__flex mb-24">
-            <FormControl className="form__input__container">
+            <FormControl className="form__input__container  disabled">
               <FormLabel>
                 <Text className="form__input__container__label">
                   {t("general.unit_property")}
@@ -612,6 +656,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 height={"56px"}
                 name="owner"
                 dir="rtl"
+                value={selectedProbertyId}
                 onChange={(e) => {
                   setSelectedPropertyId(e.target.value);
                   setTimeout(() => {}, 0);
@@ -620,13 +665,13 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 <option value={0}> {t("general.unit_property")} </option>
                 {PropertiesData?.updatedProperties?.map((i, index) => (
                   <option value={i.id} key={index}>
-                    {i.firstNameAr} {i.id}
+                    {i.name}
                   </option>
                 ))}
               </Select>
             </FormControl>
 
-            <FormControl className="form__input__container">
+            <FormControl className="form__input__container disabled">
               <FormLabel>
                 <Text className="form__input__container__label">
                   {t("general.maintenance")}
@@ -635,6 +680,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <Select
                 height={"56px"}
                 name="owner"
+                value={selectedMaintenanceManId}
                 dir="rtl"
                 onChange={(e) => {
                   setSelectedMaintenanceManId(e.target.value);
@@ -657,7 +703,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 bg="#194C81"
                 type="submit"
                 isDisabled={
-                  !selectedImage ||
+                  (!selectedImage && !loadedImage) ||
                   !selectedOwnerId ||
                   !selectedMaintenanceManId ||
                   !selectedProbertyId ||
