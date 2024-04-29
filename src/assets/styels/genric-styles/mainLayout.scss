@@ -176,7 +176,7 @@
     margin-top: 40px;
 }
 
-.circl {
+.circl_en {
     height: 209px;
     width: 209px;
     position: absolute;
@@ -189,6 +189,22 @@
     font-size: 33.367px;
     font-weight: 500;
     top: 27%;
+    left: 21%;
+
+}
+.circl_ar {
+    height: 209px;
+    width: 209px;
+    position: absolute;
+    background-color: #E2FBD3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #34B53A;
+    font-size: 33.367px;
+    font-weight: 500;
+    top: 24%;
     left: 21%;
 
 }

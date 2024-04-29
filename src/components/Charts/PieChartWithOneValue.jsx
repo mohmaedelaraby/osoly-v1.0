@@ -3,8 +3,14 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useDrawingArea } from "@mui/x-charts";
 import { styled } from '@mui/material/styles';
+import { useTranslation } from "react-i18next";
 
 function PieChartComponentWithOneValue({data}) {
+
+  const {
+    t,
+    i18n: { changeLanguage, language },
+  } = useTranslation();
   const MuiTheme = createTheme({
     palette: {
       mode: "dark",
@@ -40,7 +46,7 @@ function PieChartComponentWithOneValue({data}) {
 
   return (
     <>
-    <div className="circl">25%</div>
+    <div className={language == "ar" ? 'circl_ar':'circl_en'}>25% {language}</div>
      <ThemeProvider theme={MuiTheme}>
       <PieChart
       
