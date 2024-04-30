@@ -46,7 +46,7 @@ function PieChartComponentWithOneValue({data}) {
 
   return (
     <>
-    <div className={language == "ar" ? 'circl_ar':'circl_en'}>25% {language}</div>
+    <div className={language == "ar" ? 'circl_ar':'circl_en'}>25%</div>
      <ThemeProvider theme={MuiTheme}>
       <PieChart
       

@@ -9,7 +9,7 @@ import useColorStore from "../../../store/useColorStore";
 export const useLoginMutation = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectPath = location.state?.path || "/home";
+  const redirectPath = location.state?.path || "/";
   const loginStore = useAuthStore((state) => state.login);
   const [error, setError] = useState(null);
   const { errorToast } = useToastMessage();
@@ -27,10 +27,10 @@ export const useLoginMutation = () => {
           logo: res.data.data.enterprise?.logo,
         }); */
         localStorage.setItem("dashboardSettings",JSON.stringify({
-          dashboardColor: "red",
-          dashboardFontColor: "white",
-          sidebarColor: "black",
-          sidebarFontColor: "white",
+          dashboardColor: "#194C81",
+          dashboardFontColor: "#EFF9FF",
+          sidebarColor: "#194C81",
+          sidebarFontColor: "#EFF9FF",
           logo: res.data.data.enterprise?.logo,
         }));
         loginStore();
