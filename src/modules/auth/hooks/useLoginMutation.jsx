@@ -27,10 +27,10 @@ export const useLoginMutation = () => {
           logo: res.data.data.enterprise?.logo,
         }); */
         localStorage.setItem("dashboardSettings",JSON.stringify({
-          dashboardColor: "red",
-          dashboardFontColor: "black",
-          sidebarColor: "red",
-          sidebarFontColor: "black",
+          dashboardColor: "#194C81",
+          dashboardFontColor: "#EFF9FF",
+          sidebarColor: "#194C81",
+          sidebarFontColor: "#EFF9FF",
           logo: res.data.data.enterprise?.logo,
         }));
         loginStore();

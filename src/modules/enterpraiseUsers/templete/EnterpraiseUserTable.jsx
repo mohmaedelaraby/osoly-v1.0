@@ -52,7 +52,7 @@ import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
+  const { primary, secondry } = useDynamicColors();
 
   const {
     isOpen: isOpenModal,
@@ -176,7 +176,6 @@ const UserEnterpraiseTable = () => {
             <Card paddingBottom="16px">
               <div className="page_container_table__header p-16 pb-0">
                 <div className="page_container_table__header__btns">
-                  
                   <Button
                     rightIcon={<AddIcon />}
                     className="page_container_table__header__btns__add"
@@ -199,10 +198,12 @@ const UserEnterpraiseTable = () => {
                       bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                     
-                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+                      rightIcon={<ChevronDownIcon />}
+                      colorScheme='teal'
                     >
-                      <span className="pl-8 fo_primary">{t("general.sort")}</span>
+                      <span className="pl-8 fo_primary">
+                        {t("general.sort")}
+                      </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <MenuItem>
@@ -239,8 +240,7 @@ const UserEnterpraiseTable = () => {
                             }}
                           >
                             <option value="expireDate">
-                               
-                              {t("general.expire_date")} 
+                              {t("general.expire_date")}
                             </option>
                           </Select>
                         </FormControl>
@@ -288,9 +288,12 @@ const UserEnterpraiseTable = () => {
                       bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+                      rightIcon={<ChevronDownIcon />}
+                      colorScheme={"white"}
                     >
-                      <span className="pl-8 fo_primary fo_primary">{t("general.filter")} </span>
+                      <span className="pl-8 fo_primary fo_primary">
+                        {t("general.filter")}{" "}
+                      </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <div className="menu-select">
@@ -316,26 +319,25 @@ const UserEnterpraiseTable = () => {
                             ))}
                           </Select>
                         </FormControl>
-                       
                       </div>
                       <div className="menu-select mt-8">
-                          <FormControl className="form__input__container">
-                            <FormLabel>
-                              <Text className="form__input__container__label  fo_primary">
-                              {t("general.filter")}  {t("general.name")}
-                              </Text>
-                            </FormLabel>
-                            <Input
-                              name="subTitle"
-                              type="text"
-                              className="form__input__container__input"
-                              placeholder=""
-                              onChange={(e) => {
-                                setNameTmp(e.target.value);
-                              }}
-                            />
-                          </FormControl>
-                        </div>
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label  fo_primary">
+                              {t("general.filter")} {t("general.name")}
+                            </Text>
+                          </FormLabel>
+                          <Input
+                            name="subTitle"
+                            type="text"
+                            className="form__input__container__input"
+                            placeholder=""
+                            onChange={(e) => {
+                              setNameTmp(e.target.value);
+                            }}
+                          />
+                        </FormControl>
+                      </div>
                       <div className="menu-select mt-24">
                         <Stack
                           direction="row"
@@ -404,17 +406,16 @@ const UserEnterpraiseTable = () => {
                       <Thead className="table_header">
                         <Tr>
                           <Th className="table_header_item">
-                            {t("general.name")} 
+                            {t("general.name")}
                           </Th>
                           <Th className="table_header_item">
-                             
-                            {t("general.num_of_units")} 
+                            {t("general.num_of_units")}
                           </Th>
                           <Th className="table_header_item">
                             {t("general.plan_type")}
                           </Th>
                           <Th className="table_header_item">
-                            {t("general.num_of_users")} 
+                            {t("general.num_of_users")}
                           </Th>
                           <Th className="table_header_item"> </Th>
                         </Tr>
@@ -447,7 +448,7 @@ const UserEnterpraiseTable = () => {
                                       className="table_body_row_item_btns_deletebtn"
                                       width={"25%"}
                                       rightIcon={<DeleteIcon />}
-                                      color={'white'}
+                                      color={"white"}
                                       variant="solid"
                                       bg={primary}
                                       alignItems="center"
@@ -460,7 +461,7 @@ const UserEnterpraiseTable = () => {
                                       className="table_body_row_item_btns_editbtn"
                                       width={"25%"}
                                       rightIcon={<EditOutlinedIcon />}
-                                      color={'white'}
+                                      color={"white"}
                                       variant="solid"
                                       alignItems="center"
                                       justifyContent="center"
