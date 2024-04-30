@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -10,6 +10,12 @@ import {
 } from "recharts";
 
 function LineChart({ data }) {
+  const [strokeColor , setStrokeColor]  = useState()
+  useEffect(()=>{
+    let dashboardSettings = localStorage.getItem("dashboardSettings");
+    dashboardSettings = JSON.parse(dashboardSettings)
+    setStrokeColor(dashboardSettings?.dashboardColor)
+  },[])
   return (
     <>
       <ResponsiveContainer width="100%" height={292}>
@@ -32,10 +38,10 @@ function LineChart({ data }) {
           <Area
             type="linear"
             dataKey="value"
-            stroke="#194C81"
+            stroke={strokeColor}
             strokeWidth="3"
             fill="none"
-            dot={{ stroke: "#194C81", strokeWidth: 5, r: 4, fill: "white" }}
+            dot={{ stroke:strokeColor, strokeWidth: 5, r: 4, fill: "white" }}
           />
         </AreaChart>
       </ResponsiveContainer>

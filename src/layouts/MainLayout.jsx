@@ -15,7 +15,7 @@ const MainLayout = () => {
   return (
       <div className="homepage">
         <SideBar/>
-        <div style={{'background':bgColor }} className="w-100 layout">
+        <div id="bg_secondry" className="w-100 layout">
         <Outlet/>
         </div>
       </div>

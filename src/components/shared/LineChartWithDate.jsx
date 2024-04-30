@@ -42,7 +42,7 @@ function LineChartWithDate() {
   return (
     <>
       <div className="flex-between">
-        <div className="home_container_charts_table__chart_header">
+        <div className="home_container_charts_table__chart_header" id="fo_primary">
           الإيجار المحصل
         </div>
 

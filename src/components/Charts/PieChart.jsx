@@ -35,6 +35,8 @@ function PieChartComponent({data}) {
     return `${params.label}  `;
   };
 
+
+
   return (
     <ThemeProvider theme={MuiTheme}>
       <PieChart
