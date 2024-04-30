@@ -94,8 +94,9 @@
       "description":"الوصف",
       "attachment":"المرفقات",
       "senter":"المرسل",
-      "rent_collect": " الإيجار المحصل"
-
+      "rent_collect": " الإيجار المحصل",
+      "last":"آخر",
+      "months":"شهور"
       
     },
     "search": {

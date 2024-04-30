@@ -94,7 +94,9 @@
       "description": "description",
       "attachment": "attachments",
       "senter": "sender",
-      "rent_collect": " Rent collected "
+      "rent_collect": " Rent collected ",
+      "last":"last",
+      "months":"months"
     },
     "search": {
       "by_mail": "Search by user's email",

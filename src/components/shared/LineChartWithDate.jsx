@@ -54,7 +54,7 @@ function LineChartWithDate() {
         <div className="home_container_charts_table__chart_header">
           <Menu>
             <MenuButton
-              bg={secondry}
+              bg={'white'}
               as={Button}
               color={primary}
               marginRight="8px"
@@ -66,12 +66,12 @@ function LineChartWithDate() {
               _expanded={{ bg: "blue.400" }}
               _focus={{ boxShadow: "outline" }}
             >
-              آخر 5 شهور
+              {t("general.last")} 5  {t("general.months")}
             </MenuButton>
             <MenuList>
-              <MenuItem fontSize={"14px"}>آخر 3 شهور</MenuItem>
-              <MenuItem fontSize={"14px"}>آخر 5 شهور</MenuItem>
-              <MenuItem fontSize={"14px"}>آخر 12 شهور</MenuItem>
+              <MenuItem fontSize={"14px"}>{t("general.last")} 3  {t("general.months")}</MenuItem>
+              <MenuItem fontSize={"14px"}>{t("general.last")} 5  {t("general.months")}</MenuItem>
+              <MenuItem fontSize={"14px"}>{t("general.last")} 12  {t("general.months")}</MenuItem>
             </MenuList>
           </Menu>
         </div>
