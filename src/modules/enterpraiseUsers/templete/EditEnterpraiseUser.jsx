@@ -18,9 +18,11 @@ import silverCrown from "../../../assets/icons-svgs/silverCrown.svg";
 import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const EditEnterpraiseUser = ({ onClose, plans, item }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
 
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
@@ -50,7 +52,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         autoComplete="false"
       >
         <div className="form__header">
-          <div className="form__header_text">إضافة مؤسس جديد</div>
+          <div className="form__header_text fo_primary">إضافة مؤسس جديد</div>
           <div className="form__header_close">
             <img src={close} alt="" width="40px" onClick={onClose} />
           </div>
@@ -59,7 +61,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">  {t("enterprise.create.enterprisename")}</Text>
+              <Text className="form__input__container__label fo_primary">  {t("enterprise.create.enterprisename")}</Text>
             </FormLabel>
             <Input
               id="enterpraiseName"
@@ -86,7 +88,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label"> {t("general.password")} </Text>
+              <Text className="form__input__container__label fo_primary"> {t("general.password")} </Text>
             </FormLabel>
             <InputGroup size="md">
               <Input
@@ -252,8 +254,8 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
             <Button
               padding="0px 49px"
               variant="solid"
-              color="white"
-              bg="#194C81"
+              color={secondry}
+              bg={primary}
               type="submit"
             >
               {t("general.add")}

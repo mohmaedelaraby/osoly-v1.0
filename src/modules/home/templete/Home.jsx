@@ -28,7 +28,7 @@ import PageHeader from "../../../components/shared/PageHeader";
 import useTickets from "../../Tickets/hooks/useTickets";
 import useUnits from "../../units/hooks/useUnits";
 import { useNavigate } from "react-router-dom";
-import { useColors, useToastMessage } from "../../../hooks/useDynamicColors";
+import { useColors, useDynamicColors, useToastMessage } from "../../../hooks/useDynamicColors";
 const Home = () => {
   const { t } = useTranslation();
 
@@ -183,7 +183,7 @@ const Home = () => {
     { value: 25, label: "d" },
   ];
 
- const {primaryBackGround,primaryFont,secondryBackGround,secondryFont}=useColors()
+ const {primary,secondry}=useDynamicColors()
   
 
   return (

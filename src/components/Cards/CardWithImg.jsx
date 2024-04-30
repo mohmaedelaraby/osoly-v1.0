@@ -5,6 +5,7 @@ import "../../assets/styels/components/cards.scss";
 import React from "react";
 import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../hooks/useDynamicColors";
 
 function CardWithImg({
   img = image,
@@ -20,6 +21,8 @@ function CardWithImg({
  
 }) {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   return (
     <Card width={isVertical ? '100%' : '-webkit-fit-content'}>
       <div className="cardWithimg"  style={{width: isVertical ? '100%' : ''}} >
@@ -87,7 +90,7 @@ function CardWithImg({
                     width={isVertical ? "50%" : "100%"}
                     rightIcon={<CheckIcon />}
                     backgroundColor="#2EA154"
-                    color="white"
+                    color={secondry}
                     variant="solid"
                   
                   >

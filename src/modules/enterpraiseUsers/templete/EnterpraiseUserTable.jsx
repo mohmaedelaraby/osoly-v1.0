@@ -48,9 +48,12 @@ import EditEnterpraiseUser from "./EditEnterpraiseUser";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -173,16 +176,17 @@ const UserEnterpraiseTable = () => {
             <Card paddingBottom="16px">
               <div className="page_container_table__header p-16 pb-0">
                 <div className="page_container_table__header__btns">
+                  
                   <Button
                     rightIcon={<AddIcon />}
                     className="page_container_table__header__btns__add"
-                    bg="#194C81"
+                    bg={primary}
                     dir="rtl"
                     onClick={() => {
                       openCreatePopup();
                     }}
                   >
-                    <span className="pl-8">
+                    <span className="pl-8 fo_secondry">
                       {t("enterprise.page.add_user")}
                     </span>
                   </Button>
@@ -197,13 +201,13 @@ const UserEnterpraiseTable = () => {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">{t("general.sort")}</span>
+                      <span className="pl-8 fo_primary">{t("general.sort")}</span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <MenuItem>
                         <FormControl className="form__input__container">
                           <FormLabel>
-                            <Text className="form__input__container__label">
+                            <Text className="form__input__container__label fo_primary">
                               {t("general.sort_type")}
                             </Text>
                           </FormLabel>
@@ -221,7 +225,7 @@ const UserEnterpraiseTable = () => {
                       <div className="menu-select">
                         <FormControl className="form__input__container">
                           <FormLabel>
-                            <Text className="form__input__container__label">
+                            <Text className="form__input__container__label fo_primary fo_primary">
                               {t("general.sort")}
                             </Text>
                           </FormLabel>
@@ -249,8 +253,8 @@ const UserEnterpraiseTable = () => {
                           <Button
                             padding="0px 16px"
                             variant="solid"
-                            color="white"
-                            bg="#194C81"
+                            color={secondry}
+                            bg={primary}
                             type="submit"
                             onClick={() => {
                               setSortDirection(sortDirectionTmp);
@@ -285,13 +289,13 @@ const UserEnterpraiseTable = () => {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8">{t("general.filter")} </span>
+                      <span className="pl-8 fo_primary fo_primary">{t("general.filter")} </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <div className="menu-select">
                         <FormControl className="form__input__container">
                           <FormLabel>
-                            <Text className="form__input__container__label">
+                            <Text className="form__input__container__label fo_primary fo_primary">
                               {t("general.filter")}
                               {t("general.plan")}
                             </Text>
@@ -316,7 +320,7 @@ const UserEnterpraiseTable = () => {
                       <div className="menu-select mt-8">
                           <FormControl className="form__input__container">
                             <FormLabel>
-                              <Text className="form__input__container__label">
+                              <Text className="form__input__container__label  fo_primary">
                               {t("general.filter")}  {t("general.name")}
                               </Text>
                             </FormLabel>
@@ -340,8 +344,8 @@ const UserEnterpraiseTable = () => {
                           <Button
                             padding="0px 16px"
                             variant="solid"
-                            color="white"
-                            bg="#194C81"
+                            color={secondry}
+                            bg={primary}
                             type="submit"
                             onClick={() => {
                               setPlanId(planIdTmp);
@@ -442,7 +446,7 @@ const UserEnterpraiseTable = () => {
                                       className="table_body_row_item_btns_deletebtn"
                                       width={"25%"}
                                       rightIcon={<DeleteIcon />}
-                                      color="white"
+                                      color={secondry}
                                       variant="solid"
                                       bg={"#CC3636"}
                                       alignItems="center"
@@ -455,7 +459,7 @@ const UserEnterpraiseTable = () => {
                                       className="table_body_row_item_btns_editbtn"
                                       width={"25%"}
                                       rightIcon={<EditOutlinedIcon />}
-                                      color="white"
+                                      color={secondry}
                                       variant="solid"
                                       alignItems="center"
                                       justifyContent="center"

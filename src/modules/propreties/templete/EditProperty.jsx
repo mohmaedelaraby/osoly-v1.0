@@ -31,9 +31,12 @@ import { AddIcon } from "@chakra-ui/icons";
 import CreateUnit from "../../units/templete/CreateUnit";
 import close from "../../../assets/icons-svgs/close.svg";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const EditProperty = ({ id, onClose }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -119,7 +122,7 @@ const EditProperty = ({ id, onClose }) => {
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
-              <div className="form__header_text">
+              <div className="form__header_text fo_primary">
                 {t("propreties.create.title_edit")}
               </div>
               <div className="form__header_close">
@@ -168,7 +171,7 @@ const EditProperty = ({ id, onClose }) => {
                     />
                   </div>
                   <div className="form__input__flex_imgUpload_btn">
-                    <Button background="transparent" color="white">
+                    <Button background="transparent" color={secondry}>
                       <span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +204,7 @@ const EditProperty = ({ id, onClose }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.property_name")}
                   </Text>
                 </FormLabel>
@@ -230,7 +233,7 @@ const EditProperty = ({ id, onClose }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.address")}
                   </Text>
                 </FormLabel>
@@ -259,7 +262,7 @@ const EditProperty = ({ id, onClose }) => {
             {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     مساحة العقار
                   </Text>
                 </FormLabel>
@@ -300,7 +303,7 @@ const EditProperty = ({ id, onClose }) => {
             <div className="form__input form__input__flex mb-24">
               <FormControl className="form__input__container disabled">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.property_owner")}
                   </Text>
                 </FormLabel>
@@ -327,7 +330,7 @@ const EditProperty = ({ id, onClose }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.postal_code")}
                   </Text>
                 </FormLabel>
@@ -356,7 +359,7 @@ const EditProperty = ({ id, onClose }) => {
 
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.sk_number")}
                   </Text>
                 </FormLabel>
@@ -402,7 +405,7 @@ const EditProperty = ({ id, onClose }) => {
                       openUnitPopup();
                     }}
                   >
-                    <span className="pl-8"> {t("units.create.title")}</span>
+                    <span className="pl-8 fo_primary"> {t("units.create.title")}</span>
                   </Button>
                 </div>
               </div>
@@ -515,8 +518,8 @@ const EditProperty = ({ id, onClose }) => {
                 <Button
                   padding="0px 49px"
                   variant="solid"
-                  color="white"
-                  bg="#194C81"
+                  color={secondry}
+                  bg={primary}
                   type="submit"
                 >
                   {t("general.add")}

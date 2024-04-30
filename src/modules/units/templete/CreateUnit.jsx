@@ -21,9 +21,12 @@ import bell from "../../../assets/images/bell.png";
 import useUsers from "../../users/hooks/useUsers";
 import useProperties from "../../propreties/hooks/useAllProperties";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   const { mutate } = useCreateUnit();
 
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
@@ -104,7 +107,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     <div className="from__card from__card__full">
       <form onSubmit={formik.handleSubmit} className="form">
         <div className="form__header">
-          <div className="form__header_text">{t("units.create.title")} </div>
+          <div className="form__header_text fo_primary">{t("units.create.title")} </div>
           <div className="form__header_close">
             <img src={close} alt="" width="40px" onClick={onClose} />
           </div>
@@ -153,7 +156,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.property_name")}
               </Text>
             </FormLabel>
@@ -182,7 +185,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.rent_cost")}
               </Text>
             </FormLabel>
@@ -209,7 +212,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.rent_collect_date")}
               </Text>
             </FormLabel>
@@ -281,7 +284,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.address")}
               </Text>
             </FormLabel>
@@ -310,7 +313,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.water_bill_cost")}
               </Text>
             </FormLabel>
@@ -339,7 +342,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.electericty_cost_num")}
               </Text>
             </FormLabel>
@@ -372,7 +375,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.unit_space")}
               </Text>
             </FormLabel>
@@ -413,7 +416,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.rooms_number")}
               </Text>
             </FormLabel>
@@ -440,7 +443,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.bathrooms_number")}
               </Text>
             </FormLabel>
@@ -467,7 +470,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.conditioners_number")}
               </Text>
             </FormLabel>
@@ -529,7 +532,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.property_owner")}
               </Text>
             </FormLabel>
@@ -555,7 +558,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.property_renter")}
               </Text>
             </FormLabel>
@@ -582,7 +585,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.unit_property")} 
               </Text>
             </FormLabel>
@@ -606,7 +609,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.maintenance")}
               </Text>
             </FormLabel>
@@ -631,8 +634,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Button
               padding="0px 49px"
               variant="solid"
-              color="white"
-              bg="#194C81"
+              color={secondry}
+              bg={primary}
               type="submit"
               isDisabled={
                 !selectedImage ||

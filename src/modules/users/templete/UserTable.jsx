@@ -44,9 +44,12 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useDeleteUser } from "../hooks/useDeleteUser";
 import { useTranslation } from "react-i18next";
 import { useUploadUsersFile } from "../hooks/useUploadUsersFile";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 function UserTable({ switchTo }) {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
 
   const [selectedUser, setSelectedUser] = useState();
   const [file, setFile] = useState("");
@@ -163,7 +166,7 @@ function UserTable({ switchTo }) {
           <Button
             rightIcon={<AddIcon />}
             className="page_container_table__header__btns__add"
-            bg="#194C81"
+            bg={primary}
             dir="rtl"
             onClick={() => {
               setSortByTmp(null);
@@ -171,15 +174,15 @@ function UserTable({ switchTo }) {
               openUserPopup();
             }}
           >
-            <span className="pl-8"> {t("users.create.title")} </span>
+            <span className="pl-8 fo_secondry"> {t("users.create.title")} </span>
           </Button>
           <Button
             marginRight="8px"
             rightIcon={<AddIcon />}
             className="page_container_table__header__btns__add"
-            bg="#194C81"
+            bg={primary}
           >
-            <span className="pl-8"> {t("general.add_file")}</span>
+            <span className="pl-8 fo_secondry"> {t("general.add_file")}</span>
             <Input
               className="form__input__flex_fileUpload_input"
               type="file"
@@ -198,13 +201,13 @@ function UserTable({ switchTo }) {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">{t("general.sort")} </span>
+              <span className="pl-8 fo_primary">{t("general.sort")} </span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.sort_type")}
                     </Text>
                   </FormLabel>
@@ -222,7 +225,7 @@ function UserTable({ switchTo }) {
               <div className="menu-select mb-24">
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.sort")}
                     </Text>
                   </FormLabel>
@@ -248,8 +251,8 @@ function UserTable({ switchTo }) {
                   <Button
                     padding="0px 16px"
                     variant="solid"
-                    color="white"
-                    bg="#194C81"
+                    color={secondry}
+                    bg={primary}
                     type="submit"
                     onClick={() => {
                       setSortDirection(sortDirectionTmp);
@@ -286,13 +289,13 @@ function UserTable({ switchTo }) {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8">{t("general.filter")}</span>
+              <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <div className="menu-select">
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.filter")} {t("general.phone")}
                     </Text>
                   </FormLabel>
@@ -311,7 +314,7 @@ function UserTable({ switchTo }) {
               <div className="menu-select mt-8">
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.filter")} {t("general.email")}
                     </Text>
                   </FormLabel>
@@ -330,7 +333,7 @@ function UserTable({ switchTo }) {
               <div className="menu-select mt-8">
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.filter")} {t("general.contract_number")}
                     </Text>
                   </FormLabel>
@@ -349,7 +352,7 @@ function UserTable({ switchTo }) {
               <div className="menu-select mt-8">
                 <FormControl className="form__input__container">
                   <FormLabel>
-                    <Text className="form__input__container__label">
+                    <Text className="form__input__container__label fo_primary">
                       {t("general.filter")} {t("general.national_id")}
                     </Text>
                   </FormLabel>
@@ -370,8 +373,8 @@ function UserTable({ switchTo }) {
                   <Button
                     padding="0px 16px"
                     variant="solid"
-                    color="white"
-                    bg="#194C81"
+                    color={secondry}
+                    bg={primary}
                     type="submit"
                     onClick={() => {
                       setPhoneNumber(phoneNumberTmp);
@@ -474,7 +477,7 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              color="white"
+                              color={secondry}
                               variant="solid"
                               bg={"#CC3636"}
                               alignItems="center"
@@ -487,7 +490,7 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              color="white"
+                              color={secondry}
                               variant="solid"
                               alignItems="center"
                               justifyContent="center"

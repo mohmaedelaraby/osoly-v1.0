@@ -34,7 +34,7 @@ const CreateAd = () => {
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> title </Text>
+            <Text className="form__input__container__label fo_primary"> title </Text>
           </FormLabel>
 
           <Input
@@ -60,7 +60,7 @@ const CreateAd = () => {
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> sub Title </Text>
+            <Text className="form__input__container__label fo_primary"> sub Title </Text>
           </FormLabel>
 
           <Input
@@ -85,7 +85,7 @@ const CreateAd = () => {
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> Url </Text>
+            <Text className="form__input__container__label fo_primary"> Url </Text>
           </FormLabel>
 
           <Input
@@ -113,7 +113,7 @@ const CreateAd = () => {
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> Index </Text>
+            <Text className="form__input__container__label fo_primary"> Index </Text>
           </FormLabel>
 
           <Input
@@ -139,7 +139,7 @@ const CreateAd = () => {
       <div className="form__input">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> Image </Text>
+            <Text className="form__input__container__label fo_primary"> Image </Text>
           </FormLabel>
 
           {!selectedImage && (

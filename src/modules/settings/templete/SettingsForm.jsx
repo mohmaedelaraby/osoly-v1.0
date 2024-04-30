@@ -47,7 +47,7 @@ const SettingsForm = () => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   Dashboard Color
                 </Text>
               </FormLabel>
@@ -72,7 +72,7 @@ const SettingsForm = () => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   Dashboard Font Color
                 </Text>
               </FormLabel>
@@ -98,7 +98,7 @@ const SettingsForm = () => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   Sidebar Color
                 </Text>
               </FormLabel>
@@ -123,7 +123,7 @@ const SettingsForm = () => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   Sidebar Font Color
                 </Text>
               </FormLabel>
@@ -150,7 +150,7 @@ const SettingsForm = () => {
           <div className="form__input">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label"> Image </Text>
+                <Text className="form__input__container__label fo_primary"> Image </Text>
               </FormLabel>
 
               {!selectedLogo && (

@@ -54,7 +54,7 @@ const EditAd = () => {
                 <div className="form__input">
                   <FormControl className="form__input__container">
                     <FormLabel>
-                      <Text className="form__input__container__label">
+                      <Text className="form__input__container__label fo_primary">
                          
                         title 
                       </Text>
@@ -83,7 +83,7 @@ const EditAd = () => {
                 <div className="form__input">
                   <FormControl className="form__input__container">
                     <FormLabel>
-                      <Text className="form__input__container__label">
+                      <Text className="form__input__container__label fo_primary">
                          
                         sub Title 
                       </Text>
@@ -114,7 +114,7 @@ const EditAd = () => {
                 <div className="form__input">
                   <FormControl className="form__input__container">
                     <FormLabel>
-                      <Text className="form__input__container__label">Url</Text>
+                      <Text className="form__input__container__label fo_primary">Url</Text>
                     </FormLabel>
 
                     <Input
@@ -140,7 +140,7 @@ const EditAd = () => {
                 <div className="form__input">
                   <FormControl className="form__input__container">
                     <FormLabel>
-                      <Text className="form__input__container__label">
+                      <Text className="form__input__container__label fo_primary">
                         Index
                       </Text>
                     </FormLabel>
@@ -168,7 +168,7 @@ const EditAd = () => {
                 <div className="form__input">
                   <FormControl className="form__input__container">
                     <FormLabel>
-                      <Text className="form__input__container__label">
+                      <Text className="form__input__container__label fo_primary">
                          
                         Image 
                       </Text>

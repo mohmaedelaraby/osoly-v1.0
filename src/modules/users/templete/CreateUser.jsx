@@ -17,9 +17,12 @@ import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const CreateUser = ({ onClose, userRule }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   const [showpassword, setShowPassword] = useState(false);
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
@@ -49,7 +52,7 @@ const CreateUser = ({ onClose, userRule }) => {
       <div className="from__card from__card__full">
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
-            <div className="form__header_text">
+            <div className="form__header_text fo_primary">
               {userRule == USER_ROLES.OWNER
                 ? t("users.create.title_owner")
                 : t("users.create.title")}
@@ -62,7 +65,7 @@ const CreateUser = ({ onClose, userRule }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                 {userRule == USER_ROLES.OWNER
                 ? t("users.create.name_ar")
                 : t("users.create.name_ar_owner")}
@@ -95,7 +98,7 @@ const CreateUser = ({ onClose, userRule }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                 {userRule == USER_ROLES.OWNER
                 ? t("users.create.name_en")
                 : t("users.create.name_en_owner")}
@@ -130,7 +133,7 @@ const CreateUser = ({ onClose, userRule }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.email")}
                 </Text>
               </FormLabel>
@@ -157,7 +160,7 @@ const CreateUser = ({ onClose, userRule }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.phone")} 
                 </Text>
               </FormLabel>
@@ -188,7 +191,7 @@ const CreateUser = ({ onClose, userRule }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.password")}
                 </Text>
               </FormLabel>
@@ -245,7 +248,7 @@ const CreateUser = ({ onClose, userRule }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.national_id")}
                 </Text>
               </FormLabel>
@@ -278,8 +281,8 @@ const CreateUser = ({ onClose, userRule }) => {
               <Button
                 padding="0px 49px"
                 variant="solid"
-                color="white"
-                bg="#194C81"
+                color={secondry}
+                bg={primary}
                 type="submit"
               >
                 {t("general.add")}

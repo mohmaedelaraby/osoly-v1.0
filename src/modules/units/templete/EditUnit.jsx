@@ -24,8 +24,11 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import { AddIcon } from "@chakra-ui/icons";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   const { mutate } = useUpdateUnit();
 
   const { data, refetch } = useGetUnit(id);
@@ -127,7 +130,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       <div className="from__card from__card__full">
         <form onSubmit={formik.handleSubmit} className="form">
           <div className="form__header">
-            <div className="form__header_text">
+            <div className="form__header_text fo_primary">
               {t("units.create.title_edit")}
             </div>
             <div className="form__header_close">
@@ -177,7 +180,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     />
                   </div>
                   <div className="form__input__flex_imgUpload_btn">
-                    <Button background="transparent" color="white">
+                    <Button background="transparent" color={secondry}>
                       <span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +214,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.property_name")}
                 </Text>
               </FormLabel>
@@ -240,7 +243,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.rent_cost")}
                 </Text>
               </FormLabel>
@@ -267,7 +270,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.rent_collect_date")}
                 </Text>
               </FormLabel>
@@ -341,7 +344,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.address")}
                 </Text>
               </FormLabel>
@@ -370,7 +373,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.water_bill_cost")}
                 </Text>
               </FormLabel>
@@ -399,7 +402,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.electericty_cost_num")}
                 </Text>
               </FormLabel>
@@ -432,7 +435,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.unit_space")}
                 </Text>
               </FormLabel>
@@ -473,7 +476,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex">
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.rooms_number")}
                 </Text>
               </FormLabel>
@@ -500,7 +503,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.bathrooms_number")}
                 </Text>
               </FormLabel>
@@ -529,7 +532,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.conditioners_number")}
                 </Text>
               </FormLabel>
@@ -593,7 +596,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex mb-24">
             <FormControl className="form__input__container disabled">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.property_owner")}
                 </Text>
               </FormLabel>
@@ -620,7 +623,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container disabled">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.property_renter")}
                 </Text>
               </FormLabel>
@@ -648,7 +651,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
           <div className="form__input form__input__flex mb-24">
             <FormControl className="form__input__container  disabled">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.unit_property")}
                 </Text>
               </FormLabel>
@@ -673,7 +676,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
             <FormControl className="form__input__container disabled">
               <FormLabel>
-                <Text className="form__input__container__label">
+                <Text className="form__input__container__label fo_primary">
                   {t("general.maintenance")}
                 </Text>
               </FormLabel>
@@ -699,8 +702,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <Button
                 padding="0px 49px"
                 variant="solid"
-                color="white"
-                bg="#194C81"
+                color={secondry}
+                bg={primary}
                 type="submit"
                 isDisabled={
                   (!selectedImage && !loadedImage) ||

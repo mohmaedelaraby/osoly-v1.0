@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { userEnterpraiseValidationCreate } from "../validation/schema";
 import {
   Button,
@@ -7,7 +7,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Stack,
   Text,
@@ -20,9 +19,12 @@ import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useEnterPraisesCreateUser } from "../hooks/useEnterprisesCreateUsers";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const CreateEnterpraiseUser = ({ onClose, plans }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
 
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
@@ -53,7 +55,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
         autoComplete="false"
       >
         <div className="form__header">
-          <div className="form__header_text">
+          <div className="form__header_text fo_primary fo_primary">
             {t("enterprise.page.add_user")}
           </div>
           <div className="form__header_close">
@@ -64,7 +66,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("enterprise.create.enterprisename")}
               </Text>
             </FormLabel>
@@ -93,7 +95,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label">
+              <Text className="form__input__container__label fo_primary">
                 {t("general.password")}
               </Text>
             </FormLabel>
@@ -274,8 +276,8 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
             <Button
               padding="0px 49px"
               variant="solid"
-              color="white"
-              bg="#194C81"
+              color={secondry}
+              bg={primary}
               type="submit"
               isDisabled={!plan}
             >

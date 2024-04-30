@@ -33,7 +33,7 @@ const CreateOwner =()=> {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label rtl">اسمك الاول</Text>
+            <Text className="form__input__container__label fo_primary rtl">اسمك الاول</Text>
           </FormLabel>
 
           <Input
@@ -58,7 +58,7 @@ const CreateOwner =()=> {
 
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label rtl"> اسمك الاخير </Text>
+            <Text className="form__input__container__label fo_primary rtl"> اسمك الاخير </Text>
           </FormLabel>
 
           <Input
@@ -85,7 +85,7 @@ const CreateOwner =()=> {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">First Name (EN) </Text>
+            <Text className="form__input__container__label fo_primary">First Name (EN) </Text>
           </FormLabel>
 
           <Input
@@ -109,7 +109,7 @@ const CreateOwner =()=> {
 
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> Last Name (EN) </Text>
+            <Text className="form__input__container__label fo_primary"> Last Name (EN) </Text>
           </FormLabel>
 
           <Input
@@ -137,7 +137,7 @@ const CreateOwner =()=> {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">Email </Text>
+            <Text className="form__input__container__label fo_primary">Email </Text>
           </FormLabel>
 
           <Input
@@ -161,7 +161,7 @@ const CreateOwner =()=> {
 
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label"> Password </Text>
+            <Text className="form__input__container__label fo_primary"> Password </Text>
           </FormLabel>
 
           <Input
@@ -187,7 +187,7 @@ const CreateOwner =()=> {
       <div className="form__input form__input__flex">
         <FormControl className="form__input__container">
           <FormLabel>
-            <Text className="form__input__container__label">Phone Number </Text>
+            <Text className="form__input__container__label fo_primary">Phone Number </Text>
           </FormLabel>
 
           <Input

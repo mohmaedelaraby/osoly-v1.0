@@ -24,9 +24,12 @@ import bell from "../../../assets/images/bell.png";
 import { AddIcon } from "@chakra-ui/icons";
 import CreateUnit from "../../units/templete/CreateUnit";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const CreateProperty = ({ onClose, propOwenerId }) => {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
+
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const { usersData, usersRefetch } = useUsers({
@@ -91,7 +94,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
         <div className="from__card from__card__full">
           <form onSubmit={formik.handleSubmit} className="form">
             <div className="form__header">
-              <div className="form__header_text">
+              <div className="form__header_text fo_primary">
                 {t("propreties.create.title")} 
               </div>
               <div className="form__header_close">
@@ -142,7 +145,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.property_name")}
                   </Text>
                 </FormLabel>
@@ -171,7 +174,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.address")}
                   </Text>
                 </FormLabel>
@@ -200,7 +203,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             {/*  <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     مساحة العقار
                   </Text>
                 </FormLabel>
@@ -243,7 +246,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             <div className="form__input form__input__flex mb-24">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.property_owner")}
                   </Text>
                 </FormLabel>
@@ -271,7 +274,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             <div className="form__input form__input__flex">
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.postal_code")}
                   </Text>
                 </FormLabel>
@@ -300,7 +303,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
 
               <FormControl className="form__input__container">
                 <FormLabel>
-                  <Text className="form__input__container__label">
+                  <Text className="form__input__container__label fo_primary">
                     {t("general.sk_number")}
                   </Text>
                 </FormLabel>
@@ -344,7 +347,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                       openUnitPopup();
                     }}
                   >
-                    <span className="pl-8"> {t("units.create.title")} </span>
+                    <span className="pl-8 fo_primary"> {t("units.create.title")} </span>
                   </Button>
                 </div>
               </div>
@@ -359,8 +362,8 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                 <Button
                   padding="0px 49px"
                   variant="solid"
-                  color="white"
-                  bg="#194C81"
+                  color={secondry}
+                  bg={primary}
                   type="submit"
                 >
                   {t("general.add")}

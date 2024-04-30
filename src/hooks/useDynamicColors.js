@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export const useColors = () => {
+export const useDynamicColors = () => {
+    const [dbColors,setDbColors]=useState()
     useEffect(() => {
         let dashboardSettings = localStorage.getItem("dashboardSettings");
         dashboardSettings = JSON.parse(dashboardSettings)
+        setDbColors(dashboardSettings)
         var bg_elementsecondry = document.getElementsByClassName('bg_secondry')
         if (bg_elementsecondry) {
             for (let i = 0; i < bg_elementsecondry.length; i++) {
@@ -32,10 +34,9 @@ export const useColors = () => {
     }, [])
 
     return ({
-        primaryBackGround: 'bg_primary',
-        secondryBackGround: 'bg_secondry',
-        primaryFont: 'fo_primary',
-        secondryFont: 'fo_primary',
+        primary: dbColors?.dashboardColor,
+        secondry: dbColors?.dashboardFontColor,
+       
 
     })
 
