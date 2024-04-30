@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useDynamicColors = () => {
-    const [dbColors,setDbColors]=useState()
+    const [dbColors, setDbColors] = useState()
     useEffect(() => {
         let dashboardSettings = localStorage.getItem("dashboardSettings");
         dashboardSettings = JSON.parse(dashboardSettings)
@@ -30,13 +30,22 @@ export const useDynamicColors = () => {
         if (fo_elementprimery) {
             for (let i = 0; i < fo_elementprimery.length; i++) {
                 fo_elementprimery[i].style.color = dashboardSettings?.dashboardColor;
-            }        }
+            }
+        }
+
+        var fo_elementprimery_chakra = document.getElementsByClassName('chakra-button__icon')
+        if (fo_elementprimery_chakra) {
+            for (let i = 0; i < fo_elementprimery_chakra.length; i++) {
+                fo_elementprimery_chakra[i].style.color = dashboardSettings?.dashboardColor;
+            }
+        }
+        
     }, [])
 
     return ({
         primary: dbColors?.dashboardColor,
         secondry: dbColors?.dashboardFontColor,
-       
+
 
     })
 
