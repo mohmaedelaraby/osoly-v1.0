@@ -93,7 +93,8 @@
       "unit_or_property":"الوحدة/العقار",
       "description":"الوصف",
       "attachment":"المرفقات",
-      "senter":"المرسل"
+      "senter":"المرسل",
+      "rent_collect": " الإيجار المحصل"
 
       
     },

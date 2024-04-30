@@ -15,7 +15,7 @@ function PageHeader({ title, addtionTitle }) {
   };
   return (
     <div className="page_heading_header">
-      <div className="page_heading_header__title">
+      <div className="page_heading_header__title fo_primary">
         {addtionTitle} {title}
       </div>
       <div className="page_heading_header__icons">

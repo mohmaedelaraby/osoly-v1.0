@@ -28,6 +28,7 @@ import PageHeader from "../../../components/shared/PageHeader";
 import useTickets from "../../Tickets/hooks/useTickets";
 import useUnits from "../../units/hooks/useUnits";
 import { useNavigate } from "react-router-dom";
+import { useColors, useToastMessage } from "../../../hooks/useDynamicColors";
 const Home = () => {
   const { t } = useTranslation();
 
@@ -182,35 +183,14 @@ const Home = () => {
     { value: 25, label: "d" },
   ];
 
-  useEffect(()=>{
-    let dashboardSettings = localStorage.getItem("dashboardSettings");
-    dashboardSettings = JSON.parse(dashboardSettings)
-    var bg_elementsecondry  = document.getElementById('bg_secondry')
-    if(bg_elementsecondry){
-      bg_elementsecondry.style.backgroundColor = dashboardSettings?.dashboardFontColor;
-    }
-    var bg_elementprimery  = document.getElementById('bg_primary')
-    if(bg_elementprimery){
-      bg_elementprimery.style.backgroundColor = dashboardSettings?.dashboardColor;
-    }
-
-
-    var fo_elementsecondry  = document.getElementById('fo_secondry')
-    if(fo_elementsecondry){
-      fo_elementsecondry.style.color = dashboardSettings?.dashboardFontColor;
-    }
-    var fo_elementprimery  = document.getElementById('fo_primary')
-    if(fo_elementprimery){
-      fo_elementprimery.style.color =  dashboardSettings?.dashboardColor;
-    }
-  },[])
+ const {primaryBackGround,primaryFont,secondryBackGround,secondryFont}=useColors()
   
 
   return (
     <>
       <div className="home">
         <div className="home_container">
-          <div className="home_container_header">
+          <div className="home_container_header ">
             <PageHeader
               title={homeData?.enterprise.username}
               addtionTitle={t("general.hello")}
@@ -249,7 +229,7 @@ const Home = () => {
             </div>
 
             <div className="home_container_charts_table__chart ml-24">
-              <div  id="fo_primary" className="home_container_charts_table__chart_header">
+              <div  className="home_container_charts_table__chart_header fo_primary">
                 {t("general.tickets")}
               </div>
 
@@ -261,7 +241,7 @@ const Home = () => {
             </div>
 
             <div className="home_container_charts_table__chart">
-              <div  id="fo_primary" className="home_container_charts_table__chart_header" >
+              <div className="home_container_charts_table__chart_header fo_primary" >
                 {t("home.charts.new_users_title")}
               </div>
 
@@ -295,7 +275,7 @@ const Home = () => {
           <div className="home_container_tables">
             <div className="home_container_item_tables ml-12">
               <div className="home_container_tables_item_header">
-                <div className="home_container_tables_item_header_title" id="fo_primary">
+                <div className="home_container_tables_item_header_title fo_primary">
                   {t("home.charts.rent_title")}
                 </div>
                 <div className="home_container_tables_item_header_btn">
@@ -336,7 +316,7 @@ const Home = () => {
 
             <div className="home_container_item_tables_ticket mr-12">
               <div className="home_container_tables_item_header">
-                <div className="home_container_tables_item_header_title" id="fo_primary">
+                <div className="home_container_tables_item_header_title fo_primary">
                   {t("general.latest")} {t("general.tickets")}
                 </div>
                 <div className="home_container_tables_item_header_btn">

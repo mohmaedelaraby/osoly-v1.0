@@ -93,7 +93,8 @@
       "unit_or_property": "unit/property",
       "description": "description",
       "attachment": "attachments",
-      "senter": "sender"
+      "senter": "sender",
+      "rent_collect": " Rent collected "
     },
     "search": {
       "by_mail": "Search by user's email",
