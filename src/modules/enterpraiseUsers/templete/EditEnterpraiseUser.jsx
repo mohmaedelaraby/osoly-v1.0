@@ -5,6 +5,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -104,7 +105,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                 }}
                 className="form__input__container__input"
               />
-              <InputLeftElement width="4.5rem">
+              <InputRightElement  height="56px" width="4.5rem">
                 <Button
                   h="1.75rem"
                   size="sm"
@@ -122,7 +123,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                     </>
                   )}
                 </Button>
-              </InputLeftElement>
+              </InputRightElement>
             </InputGroup>
           </FormControl>
         </div>

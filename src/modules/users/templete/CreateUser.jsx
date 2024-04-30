@@ -8,6 +8,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -214,7 +215,7 @@ const CreateUser = ({ onClose, userRule }) => {
                     formik.touched.password && !!formik.errors.password
                   }
                 />
-                <InputLeftElement width="4.5rem">
+                <InputRightElement  height="56px" width="4.5rem">
                   <Button
                     h="1.75rem"
                     size="sm"
@@ -232,7 +233,7 @@ const CreateUser = ({ onClose, userRule }) => {
                       </>
                     )}
                   </Button>
-                </InputLeftElement>
+                </InputRightElement>
               </InputGroup>
 
               <div className="form__input__container__warn">
