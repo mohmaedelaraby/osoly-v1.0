@@ -15,7 +15,7 @@ const MainLayout = () => {
   return (
       <div className="homepage">
         <SideBar/>
-        <div id="bg_secondry" className="w-100 layout">
+        <div  className="w-100 layout bg_secondry">
         <Outlet/>
         </div>
       </div>
