@@ -11,9 +11,11 @@ import React from "react";
 import LineChart from "../Charts/LineChart";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../hooks/useDynamicColors";
 
 function LineChartWithDate() {
   const { t } = useTranslation();
+  const {primary,secondry}=useDynamicColors()
 
   const Linedata = [
     {
@@ -52,11 +54,12 @@ function LineChartWithDate() {
         <div className="home_container_charts_table__chart_header">
           <Menu>
             <MenuButton
-              bg={"white"}
+              bg={secondry}
               as={Button}
+              color={primary}
               marginRight="8px"
               marginLeft="8px"
-              rightIcon={<ChevronDownIcon />}
+              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
               borderRadius="md"
               borderWidth="1px"
               _hover={{ bg: "gray.400" }}

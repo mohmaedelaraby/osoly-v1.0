@@ -47,7 +47,7 @@ function LoginForm() {
                 }}
                 placeholder="البريد الإلكتروني"
                 className="login_form_input"
-                bg={"white"}
+                bg={'white'}
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.username && !!formik.errors.username}
@@ -77,7 +77,7 @@ function LoginForm() {
                 className="login_form_input mb-0"
                 type={"password"}
                 placeholder="كلمة المرور"
-                bg={"white"}
+                bg={'white'}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.password && !!formik.errors.password}

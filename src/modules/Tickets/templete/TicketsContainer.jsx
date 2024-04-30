@@ -172,10 +172,10 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={"white"}
+                      bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}
+                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
                     >
                       <span className="pl-8 fo_primary">{t("general.sort")}</span>
                     </MenuButton>
@@ -259,10 +259,10 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={"white"}
+                      bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}
+                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
                     >
                       <span className="pl-8 fo_primary">{t("general.filter")}</span>
                     </MenuButton>

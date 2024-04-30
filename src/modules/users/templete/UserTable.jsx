@@ -196,10 +196,10 @@ function UserTable({ switchTo }) {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={"white"}
+              bg={secondry}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}
+              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
             >
               <span className="pl-8 fo_primary">{t("general.sort")} </span>
             </MenuButton>
@@ -284,10 +284,10 @@ function UserTable({ switchTo }) {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={"white"}
+              bg={secondry}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}
+              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
@@ -477,9 +477,9 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              color={secondry}
+                              color={'white'}
                               variant="solid"
-                              bg={"#CC3636"}
+                              bg={primary}
                               alignItems="center"
                               justifyContent="center"
                               onClick={() => {
@@ -490,7 +490,7 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              color={secondry}
+                              color={'white'}
                               variant="solid"
                               alignItems="center"
                               justifyContent="center"
