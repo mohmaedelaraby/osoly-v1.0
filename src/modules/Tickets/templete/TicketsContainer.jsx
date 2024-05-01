@@ -14,6 +14,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -77,8 +78,6 @@ function TicketsContainer() {
 
   let onClickFunction = (arg) => setDataFromChild(arg);
 
- 
-
   const {
     data: allData,
     isLoading: allLoading,
@@ -109,13 +108,29 @@ function TicketsContainer() {
     setTimeout(() => {
       allrefetch();
     }, 500);
-  }, [currentPage, isSuccess, sortBy, sortDirection, type, status , dataFromChild]);
+  }, [
+    currentPage,
+    isSuccess,
+    sortBy,
+    sortDirection,
+    type,
+    status,
+    dataFromChild,
+  ]);
 
   useEffect(() => {
     setTimeout(() => {
       activerefetch();
     }, 500);
-  }, [currentActivePage, isSuccess, sortBy, sortDirection, type, status , dataFromChild]);
+  }, [
+    currentActivePage,
+    isSuccess,
+    sortBy,
+    sortDirection,
+    type,
+    status,
+    dataFromChild,
+  ]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -577,21 +592,35 @@ function TicketsContainer() {
                       ) : (
                         <>
                           <div className="page_container_table__content__grid">
-                            {activeData?.tickets &&
-                              activeData?.tickets
-                                ?.filter(
-                                  (i) => i.status == ticketsStatus.ACTIVE
-                                )
-                                .map((item, index) => (
-                                  <>
-                                    <TicketCard
-                                    
-                                    sendDataToParent={onClickFunction}
-                                      key={index}
-                                      item={item}
-                                    ></TicketCard>
-                                  </>
-                                ))}
+                            {activeData?.tickets ? (
+                              <>
+                                {activeData?.tickets
+                                  ?.filter(
+                                    (i) => i.status == ticketsStatus.ACTIVE
+                                  )
+                                  .map((item, index) => (
+                                    <>
+                                      <TicketCard
+                                        sendDataToParent={onClickFunction}
+                                        key={index}
+                                        item={item}
+                                      ></TicketCard>
+                                    </>
+                                  ))}
+                              </>
+                            ) : (
+                              <>
+                                <div className="flex-center spinner-table">
+                                  <Spinner
+                                    thickness="4px"
+                                    speed="0.65s"
+                                    emptyColor="gray.200"
+                                    color="blue.500"
+                                    size="xl"
+                                  />
+                                </div>
+                              </>
+                            )}
                           </div>
                         </>
                       )}
@@ -657,91 +686,108 @@ function TicketsContainer() {
                             </Tr>
                           </Thead>
                           <Tbody className="table_body">
-                            {allData?.tickets &&
-                              allData?.tickets.map((item, index) => (
-                                <Tr key={index} className="table_body_row">
-                                  <Td className="table_body_row_item">
-                                    {item.id}
-                                  </Td>
-                                  <Td className="table_body_row_item">
-                                    {t(`tickets.${item.type}`)}
-                                  </Td>
-                                  <Td className="table_body_row_item">
-                                    <div
-                                      className={
-                                        item.status == ticketsStatus.CLOSED
-                                          ? "table_contanier__icon_stats closed_table"
-                                          : item.status == ticketsStatus.ACTIVE
-                                          ? "table_contanier__icon_stats activecard_table"
-                                          : item.status ==
-                                            ticketsStatus.PROCESSING
-                                          ? "table_contanier__icon_stats process_table"
-                                          : " "
-                                      }
-                                    >
-                                      {t(`tickets.${item.status}`)}
-                                    </div>
-                                  </Td>
-                                  <Td className="table_body_row_item">
-                                    {item.unit.name}
-                                  </Td>
-                                  <Td className="table_body_row_item">
-                                    {item.description}
-                                  </Td>
-                                  <Td className="table_body_row_item">-</Td>
-                                  <Td className="table_body_row_item">
-                                    {item.unit?.tenant?.firstNameAr}
-                                  </Td>
+                            {allData?.tickets ? (
+                              <>
+                                {allData?.tickets.map((item, index) => (
+                                  <Tr key={index} className="table_body_row">
+                                    <Td className="table_body_row_item">
+                                      {item.id}
+                                    </Td>
+                                    <Td className="table_body_row_item">
+                                      {t(`tickets.${item.type}`)}
+                                    </Td>
+                                    <Td className="table_body_row_item">
+                                      <div
+                                        className={
+                                          item.status == ticketsStatus.CLOSED
+                                            ? "table_contanier__icon_stats closed_table"
+                                            : item.status ==
+                                              ticketsStatus.ACTIVE
+                                            ? "table_contanier__icon_stats activecard_table"
+                                            : item.status ==
+                                              ticketsStatus.PROCESSING
+                                            ? "table_contanier__icon_stats process_table"
+                                            : " "
+                                        }
+                                      >
+                                        {t(`tickets.${item.status}`)}
+                                      </div>
+                                    </Td>
+                                    <Td className="table_body_row_item">
+                                      {item.unit.name}
+                                    </Td>
+                                    <Td className="table_body_row_item">
+                                      {item.description}
+                                    </Td>
+                                    <Td className="table_body_row_item">-</Td>
+                                    <Td className="table_body_row_item">
+                                      {item.unit?.tenant?.firstNameAr}
+                                    </Td>
 
-                                  <Td className="table_body_row_item">
-                                    {item.status === ticketsStatus.ACTIVE ||
-                                    item.status === ticketsStatus.PROCESSING ? (
-                                      <>
-                                        <Stack
-                                          alignItems={"center"}
-                                          direction={"row"}
-                                          spacing={4}
-                                        >
-                                          <Button
-                                            width={"100%"}
-                                            rightIcon={<SmallCloseIcon />}
-                                            colorScheme="red"
-                                            variant="outline"
-                                            onClick={() => {
-                                              updateStatus(
-                                                ticketsStatus.CLOSED,
-                                                item
-                                              );
-                                            }}
+                                    <Td className="table_body_row_item">
+                                      {item.status === ticketsStatus.ACTIVE ||
+                                      item.status ===
+                                        ticketsStatus.PROCESSING ? (
+                                        <>
+                                          <Stack
+                                            alignItems={"center"}
+                                            direction={"row"}
+                                            spacing={4}
                                           >
-                                            {t("general.reject")}
-                                          </Button>
-                                          <Button
-                                            width={"100%"}
-                                            rightIcon={<CheckIcon />}
-                                            backgroundColor="#2EA154"
-                                            color={secondry}
-                                            variant="solid"
-                                            onClick={() => {
-                                              updateStatus(
-                                                item.status ==
-                                                  ticketsStatus.ACTIVE
-                                                  ? ticketsStatus.PROCESSING
-                                                  : ticketsStatus.CLOSED,
-                                                item
-                                              );
-                                            }}
-                                          >
-                                            {t("general.accept")}
-                                          </Button>
-                                        </Stack>
-                                      </>
-                                    ) : (
-                                      <></>
-                                    )}
-                                  </Td>
-                                </Tr>
-                              ))}
+                                            <Button
+                                              width={"100%"}
+                                              rightIcon={<SmallCloseIcon />}
+                                              colorScheme="red"
+                                              variant="outline"
+                                              onClick={() => {
+                                                updateStatus(
+                                                  ticketsStatus.CLOSED,
+                                                  item
+                                                );
+                                              }}
+                                            >
+                                              {t("general.reject")}
+                                            </Button>
+                                            <Button
+                                              width={"100%"}
+                                              rightIcon={<CheckIcon />}
+                                              backgroundColor="#2EA154"
+                                              color={secondry}
+                                              variant="solid"
+                                              onClick={() => {
+                                                updateStatus(
+                                                  item.status ==
+                                                    ticketsStatus.ACTIVE
+                                                    ? ticketsStatus.PROCESSING
+                                                    : ticketsStatus.CLOSED,
+                                                  item
+                                                );
+                                              }}
+                                            >
+                                              {t("general.accept")}
+                                            </Button>
+                                          </Stack>
+                                        </>
+                                      ) : (
+                                        <></>
+                                      )}
+                                    </Td>
+                                  </Tr>
+                                ))}
+                              </>
+                            ) : (
+                              <>
+                                <div className="flex-center spinner-table">
+                                  <Spinner
+                                    thickness="4px"
+                                    speed="0.65s"
+                                    emptyColor="gray.200"
+                                    color="blue.500"
+                                    size="xl"
+                                  />
+                                </div>
+                              </>
+                            )}
                           </Tbody>
                         </Table>
                       </TableContainer>
@@ -752,7 +798,11 @@ function TicketsContainer() {
                         {allData?.tickets &&
                           allData?.tickets?.map((item, index) => (
                             <>
-                              <TicketCard key={index} item={item} sendDataToParent={onClickFunction}></TicketCard>
+                              <TicketCard
+                                key={index}
+                                item={item}
+                                sendDataToParent={onClickFunction}
+                              ></TicketCard>
                             </>
                           ))}
                       </div>

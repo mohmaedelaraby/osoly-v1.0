@@ -33,12 +33,12 @@ export const useDynamicColors = () => {
             }
         }
 
-        var fo_elementprimery_chakra = document.getElementsByClassName('chakra-button__icon')
+       /*  var fo_elementprimery_chakra = document.getElementsByClassName('chakra-button__icon')
         if (fo_elementprimery_chakra) {
             for (let i = 0; i < fo_elementprimery_chakra.length; i++) {
                 fo_elementprimery_chakra[i].style.color = dashboardSettings?.dashboardColor;
             }
-        }
+        } */
         
     }, [])
 

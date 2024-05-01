@@ -492,7 +492,7 @@ const OwnerTable = ({ switchTo }) => {
                               rightIcon={<DeleteIcon />}
                               color={'white'}
                               variant="solid"
-                              bg={primary}
+                              bg={"#CC3636"}
                               alignItems="center"
                               justifyContent="center"
                               onClick={() => {
