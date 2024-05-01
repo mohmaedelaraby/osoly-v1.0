@@ -35,7 +35,6 @@ import {
 import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
 import money from "../../../assets/icons-svgs/money.svg";
 import "../../../assets/styels/components/page.scss";
-import user from "../../../assets/images/user.png";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import useTickets from "../hooks/useTickets";
 import Pagination from "../../../components/shared/Pagination";
@@ -72,6 +71,13 @@ function TicketsContainer() {
 
   const [type, setType] = useState(null);
   const [status, setStatus] = useState(null);
+  //data from cards
+
+  const [dataFromChild, setDataFromChild] = useState();
+
+  let onClickFunction = (arg) => setDataFromChild(arg);
+
+ 
 
   const {
     data: allData,
@@ -103,13 +109,13 @@ function TicketsContainer() {
     setTimeout(() => {
       allrefetch();
     }, 500);
-  }, [currentPage, isSuccess, sortBy, sortDirection, type, status]);
+  }, [currentPage, isSuccess, sortBy, sortDirection, type, status , dataFromChild]);
 
   useEffect(() => {
     setTimeout(() => {
       activerefetch();
     }, 500);
-  }, [currentActivePage, isSuccess, sortBy, sortDirection, type, status]);
+  }, [currentActivePage, isSuccess, sortBy, sortDirection, type, status , dataFromChild]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -219,7 +225,6 @@ function TicketsContainer() {
                             <option value={null}> {t("general.filter")}</option>
 
                             <option value={"createdAt"}>
-                               
                               {t("general.date")}
                             </option>
                           </Select>
@@ -459,16 +464,16 @@ function TicketsContainer() {
                                     {t("general.ticket_number")}
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.type")} 
+                                    {t("general.type")}
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.status")} 
+                                    {t("general.status")}
                                   </Th>
                                   <Th className="table_header_item">
                                     {t("general.unit_or_property")}
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.description")} 
+                                    {t("general.description")}
                                   </Th>
                                   <Th className="table_header_item">
                                     {t("general.attachment")}
@@ -511,8 +516,7 @@ function TicketsContainer() {
                                                 : " "
                                             }
                                           >
-                                             
-                                            {t(`tickets.${item.status}`)} 
+                                            {t(`tickets.${item.status}`)}
                                           </div>
                                         </Td>
                                         <Td className="table_body_row_item">
@@ -581,6 +585,8 @@ function TicketsContainer() {
                                 .map((item, index) => (
                                   <>
                                     <TicketCard
+                                    
+                                    sendDataToParent={onClickFunction}
                                       key={index}
                                       item={item}
                                     ></TicketCard>
@@ -630,16 +636,16 @@ function TicketsContainer() {
                                 {t("general.ticket_number")}
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.type")} 
+                                {t("general.type")}
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.status")} 
+                                {t("general.status")}
                               </Th>
                               <Th className="table_header_item">
                                 {t("general.unit_or_property")}
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.description")} 
+                                {t("general.description")}
                               </Th>
                               <Th className="table_header_item">
                                 {t("general.attachment")}
@@ -673,8 +679,7 @@ function TicketsContainer() {
                                           : " "
                                       }
                                     >
-                                       
-                                      {t(`tickets.${item.status}`)} 
+                                      {t(`tickets.${item.status}`)}
                                     </div>
                                   </Td>
                                   <Td className="table_body_row_item">
@@ -747,7 +752,7 @@ function TicketsContainer() {
                         {allData?.tickets &&
                           allData?.tickets?.map((item, index) => (
                             <>
-                              <TicketCard item={item}></TicketCard>
+                              <TicketCard key={index} item={item} sendDataToParent={onClickFunction}></TicketCard>
                             </>
                           ))}
                       </div>

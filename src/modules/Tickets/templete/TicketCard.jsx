@@ -7,8 +7,10 @@ import "../../../assets/styels/components/cards.scss";
 import image from "../../../assets/images/houseImg.png";
 import { useTranslation } from "react-i18next";
 
-const TicketCard = ({ item, img = image }) => {
+const TicketCard = ({ item, img = image, sendDataToParent }) => {
   const { t } = useTranslation();
+
+ 
 
   const TICKET_STATUS = ticketsStatus;
   const TICKET_TYPES = ticketsTypes;
@@ -33,11 +35,11 @@ const TicketCard = ({ item, img = image }) => {
 
   const updateStatus = (status) => {
     let body = { status: status };
+    sendDataToParent("data is Send")
     mutate({ id: item?.id, body: body });
   };
   return (
     <>
-  
       <Card width="-webkit-fit-content">
         <div className="cardWithimg">
           <div className={"cardWithimg_contanier"}>
@@ -83,8 +85,14 @@ const TicketCard = ({ item, img = image }) => {
             </div>
 
             <>
-              <div className="cardWithimg_contanier__btns" style={{marginTop : status === TICKET_STATUS.CLOSED ? '0px':''}}>
-                {status === TICKET_STATUS.ACTIVE || status === TICKET_STATUS.PROCESSING ? (
+              <div
+                className="cardWithimg_contanier__btns"
+                style={{
+                  marginTop: status === TICKET_STATUS.CLOSED ? "0px" : "",
+                }}
+              >
+                {status === TICKET_STATUS.ACTIVE ||
+                status === TICKET_STATUS.PROCESSING ? (
                   <>
                     <Button
                       variant="solid"
@@ -93,7 +101,10 @@ const TicketCard = ({ item, img = image }) => {
                       marginLeft="8px"
                       width="100%"
                       onClick={() => {
-                        let sentStatus = status === TICKET_STATUS.ACTIVE ? TICKET_STATUS.PROCESSING : TICKET_STATUS.CLOSED
+                        let sentStatus =
+                          status === TICKET_STATUS.ACTIVE
+                            ? TICKET_STATUS.PROCESSING
+                            : TICKET_STATUS.CLOSED;
                         setStatus(sentStatus);
                         updateStatus(sentStatus);
                       }}
@@ -117,7 +128,7 @@ const TicketCard = ({ item, img = image }) => {
                   <></>
                 )}
 
-                {status === TICKET_STATUS.processing ? (
+                {/*  {status === TICKET_STATUS.processing ? (
                   <>
                     <Button
                       variant="solid"
@@ -128,6 +139,8 @@ const TicketCard = ({ item, img = image }) => {
                       onClick={() => {
                         setStatus(TICKET_STATUS.review);
                         updateStatus(TICKET_STATUS.review);
+                        setData(TICKET_STATUS.review)
+                        handleClick()
                       }}
                     >
                       {t("general.accept")}
@@ -140,6 +153,8 @@ const TicketCard = ({ item, img = image }) => {
                       onClick={() => {
                         setStatus(TICKET_STATUS.canceled);
                         updateStatus(TICKET_STATUS.canceled);
+                        setData(TICKET_STATUS.CLOSED)
+                        handleClick()
                       }}
                     >
                       {t("general.reject")}
@@ -147,7 +162,7 @@ const TicketCard = ({ item, img = image }) => {
                   </>
                 ) : (
                   <></>
-                )}
+                )} */}
               </div>
             </>
           </div>
