@@ -18,6 +18,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -49,11 +50,11 @@ import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 function PropertiesTable() {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
-
+  const { primary, secondry } = useDynamicColors();
 
   const [selectId, setSelectedId] = useState();
   const [isGrid, setIsGrid] = useState(false);
+  
 
   //sorting and filtering local
   const sortItems = [
@@ -175,6 +176,22 @@ function PropertiesTable() {
     setSelectedId(user.id);
     onOpenProperyModalEdit();
   };
+
+  //emit data from cards
+  const [dataFromChild, setDataFromChild] = useState();
+
+  let onClickFunction = (arg) => setDataFromChild(arg);
+
+  useEffect(()=>{
+   if(dataFromChild){
+    if(dataFromChild[0] == 'edit'){
+      openPropertyEditPopup({id:dataFromChild[1]})
+    }else if(dataFromChild[0] == 'delete'){
+      mutate(dataFromChild[1])
+    }
+   }
+  
+  },[dataFromChild])
   return (
     <>
       <div className="page_container_table__header">
@@ -187,7 +204,10 @@ function PropertiesTable() {
               openPropertyPopup();
             }}
           >
-            <span className="pl-8 fo_secondry"> {t("propreties.page.add_property_title")} </span>
+            <span className="pl-8 fo_secondry">
+              {" "}
+              {t("propreties.page.add_property_title")}{" "}
+            </span>
           </Button>
           <Button
             marginRight="8px"
@@ -212,7 +232,8 @@ function PropertiesTable() {
               bg={secondry}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}
+              colorScheme={"white"}
             >
               <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
@@ -299,7 +320,8 @@ function PropertiesTable() {
               bg={secondry}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}
+              colorScheme={"white"}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
@@ -576,67 +598,91 @@ function PropertiesTable() {
                 <Thead className="table_header">
                   <Tr>
                     <Th className="table_header_item">{t("general.name")}</Th>
-                    <Th className="table_header_item">{t("general.num_of_units")}</Th>
-                    <Th className="table_header_item">{t("general.total_rent")}</Th>
-                    <Th className="table_header_item">{t("general.address")} </Th>
+                    <Th className="table_header_item">
+                      {t("general.num_of_units")}
+                    </Th>
+                    <Th className="table_header_item">
+                      {t("general.total_rent")}
+                    </Th>
+                    <Th className="table_header_item">
+                      {t("general.address")}{" "}
+                    </Th>
                     <Th className="table_header_item">{t("general.owner")}</Th>
                     <Th className="table_header_item"> </Th>
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {PropertiesData &&
-                    PropertiesData?.updatedProperties?.map((item, index) => (
-                      <Tr
-                        key={index}
-                        className="table_body_row"
-                        onClick={() => {}}
-                      >
-                        <Td className="table_body_row_item">{item.name}</Td>
-                        <Td className="table_body_row_item">
-                          {item?.units?.length}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.totalRent}
-                        </Td>
-                        <Td className="table_body_row_item">{item.address}</Td>
-                        <Td className="table_body_row_item">-</Td>
+                  {PropertiesData ? (
+                    <>
+                      {PropertiesData?.updatedProperties?.map((item, index) => (
+                        <Tr
+                          key={index}
+                          className="table_body_row"
+                          onClick={() => {}}
+                        >
+                          <Td className="table_body_row_item">{item.name}</Td>
+                          <Td className="table_body_row_item">
+                            {item?.units?.length}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.totalRent}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.address}
+                          </Td>
+                          <Td className="table_body_row_item">-</Td>
 
-                        <Td className="table_body_row_item_btns">
-                          <Stack
-                            alignItems={"center"}
-                            direction={"row"}
-                            spacing={4}
-                          >
-                            <Button
-                              className="table_body_row_item_btns_deletebtn"
-                              width={"25%"}
-                              rightIcon={<DeleteIcon />}
-                              color={'white'}
-                              variant="solid"
-                              bg={"#CC3636"}
-                              alignItems="center"
-                              justifyContent="center"
-                              onClick={() => {
-                                mutate(item.id);
-                              }}
-                            ></Button>
-                            <Button
-                              className="table_body_row_item_btns_editbtn"
-                              width={"25%"}
-                              rightIcon={<EditOutlinedIcon />}
-                              color={'white'}
-                              variant="solid"
-                              alignItems="center"
-                              justifyContent="center"
-                              bg={"#194C81"}
-                              onClick={() => {
-                                openPropertyEditPopup(item);
-                              }}
-                            ></Button>
-                          </Stack>
-                        </Td>
-                      </Tr>
-                    ))}
+                          <Td className="table_body_row_item_btns">
+                            <Stack
+                              alignItems={"center"}
+                              direction={"row"}
+                              spacing={4}
+                            >
+                              <Button
+                                className="table_body_row_item_btns_deletebtn"
+                                width={"25%"}
+                                rightIcon={<DeleteIcon />}
+                                color={"white"}
+                                variant="solid"
+                                bg={"#CC3636"}
+                                alignItems="center"
+                                justifyContent="center"
+                                onClick={() => {
+                                  mutate(item.id);
+                                }}
+                              ></Button>
+                              <Button
+                                className="table_body_row_item_btns_editbtn"
+                                width={"25%"}
+                                rightIcon={<EditOutlinedIcon />}
+                                color={"white"}
+                                variant="solid"
+                                alignItems="center"
+                                justifyContent="center"
+                                bg={"#194C81"}
+                                onClick={() => {
+                                  openPropertyEditPopup(item);
+                                }}
+                              ></Button>
+                            </Stack>
+                          </Td>
+                        </Tr>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <div className="flex-center spinner-table">
+                        <Spinner
+                          thickness="4px"
+                          speed="0.65s"
+                          emptyColor="gray.200"
+                          color="blue.500"
+                          size="xl"
+                        />
+                      </div>
+                    </>
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -649,8 +695,10 @@ function PropertiesTable() {
                   <CardWithImg
                     key={index}
                     address={item.address}
+                    id={item.id}
                     title={item.name}
-                    price={item.id}
+                    price={item.totalRent}
+                    sendDataToParent={onClickFunction}
                     isBtns={false}
                     isVertical={false}
                     currncy={t("general.single_unit")}

@@ -3,9 +3,10 @@ import image from "../../assets/images/houseImg.png";
 import "../../assets/styels/components/cards.scss";
 
 import React from "react";
-import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons";
+import { CheckIcon, DeleteIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../hooks/useDynamicColors";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 function CardWithImg({
   img = image,
@@ -18,14 +19,15 @@ function CardWithImg({
   isBtns = false,
   currncy,
   isVertical = false,
- 
+  sendDataToParent,
+  id,
 }) {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
+  const { primary, secondry } = useDynamicColors();
 
   return (
-    <Card width={isVertical ? '100%' : '-webkit-fit-content'}>
-      <div className="cardWithimg"  style={{width: isVertical ? '100%' : ''}} >
+    <Card width={isVertical ? "100%" : "-webkit-fit-content"}>
+      <div className="cardWithimg" style={{ width: isVertical ? "100%" : "" }}>
         <div
           className={
             isVertical
@@ -34,7 +36,45 @@ function CardWithImg({
           }
         >
           <div className="cardWithimg_contanier__icon">
-            <img src={img} alt="desc"  />
+            <img src={img} alt="desc" />
+            <div className="cardWithimg_contanier__icon_btns">
+              {!isVertical ? (
+                <>
+                  <Stack alignItems={"center"} direction={"row"} spacing={1}>
+                    <Button
+                      className="table_body_row_item_btns_editbtn"
+                      width={"25%"}
+                      rightIcon={<EditOutlinedIcon />}
+                      color={"white"}
+                      variant="solid"
+                      alignItems="center"
+                      justifyContent="center"
+                      bg={"#194C81"}
+                      onClick={() => {
+                        //(item);
+                        sendDataToParent(["edit" , id]);
+                      }}
+                    ></Button>
+                    <Button
+                      className="table_body_row_item_btns_deletebtn"
+                      width={"25%"}
+                      rightIcon={<DeleteIcon />}
+                      color={"white"}
+                      variant="solid"
+                      bg={"#CC3636"}
+                      alignItems="center"
+                      justifyContent="center"
+                      onClick={() => {
+                        sendDataToParent(["delete" ,id]);
+                        //mutate(item.id);
+                      }}
+                    ></Button>
+                  </Stack>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
           <div className="cardWithimg_contanier__text">
             {header ? (
@@ -85,14 +125,18 @@ function CardWithImg({
           {isBtns ? (
             <>
               <div className="cardWithimg_contanier__btns">
-                <Stack alignItems={isVertical ? "flex-end" : "center"} direction={isVertical ? "column" : "row"} spacing={4} width='100%'>
+                <Stack
+                  alignItems={isVertical ? "flex-end" : "center"}
+                  direction={isVertical ? "column" : "row"}
+                  spacing={4}
+                  width="100%"
+                >
                   <Button
                     width={isVertical ? "50%" : "100%"}
                     rightIcon={<CheckIcon />}
                     backgroundColor="#2EA154"
                     color={secondry}
                     variant="solid"
-                  
                   >
                     {t("general.accept")}
                   </Button>
@@ -101,7 +145,6 @@ function CardWithImg({
                     rightIcon={<SmallCloseIcon />}
                     colorScheme="red"
                     variant="outline"
-                   
                   >
                     {t("general.reject")}
                   </Button>

@@ -333,29 +333,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               </FormControl>
             </div>
 
-            <div className="form__input form__input__flex">
-              <div className="flex-between">
-                <div className="form__input__flex_text">{t("general.units")}</div>
-                <div className="form__input__flex_text">
-                  <Button
-                    rightIcon={<AddIcon />}
-                    bg="white"
-                    variant="outline"
-                    dir="rtl"
-                    colorScheme="red.500"
-                    onClick={() => {
-                      openUnitPopup();
-                    }}
-                  >
-                    <span className="pl-8 fo_primary"> {t("units.create.title")} </span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <div className="form__input form__input__flex">
-              <div className="flex-between"></div>
-            </div>
+           
 
             <div className="form__btn__container">
               <Stack direction="row" width="100%" justify="space-between">
