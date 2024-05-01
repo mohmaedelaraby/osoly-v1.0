@@ -292,7 +292,7 @@ const UserEnterpraiseTable = () => {
                       colorScheme={"white"}
                     >
                       <span className="pl-8 fo_primary fo_primary">
-                        {t("general.filter")}{" "}
+                        {t("general.filter")} 
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">

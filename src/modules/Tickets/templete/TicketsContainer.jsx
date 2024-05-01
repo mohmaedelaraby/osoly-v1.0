@@ -219,7 +219,7 @@ function TicketsContainer() {
                             <option value={null}> {t("general.filter")}</option>
 
                             <option value={"createdAt"}>
-                              {" "}
+                               
                               {t("general.date")}
                             </option>
                           </Select>
@@ -459,16 +459,16 @@ function TicketsContainer() {
                                     {t("general.ticket_number")}
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.type")}{" "}
+                                    {t("general.type")} 
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.status")}{" "}
+                                    {t("general.status")} 
                                   </Th>
                                   <Th className="table_header_item">
                                     {t("general.unit_or_property")}
                                   </Th>
                                   <Th className="table_header_item">
-                                    {t("general.description")}{" "}
+                                    {t("general.description")} 
                                   </Th>
                                   <Th className="table_header_item">
                                     {t("general.attachment")}
@@ -511,8 +511,8 @@ function TicketsContainer() {
                                                 : " "
                                             }
                                           >
-                                            {" "}
-                                            {t(`tickets.${item.status}`)}{" "}
+                                             
+                                            {t(`tickets.${item.status}`)} 
                                           </div>
                                         </Td>
                                         <Td className="table_body_row_item">
@@ -630,16 +630,16 @@ function TicketsContainer() {
                                 {t("general.ticket_number")}
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.type")}{" "}
+                                {t("general.type")} 
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.status")}{" "}
+                                {t("general.status")} 
                               </Th>
                               <Th className="table_header_item">
                                 {t("general.unit_or_property")}
                               </Th>
                               <Th className="table_header_item">
-                                {t("general.description")}{" "}
+                                {t("general.description")} 
                               </Th>
                               <Th className="table_header_item">
                                 {t("general.attachment")}
@@ -673,8 +673,8 @@ function TicketsContainer() {
                                           : " "
                                       }
                                     >
-                                      {" "}
-                                      {t(`tickets.${item.status}`)}{" "}
+                                       
+                                      {t(`tickets.${item.status}`)} 
                                     </div>
                                   </Td>
                                   <Td className="table_body_row_item">
