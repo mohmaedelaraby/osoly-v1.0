@@ -49,7 +49,7 @@ import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 function TicketsContainer() {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
+  const { primary, secondry } = useDynamicColors();
 
   const [isGrid, setIsGrid] = useState(false);
   const [showOpenTickets, setShowIsTickets] = useState(true);
@@ -133,7 +133,7 @@ function TicketsContainer() {
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#FFE4CE"}
-                desc= {t("general.total_number")}
+                desc={t("general.total_number")}
                 icon={money}
                 number={250}
               ></CardWithNumber>
@@ -175,9 +175,12 @@ function TicketsContainer() {
                       bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+                      rightIcon={<ChevronDownIcon />}
+                      colorScheme={"white"}
                     >
-                      <span className="pl-8 fo_primary">{t("general.sort")}</span>
+                      <span className="pl-8 fo_primary">
+                        {t("general.sort")}
+                      </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <MenuItem>
@@ -215,7 +218,10 @@ function TicketsContainer() {
                           >
                             <option value={null}> {t("general.filter")}</option>
 
-                            <option value={"createdAt"}> {t("general.date")}</option>
+                            <option value={"createdAt"}>
+                              {" "}
+                              {t("general.date")}
+                            </option>
                           </Select>
                         </FormControl>
                       </div>
@@ -262,9 +268,12 @@ function TicketsContainer() {
                       bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+                      rightIcon={<ChevronDownIcon />}
+                      colorScheme={"white"}
                     >
-                      <span className="pl-8 fo_primary">{t("general.filter")}</span>
+                      <span className="pl-8 fo_primary">
+                        {t("general.filter")}
+                      </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
                       <div className="menu-select mb-24">
@@ -396,7 +405,7 @@ function TicketsContainer() {
                 <div className="w-100 mb-24">
                   <div className="page_container_table__content_header_flex">
                     <div className="page_container_table__content_header_flex_text">
-                    {t("general.open_tickets")} 
+                      {t("general.open_tickets")}
                     </div>
                     <div className="page_container_table__content_header_flex_btn">
                       {showOpenTickets ? (
@@ -409,7 +418,7 @@ function TicketsContainer() {
                             setShowIsTickets(false);
                           }}
                         >
-                          {t("general.hide")} 
+                          {t("general.hide")}
                         </Button>
                       ) : (
                         <>
@@ -422,7 +431,7 @@ function TicketsContainer() {
                               setShowIsTickets(true);
                             }}
                           >
-                            {t("general.show")} 
+                            {t("general.show")}
                           </Button>
                         </>
                       )}
@@ -447,18 +456,26 @@ function TicketsContainer() {
                               <Thead className="table_header">
                                 <Tr>
                                   <Th className="table_header_item">
-                                  {t("general.ticket_number")} 
+                                    {t("general.ticket_number")}
                                   </Th>
-                                  <Th className="table_header_item">{t("general.type")} </Th>
-                                  <Th className="table_header_item">{t("general.status")} </Th>
                                   <Th className="table_header_item">
-                                  {t("general.unit_or_property")} 
+                                    {t("general.type")}{" "}
                                   </Th>
-                                  <Th className="table_header_item">{t("general.description")} </Th>
                                   <Th className="table_header_item">
-                                  {t("general.attachment")}
+                                    {t("general.status")}{" "}
                                   </Th>
-                                  <Th className="table_header_item">{t("general.senter")}</Th>
+                                  <Th className="table_header_item">
+                                    {t("general.unit_or_property")}
+                                  </Th>
+                                  <Th className="table_header_item">
+                                    {t("general.description")}{" "}
+                                  </Th>
+                                  <Th className="table_header_item">
+                                    {t("general.attachment")}
+                                  </Th>
+                                  <Th className="table_header_item">
+                                    {t("general.senter")}
+                                  </Th>
                                   <Th className="table_header_item"> </Th>
                                 </Tr>
                               </Thead>
@@ -477,10 +494,26 @@ function TicketsContainer() {
                                           {item.id}
                                         </Td>
                                         <Td className="table_body_row_item">
-                                          {t(item.type)}
+                                          {t(`tickets.${item.type}`)}
                                         </Td>
                                         <Td className="table_body_row_item">
-                                          {t(item.status)}
+                                          <div
+                                            className={
+                                              item.status ==
+                                              ticketsStatus.CLOSED
+                                                ? "table_contanier__icon_stats closed_table"
+                                                : item.status ==
+                                                  ticketsStatus.ACTIVE
+                                                ? "table_contanier__icon_stats activecard_table"
+                                                : item.status ==
+                                                  ticketsStatus.PROCESSING
+                                                ? "table_contanier__icon_stats process_table"
+                                                : " "
+                                            }
+                                          >
+                                            {" "}
+                                            {t(`tickets.${item.status}`)}{" "}
+                                          </div>
                                         </Td>
                                         <Td className="table_body_row_item">
                                           {item.unit.name}
@@ -547,7 +580,10 @@ function TicketsContainer() {
                                 )
                                 .map((item, index) => (
                                   <>
-                                    <TicketCard item={item}></TicketCard>
+                                    <TicketCard
+                                      key={index}
+                                      item={item}
+                                    ></TicketCard>
                                   </>
                                 ))}
                           </div>
@@ -590,15 +626,27 @@ function TicketsContainer() {
                         <Table className="table" variant="simple">
                           <Thead className="table_header">
                             <Tr>
-                              <Th className="table_header_item">رقم التذكرة</Th>
-                              <Th className="table_header_item">النوع</Th>
-                              <Th className="table_header_item">الحالة</Th>
                               <Th className="table_header_item">
-                                الوحدة/العقار
+                                {t("general.ticket_number")}
                               </Th>
-                              <Th className="table_header_item">الوصف</Th>
-                              <Th className="table_header_item">المرفقات</Th>
-                              <Th className="table_header_item">المرسل</Th>
+                              <Th className="table_header_item">
+                                {t("general.type")}{" "}
+                              </Th>
+                              <Th className="table_header_item">
+                                {t("general.status")}{" "}
+                              </Th>
+                              <Th className="table_header_item">
+                                {t("general.unit_or_property")}
+                              </Th>
+                              <Th className="table_header_item">
+                                {t("general.description")}{" "}
+                              </Th>
+                              <Th className="table_header_item">
+                                {t("general.attachment")}
+                              </Th>
+                              <Th className="table_header_item">
+                                {t("general.senter")}
+                              </Th>
                               <Th className="table_header_item"> </Th>
                             </Tr>
                           </Thead>
@@ -610,10 +658,24 @@ function TicketsContainer() {
                                     {item.id}
                                   </Td>
                                   <Td className="table_body_row_item">
-                                    {item.type}
+                                    {t(`tickets.${item.type}`)}
                                   </Td>
                                   <Td className="table_body_row_item">
-                                    {item.status}
+                                    <div
+                                      className={
+                                        item.status == ticketsStatus.CLOSED
+                                          ? "table_contanier__icon_stats closed_table"
+                                          : item.status == ticketsStatus.ACTIVE
+                                          ? "table_contanier__icon_stats activecard_table"
+                                          : item.status ==
+                                            ticketsStatus.PROCESSING
+                                          ? "table_contanier__icon_stats process_table"
+                                          : " "
+                                      }
+                                    >
+                                      {" "}
+                                      {t(`tickets.${item.status}`)}{" "}
+                                    </div>
                                   </Td>
                                   <Td className="table_body_row_item">
                                     {item.unit.name}
@@ -627,8 +689,8 @@ function TicketsContainer() {
                                   </Td>
 
                                   <Td className="table_body_row_item">
-                                    {status === ticketsStatus.ACTIVE ||
-                                    status === ticketsStatus.PROCESSING ? (
+                                    {item.status === ticketsStatus.ACTIVE ||
+                                    item.status === ticketsStatus.PROCESSING ? (
                                       <>
                                         <Stack
                                           alignItems={"center"}
