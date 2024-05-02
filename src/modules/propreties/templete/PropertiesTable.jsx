@@ -192,6 +192,7 @@ function PropertiesTable() {
    }
   
   },[dataFromChild])
+  
   return (
     <>
       <div className="page_container_table__header">

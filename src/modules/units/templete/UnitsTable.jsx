@@ -194,6 +194,23 @@ const UnitsTable = () => {
     onOpenUnitModalEdit();
   };
 
+   //emit data from cards
+   const [dataFromChild, setDataFromChild] = useState();
+
+   let onClickFunction = (arg) => setDataFromChild(arg);
+ 
+   useEffect(()=>{
+    if(dataFromChild){
+     if(dataFromChild[0] == 'edit'){
+      openUnitEditPopup({id:dataFromChild[1]})
+     }else if(dataFromChild[0] == 'delete'){
+       mutate(dataFromChild[1])
+     }
+    }
+   
+   },[dataFromChild])
+   
+
   return (
     <>
       <div className="page_container_table__header">
@@ -723,6 +740,7 @@ const UnitsTable = () => {
                     address={item.address}
                     title={item.name}
                     price={item.rent}
+                    sendDataToParent={onClickFunction}
                     isBtns={false}
                     isVertical={false}
                     currncy={"ريال/شهري"}
