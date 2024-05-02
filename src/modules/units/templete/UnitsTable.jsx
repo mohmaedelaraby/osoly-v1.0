@@ -740,6 +740,7 @@ const UnitsTable = () => {
                     address={item.address}
                     title={item.name}
                     price={item.rent}
+                    id={item.id}
                     sendDataToParent={onClickFunction}
                     isBtns={false}
                     isVertical={false}
