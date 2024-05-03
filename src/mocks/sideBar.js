@@ -17,6 +17,7 @@ export const sidebarItems = [
         navTo:'/home',
         activeRoutes:['/home'],
         isActive: false,
+        isHidden:[]
 
     },
     {
@@ -27,6 +28,7 @@ export const sidebarItems = [
         navTo:'/enterprises',
         activeRoutes:['/enterprises','/enterprise'],
         isActive: false,
+        isHidden:["USER"]
     },
 
     {
@@ -37,6 +39,7 @@ export const sidebarItems = [
         activeIcon: usersSB,
         activeRoutes:['/users'],
         isActive: false,
+        isHidden:[]
         
     },
     {
@@ -47,6 +50,7 @@ export const sidebarItems = [
         activeIcon: ticketSB,
         activeRoutes:['/tickets'],
         isActive: false,
+        isHidden:[]
        
     },
     {
@@ -57,8 +61,7 @@ export const sidebarItems = [
         activeIcon: buildSB,
         isActive: false,
         activeRoutes:['/propreties'],
-   
-       
+        isHidden:[]
     },
   
 ];

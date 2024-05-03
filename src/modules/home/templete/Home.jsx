@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 
 import React, { useEffect, useState } from "react";
-import { FaBuilding, FaHouseUser, FaUser } from "react-icons/fa";
 import "../style/Home.scss";
 
 import CardWithImg from "../../../components/Cards/CardWithImg";

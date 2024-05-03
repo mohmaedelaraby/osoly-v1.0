@@ -25,31 +25,29 @@ import {
 } from "@chakra-ui/react";
 import InfoModal from "../modals/InfoModal";
 import { useTranslation } from "react-i18next";
-import useColorStore from "../../store/useColorStore";
 
 function SideBar() {
   // eslint-disable-next-line
   const { t } = useTranslation();
+  const currentUserJson = localStorage.getItem("currentUser");
+  const userRole = JSON.parse(currentUserJson)?.enterprise?.role;
 
   const navigate = useNavigate();
   const location = useLocation();
   const [selected, setSelected] = useState(false);
   const [openSidebar, setopenSidebar] = useState(0);
 
-  /*  const [bgColor, setBgcolor] = useState("#f6f6f6a7");
-  const [bgFontColor, setbgFontcolor] = useState("#707FDD"); */
-
   const [sbColor, setSbcolor] = useState();
   const [sbFontColor, setSbFontcolor] = useState();
   const [sbLogo, setSbLogo] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     let dashboardSettings = localStorage.getItem("dashboardSettings");
-    dashboardSettings = JSON.parse(dashboardSettings)
-    setSbcolor(dashboardSettings?.sidebarColor)
-    setSbFontcolor(dashboardSettings?.sidebarFontColor)
-    setSbLogo(dashboardSettings?.logo)
-  },[])
+    dashboardSettings = JSON.parse(dashboardSettings);
+    setSbcolor(dashboardSettings?.sidebarColor);
+    setSbFontcolor(dashboardSettings?.sidebarFontColor);
+    setSbLogo(dashboardSettings?.logo);
+  }, []);
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
@@ -77,7 +75,6 @@ function SideBar() {
       return <LogoutSidebar fill={fill} />;
     }
   }
-  
 
   const { width } = useWindowDimensions();
   const checkIsActive = (activeRoutes) => {
@@ -111,7 +108,7 @@ function SideBar() {
       )}
       {/*  style={{'background':sbColor}} */}
       <div
-      style={{background:sbColor ? sbColor : ""}}
+        style={{ background: sbColor ? sbColor : "" }}
         className={
           openSidebar === 0 && width < 427 ? "sidebar non-display" : "sidebar"
         }
@@ -123,7 +120,11 @@ function SideBar() {
               className="sidebar__logo__container"
             >
               {}
-              <img src={sbLogo ? sbLogo :logo} alt="logo" className="sidebar__logo__img" />
+              <img
+                src={sbLogo ? sbLogo : logo}
+                alt="logo"
+                className="sidebar__logo__img"
+              />
             </div>
             {width < 427 ? (
               <div
@@ -149,117 +150,147 @@ function SideBar() {
                   // eslint-disable-next-line
                   sidebarItems.map((item, i) => (
                     <>
-                      <div
-                        key={i}
-                        style={{background : checkIsActive(item.activeRoutes) ? sbFontColor : sbColor}}
-                        className={`${
-                          checkIsActive(item.activeRoutes)
-                            ? " sidebar__items__container__item active"
-                            : "sidebar__items__container__item"
-                        }`}
-                        onClick={() => {
-                          setSelected(i);
-                          item.navTo === "/info"
-                            ? onOpenInfoModal()
-                            : navigate(item.navTo);
-                        }}
-                      >
-                        <div
-                          className="sidebar__items__container__item__icon"
-                        >
-                          {checkIsActive(item.activeRoutes)
-                            ? iconChecker(item.icon, sbColor)
-                            : iconChecker(item.icon, sbFontColor)}
-                        </div>
-                        {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
-                          {t(item.name)}
-                        </div>
-                      </div>
+                      {!item?.isHidden.includes(userRole) ? (
+                        <>
+                          <div
+                            key={i}
+                            style={{
+                              background: checkIsActive(item.activeRoutes)
+                                ? sbFontColor
+                                : sbColor,
+                            }}
+                            className={`${
+                              checkIsActive(item.activeRoutes)
+                                ? " sidebar__items__container__item active"
+                                : "sidebar__items__container__item"
+                            }`}
+                            onClick={() => {
+                              setSelected(i);
+                              item.navTo === "/info"
+                                ? onOpenInfoModal()
+                                : navigate(item.navTo);
+                            }}
+                          >
+                            <div className="sidebar__items__container__item__icon">
+                              {checkIsActive(item.activeRoutes)
+                                ? iconChecker(item.icon, sbColor)
+                                : iconChecker(item.icon, sbFontColor)}
+                            </div>
+                            {/* <div><HomeSidebar fill="red"/></div> */}
+                            <div
+                              style={{
+                                color: checkIsActive(item.activeRoutes)
+                                  ? sbColor
+                                  : sbFontColor,
+                              }}
+                              className="sidebar__items__container__item__text"
+                            >
+                              {t(item.name)}
+                            </div>
+                          </div>
 
-                      <div className="sidebar__items__container_nested">
-                        {(selected === i || checkIsActive(item.activeRoutes)) &&
-                        item.nestedChildern ? (
-                          item.nestedChildern.map((child, j) => (
-                            <>
-                              <div
-                                onClick={() => {
-                                  navigate(child.navTo);
-                                }}
-                                className={`${
-                                  checkIsActive(child.active)
-                                    ? "sidebar__items__container_nested__item nested_active"
-                                    : "sidebar__items__container_nested__item "
-                                }`}
-                              >
-                                {/*  style={{'color':sbFontColor}} */}
-                                {child.name}
-                              </div>
-                            </>
-                          ))
-                        ) : (
-                          <></>
-                        )}
-                      </div>
+                          <div className="sidebar__items__container_nested">
+                            {(selected === i ||
+                              checkIsActive(item.activeRoutes)) &&
+                            item.nestedChildern ? (
+                              item.nestedChildern.map((child, j) => (
+                                <>
+                                  <div
+                                    onClick={() => {
+                                      navigate(child.navTo);
+                                    }}
+                                    className={`${
+                                      checkIsActive(child.active)
+                                        ? "sidebar__items__container_nested__item nested_active"
+                                        : "sidebar__items__container_nested__item "
+                                    }`}
+                                  >
+                                    {/*  style={{'color':sbFontColor}} */}
+                                    {child.name}
+                                  </div>
+                                </>
+                              ))
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </>
                   ))
                 }
                 <hr className="sidebar__items_hr" />
                 {
                   // eslint-disable-next-line
-                  sidebarSettings.map((item, i) => (
+                  userRole == "SUPER" ? (
                     <>
-                      <div
-                        key={i}
-                        className={`${
-                          checkIsActive(item.activeRoutes)
-                            ? " sidebar__items__container__item active"
-                            : "sidebar__items__container__item"
-                        }`}
-                        onClick={() => {
-                          setSelected(i);
-                          item.navTo === "/info"
-                            ? onOpenInfoModal()
-                            : navigate(item.navTo);
-                        }}
-                      >
-                        <div className="sidebar__items__container__item__icon">
-                          {checkIsActive(item.activeRoutes)
-                            ? iconChecker(item.icon, sbColor)
-                            : iconChecker(item.icon, sbFontColor)}
-                        </div>
-                        {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
-                          {t(item.name)}
-                        </div>
-                      </div>
+                      {sidebarSettings.map((item, i) => (
+                        <>
+                          <div
+                            key={i}
+                            className={`${
+                              checkIsActive(item.activeRoutes)
+                                ? " sidebar__items__container__item active"
+                                : "sidebar__items__container__item"
+                            }`}
+                            onClick={() => {
+                              setSelected(i);
+                              item.navTo === "/info"
+                                ? onOpenInfoModal()
+                                : navigate(item.navTo);
+                            }}
+                          >
+                            <div className="sidebar__items__container__item__icon">
+                              {checkIsActive(item.activeRoutes)
+                                ? iconChecker(item.icon, sbColor)
+                                : iconChecker(item.icon, sbFontColor)}
+                            </div>
+                            {/* <div><HomeSidebar fill="red"/></div> */}
+                            <div
+                              style={{
+                                color: checkIsActive(item.activeRoutes)
+                                  ? sbColor
+                                  : sbFontColor,
+                              }}
+                              className="sidebar__items__container__item__text"
+                            >
+                              {t(item.name)}
+                            </div>
+                          </div>
 
-                      <div className="sidebar__items__container_nested">
-                        {(selected === i || checkIsActive(item.activeRoutes)) &&
-                        item.nestedChildern ? (
-                          item.nestedChildern.map((child, j) => (
-                            <>
-                              <div
-                                onClick={() => {
-                                  navigate(child.navTo);
-                                }}
-                                className={`${
-                                  checkIsActive(child.active)
-                                    ? "sidebar__items__container_nested__item nested_active"
-                                    : "sidebar__items__container_nested__item "
-                                }`}
-                              >
-                                {/*  style={{'color':sbFontColor}} */}
-                                {child.name}
-                              </div>
-                            </>
-                          ))
-                        ) : (
-                          <></>
-                        )}
-                      </div>
+                          <div className="sidebar__items__container_nested">
+                            {(selected === i ||
+                              checkIsActive(item.activeRoutes)) &&
+                            item.nestedChildern ? (
+                              item.nestedChildern.map((child, j) => (
+                                <>
+                                  <div
+                                    onClick={() => {
+                                      navigate(child.navTo);
+                                    }}
+                                    className={`${
+                                      checkIsActive(child.active)
+                                        ? "sidebar__items__container_nested__item nested_active"
+                                        : "sidebar__items__container_nested__item "
+                                    }`}
+                                  >
+                                    {/*  style={{'color':sbFontColor}} */}
+                                    {child.name}
+                                  </div>
+                                </>
+                              ))
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </>
+                      ))}
                     </>
-                  ))
+                  ) : (
+                    <></>
+                  )
                 }
               </div>
               <div className="bottom">
@@ -290,7 +321,14 @@ function SideBar() {
                             : iconChecker(item.icon, sbFontColor)}
                         </div>
                         {/* <div><HomeSidebar fill="red"/></div> */}
-                        <div style={{color: checkIsActive(item.activeRoutes) ? sbColor : sbFontColor}} className="sidebar__items__container__item__text">
+                        <div
+                          style={{
+                            color: checkIsActive(item.activeRoutes)
+                              ? sbColor
+                              : sbFontColor,
+                          }}
+                          className="sidebar__items__container__item__text"
+                        >
                           {t(item.name)}
                         </div>
                       </div>
