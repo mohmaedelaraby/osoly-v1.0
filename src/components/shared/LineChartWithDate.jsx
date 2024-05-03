@@ -16,7 +16,19 @@ import { useDynamicColors } from "../../hooks/useDynamicColors";
 function LineChartWithDate() {
   const { t } = useTranslation();
   const {primary,secondry}=useDynamicColors()
-
+  const basicBoxStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    boxSize: '250px',
+    color: 'white',
+    textShadow: '0 0 20px black',
+    fontWeight: 'bold',
+    fontSize: '20px',
+    px: 4,
+   
+  }
   const Linedata = [
     {
       name: "Nov",
@@ -77,8 +89,8 @@ function LineChartWithDate() {
         </div>
       </div>
 
-      <Card width="100%" borderRadius="14px" padding="36px">
-        <CardBody padding="0px">
+      <Card width="100%" borderRadius="14px" padding="36px"   filter='auto' blur='8px'>
+        <CardBody padding="0px" >
           <LineChart data={Linedata} />
         </CardBody>
       </Card>
