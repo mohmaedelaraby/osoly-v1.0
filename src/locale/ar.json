@@ -83,6 +83,8 @@
       "accept":"قبول",
       "reject":"رفض",
       "total_number":"العدد الكلي",
+      "total_owners":"إجمالي ملاك العقار ",
+      "total_tenats":"إجمالي المستأجرين",
       "date":"تاريخ",
       "type":"النوع",
       "status":"الحاله",
@@ -96,7 +98,10 @@
       "senter":"المرسل",
       "rent_collect": " الإيجار المحصل",
       "last":"آخر",
-      "months":"شهور"
+      "months":"شهور",
+      "total_properties":"عدد العقارات الكلي",
+      "total_numbers_units":"عدد الوحدات الكلي",
+      "total_rent_money":"مجموع الإيجار"
       
     },
     "search": {

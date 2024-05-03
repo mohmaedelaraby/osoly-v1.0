@@ -34,7 +34,12 @@ import {
   ViewOffIcon,
 } from "@chakra-ui/icons";
 import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
-import money from "../../../assets/icons-svgs/money.svg";
+
+import processingTickets from "../../../assets/icons-svgs/processingTickets.svg";
+import activeTickets from "../../../assets/icons-svgs/activeTickets.svg";
+import closedTickets from "../../../assets/icons-svgs/closedTickets.svg";
+import totalTicketsey from "../../../assets/icons-svgs/totalTickets.svg";
+
 import "../../../assets/styels/components/page.scss";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import useTickets from "../hooks/useTickets";
@@ -46,6 +51,7 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import useStats from "../../../hooks/useStats";
 
 function TicketsContainer() {
   const { t } = useTranslation();
@@ -143,6 +149,13 @@ function TicketsContainer() {
     allrefetch(); */
   };
 
+   //get stats 
+   const { statsData, statsRefetch } = useStats();
+   useEffect(()=>{
+     statsRefetch()
+   },[])
+
+
   return (
     <>
       <div className="page">
@@ -155,32 +168,32 @@ function TicketsContainer() {
               <CardWithNumber
                 bg={"#FFE4CE"}
                 desc={t("general.total_number")}
-                icon={money}
-                number={250}
+                icon={totalTicketsey}
+                number={statsData?.ticketStats?.total}
               ></CardWithNumber>
             </div>
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#FFF7E5"}
                 desc={t("tickets.ACTIVE")}
-                icon={money}
-                number={250}
+                icon={activeTickets}
+                number={statsData?.ticketStats?.ACTIVE}
               ></CardWithNumber>
             </div>
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#EFF9FF"}
                 desc={t("tickets.PROCESSING")}
-                icon={money}
-                number={250}
+                icon={processingTickets}
+                number={statsData?.ticketStats?.PROCESSING}
               ></CardWithNumber>
             </div>
             <div className="page_container_cards_card">
               <CardWithNumber
                 bg={"#E5FFEE"}
                 desc={t("tickets.CLOSED")}
-                icon={money}
-                number={250}
+                icon={closedTickets}
+                number={statsData?.ticketStats?.CLOSED}
               ></CardWithNumber>
             </div>
           </div>

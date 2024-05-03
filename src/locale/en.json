@@ -83,6 +83,8 @@
       "accept": "accept",
       "reject": "reject",
       "total_number": "total number",
+      "total_owners":"total owners of the property",
+      "total_tenats":"Total Tenants",
       "date": "date",
       "type": "type",
       "status": "status",
@@ -96,7 +98,10 @@
       "senter": "sender",
       "rent_collect": " Rent collected ",
       "last":"last",
-      "months":"months"
+      "months":"months",
+      "total_properties":"Total number of properties",
+      "total_numbers_units":"total number of units",
+      "total_rent_money":"Total rent"
     },
     "search": {
       "by_mail": "Search by user's email",

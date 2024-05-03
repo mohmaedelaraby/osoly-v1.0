@@ -16,7 +16,6 @@ import "../style/Home.scss";
 
 import CardWithImg from "../../../components/Cards/CardWithImg";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
-import moneyIcon from "../../../assets/icons-svgs/money.svg";
 import interfaceIcon from "../../../assets/icons-svgs/interface.svg";
 import houseIcon from "../../../assets/icons-svgs/house.svg";
 import homesIcon from "../../../assets/icons-svgs/homes.svg";
@@ -28,7 +27,8 @@ import PageHeader from "../../../components/shared/PageHeader";
 import useTickets from "../../Tickets/hooks/useTickets";
 import useUnits from "../../units/hooks/useUnits";
 import { useNavigate } from "react-router-dom";
-import { useColors, useDynamicColors, useToastMessage } from "../../../hooks/useDynamicColors";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import useStats from "../../../hooks/useStats";
 const Home = () => {
   const { t } = useTranslation();
 
@@ -88,6 +88,12 @@ const Home = () => {
     setPropertiesCount(homeData?.stats?.propertiesCount);
     setTenantsCount(homeData?.stats?.tenantsCount);
   }, []);
+
+  //get stats 
+  const { statsData, statsRefetch } = useStats();
+  useEffect(()=>{
+    statsRefetch()
+  },[])
   useEffect(() => {
     setMetricData([
       homeData?.stats?.tenantsCount,
@@ -199,25 +205,25 @@ const Home = () => {
           <div className="home_container_cards">
             <CardWithNumber
               icon={houseIcon}
-              number={250}
+              number={statsData?.homeStats?.totalRentedUnits}
               desc={t("home.cards.total_numbers_of_rent_units")}
               bg={"#E2FBD7"}
             ></CardWithNumber>
             <CardWithNumber
               icon={homesIcon}
-              number={170}
+              number={statsData?.homeStats?.totalProperties}
               desc={t("home.cards.total_numbers_of_units")}
               bg={"#EFF9FF"}
             ></CardWithNumber>
-            <CardWithNumber
+           {/*  <CardWithNumber
               icon={moneyIcon}
               number={"20k"}
               desc={t("home.cards.total_money")}
               bg={"#F3EBFF"}
-            ></CardWithNumber>
+            ></CardWithNumber> */}
             <CardWithNumber
               icon={interfaceIcon}
-              number={120}
+              number={statsData?.homeStats?.totalActiveTickets}
               desc={t("home.cards.total_open_tickets")}
               bg={"#FFE4CE"}
             ></CardWithNumber>

@@ -6,39 +6,47 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../assets/styels/components/Table.scss";
 import "../../../assets/styels/components/page.scss";
 
 import money from "../../../assets/icons-svgs/money.svg";
+import houseIcon from "../../../assets/icons-svgs/house.svg";
+import homesIcon from "../../../assets/icons-svgs/homes.svg";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 
 import PropertiesTable from "./PropertiesTable";
 import UnitsTable from "../../units/templete/UnitsTable";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useTranslation } from "react-i18next";
+import useStats from "../../../hooks/useStats";
 
 const PropertiesComponent = ({ data, owenerId }) => {
   const { t } = useTranslation();
+  //get stats 
+  const { statsData, statsRefetch } = useStats();
+  useEffect(()=>{
+    statsRefetch()
+  },[])
 
   const CardsDemo = [
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
+      img: houseIcon,
+      bg: "#EFF9FF",
+      title: " ر.س",
+      desc: t("general.total_properties"),
+    },
+    {
+      img: homesIcon,
+      bg: "#E4FFDF",
+      title: "ر.س",
+      desc: t("general.total_numbers_units"),
     },
     {
       img: money,
       bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
-    },
-    {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
+      title: "ر.س",
+      desc: t("general.total_rent_money"),
     },
   ];
 
@@ -57,7 +65,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
                   bg={card.bg}
                   desc={card.desc}
                   icon={card.img}
-                  number={card.title}
+                  number={index == 0 ? statsData.propertiesUnitsStats?.properties : index == 1 ? statsData.propertiesUnitsStats?.units: (statsData.propertiesUnitsStats?.totalRent +" "+card.title) }
                 ></CardWithNumber>
               </div>
             ))}

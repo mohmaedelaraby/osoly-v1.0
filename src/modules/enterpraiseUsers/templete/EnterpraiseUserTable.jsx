@@ -39,7 +39,9 @@ import {
 } from "@chakra-ui/icons";
 import CreateEnterpraiseUser from "./CreateEnterpraiseUser";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
-import money from "../../../assets/icons-svgs/money.svg";
+import blueCrown from "../../../assets/icons-svgs/blueCrown.svg";
+import goldCrown from "../../../assets/icons-svgs/goldCrown.svg";
+import silverCrown from "../../../assets/icons-svgs/silverCrown.svg";
 import Pagination from "../../../components/shared/Pagination";
 import useEnterPrisesUsers from "../hooks/useEnterprisesUsers";
 import usePlans from "../hooks/usePlans";
@@ -49,6 +51,7 @@ import { useTranslation } from "react-i18next";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import useStats from "../../../hooks/useStats";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
@@ -130,26 +133,25 @@ const UserEnterpraiseTable = () => {
     onOpenModalEdit();
   };
 
-  const CardsDemo = [
+  //get stats 
+  const { statsData, statsRefetch } = useStats();
+  useEffect(()=>{
+    statsRefetch()
+  },[])
+
+  const CardsImages = [
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450",
-      desc: "مجموع الإيجار",
+      img: goldCrown,
     },
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450",
-      desc: "مجموع الإيجار",
+      img: silverCrown,
     },
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450",
-      desc: "مجموع الإيجار",
+      img: blueCrown
     },
   ];
+
+  
 
   return (
     <>
@@ -159,14 +161,14 @@ const UserEnterpraiseTable = () => {
             <PageHeader title={t("enterprise.page.header")}></PageHeader>
           </div>
           <div className="page_container_cards">
-            {CardsDemo?.map((card, index) => (
+            {statsData?.enterpriseStats?.map((card, index) => (
               <div className="page_container_cards_card">
                 <CardWithNumber
                   key={index}
-                  bg={card.bg}
-                  desc={card.desc}
-                  icon={card.img}
-                  number={card.title}
+                  bg={card?.color}
+                  desc={card?.planName}
+                  icon={CardsImages[index].img}
+                  number={card?.subscribers}
                 ></CardWithNumber>
               </div>
             ))}

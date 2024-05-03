@@ -6,36 +6,43 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../assets/styels/components/Table.scss";
-import money from "../../../assets/icons-svgs/money.svg";
+import totalUsers from "../../../assets/icons-svgs/totalUsers.svg";
+import totalrenters from "../../../assets/icons-svgs/totalrenters.svg";
+import homesGreen from "../../../assets/icons-svgs/homesGreen.svg";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
 import UserTable from "./UserTable";
 import OwnerTable from "../../owners/templete/OwnerTable";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useTranslation } from "react-i18next";
+import useStats from "../../../hooks/useStats";
 
 
 const UserComponent = () => {
   const { t } = useTranslation();
+  const { statsData, statsRefetch } = useStats();
+  useEffect(()=>{
+    statsRefetch()
+  },[])
   const CardsDemo = [
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
+      img: totalUsers,
+      bg: "#E0F2FF",
+      title: "ر.س",
+      desc: t("general.total_number"),
     },
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
+      img: homesGreen,
+      bg: "#E5FFEE",
+      title: "ر.س",
+      desc: t("general.total_owners"),
     },
     {
-      img: money,
-      bg: "#CFB2FE",
-      title: "3450 ر.س",
-      desc: "مجموع الإيجار",
+      img: totalrenters,
+      bg: "#FFF7E5",
+      title: "ر.س",
+      desc: t("general.total_tenats"),
     },
   ];
 
@@ -51,10 +58,10 @@ const UserComponent = () => {
               <div className="page_container_cards_card">
                 <CardWithNumber
                   key={index}
-                  bg={card.bg}
-                  desc={card.desc}
-                  icon={card.img}
-                  number={card.title}
+                  bg={CardsDemo[index]?.bg}
+                  desc={CardsDemo[index]?.desc}
+                  icon={CardsDemo[index]?.img}
+                  number={index == 0 ? statsData.usersStats?.total : index == 1 ? statsData.usersStats?.owners : statsData.usersStats?.tenants }
                 ></CardWithNumber>
               </div>
             ))}
