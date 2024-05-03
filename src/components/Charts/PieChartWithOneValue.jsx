@@ -5,8 +5,14 @@ import { useDrawingArea } from "@mui/x-charts";
 import { styled } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 
-function PieChartComponentWithOneValue({data}) {
-
+function PieChartComponentWithOneValue({number = 0}) {
+  let reminder = (100-number) /3
+  let data = [
+    { value: number, label: "A" },
+    { value: reminder, label: "b" },
+    { value: reminder, label: "c" },
+    { value: reminder, label: "d" },
+  ];
   const {
     t,
     i18n: { changeLanguage, language },
@@ -46,7 +52,7 @@ function PieChartComponentWithOneValue({data}) {
 
   return (
     <>
-    <div className={language == "ar" ? 'circl_ar':'circl_en'}>25%</div>
+    <div className={language == "ar" ? 'circl_ar':'circl_en'}>{number}%</div>
      <ThemeProvider theme={MuiTheme}>
       <PieChart
       

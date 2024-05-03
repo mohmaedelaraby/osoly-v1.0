@@ -182,12 +182,7 @@ const Home = () => {
     },
   ];
 
-  const datat = [
-    { value: 25, label: "A" },
-    { value: 25, label: "b" },
-    { value: 25, label: "c" },
-    { value: 25, label: "d" },
-  ];
+
 
  const {primary,secondry}=useDynamicColors()
   
@@ -257,7 +252,7 @@ const Home = () => {
                     {t("home.charts.new_users_desc")}
                   </div>
                   <PieChartComponentWithOneValue
-                    data={datat}
+                    number={statsData?.homeStats?.newUsersPercentage?.toString().slice(0,4)}
                   ></PieChartComponentWithOneValue>
                   <div className="home_container_charts_table__chart_card_footer">
                     <div className="home_container_charts_table__chart_card_footer_txt">
