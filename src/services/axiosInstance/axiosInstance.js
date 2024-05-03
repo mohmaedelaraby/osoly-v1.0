@@ -6,7 +6,7 @@ import { apiUrl } from "../../utils/exportEnvUrls";
 const onRequest = (
   config
 ) => {
-  const currentUserJson = localStorage.getItem("currentUser");
+  const currentUserJson = sessionStorage.getItem("currentUser");
   //const clientKey = sessionStorage.getItem("clientKey");
   const currentUser = currentUserJson ? JSON.parse(currentUserJson) : {};
 
@@ -35,7 +35,7 @@ const onRequestError = (error) => {
 };
 
 const onResponse = (response) => {
-  localStorage.removeItem("refreshRequested");
+  sessionStorage.removeItem("refreshRequested");
   return response;
 };
 
@@ -60,7 +60,7 @@ const onResponseError = async (error) => {
 
     // If the response status is 401 or 403 (unauthorized | forbidden), refresh the access token
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-      const refreshRequested = localStorage.getItem("refreshRequested");
+      const refreshRequested = sessionStorage.getItem("refreshRequested");
       if (refreshRequested == "true") { // Check if already one refresh request has been initialized
         return new Promise(function (resolve, reject) {
           failedQueue.push({ resolve, reject });
@@ -71,10 +71,10 @@ const onResponseError = async (error) => {
           return Promise.reject(err);
         });
       } else {
-        localStorage.setItem("refreshRequested", "true");
+        sessionStorage.setItem("refreshRequested", "true");
       }
-      const currentUserJson = localStorage.getItem("currentUser");
-      const clientKey = localStorage.getItem("clientKey");
+      const currentUserJson = sessionStorage.getItem("currentUser");
+      const clientKey = sessionStorage.getItem("clientKey");
       const currentUser = currentUserJson
         ? JSON.parse(currentUserJson)
         : {};
@@ -102,8 +102,8 @@ const onResponseError = async (error) => {
             accessToken: newAccessToken,
             refreshToken: newRefreshToken,
           };
-          localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-          localStorage.removeItem("refreshRequested");
+          sessionStorage.setItem("currentUser", JSON.stringify(updatedUser));
+          sessionStorage.removeItem("refreshRequested");
 
           // Resend the original request with the new access token
           if (originalRequest.headers && newAccessToken) {
@@ -141,6 +141,6 @@ export const setupInterceptorsTo = (
 
 
 export const logout = () => {
-  localStorage.removeItem("currentUser");
+  sessionStorage.removeItem("currentUser");
   window.location.href = "/login";
 }

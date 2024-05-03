@@ -12,7 +12,7 @@ import {
 function LineChart({ data }) {
   const [strokeColor , setStrokeColor]  = useState()
   useEffect(()=>{
-    let dashboardSettings = localStorage.getItem("dashboardSettings");
+    let dashboardSettings = sessionStorage.getItem("dashboardSettings");
     dashboardSettings = JSON.parse(dashboardSettings)
     setStrokeColor(dashboardSettings?.dashboardColor)
   },[])

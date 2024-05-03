@@ -25,6 +25,16 @@ const SettingsForm = () => {
 
   const { mutate, isLoading, isSuccess } = useUpdateSettings();
 
+  
+const getBase64 = (file) => {
+  return new Promise((resolve,reject) => {
+     const reader = new FileReader();
+     reader.onload = () => resolve(reader.result);
+     reader.onerror = error => reject(error);
+     reader.readAsDataURL(file);
+  });
+}
+
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append("logo", selectedLogo, selectedLogo.name);
@@ -32,21 +42,24 @@ const SettingsForm = () => {
     formData.append("dashboardFontColor", bgFontColor);
     formData.append("sidebarColor", sbColor);
     formData.append("sidebarFontColor", sbFontColor);
-
+ 
     mutate({ body: formData });
-    if (isSuccess) {
-      localStorage.setItem(
+    getBase64(selectedLogo).then(base64 => {
+      sessionStorage.setItem(
         "dashboardSettings",
         JSON.stringify({
           dashboardColor: bgColor,
           dashboardFontColor: bgFontColor,
           sidebarColor: sbColor,
           sidebarFontColor: sbFontColor,
-          logo: selectedLogo,
+          logo: base64,
         })
       );
-      window.location.reload();
-    }
+    });
+    //window.location.reload();
+    //sessionStorage.removeItem("dashboardSettings")
+    
+    
   };
   return (
     <div className="page">

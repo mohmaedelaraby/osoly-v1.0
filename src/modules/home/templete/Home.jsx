@@ -31,7 +31,7 @@ import useStats from "../../../hooks/useStats";
 const Home = () => {
   const { t } = useTranslation();
 
-  const currentUserJson = localStorage.getItem("currentUser");
+  const currentUserJson = sessionStorage.getItem("currentUser");
   const homeData = JSON.parse(currentUserJson);
   const navigate = useNavigate();
   const {

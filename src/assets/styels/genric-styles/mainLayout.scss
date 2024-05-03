@@ -407,19 +407,19 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px #194C81 !important;
+    box-shadow: inset 0 0 2px rgb(165, 162, 162) !important;
     border-radius: 10px !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #194C81 !important;
+    background: rgb(165, 162, 162) !important;
     border-radius: 10px !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #194C81 !important;
+    background: rgb(165, 162, 162) !important;
 
 }
 

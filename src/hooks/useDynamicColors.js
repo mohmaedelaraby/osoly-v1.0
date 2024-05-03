@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const useDynamicColors = () => {
     const [dbColors, setDbColors] = useState()
     useEffect(() => {
-        let dashboardSettings = localStorage.getItem("dashboardSettings");
+        let dashboardSettings = sessionStorage.getItem("dashboardSettings");
         dashboardSettings = JSON.parse(dashboardSettings)
         setDbColors(dashboardSettings)
         var bg_elementsecondry = document.getElementsByClassName('bg_secondry')

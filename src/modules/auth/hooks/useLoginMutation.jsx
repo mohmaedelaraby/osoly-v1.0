@@ -18,19 +18,13 @@ export const useLoginMutation = () => {
     onSuccess: (res) => {
       if (res.data.data.accessToken) {
         const currentUser = res.data.data;
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-       /*  useColorStore.setState({
-          dashboardColor: res.data.data.enterprise?.dashboardColor,
-          dashboardFontColor: res.data.data.enterprise?.dashboardFontColor,
-          sidebarColor: res.data.data.enterprise?.sidebarColor,
-          sidebarFontColor: res.data.data.enterprise?.sidebarFontColor,
-          logo: res.data.data.enterprise?.logo,
-        }); */
-        localStorage.setItem("dashboardSettings",JSON.stringify({
-          dashboardColor: "#194C81",
-          dashboardFontColor: "#EFF9FF",
-          sidebarColor: "#194C81",
-          sidebarFontColor: "#EFF9FF",
+        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+        
+        sessionStorage.setItem("dashboardSettings",JSON.stringify({
+          dashboardColor: res.data.data.enterprise?.dashboardColor || "#194C81",
+          dashboardFontColor: res.data.data.enterprise?.dashboardFontColor|| "#EFF9FF",
+          sidebarColor: res.data.data.enterprise?.sidebarColor || "#194C81",
+          sidebarFontColor: res.data.data.enterprise?.sidebarFontColor || "#EFF9FF",
           logo: res.data.data.enterprise?.logo,
         }));
         loginStore();

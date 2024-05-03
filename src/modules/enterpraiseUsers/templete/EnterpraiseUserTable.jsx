@@ -312,7 +312,7 @@ const UserEnterpraiseTable = () => {
                           >
                             {PlansData?.plans?.map((item, index) => (
                               <option id={index} value={item.id}>
-                                {item.name}
+                                {item?.name}
                               </option>
                             ))}
                           </Select>

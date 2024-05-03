@@ -29,7 +29,7 @@ import { useTranslation } from "react-i18next";
 function SideBar() {
   // eslint-disable-next-line
   const { t } = useTranslation();
-  const currentUserJson = localStorage.getItem("currentUser");
+  const currentUserJson = sessionStorage.getItem("currentUser");
   const userRole = JSON.parse(currentUserJson)?.enterprise?.role;
 
   const navigate = useNavigate();
@@ -41,13 +41,15 @@ function SideBar() {
   const [sbFontColor, setSbFontcolor] = useState();
   const [sbLogo, setSbLogo] = useState();
 
+  const dashboardSettingsFromSession = sessionStorage.getItem("dashboardSettings");
+
   useEffect(() => {
-    let dashboardSettings = localStorage.getItem("dashboardSettings");
-    dashboardSettings = JSON.parse(dashboardSettings);
+    
+    let dashboardSettings = JSON.parse(dashboardSettingsFromSession);
     setSbcolor(dashboardSettings?.sidebarColor);
     setSbFontcolor(dashboardSettings?.sidebarFontColor);
     setSbLogo(dashboardSettings?.logo);
-  }, []);
+  }, [dashboardSettingsFromSession]);
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
@@ -119,7 +121,6 @@ function SideBar() {
               onClick={() => navigate("/home")}
               className="sidebar__logo__container"
             >
-              {}
               <img
                 src={sbLogo ? sbLogo : logo}
                 alt="logo"
@@ -185,7 +186,7 @@ function SideBar() {
                               }}
                               className="sidebar__items__container__item__text"
                             >
-                              {t(item.name)}
+                              {t(item?.name)}
                             </div>
                           </div>
 
@@ -206,7 +207,7 @@ function SideBar() {
                                     }`}
                                   >
                                     {/*  style={{'color':sbFontColor}} */}
-                                    {child.name}
+                                    {child?.name}
                                   </div>
                                 </>
                               ))
@@ -256,7 +257,7 @@ function SideBar() {
                               }}
                               className="sidebar__items__container__item__text"
                             >
-                              {t(item.name)}
+                              {t(item?.name)}
                             </div>
                           </div>
 
@@ -277,7 +278,7 @@ function SideBar() {
                                     }`}
                                   >
                                     {/*  style={{'color':sbFontColor}} */}
-                                    {child.name}
+                                    {child?.name}
                                   </div>
                                 </>
                               ))
@@ -309,7 +310,10 @@ function SideBar() {
                           setSelected(i);
                           item.navTo === "/info"
                             ? onOpenInfoModal()
-                            : navigate(item.navTo);
+                            : 
+                            sessionStorage.removeItem('currentUser')
+                            sessionStorage.removeItem('dashboardSettings')
+                            navigate(item.navTo);
                         }}
                       >
                         <div className="sidebar__items__container__item__icon">
@@ -329,7 +333,7 @@ function SideBar() {
                           }}
                           className="sidebar__items__container__item__text"
                         >
-                          {t(item.name)}
+                          {t(item?.name)}
                         </div>
                       </div>
 
@@ -349,7 +353,7 @@ function SideBar() {
                                 }`}
                               >
                                 {/*  style={{'color':sbFontColor}} */}
-                                {child.name}
+                                {child?.name}
                               </div>
                             </>
                           ))
