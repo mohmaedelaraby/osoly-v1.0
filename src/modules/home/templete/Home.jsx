@@ -34,12 +34,6 @@ const Home = () => {
 
   const currentUserJson = localStorage.getItem("currentUser");
   const homeData = JSON.parse(currentUserJson);
-  const [pieData, setPieData] = useState();
-  const [ownersCount, setOwnersCount] = useState(0);
-  const [propertiesCount, setPropertiesCount] = useState(0);
-  const [tenantsCount, setTenantsCount] = useState(0);
-  const [metricData, setMetricData] = useState();
-  const [barData, setBarData] = useState();
   const navigate = useNavigate();
   const {
     data: allData,
@@ -60,132 +54,13 @@ const Home = () => {
     unitsReftch();
   }, []);
 
-  const metircArr = [
-    {
-      tile: "Tenants",
-      label: "Tickets",
-      icon: <FaUser />,
-      num: 0,
-    },
-    {
-      tile: "Owners",
-      label: "Owner",
-      icon: <FaHouseUser />,
-      num: 0,
-    },
-    {
-      tile: "Properties",
-      label: "Property",
-      icon: <FaBuilding />,
-      num: 0,
-    },
-  ];
-  const metricVals = [];
+  //get stats
+  const { statsData, statsRefetch } = useStats();
   useEffect(() => {
-    setPieData(homeData?.stats?.ticketsStats);
-    setBarData(homeData?.stats?.unitsStats);
-    setOwnersCount(homeData?.stats?.ownersCount);
-    setPropertiesCount(homeData?.stats?.propertiesCount);
-    setTenantsCount(homeData?.stats?.tenantsCount);
+    statsRefetch();
   }, []);
 
-  //get stats 
-  const { statsData, statsRefetch } = useStats();
-  useEffect(()=>{
-    statsRefetch()
-  },[])
-  useEffect(() => {
-    setMetricData([
-      homeData?.stats?.tenantsCount,
-      homeData?.stats?.ownersCount,
-      homeData?.stats?.propertiesCount,
-    ]);
-  }, [ownersCount, propertiesCount, tenantsCount]);
-
-
-
-  const rentTable = [
-    {
-      name: "شقة 120",
-      date: "20-03-2024 ",
-      property: "عمارة 20",
-      price: "120 ",
-    },
-    {
-      name: "شقة 120",
-      date: "20-03-2024 ",
-      property: "عمارة 20",
-      price: "120 ",
-    },
-    {
-      name: "شقة 120",
-      date: "20-03-2024 ",
-      property: "عمارة 20",
-      price: "120 ",
-    },
-    {
-      name: "شقة 120",
-      date: "20-03-2024 ",
-      property: "عمارة 20",
-      price: "120 ",
-    },
-    {
-      name: "شقة 120",
-      date: "20-03-2024 ",
-      property: "عمارة 20",
-      price: "120 ",
-    },
-  ];
-
-  const PieTest = [
-    {
-      label: "solved",
-      value: 20,
-    },
-    {
-      label: "processing",
-      value: 40,
-    },
-    {
-      label: "canceled",
-      value: 20,
-    },
-    {
-      label: "reviewing",
-      value: 20,
-    },
-  ];
-  const Linedata = [
-    {
-      name: "Nov",
-      value: 2400,
-    },
-    {
-      name: "Dec",
-      value: 1398,
-    },
-    {
-      name: "Jan",
-      value: 9800,
-    },
-    {
-      name: "Feb",
-      value: 3908,
-    },
-    {
-      name: "Mar",
-      value: 4800,
-    },
-    {
-      name: "Apr",
-      value: 3800,
-    },
-  ];
-
-
-
- const {primary,secondry}=useDynamicColors()
-  
+  const { primary, secondry } = useDynamicColors();
 
   return (
     <>
@@ -210,7 +85,7 @@ const Home = () => {
               desc={t("home.cards.total_numbers_of_units")}
               bg={"#EFF9FF"}
             ></CardWithNumber>
-           {/*  <CardWithNumber
+            {/*  <CardWithNumber
               icon={moneyIcon}
               number={"20k"}
               desc={t("home.cards.total_money")}
@@ -224,39 +99,46 @@ const Home = () => {
             ></CardWithNumber>
           </div>
           <div className="home_container_charts_table">
-
             <div className="home_container_charts_table__chart w-100 ml-24">
               <div className="home_container_charts_table__chart_blur">
-              <LineChartWithDate />
-              <div className="home_container_charts_table__chart_blur_phase"></div>
+                <LineChartWithDate />
+                <div className="home_container_charts_table__chart_blur_phase"></div>
               </div>
-              
             </div>
 
             <div className="home_container_charts_table__chart ml-24">
-              <div  className="home_container_charts_table__chart_header fo_primary">
+              <div className="home_container_charts_table__chart_header fo_primary">
                 {t("general.tickets")}
               </div>
 
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
-                  <PieChartComponent numbers={statsData?.homeStats?.ticketsStatsPercentage}></PieChartComponent>
+                  <PieChartComponent
+                    numbers={statsData?.homeStats?.ticketsStatsPercentage}
+                  ></PieChartComponent>
                 </CardBody>
               </Card>
             </div>
 
             <div className="home_container_charts_table__chart">
-              <div className="home_container_charts_table__chart_header fo_primary" >
+              <div className="home_container_charts_table__chart_header fo_primary">
                 {t("home.charts.new_users_title")}
               </div>
 
-              <Card width="100%" borderRadius="14px" padding="36px" maxHeight='364px'>
+              <Card
+                width="100%"
+                borderRadius="14px"
+                padding="36px"
+                maxHeight="364px"
+              >
                 <CardBody padding="0px">
                   <div className="home_container_charts_table__chart_card_title">
                     {t("home.charts.new_users_desc")}
                   </div>
                   <PieChartComponentWithOneValue
-                    number={statsData?.homeStats?.newUsersPercentage?.toString().slice(0,4)}
+                    number={statsData?.homeStats?.newUsersPercentage
+                      ?.toString()
+                      .slice(0, 4)}
                   ></PieChartComponentWithOneValue>
                   <div className="home_container_charts_table__chart_card_footer">
                     <div className="home_container_charts_table__chart_card_footer_txt">
@@ -275,7 +157,6 @@ const Home = () => {
               </Card>
             </div>
           </div>
-
 
           <div className="home_container_tables">
             <div className="home_container_item_tables ml-12">
