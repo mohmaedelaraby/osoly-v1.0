@@ -85,6 +85,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     bathrooms: data?.bathrooms || 0,
     conditioners: data?.conditioners || 0,
     ownerId: data?.ownerId || " ",
+    tenantId: data?.tenantId || " ",
     propertyId: data?.propertyId || " ",
     image: data?.image || " ",
     maintenanceMan: data?.maintenanceMan || "OWNER",
@@ -98,6 +99,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formik.values.ownerId = selectedOwnerId;
       formik.values.propertyId = selectedProbertyId;
       formik.values.maintenanceMan = selectedMaintenanceManId;
+      formik.values.tenantId = selectedRenterId;
       const formData = new FormData();
       if (selectedImage) {
         formData.append("image", selectedImage, selectedImage.name);
@@ -113,6 +115,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       //formData.append("maintenanceMan", formik.values.maintenanceMan);
       // formData.append("ownerId", formik.values.ownerId);
       //formData.append("propertyId", formik.values.propertyId);
+      //formData.append("tenantId", formik.values.tenantId);
       formData.append("rent", formik.values.rent);
       formData.append("rentCollectionDate", formik.values.rentCollectionDate);
       formData.append("rooms", formik.values.rooms);

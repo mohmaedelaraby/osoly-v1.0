@@ -12,6 +12,7 @@ export const unitsValidation = Yup.object({
   bathrooms: Yup.number().required("You should enter bathrooms"),
   conditioners: Yup.number().required("You should enter conditioners"),
   maintenanceMan: Yup.string().required("You should enter maintenanceMan"),
+  tenantId: Yup.string().required("You should enter tenantId"),
   image: Yup.mixed().required("You need to provide a file")
   
 });
