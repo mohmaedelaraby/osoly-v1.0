@@ -4,9 +4,9 @@ import "../../assets/styels/genric-styles/mainLayout.scss";
 
 const SettingsPage = () => {
   return (
-    <div className="form_container">
+    <>
       <SettingsForm />
-    </div>
+    </>
   );
 };
 
