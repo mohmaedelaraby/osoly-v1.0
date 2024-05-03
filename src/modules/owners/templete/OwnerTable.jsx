@@ -51,8 +51,7 @@ import { useDynamicColors } from "../../../hooks/useDynamicColors";
 const OwnerTable = ({ switchTo }) => {
   const [selectedUser, setSelectedUser] = useState();
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
-
+  const { primary, secondry } = useDynamicColors();
 
   //sorting and filtering local
   const sortItems = [
@@ -169,7 +168,7 @@ const OwnerTable = ({ switchTo }) => {
     email,
     identityId,
     contractNumber,
-    isSuccessFiles
+    isSuccessFiles,
   ]);
 
   const handlePageOwnerChange = (page) => {
@@ -188,7 +187,10 @@ const OwnerTable = ({ switchTo }) => {
               openOwnerPopup();
             }}
           >
-            <span className="pl-8 fo_secondry">  {t("users.create.title_owner")} </span>
+            <span className="pl-8 fo_secondry">
+              {" "}
+              {t("users.create.title_owner")}{" "}
+            </span>
           </Button>
 
           <Button
@@ -212,10 +214,10 @@ const OwnerTable = ({ switchTo }) => {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
@@ -300,10 +302,10 @@ const OwnerTable = ({ switchTo }) => {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
@@ -449,11 +451,18 @@ const OwnerTable = ({ switchTo }) => {
             <Thead className="table_header">
               <Tr>
                 <Th className="table_header_item">{t("general.name")} </Th>
-                <Th className="table_header_item">{t("general.national_id_text")}</Th>
+                <Th className="table_header_item">
+                  {t("general.national_id_text")}
+                </Th>
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
-                <Th className="table_header_item">{t("general.num_of_properties")} </Th>
-                <Th className="table_header_item"> {t("general.brokerage_contract_number")}</Th>
+                <Th className="table_header_item">
+                  {t("general.num_of_properties")}{" "}
+                </Th>
+                <Th className="table_header_item">
+                  {" "}
+                  {t("general.brokerage_contract_number")}
+                </Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>
@@ -490,7 +499,7 @@ const OwnerTable = ({ switchTo }) => {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              color={'white'}
+                              color={"white"}
                               variant="solid"
                               bg={"#CC3636"}
                               alignItems="center"
@@ -503,7 +512,7 @@ const OwnerTable = ({ switchTo }) => {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              color={'white'}
+                              color={"white"}
                               variant="solid"
                               alignItems="center"
                               justifyContent="center"

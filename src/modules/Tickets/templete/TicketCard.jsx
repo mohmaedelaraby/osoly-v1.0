@@ -100,6 +100,8 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
                       colorScheme="blue"
                       marginLeft="8px"
                       width="100%"
+                      backgroundColor="#2EA154"
+                    color={'white'}
                       onClick={() => {
                         let sentStatus =
                           status === TICKET_STATUS.ACTIVE

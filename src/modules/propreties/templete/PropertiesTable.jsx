@@ -54,7 +54,6 @@ function PropertiesTable() {
 
   const [selectId, setSelectedId] = useState();
   const [isGrid, setIsGrid] = useState(false);
-  
 
   //sorting and filtering local
   const sortItems = [
@@ -182,17 +181,16 @@ function PropertiesTable() {
 
   let onClickFunction = (arg) => setDataFromChild(arg);
 
-  useEffect(()=>{
-   if(dataFromChild){
-    if(dataFromChild[0] == 'edit'){
-      openPropertyEditPopup({id:dataFromChild[1]})
-    }else if(dataFromChild[0] == 'delete'){
-      mutate(dataFromChild[1])
+  useEffect(() => {
+    if (dataFromChild) {
+      if (dataFromChild[0] == "edit") {
+        openPropertyEditPopup({ id: dataFromChild[1] });
+      } else if (dataFromChild[0] == "delete") {
+        mutate(dataFromChild[1]);
+      }
     }
-   }
-  
-  },[dataFromChild])
-  
+  }, [dataFromChild]);
+
   return (
     <>
       <div className="page_container_table__header">
@@ -230,11 +228,10 @@ function PropertiesTable() {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
-              colorScheme={"white"}
             >
               <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
@@ -318,11 +315,10 @@ function PropertiesTable() {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
-              colorScheme={"white"}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>

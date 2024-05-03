@@ -65,7 +65,7 @@ const PropertiesComponent = ({ data, owenerId }) => {
                   bg={card.bg}
                   desc={card.desc}
                   icon={card.img}
-                  number={index == 0 ? statsData.propertiesUnitsStats?.properties : index == 1 ? statsData.propertiesUnitsStats?.units: (statsData.propertiesUnitsStats?.totalRent +" "+card.title) }
+                  number={index == 0 ? statsData?.propertiesUnitsStats?.properties : index == 1 ? statsData?.propertiesUnitsStats?.units: (statsData?.propertiesUnitsStats?.totalRent +" "+card.title) }
                 ></CardWithNumber>
               </div>
             ))}

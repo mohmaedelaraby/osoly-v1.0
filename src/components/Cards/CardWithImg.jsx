@@ -135,7 +135,7 @@ function CardWithImg({
                     width={isVertical ? "50%" : "100%"}
                     rightIcon={<CheckIcon />}
                     backgroundColor="#2EA154"
-                    color={secondry}
+                    color={'white'}
                     variant="solid"
                   >
                     {t("general.accept")}

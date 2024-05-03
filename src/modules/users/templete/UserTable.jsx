@@ -196,10 +196,10 @@ function UserTable({ switchTo }) {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}  
             >
               <span className="pl-8 fo_primary">{t("general.sort")} </span>
             </MenuButton>
@@ -284,10 +284,10 @@ function UserTable({ switchTo }) {
               as={Button}
               marginRight="8px"
               marginLeft="8px"
-              bg={secondry}
+              bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  colorScheme={'white'}
+              rightIcon={<ChevronDownIcon />}  
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>

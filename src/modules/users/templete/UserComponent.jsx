@@ -61,7 +61,7 @@ const UserComponent = () => {
                   bg={CardsDemo[index]?.bg}
                   desc={CardsDemo[index]?.desc}
                   icon={CardsDemo[index]?.img}
-                  number={index == 0 ? statsData.usersStats?.total : index == 1 ? statsData.usersStats?.owners : statsData.usersStats?.tenants }
+                  number={index == 0 ? statsData?.usersStats?.total : index == 1 ? statsData?.usersStats?.owners : statsData?.usersStats?.tenants }
                 ></CardWithNumber>
               </div>
             ))}

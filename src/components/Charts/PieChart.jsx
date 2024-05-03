@@ -9,15 +9,15 @@ function PieChartComponent({ numbers }) {
   let data = [
     {
       label: t("tickets.ACTIVE"),
-      value: numbers.ACTIVE,
+      value: numbers?.ACTIVE,
     },
     {
       label: t("tickets.CLOSED"),
-      value: numbers.CLOSED,
+      value: numbers?.CLOSED,
     },
     {
       label: t("tickets.PROCESSING"),
-      value: numbers.PROCESSING,
+      value: numbers?.PROCESSING,
     },
   ];
   const MuiTheme = createTheme({

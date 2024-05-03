@@ -133,11 +133,11 @@ const UserEnterpraiseTable = () => {
     onOpenModalEdit();
   };
 
-  //get stats 
+  //get stats
   const { statsData, statsRefetch } = useStats();
-  useEffect(()=>{
-    statsRefetch()
-  },[])
+  useEffect(() => {
+    statsRefetch();
+  }, []);
 
   const CardsImages = [
     {
@@ -147,11 +147,9 @@ const UserEnterpraiseTable = () => {
       img: silverCrown,
     },
     {
-      img: blueCrown
+      img: blueCrown,
     },
   ];
-
-  
 
   return (
     <>
@@ -197,11 +195,10 @@ const UserEnterpraiseTable = () => {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={secondry}
+                      bg={"white"}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
-                      colorScheme='teal'
                     >
                       <span className="pl-8 fo_primary">
                         {t("general.sort")}
@@ -287,14 +284,13 @@ const UserEnterpraiseTable = () => {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={secondry}
+                      bg={"white"}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
-                      colorScheme={"white"}
                     >
                       <span className="pl-8 fo_primary fo_primary">
-                        {t("general.filter")} 
+                        {t("general.filter")}
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">

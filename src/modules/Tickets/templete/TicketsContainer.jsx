@@ -206,11 +206,9 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
-                      colorScheme={"white"}
                     >
                       <span className="pl-8 fo_primary">
                         {t("general.sort")}
@@ -298,11 +296,9 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
-                      bg={secondry}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
-                      colorScheme={"white"}
                     >
                       <span className="pl-8 fo_primary">
                         {t("general.filter")}
@@ -583,7 +579,7 @@ function TicketsContainer() {
                                               width={"100%"}
                                               rightIcon={<CheckIcon />}
                                               backgroundColor="#2EA154"
-                                              color={secondry}
+                                              color={'white'}
                                               variant="solid"
                                               onClick={() => {
                                                 updateStatus(
@@ -765,7 +761,7 @@ function TicketsContainer() {
                                               width={"100%"}
                                               rightIcon={<CheckIcon />}
                                               backgroundColor="#2EA154"
-                                              color={secondry}
+                                              color={'white'}
                                               variant="solid"
                                               onClick={() => {
                                                 updateStatus(
