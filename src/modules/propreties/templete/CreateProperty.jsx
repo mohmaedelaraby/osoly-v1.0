@@ -21,7 +21,6 @@ import useUsers from "../../users/hooks/useUsers";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
-import { AddIcon } from "@chakra-ui/icons";
 import CreateUnit from "../../units/templete/CreateUnit";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";

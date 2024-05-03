@@ -337,6 +337,67 @@
     background: #E0F2FF;
 }
 
+.form__input__flex_fileUpload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    width: 100%;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    position: relative;
+
+    .form__input__flex_fileUpload_text {
+        color: #E0E0E0;
+        text-align: center;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 32px;
+        /* 200% */
+    }
+
+    .form__input__flex_fileUpload_desc {
+        color: #E0E0E0;
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 32px;
+        /* 200% */
+    }
+
+    .form__input__flex_fileUpload_input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+
+
+
+    }
+
+   
+
+    .form__input__flex_fileUpload_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+
+        img {
+            height: 235px !important;
+            width: 100% !important;
+            border-radius: 12px !important;
+        }
+    }
+}
+
+
 /* width */
 ::-webkit-scrollbar {
     width: 4px !important;

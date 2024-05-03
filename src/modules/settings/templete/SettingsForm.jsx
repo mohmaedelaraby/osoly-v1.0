@@ -5,12 +5,15 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useTranslation } from "react-i18next";
 import "../../../assets/styels/components/forms.scss";
+import bell from "../../../assets/images/bell.png";
+import { useUpdateSettings } from "../hooks/useUpdateSettings";
 
 const SettingsForm = () => {
   const { t } = useTranslation();
@@ -20,26 +23,30 @@ const SettingsForm = () => {
   const [sbColor, setSbcolor] = useState(null);
   const [sbFontColor, setSbFontcolor] = useState(null);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("bgColor")) {
-      setBgcolor(sessionStorage.getItem("bgColor"));
-    }
-    if (sessionStorage.getItem("bgFontColor")) {
-      setbgFontcolor(sessionStorage.getItem("bgFontColor"));
-    }
-    if (sessionStorage.getItem("sbColor")) {
-      setSbcolor(sessionStorage.getItem("sbColor"));
-    }
-    if (sessionStorage.getItem("sbFontColor")) {
-      setSbFontcolor(sessionStorage.getItem("sbFontColor"));
-    }
-  }, []);
+  const { mutate, isLoading, isSuccess } = useUpdateSettings();
 
   const handleSubmit = () => {
-    sessionStorage.setItem("bgColor", bgColor);
-    sessionStorage.setItem("bgFontColor", bgFontColor);
-    sessionStorage.setItem("sbColor", sbColor);
-    sessionStorage.setItem("sbFontColor", sbFontColor);
+    const formData = new FormData();
+    formData.append("logo", selectedLogo, selectedLogo.name);
+    formData.append("dashboardColor", bgColor);
+    formData.append("dashboardFontColor", bgFontColor);
+    formData.append("sidebarColor", sbColor);
+    formData.append("sidebarFontColor", sbFontColor);
+
+    mutate({ body: formData });
+    if (isSuccess) {
+      localStorage.setItem(
+        "dashboardSettings",
+        JSON.stringify({
+          dashboardColor: bgColor,
+          dashboardFontColor: bgFontColor,
+          sidebarColor: sbColor,
+          sidebarFontColor: sbFontColor,
+          logo: selectedLogo,
+        })
+      );
+      window.location.reload();
+    }
   };
   return (
     <div className="page">
@@ -47,164 +54,176 @@ const SettingsForm = () => {
         <div className="page_container_header">
           <PageHeader title={t("sidebar.settings")}></PageHeader>
         </div>
-        
+
         <div className="page_container_table">
-          <Card className="from__card" >
-            <CardBody>
-              <form onSubmit={() => handleSubmit()} className="form">
-                <div className="form__input form__input__flex">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label fo_primary">
-                        Dashboard Color
-                      </Text>
-                    </FormLabel>
+          {!isLoading ? (
+            <>
+              <Card className="from__card" width="100%">
+                <CardBody>
+                  <form onSubmit={() => handleSubmit()} className="form">
+                    <div className="form__input">
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label fo_primary">
+                            {t("settings.logo")}
+                          </Text>
+                        </FormLabel>
+                        {!selectedLogo ? (
+                          <div className="form__input__flex_fileUpload">
+                            <img src={bell} alt="" width={"66px"} />
+                            <p className="form__input__flex_fileUpload_text">
+                              {t("general.add_image")}
+                            </p>
+                            <p className="form__input__flex_fileUpload_desc">
+                              {t("general.image_disclaimer")}
+                            </p>
+                            <Input
+                              className="form__input__flex_fileUpload_input"
+                              type="file"
+                              name="image"
+                              accept=".png, .jpg, .jpeg"
+                              onChange={(e) => {
+                                setSelectedLogo(e.target.files[0]);
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              padding: `${selectedLogo ? "0px" : ""}`,
+                              borderRadius: "12px",
+                            }}
+                            className="form__input__flex_fileUpload"
+                          >
+                            <div className="form__input__flex_fileUpload_image">
+                              <img
+                                alt="not found"
+                                width={"auto"}
+                                height={"285px"}
+                                src={URL.createObjectURL(selectedLogo)}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </FormControl>
+                    </div>
+                    <div className="form__input form__input__flex">
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label fo_primary">
+                            {t("settings.primary_dash")}
+                          </Text>
+                        </FormLabel>
 
-                    <label
-                      htmlFor="color"
-                      className="form__input__container__colorpicker"
-                    >
-                      <input
-                        type="color"
-                        id="color"
-                        value={bgColor}
-                        onChange={(event) => {
-                          setBgcolor(event.target.value);
-                        }}
-                      />
-                      <Text fontSize="14px" fontWeight="normal">
-                        {bgColor}
-                      </Text>
-                    </label>
-                  </FormControl>
-
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label fo_primary">
-                        Dashboard Font Color
-                      </Text>
-                    </FormLabel>
-                    <label
-                      htmlFor="color"
-                      className="form__input__container__colorpicker"
-                    >
-                      <input
-                        type="color"
-                        id="color"
-                        value={bgFontColor}
-                        onChange={(event) => {
-                          setbgFontcolor(event.target.value);
-                        }}
-                      />
-                      <Text fontSize="14px" fontWeight="normal">
-                        {bgFontColor}
-                      </Text>
-                    </label>
-                  </FormControl>
-                </div>
-
-                <div className="form__input form__input__flex">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label fo_primary">
-                        Sidebar Color
-                      </Text>
-                    </FormLabel>
-
-                    <label
-                      htmlFor="color"
-                      className="form__input__container__colorpicker"
-                    >
-                      <input
-                        type="color"
-                        id="color"
-                        value={sbColor}
-                        onChange={(event) => {
-                          setSbcolor(event.target.value);
-                        }}
-                      />
-                      <Text fontSize="14px" fontWeight="normal">
-                        {sbColor}
-                      </Text>
-                    </label>
-                  </FormControl>
-
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label fo_primary">
-                        Sidebar Font Color
-                      </Text>
-                    </FormLabel>
-
-                    <label
-                      htmlFor="color"
-                      className="form__input__container__colorpicker"
-                    >
-                      <input
-                        type="color"
-                        id="color"
-                        value={sbFontColor}
-                        onChange={(event) => {
-                          setSbFontcolor(event.target.value);
-                        }}
-                      />
-                      <Text fontSize="14px" fontWeight="normal">
-                        {sbFontColor}
-                      </Text>
-                    </label>
-                  </FormControl>
-                </div>
-
-                <div className="form__input">
-                  <FormControl className="form__input__container">
-                    <FormLabel>
-                      <Text className="form__input__container__label fo_primary">
-                        {" "}
-                        Image{" "}
-                      </Text>
-                    </FormLabel>
-
-                    {!selectedLogo && (
-                      <div>
-                        <Input
-                          className="form__input__container__uploadFile"
-                          type="file"
-                          name="image"
-                          accept=".png, .jpg, .jpeg"
-                          onChange={(event) => {
-                            setSelectedLogo(event.target.files[0]);
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {selectedLogo && (
-                      <div className="form__input__container__image">
-                        <img
-                          alt="not found"
-                          width={"250px"}
-                          src={URL.createObjectURL(selectedLogo)}
-                        />
-                        <br />
-                        <button
-                          className="form__input__container__image__remove"
-                          onClick={() => setSelectedLogo(null)}
+                        <label
+                          htmlFor="color"
+                          className="form__input__container__colorpicker"
                         >
-                          Remove
-                        </button>
-                      </div>
-                    )}
-                  </FormControl>
-                </div>
+                          <input
+                            type="color"
+                            id="color"
+                            value={bgColor}
+                            onChange={(event) => {
+                              setBgcolor(event.target.value);
+                            }}
+                          />
+                          <Text fontSize="14px" fontWeight="normal">
+                            {bgColor}
+                          </Text>
+                        </label>
+                      </FormControl>
 
-                <div className="form__btn__container">
-                  <Button className="form__btn " type="submit">
-                    Edit Setting
-                  </Button>
-                </div>
-              </form>
-            </CardBody>
-          </Card>
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label fo_primary">
+                            {t("settings.sec_dash")}
+                          </Text>
+                        </FormLabel>
+                        <label
+                          htmlFor="color"
+                          className="form__input__container__colorpicker"
+                        >
+                          <input
+                            type="color"
+                            id="color"
+                            value={bgFontColor}
+                            onChange={(event) => {
+                              setbgFontcolor(event.target.value);
+                            }}
+                          />
+                          <Text fontSize="14px" fontWeight="normal">
+                            {bgFontColor}
+                          </Text>
+                        </label>
+                      </FormControl>
+                    </div>
+
+                    <div className="form__input form__input__flex">
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label fo_primary">
+                            {t("settings.primary_sb")}
+                          </Text>
+                        </FormLabel>
+
+                        <label
+                          htmlFor="color"
+                          className="form__input__container__colorpicker"
+                        >
+                          <input
+                            type="color"
+                            id="color"
+                            value={sbColor}
+                            onChange={(event) => {
+                              setSbcolor(event.target.value);
+                            }}
+                          />
+                          <Text fontSize="14px" fontWeight="normal">
+                            {sbColor}
+                          </Text>
+                        </label>
+                      </FormControl>
+
+                      <FormControl className="form__input__container">
+                        <FormLabel>
+                          <Text className="form__input__container__label fo_primary">
+                            {t("settings.primary_sb")}
+                          </Text>
+                        </FormLabel>
+
+                        <label
+                          htmlFor="color"
+                          className="form__input__container__colorpicker"
+                        >
+                          <input
+                            type="color"
+                            id="color"
+                            value={sbFontColor}
+                            onChange={(event) => {
+                              setSbFontcolor(event.target.value);
+                            }}
+                          />
+                          <Text fontSize="14px" fontWeight="normal">
+                            {sbFontColor}
+                          </Text>
+                        </label>
+                      </FormControl>
+                    </div>
+
+                    <div className="form__btn__container">
+                      <Button className="form__btn " type="submit">
+                        {t("general.edit")}
+                      </Button>
+                    </div>
+                  </form>
+                </CardBody>
+              </Card>
+            </>
+          ) : (
+            <>
+              <Spinner size="xl" />
+            </>
+          )}
         </div>
       </div>
     </div>

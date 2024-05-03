@@ -101,7 +101,8 @@
       "months":"months",
       "total_properties":"Total number of properties",
       "total_numbers_units":"total number of units",
-      "total_rent_money":"Total rent"
+      "total_rent_money":"Total rent",
+      "edit":"Edit"
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -201,6 +202,13 @@
       "settings": "Settings",
       "info": "Help",
       "logout": "Logout"
+    },
+    "settings":{
+      "primary_dash":"Primary Color For Dashboard",
+      "sec_dash":"Secondry Color For Dashboard",
+      "primary_sb":"Primary Color For Sidebar",
+      "sec_sb":"Secondry Color For Sidebar",
+      "logo":"Upload Your Logo"
     }
   }
 }

@@ -716,7 +716,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   !selectedRenterId
                 }
               >
-                {t("general.add")}
+                {t("general.edit")}
               </Button>
               <Button
                 onClick={onClose}

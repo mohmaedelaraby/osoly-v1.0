@@ -522,7 +522,7 @@ const EditProperty = ({ id, onClose }) => {
                   bg={primary}
                   type="submit"
                 >
-                  {t("general.add")}
+                  {t("general.edit")}
                 </Button>
                 <Button
                   onClick={onClose}

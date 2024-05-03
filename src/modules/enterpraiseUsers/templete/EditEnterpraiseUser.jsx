@@ -259,7 +259,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
               bg={primary}
               type="submit"
             >
-              {t("general.add")}
+              {t("general.edit")}
             </Button>
             <Button
               onClick={onClose}
