@@ -96,6 +96,7 @@
                     margin-top: 8px;
                 }
             }
+
             .home_container_item_tables_ticket {
                 flex: 1;
 
@@ -139,6 +140,20 @@
             }
 
             .home_container_charts_table__chart {
+                .home_container_charts_table__chart_blur {
+                    position: relative;
+
+                    .home_container_charts_table__chart_blur_phase {
+                       
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+
+                    }
+                }
+
                 .home_container_charts_table__chart_header {
                     color: #010B38;
 

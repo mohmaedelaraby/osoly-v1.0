@@ -1,8 +1,25 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-function PieChartComponent({data}) {
+function PieChartComponent({ numbers }) {
+  const { t } = useTranslation();
+
+  let data = [
+    {
+      label: t("tickets.ACTIVE"),
+      value: numbers.ACTIVE,
+    },
+    {
+      label: t("tickets.CLOSED"),
+      value: numbers.CLOSED,
+    },
+    {
+      label: t("tickets.PROCESSING"),
+      value: numbers.PROCESSING,
+    },
+  ];
   const MuiTheme = createTheme({
     palette: {
       mode: "dark",
@@ -10,19 +27,15 @@ function PieChartComponent({data}) {
     components: {
       MuiDataGrid: {
         styleOverrides: {
-          root: {
-           
-          },
+          root: {},
         },
       },
     },
   });
 
- 
-
   const sizing = {
     margin: { right: 5 },
-    stroke:0,
+    stroke: 0,
     width: 292,
     height: 292,
     legend: { hidden: true },
@@ -32,30 +45,26 @@ function PieChartComponent({data}) {
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
     //${(percent * 100).toFixed(0)}%
-    return `${params.label}  `;
+    return `${params.label} ${(percent * 100).toFixed(0)}%`;
   };
-
-
 
   return (
     <ThemeProvider theme={MuiTheme}>
       <PieChart
-      
-        colors={["#194C81", "#85A5C7", "#3D6A98", "#A9C3DE"]}
+        colors={["#194C81", "#85A5C7", "#3D6A98"]}
         series={[
           {
             outerRadius: 145,
             data,
             arcLabel: getArcLabel,
-            
           },
         ]}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
             fontSize: 14,
-            fontWeight:700,
-            border:'none'
+            fontWeight: 700,
+            border: "none",
           },
         }}
         {...sizing}

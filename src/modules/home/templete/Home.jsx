@@ -226,7 +226,11 @@ const Home = () => {
           <div className="home_container_charts_table">
 
             <div className="home_container_charts_table__chart w-100 ml-24">
+              <div className="home_container_charts_table__chart_blur">
               <LineChartWithDate />
+              <div className="home_container_charts_table__chart_blur_phase"></div>
+              </div>
+              
             </div>
 
             <div className="home_container_charts_table__chart ml-24">
@@ -236,7 +240,7 @@ const Home = () => {
 
               <Card width="100%" borderRadius="14px" padding="36px">
                 <CardBody padding="0px">
-                  <PieChartComponent data={PieTest}></PieChartComponent>
+                  <PieChartComponent numbers={statsData?.homeStats?.ticketsStatsPercentage}></PieChartComponent>
                 </CardBody>
               </Card>
             </div>
