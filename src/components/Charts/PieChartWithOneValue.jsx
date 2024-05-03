@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { useDrawingArea } from "@mui/x-charts";
 import { styled } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../hooks/useDynamicColors";
 
 function PieChartComponentWithOneValue({number = 0}) {
   let reminder = (100-number) /3
@@ -17,6 +18,8 @@ function PieChartComponentWithOneValue({number = 0}) {
     t,
     i18n: { changeLanguage, language },
   } = useTranslation();
+
+  const {primary,secondry}=useDynamicColors()
   const MuiTheme = createTheme({
     palette: {
       mode: "dark",
@@ -52,11 +55,11 @@ function PieChartComponentWithOneValue({number = 0}) {
 
   return (
     <>
-    <div className={language == "ar" ? 'circl_ar':'circl_en'}>{number}%</div>
+    <div style={{backgroundColor : secondry ,color :primary}} className={language == "ar" ? 'circl_ar':'circl_en'}>{number}%</div>
      <ThemeProvider theme={MuiTheme}>
       <PieChart
       
-        colors={["#34B53A", "#E2FBD7", "#E2FBD7", "#E2FBD7"]}
+        colors={[primary, secondry, secondry, secondry]}
         series={[
           {
             outerRadius: 90,

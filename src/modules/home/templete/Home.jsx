@@ -257,9 +257,9 @@ const Home = () => {
                   <div className="home_container_charts_table__chart_card_footer">
                     <div className="home_container_charts_table__chart_card_footer_txt">
                       <span>
-                        <Icon viewBox="0 0 200 200" color="green.500">
+                        <Icon viewBox="0 0 200 200">
                           <path
-                            fill="currentColor"
+                            fill={primary}
                             d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
                           />
                         </Icon>
