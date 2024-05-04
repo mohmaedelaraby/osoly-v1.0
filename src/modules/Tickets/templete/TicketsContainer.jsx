@@ -241,7 +241,6 @@ function TicketsContainer() {
                             </Text>
                           </FormLabel>
                           <Select
-                            dir="rtl"
                             name="sortBY"
                             onChange={(e) => {
                               setSortByTmp(e.target.value);
@@ -316,7 +315,6 @@ function TicketsContainer() {
                             </Text>
                           </FormLabel>
                           <Select
-                            dir="rtl"
                             name="type"
                             onChange={(e) => {
                               setTypeTmp(e.target.value);
@@ -342,7 +340,6 @@ function TicketsContainer() {
                             </Text>
                           </FormLabel>
                           <Select
-                            dir="rtl"
                             name="status"
                             onChange={(e) => {
                               setStatusTmp(e.target.value);

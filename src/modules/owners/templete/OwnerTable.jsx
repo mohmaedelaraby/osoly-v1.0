@@ -248,7 +248,6 @@ const OwnerTable = ({ switchTo }) => {
                     </Text>
                   </FormLabel>
                   <Select
-                    dir="ltr"
                     name="sortBY"
                     onChange={(e) => {
                       setSortByTmp(e.target.value);

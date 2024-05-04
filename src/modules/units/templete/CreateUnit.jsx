@@ -541,7 +541,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               name="owner"
-              dir="rtl"
+              value={selectedOwnerId}
               onChange={(e) => {
                 setSelectedOwnerId(e.target.value);
                 setTimeout(() => {}, 0);
@@ -552,7 +552,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 .filter((s) => s.role == USER_ROLES.OWNER)
                 ?.map((i, index) => (
                   <option value={i.id} key={index}>
-                    {i.firstNameAr} {i.id}
+                    {i.firstNameAr}
                   </option>
                 ))}
             </Select>
@@ -567,7 +567,6 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               name="owner"
-              dir="rtl"
               onChange={(e) => {
                 setSelectedRenterId(e.target.value);
                 setTimeout(() => {}, 0);
@@ -578,7 +577,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 .filter((s) => s.role == USER_ROLES.TENANT)
                 ?.map((i, index) => (
                   <option value={i.id} key={index}>
-                    {i.firstNameAr} {i.id}
+                    {i.firstNameAr} 
                   </option>
                 ))}
             </Select>
@@ -594,7 +593,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               name="owner"
-              dir="rtl"
+              value={selectedProbertyId}
               onChange={(e) => {
                 setSelectedPropertyId(e.target.value);
                 setTimeout(() => {}, 0);
@@ -603,7 +602,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               <option value={0}> {t("general.unit_property")} </option>
               {PropertiesData?.updatedProperties?.map((i, index) => (
                 <option value={i.id} key={index}>
-                  {i.firstNameAr} {i.id}
+                  {i.name} 
                 </option>
               ))}
             </Select>
@@ -618,7 +617,6 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Select
               height={"56px"}
               name="owner"
-              dir="rtl"
               onChange={(e) => {
                 setSelectedMaintenanceManId(e.target.value);
                 setTimeout(() => {}, 0);

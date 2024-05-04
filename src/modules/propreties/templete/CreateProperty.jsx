@@ -252,7 +252,6 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                 <Select
                   height={"56px"}
                   name="owner"
-                  dir="rtl"
                   onChange={(e) => {
                     setSelectedOwnerId(e.target.value);
                     setTimeout(() => {}, 0);
@@ -263,7 +262,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                     .filter((s) => s.role == USER_ROLES.OWNER)
                     ?.map((i, index) => (
                       <option value={i.id} key={index}>
-                        {i.firstNameAr} {i.id}
+                        {i.firstNameAr}
                       </option>
                     ))}
                 </Select>

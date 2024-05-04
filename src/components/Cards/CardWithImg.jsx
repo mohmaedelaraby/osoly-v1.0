@@ -127,7 +127,7 @@ function CardWithImg({
           {isBtns ? (
             <>
               <div className="cardWithimg_contanier__btns">
-                <Stack
+                {/* <Stack
                   alignItems={isVertical ? "flex-end" : "center"}
                   direction={isVertical ? "column" : "row"}
                   spacing={4}
@@ -150,7 +150,7 @@ function CardWithImg({
                   >
                     {t("general.reject")}
                   </Button>
-                </Stack>
+                </Stack> */}
               </div>
             </>
           ) : (

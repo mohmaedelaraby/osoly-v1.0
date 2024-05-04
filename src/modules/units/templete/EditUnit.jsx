@@ -605,7 +605,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <Select
                 height={"56px"}
                 name="owner"
-                dir="rtl"
                 value={selectedOwnerId}
                 onChange={(e) => {
                   setSelectedOwnerId(e.target.value);
@@ -617,7 +616,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   .filter((s) => s.role == USER_ROLES.OWNER)
                   ?.map((i, index) => (
                     <option value={i.id} key={index}>
-                      {i.firstNameAr} {i.id}
+                      {i.firstNameAr} 
                     </option>
                   ))}
               </Select>
@@ -632,7 +631,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <Select
                 height={"56px"}
                 name="owner"
-                dir="rtl"
                 value={selectedRenterId}
                 onChange={(e) => {
                   setSelectedRenterId(e.target.value);
@@ -644,7 +642,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   .filter((s) => s.role == USER_ROLES.TENANT)
                   ?.map((i, index) => (
                     <option value={i.id} key={index}>
-                      {i.firstNameAr} {i.id}
+                      {i.firstNameAr}
                     </option>
                   ))}
               </Select>
@@ -660,7 +658,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <Select
                 height={"56px"}
                 name="owner"
-                dir="rtl"
                 value={selectedProbertyId}
                 onChange={(e) => {
                   setSelectedPropertyId(e.target.value);
@@ -686,7 +683,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 height={"56px"}
                 name="owner"
                 value={selectedMaintenanceManId}
-                dir="rtl"
                 onChange={(e) => {
                   setSelectedMaintenanceManId(e.target.value);
                   setTimeout(() => {}, 0);

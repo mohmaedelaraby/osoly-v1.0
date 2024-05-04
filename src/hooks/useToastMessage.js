@@ -15,14 +15,12 @@ export const useToastMessage = () => {
         toast({
             description,
             status: 'error',
-            isClosable: true,
         })
     }
     const handleInfo = (description = "") => {
         toast({
             description,
             status: 'info',
-            isClosable: true
         })
     }
 

@@ -61,7 +61,7 @@ const EditProperty = ({ id, onClose }) => {
   useEffect(() => {
     if (data) {
       setSelectedOwnerId(data?.ownerId);
-      setLoadedImage(data.image);
+      setLoadedImage(data?.image);
     }
   }, [data]);
 
@@ -310,7 +310,6 @@ const EditProperty = ({ id, onClose }) => {
                 <Select
                   height={"56px"}
                   name="owner"
-                  dir="rtl"
                   value={selectedOwnerId}
                   onChange={(e) => {
                     setSelectedOwnerId(e.target.value);
@@ -320,7 +319,7 @@ const EditProperty = ({ id, onClose }) => {
                   <option value={0}>{t("general.owner")} </option>
                   {usersData?.users?.map((i, index) => (
                     <option value={i.id} key={index}>
-                      {i.firstNameAr} {i.id}
+                      {i.firstNameAr}
                     </option>
                   ))}
                 </Select>
@@ -542,7 +541,7 @@ const EditProperty = ({ id, onClose }) => {
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody>
-            <CreateUnit onClose={onCloseUnitModal} />
+            <CreateUnit onClose={onCloseUnitModal} propPropertyId={data?.id}/>
           </ModalBody>
         </ModalContent>
       </Modal>
