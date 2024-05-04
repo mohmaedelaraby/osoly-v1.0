@@ -123,7 +123,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formData.append("waterAccount", formik.values.waterAccount);
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
-      console.log("data succsfuly", formData);
       mutate({ id: id, body: formData });
       onClose();
     },

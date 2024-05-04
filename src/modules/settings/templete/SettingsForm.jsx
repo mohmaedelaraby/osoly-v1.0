@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import "../../../assets/styels/components/forms.scss";
 import bell from "../../../assets/images/bell.png";
 import { useUpdateSettings } from "../hooks/useUpdateSettings";
+import { useNavigate } from "react-router-dom";
 
 const SettingsForm = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const SettingsForm = () => {
   const [sbColor, setSbcolor] = useState(null);
   const [sbFontColor, setSbFontcolor] = useState(null);
 
+  const navigate = useNavigate();
   const { mutate, isLoading, isSuccess } = useUpdateSettings();
 
   
@@ -53,7 +55,7 @@ const imageUpload = (file) => {
 
   const handleSubmit = () => {
     const formData = new FormData();
-    formData.append("logo", selectedLogo, selectedLogo.name);
+    formData.append("logo", selectedLogo, selectedLogo?.name);
     formData.append("dashboardColor", bgColor);
     formData.append("dashboardFontColor", bgFontColor);
     formData.append("sidebarColor", sbColor);
@@ -70,6 +72,8 @@ const imageUpload = (file) => {
         sidebarFontColor: sbFontColor,
       })
     );
+
+   navigate("/home")
     //window.location.reload();
     //sessionStorage.removeItem("dashboardSettings")
     
@@ -185,7 +189,7 @@ const imageUpload = (file) => {
                       </FormControl>
                     </div>
 
-                    <div className="form__input form__input__flex">
+                    <div className="form__input form__input__flex mt-8">
                       <FormControl className="form__input__container">
                         <FormLabel>
                           <Text className="form__input__container__label fo_primary">

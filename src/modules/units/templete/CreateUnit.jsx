@@ -53,8 +53,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     PropertiesRefetch();
   }, []);
 
-  useEffect(() => {console.log(kitchenChoice)}, [kitchenChoice]);
-  useEffect(() => {console.log(loungeChoice)}, [loungeChoice]);
+  useEffect(() => {}, [kitchenChoice]);
+  useEffect(() => {}, [loungeChoice]);
 
   const initialValues = {
     name: "",
@@ -100,7 +100,6 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
       formData.append("waterAccount", formik.values.waterAccount);
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
-      console.log(kitchenChoice , loungeChoice)
       mutate({ body: formData });
       onClose();
     },

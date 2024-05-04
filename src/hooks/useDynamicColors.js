@@ -40,7 +40,7 @@ export const useDynamicColors = () => {
             }
         } */
         
-    }, [])
+    }, [dbColors])
 
     return ({
         primary: dbColors?.dashboardColor,

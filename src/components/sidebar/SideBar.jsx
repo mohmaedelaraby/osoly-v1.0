@@ -50,7 +50,7 @@ function SideBar() {
     setSbcolor(dashboardSettings?.sidebarColor);
     setSbFontcolor(dashboardSettings?.sidebarFontColor);
     setSbLogo(dashboardLogoFromSession);
-  }, [dashboardSettingsFromSession ]);
+  }, [dashboardSettingsFromSession , sbColor , sbFontColor , sbLogo]);
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
