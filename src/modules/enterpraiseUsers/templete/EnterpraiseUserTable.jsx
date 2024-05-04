@@ -450,6 +450,7 @@ const UserEnterpraiseTable = () => {
                                       variant="solid"
                                       bg={"#CC3636"}
                                       alignItems="center"
+                                      paddingRight='8px'
                                       justifyContent="center"
                                       onClick={() => {
                                         mutate(item.id);
@@ -463,6 +464,7 @@ const UserEnterpraiseTable = () => {
                                       variant="solid"
                                       alignItems="center"
                                       justifyContent="center"
+                                      paddingRight='8px'
                                       bg={"#194C81"}
                                       onClick={() => {
                                         openEditPopup(item);

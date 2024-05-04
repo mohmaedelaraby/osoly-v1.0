@@ -15,9 +15,12 @@ import "../../../assets/styels/components/forms.scss";
 import bell from "../../../assets/images/bell.png";
 import { useUpdateSettings } from "../hooks/useUpdateSettings";
 import { useNavigate } from "react-router-dom";
+import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 const SettingsForm = () => {
   const { t } = useTranslation();
+  const { primary, secondry } = useDynamicColors();
+
   const [selectedLogo, setSelectedLogo] = useState(null);
   const [bgColor, setBgcolor] = useState(null);
   const [bgFontColor, setbgFontcolor] = useState(null);
@@ -28,14 +31,7 @@ const SettingsForm = () => {
   const { mutate, isLoading, isSuccess } = useUpdateSettings();
 
   
-const getBase64 = (file) => {
-  return new Promise((resolve,reject) => {
-     const reader = new FileReader();
-     reader.onload = () => resolve(reader.result);
-     reader.onerror = error => reject(error);
-     reader.readAsDataURL(file);
-  });
-}
+
 
 const imageUpload = (file) => {
   const reader = new FileReader();
@@ -242,7 +238,8 @@ const imageUpload = (file) => {
                     </div>
 
                     <div className="form__btn__container">
-                      <Button className="form__btn " type="submit">
+                      <Button  type="submit"  bg={primary} color={secondry}
+                    dir="rtl">
                         {t("general.edit")}
                       </Button>
                     </div>

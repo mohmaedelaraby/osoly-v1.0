@@ -700,6 +700,7 @@ const UnitsTable = () => {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
+                              paddingRight='8px'
                               color={'white'}
                               variant="solid"
                               bg={"#CC3636"}
@@ -713,6 +714,7 @@ const UnitsTable = () => {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
+                              paddingRight='8px'
                               color={'white'}
                               variant="solid"
                               alignItems="center"
