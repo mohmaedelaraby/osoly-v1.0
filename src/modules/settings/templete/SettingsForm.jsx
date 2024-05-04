@@ -35,6 +35,22 @@ const getBase64 = (file) => {
   });
 }
 
+const imageUpload = (file) => {
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    const base64StringUS = reader.result
+      .replace("data:", "")
+      .replace(/^.+,/, "");
+    localStorage.setItem("localLogo", base64StringUS);
+    const myImage = localStorage.getItem("localLogo");
+    var bannerImg = document.getElementById("logoBanner");
+    bannerImg = document.getElementById('logoBanner');
+    bannerImg.src = "data:image/png;base64," + myImage;
+    //document.body.style.background = `url(data:image/png;base64,${base64StringUS})`;
+  };
+  reader.readAsDataURL(file);
+};
+
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append("logo", selectedLogo, selectedLogo.name);
@@ -44,18 +60,16 @@ const getBase64 = (file) => {
     formData.append("sidebarFontColor", sbFontColor);
  
     mutate({ body: formData });
-    getBase64(selectedLogo).then(base64 => {
-      sessionStorage.setItem(
-        "dashboardSettings",
-        JSON.stringify({
-          dashboardColor: bgColor,
-          dashboardFontColor: bgFontColor,
-          sidebarColor: sbColor,
-          sidebarFontColor: sbFontColor,
-          logo: base64,
-        })
-      );
-    });
+    imageUpload(selectedLogo)
+    sessionStorage.setItem(
+      "dashboardSettings",
+      JSON.stringify({
+        dashboardColor: bgColor,
+        dashboardFontColor: bgFontColor,
+        sidebarColor: sbColor,
+        sidebarFontColor: sbFontColor,
+      })
+    );
     //window.location.reload();
     //sessionStorage.removeItem("dashboardSettings")
     

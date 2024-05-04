@@ -42,14 +42,15 @@ function SideBar() {
   const [sbLogo, setSbLogo] = useState();
 
   const dashboardSettingsFromSession = sessionStorage.getItem("dashboardSettings");
+  const dashboardLogoFromSession = sessionStorage.getItem("localLogo");
 
   useEffect(() => {
     
     let dashboardSettings = JSON.parse(dashboardSettingsFromSession);
     setSbcolor(dashboardSettings?.sidebarColor);
     setSbFontcolor(dashboardSettings?.sidebarFontColor);
-    setSbLogo(dashboardSettings?.logo);
-  }, [dashboardSettingsFromSession]);
+    setSbLogo(dashboardLogoFromSession);
+  }, [dashboardSettingsFromSession ]);
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
@@ -124,6 +125,7 @@ function SideBar() {
               <img
                 src={sbLogo ? sbLogo : logo}
                 alt="logo"
+                id="logoBanner"
                 className="sidebar__logo__img"
               />
             </div>

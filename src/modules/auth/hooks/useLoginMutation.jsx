@@ -19,13 +19,12 @@ export const useLoginMutation = () => {
       if (res.data.data.accessToken) {
         const currentUser = res.data.data;
         sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
-        
+        sessionStorage.setItem("localLogo",  res.data.data.enterprise?.logo);
         sessionStorage.setItem("dashboardSettings",JSON.stringify({
           dashboardColor: res.data.data.enterprise?.dashboardColor || "#194C81",
           dashboardFontColor: res.data.data.enterprise?.dashboardFontColor|| "#EFF9FF",
           sidebarColor: res.data.data.enterprise?.sidebarColor || "#194C81",
           sidebarFontColor: res.data.data.enterprise?.sidebarFontColor || "#EFF9FF",
-          logo: res.data.data.enterprise?.logo,
         }));
         loginStore();
         navigate(redirectPath, { replace: true });
