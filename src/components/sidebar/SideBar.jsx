@@ -41,16 +41,16 @@ function SideBar() {
   const [sbFontColor, setSbFontcolor] = useState();
   const [sbLogo, setSbLogo] = useState();
 
-  const dashboardSettingsFromSession = sessionStorage.getItem("dashboardSettings");
+  const dashboardSettingsFromSession =
+    sessionStorage.getItem("dashboardSettings");
   const dashboardLogoFromSession = sessionStorage.getItem("localLogo");
 
   useEffect(() => {
-    
     let dashboardSettings = JSON.parse(dashboardSettingsFromSession);
     setSbcolor(dashboardSettings?.sidebarColor);
     setSbFontcolor(dashboardSettings?.sidebarFontColor);
     setSbLogo(dashboardLogoFromSession);
-  }, [dashboardSettingsFromSession , sbColor , sbFontColor , sbLogo]);
+  }, [dashboardSettingsFromSession, sbColor, sbFontColor, sbLogo]);
 
   function iconChecker(icon, fill) {
     if (icon == "home") {
@@ -95,6 +95,15 @@ function SideBar() {
     onOpen: onOpenInfoModal,
     onClose: onCloseInfoModal,
   } = useDisclosure();
+
+  const openHelpPopup = () => {
+    onOpenInfoModal();
+  };
+  const logoutFun = () => {
+    sessionStorage.removeItem('currentUser')
+    sessionStorage.removeItem('dashboardSettings')
+    navigate('/login');
+  };
   return (
     <>
       {width < 427 ? (
@@ -310,12 +319,9 @@ function SideBar() {
                         }`}
                         onClick={() => {
                           setSelected(i);
-                          item.navTo === "/info"
-                            ? onOpenInfoModal()
-                            : 
-                            sessionStorage.removeItem('currentUser')
-                            sessionStorage.removeItem('dashboardSettings')
-                            navigate(item.navTo);
+                          item.navTo == "/info"
+                            ? openHelpPopup()
+                            : logoutFun();
                         }}
                       >
                         <div className="sidebar__items__container__item__icon">
@@ -337,31 +343,6 @@ function SideBar() {
                         >
                           {t(item?.name)}
                         </div>
-                      </div>
-
-                      <div className="sidebar__items__container_nested">
-                        {(selected === i || checkIsActive(item.activeRoutes)) &&
-                        item.nestedChildern ? (
-                          item.nestedChildern.map((child, j) => (
-                            <>
-                              <div
-                                onClick={() => {
-                                  navigate(child.navTo);
-                                }}
-                                className={`${
-                                  checkIsActive(child.active)
-                                    ? "sidebar__items__container_nested__item nested_active"
-                                    : "sidebar__items__container_nested__item "
-                                }`}
-                              >
-                                {/*  style={{'color':sbFontColor}} */}
-                                {child?.name}
-                              </div>
-                            </>
-                          ))
-                        ) : (
-                          <></>
-                        )}
                       </div>
                     </>
                   ))
