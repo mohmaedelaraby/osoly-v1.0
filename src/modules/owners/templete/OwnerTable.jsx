@@ -219,93 +219,6 @@ const OwnerTable = ({ switchTo }) => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.filter")}</span>
-            </MenuButton>
-            <MenuList padding={"24px"} width="257px">
-              <MenuItem>
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.sort_type")}
-                    </Text>
-                  </FormLabel>
-                  <RadioGroup
-                    onChange={setSortDirectionTmp}
-                    value={sortDirectionTmp}
-                  >
-                    <Stack direction="row">
-                      <Radio value="asc">{t("general.asc")}</Radio>
-                      <Radio value="desc">{t("general.desc")}</Radio>
-                    </Stack>
-                  </RadioGroup>
-                </FormControl>
-              </MenuItem>
-              <div className="menu-select mb-24">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")}
-                    </Text>
-                  </FormLabel>
-                  <Select
-                    name="sortBY"
-                    onChange={(e) => {
-                      setSortByTmp(e.target.value);
-                      setTimeout(() => {}, 0);
-                    }}
-                  >
-                    <option value={null}>{t("general.filter")}</option>
-                    {sortItems.map((item, index) => (
-                      <option id={index} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-              <MenuItem closeOnSelect={true}>
-                <Stack direction="row" width="100%" justify="space-between">
-                  <Button
-                    padding="0px 16px"
-                    variant="solid"
-                    color={secondry}
-                    bg={primary}
-                    type="submit"
-                    onClick={() => {
-                      setSortDirection(sortDirectionTmp);
-                      setSortBy(sortByTmp);
-                    }}
-                  >
-                    {t("general.apply")}
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setSortDirection("asc");
-                      setSortDirectionTmp("asc");
-                      setSortBy(null);
-                      setSortByTmp(null);
-                    }}
-                    padding="0px 16px"
-                    color={"#010B38"}
-                    variant="outline"
-                  >
-                    {t("general.delete")}
-                  </Button>
-                </Stack>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-
-          <Menu closeOnSelect={false}>
-            <MenuButton
-              as={Button}
-              marginRight="8px"
-              marginLeft="8px"
-              bg={"white"}
-              border={"1px solid #C8C9CC"}
-              borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}
-            >
               <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
@@ -421,6 +334,94 @@ const OwnerTable = ({ switchTo }) => {
               </MenuItem>
             </MenuList>
           </Menu>
+          
+          <Menu closeOnSelect={false}>
+            <MenuButton
+              as={Button}
+              marginRight="8px"
+              marginLeft="8px"
+              bg={"white"}
+              border={"1px solid #C8C9CC"}
+              borderRadius="8px"
+              rightIcon={<ChevronDownIcon />}
+            >
+              <span className="pl-8 fo_primary">{t("general.filter")}</span>
+            </MenuButton>
+            <MenuList padding={"24px"} width="257px">
+              <MenuItem>
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label fo_primary">
+                      {t("general.sort_type")}
+                    </Text>
+                  </FormLabel>
+                  <RadioGroup
+                    onChange={setSortDirectionTmp}
+                    value={sortDirectionTmp}
+                  >
+                    <Stack direction="row">
+                      <Radio value="asc">{t("general.asc")}</Radio>
+                      <Radio value="desc">{t("general.desc")}</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              </MenuItem>
+              <div className="menu-select mb-24">
+                <FormControl className="form__input__container">
+                  <FormLabel>
+                    <Text className="form__input__container__label fo_primary">
+                      {t("general.filter")}
+                    </Text>
+                  </FormLabel>
+                  <Select
+                    name="sortBY"
+                    onChange={(e) => {
+                      setSortByTmp(e.target.value);
+                      setTimeout(() => {}, 0);
+                    }}
+                  >
+                    <option value={null}>{t("general.filter")}</option>
+                    {sortItems.map((item, index) => (
+                      <option id={index} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <MenuItem closeOnSelect={true}>
+                <Stack direction="row" width="100%" justify="space-between">
+                  <Button
+                    padding="0px 16px"
+                    variant="solid"
+                    color={secondry}
+                    bg={primary}
+                    type="submit"
+                    onClick={() => {
+                      setSortDirection(sortDirectionTmp);
+                      setSortBy(sortByTmp);
+                    }}
+                  >
+                    {t("general.apply")}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setSortDirection("asc");
+                      setSortDirectionTmp("asc");
+                      setSortBy(null);
+                      setSortByTmp(null);
+                    }}
+                    padding="0px 16px"
+                    color={"#010B38"}
+                    variant="outline"
+                  >
+                    {t("general.delete")}
+                  </Button>
+                </Stack>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>

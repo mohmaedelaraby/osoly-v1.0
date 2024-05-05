@@ -200,95 +200,6 @@ const UserEnterpraiseTable = () => {
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
                     >
-                      <span className="pl-8 fo_primary">
-                        {t("general.filter")}
-                      </span>
-                    </MenuButton>
-                    <MenuList padding={"24px"} width="257px">
-                      <MenuItem>
-                        <FormControl className="form__input__container">
-                          <FormLabel>
-                            <Text className="form__input__container__label fo_primary">
-                              {t("general.sort_type")}
-                            </Text>
-                          </FormLabel>
-                          <RadioGroup
-                            onChange={setSortDirectionTmp}
-                            value={sortDirectionTmp}
-                          >
-                            <Stack direction="row">
-                              <Radio value="asc"> {t("general.asc")}</Radio>
-                              <Radio value="desc"> {t("general.desc")}</Radio>
-                            </Stack>
-                          </RadioGroup>
-                        </FormControl>
-                      </MenuItem>
-                      <div className="menu-select">
-                        <FormControl className="form__input__container">
-                          <FormLabel>
-                            <Text className="form__input__container__label fo_primary fo_primary">
-                              {t("general.filter")}
-                            </Text>
-                          </FormLabel>
-                          <Select
-                            placeholder={t("general.filter")}
-                            name="sortBY"
-                            onChange={(e) => {
-                              setSortByTmp(e.target.value);
-                              setTimeout(() => {}, 0);
-                            }}
-                          >
-                            <option value="expireDate">
-                              {t("general.expire_date")}
-                            </option>
-                          </Select>
-                        </FormControl>
-                      </div>
-                      <div className="menu-select mt-24">
-                        <Stack
-                          direction="row"
-                          width="100%"
-                          justify="space-between"
-                        >
-                          <Button
-                            padding="0px 16px"
-                            variant="solid"
-                            color={secondry}
-                            bg={primary}
-                            type="submit"
-                            onClick={() => {
-                              setSortDirection(sortDirectionTmp);
-                              setSortBy(sortByTmp);
-                            }}
-                          >
-                            {t("general.apply")}
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              setSortDirection("asc");
-                              setSortBy(null);
-                            }}
-                            padding="0px 16px"
-                            color={"#010B38"}
-                            variant="outline"
-                          >
-                            {t("general.delete")}
-                          </Button>
-                        </Stack>
-                      </div>
-                    </MenuList>
-                  </Menu>
-
-                  <Menu closeOnSelect={false}>
-                    <MenuButton
-                      as={Button}
-                      marginRight="8px"
-                      marginLeft="8px"
-                      bg={"white"}
-                      border={"1px solid #C8C9CC"}
-                      borderRadius="8px"
-                      rightIcon={<ChevronDownIcon />}
-                    >
                       <span className="pl-8 fo_primary fo_primary">
                         {t("general.sort")}
                       </span>
@@ -371,6 +282,96 @@ const UserEnterpraiseTable = () => {
                       </div>
                     </MenuList>
                   </Menu>
+                  
+                  <Menu closeOnSelect={false}>
+                    <MenuButton
+                      as={Button}
+                      marginRight="8px"
+                      marginLeft="8px"
+                      bg={"white"}
+                      border={"1px solid #C8C9CC"}
+                      borderRadius="8px"
+                      rightIcon={<ChevronDownIcon />}
+                    >
+                      <span className="pl-8 fo_primary">
+                        {t("general.filter")}
+                      </span>
+                    </MenuButton>
+                    <MenuList padding={"24px"} width="257px">
+                      <MenuItem>
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label fo_primary">
+                              {t("general.sort_type")}
+                            </Text>
+                          </FormLabel>
+                          <RadioGroup
+                            onChange={setSortDirectionTmp}
+                            value={sortDirectionTmp}
+                          >
+                            <Stack direction="row">
+                              <Radio value="asc"> {t("general.asc")}</Radio>
+                              <Radio value="desc"> {t("general.desc")}</Radio>
+                            </Stack>
+                          </RadioGroup>
+                        </FormControl>
+                      </MenuItem>
+                      <div className="menu-select">
+                        <FormControl className="form__input__container">
+                          <FormLabel>
+                            <Text className="form__input__container__label fo_primary fo_primary">
+                              {t("general.filter")}
+                            </Text>
+                          </FormLabel>
+                          <Select
+                            placeholder={t("general.filter")}
+                            name="sortBY"
+                            onChange={(e) => {
+                              setSortByTmp(e.target.value);
+                              setTimeout(() => {}, 0);
+                            }}
+                          >
+                            <option value="expireDate">
+                              {t("general.expire_date")}
+                            </option>
+                          </Select>
+                        </FormControl>
+                      </div>
+                      <div className="menu-select mt-24">
+                        <Stack
+                          direction="row"
+                          width="100%"
+                          justify="space-between"
+                        >
+                          <Button
+                            padding="0px 16px"
+                            variant="solid"
+                            color={secondry}
+                            bg={primary}
+                            type="submit"
+                            onClick={() => {
+                              setSortDirection(sortDirectionTmp);
+                              setSortBy(sortByTmp);
+                            }}
+                          >
+                            {t("general.apply")}
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setSortDirection("asc");
+                              setSortBy(null);
+                            }}
+                            padding="0px 16px"
+                            color={"#010B38"}
+                            variant="outline"
+                          >
+                            {t("general.delete")}
+                          </Button>
+                        </Stack>
+                      </div>
+                    </MenuList>
+                  </Menu>
+
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
