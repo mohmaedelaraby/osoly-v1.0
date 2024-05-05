@@ -2,9 +2,12 @@ import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useDynamicColors } from "../../hooks/useDynamicColors";
 
 function PieChartComponent({ numbers }) {
   const { t } = useTranslation();
+  const { primary, secondry } = useDynamicColors();
+
 
   let data = [
     {
@@ -51,7 +54,7 @@ function PieChartComponent({ numbers }) {
   return (
     <ThemeProvider theme={MuiTheme}>
       <PieChart
-        colors={["#194C81", "#85A5C7", "#3D6A98"]}
+        colors={[primary, primary+'50', primary+'90']}
         series={[
           {
             outerRadius: 145,
