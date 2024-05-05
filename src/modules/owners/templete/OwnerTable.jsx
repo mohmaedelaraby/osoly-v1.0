@@ -90,7 +90,7 @@ const OwnerTable = ({ switchTo }) => {
       const choosenFile = event.target.files[0];
       setFile(choosenFile);
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", choosenFile);
       uploadFiles({ body: formData });
       setFile(null);
       event.target.value = "";
@@ -334,7 +334,7 @@ const OwnerTable = ({ switchTo }) => {
               </MenuItem>
             </MenuList>
           </Menu>
-          
+
           <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}

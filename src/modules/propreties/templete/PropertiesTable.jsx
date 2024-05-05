@@ -100,7 +100,7 @@ function PropertiesTable() {
       const choosenFile = event.target.files[0];
       setFile(choosenFile);
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", choosenFile);
       uploadFiles({ body: formData });
       setFile(null);
       event.target.value = "";
@@ -218,7 +218,7 @@ function PropertiesTable() {
             <Input
               className="form__input__flex_fileUpload_input"
               type="file"
-              name="image"
+              name="csvFile"
               accept=".csv"
               onChange={updateFile}
             />
@@ -452,7 +452,7 @@ function PropertiesTable() {
               </MenuItem>
             </MenuList>
           </Menu>
-          
+
           <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}

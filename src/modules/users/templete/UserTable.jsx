@@ -61,7 +61,7 @@ function UserTable({ switchTo }) {
       const choosenFile = event.target.files[0];
       setFile(choosenFile);
       let formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", choosenFile);
       uploadFiles({ body: formData });
       setFile(null);
       event.target.value = "";
@@ -154,6 +154,7 @@ function UserTable({ switchTo }) {
     isSuccessFiles,
   ]);
 
+
   const handlePageUserChange = (page) => {
     setCurrentUserPage(page);
   };
@@ -178,6 +179,7 @@ function UserTable({ switchTo }) {
               {t("users.create.title")}{" "}
             </span>
           </Button>
+
           <Button
             marginRight="8px"
             rightIcon={<AddIcon />}
@@ -188,7 +190,7 @@ function UserTable({ switchTo }) {
             <Input
               className="form__input__flex_fileUpload_input"
               type="file"
-              name="image"
+              name="csvFile"
               accept=".csv"
               onChange={updateFile}
             />
@@ -319,7 +321,7 @@ function UserTable({ switchTo }) {
               </MenuItem>
             </MenuList>
           </Menu>
-          
+
           <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
