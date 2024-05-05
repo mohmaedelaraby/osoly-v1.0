@@ -624,12 +624,14 @@ function PropertiesTable() {
                             {item?.units?.length}
                           </Td>
                           <Td className="table_body_row_item">
-                            {item.totalRent}
+                            {item?.totalRent}
                           </Td>
                           <Td className="table_body_row_item">
-                            {item.address}
+                            {item?.address}
                           </Td>
-                          <Td className="table_body_row_item">-</Td>
+                          <Td className="table_body_row_item">
+                          {item?.owner?.firstNameAr}
+                          </Td>
 
                           <Td className="table_body_row_item_btns">
                             <Stack
