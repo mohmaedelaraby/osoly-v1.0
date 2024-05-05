@@ -230,6 +230,7 @@ const Home = () => {
                         <div style={{ marginBottom: "16px" }}>
                           <CardWithImg
                             key={index}
+                            img={i?.image}
                             header={i?.type}
                             address={i?.unit?.address}
                             title={i?.unit?.name}

@@ -612,6 +612,7 @@ function TicketsContainer() {
                                         sendDataToParent={onClickFunction}
                                         key={index}
                                         item={item}
+                                        img={item?.images[0]}
                                       ></TicketCard>
                                     </>
                                   ))}
@@ -811,6 +812,7 @@ function TicketsContainer() {
                               <TicketCard
                                 key={index}
                                 item={item}
+                                img={item?.images[0]}
                                 sendDataToParent={onClickFunction}
                               ></TicketCard>
                             </>

@@ -754,6 +754,7 @@ const UnitsTable = () => {
                 unitsData?.units?.map((item, index) => (
                   <CardWithImg
                     key={index}
+                    img={item?.image}
                     address={item.address}
                     title={item.name}
                     price={item.rent}

@@ -693,15 +693,15 @@ function PropertiesTable() {
                 PropertiesData?.updatedProperties?.map((item, index) => (
                   <CardWithImg
                     key={index}
-                    address={item.address}
-                    id={item.id}
-                    title={item.name}
-                    price={item.totalRent}
+                    img={item?.image}
+                    address={item?.address}
+                    id={item?.id}
+                    title={item?.name}
+                    price={item?.totalRent}
                     sendDataToParent={onClickFunction}
                     isBtns={false}
                     isVertical={false}
                     currncy={t("general.single_unit")}
-                    onClick={() => {}}
                   ></CardWithImg>
                 ))}
             </div>

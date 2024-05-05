@@ -3,7 +3,7 @@ import image from "../../assets/images/houseImg.png";
 import "../../assets/styels/components/cards.scss";
 
 import React from "react";
-import { CheckIcon, DeleteIcon, SmallCloseIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../hooks/useDynamicColors";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
