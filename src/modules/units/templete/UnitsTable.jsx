@@ -223,7 +223,7 @@ const UnitsTable = () => {
             }}
           >
             <span className="pl-8 fo_secondry">
-              {" "}
+               
               {t("units.page.add_property")}
             </span>
           </Button>

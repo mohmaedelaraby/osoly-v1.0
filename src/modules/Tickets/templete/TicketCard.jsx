@@ -41,7 +41,7 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
       <Card width="-webkit-fit-content" bg="white">
         {item ? (
           <>
-            {" "}
+             
             <div className="cardWithimg">
               <div className={"cardWithimg_contanier"}>
                 <div className="cardWithimg_contanier__icon">

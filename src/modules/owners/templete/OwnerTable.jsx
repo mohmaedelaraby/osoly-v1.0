@@ -190,8 +190,8 @@ const OwnerTable = ({ switchTo }) => {
             }}
           >
             <span className="pl-8 fo_secondry">
-              {" "}
-              {t("users.create.title_owner")}{" "}
+               
+              {t("users.create.title_owner")} 
             </span>
           </Button>
 
@@ -461,10 +461,10 @@ const OwnerTable = ({ switchTo }) => {
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
                 <Th className="table_header_item">
-                  {t("general.num_of_properties")}{" "}
+                  {t("general.num_of_properties")} 
                 </Th>
                 <Th className="table_header_item">
-                  {" "}
+                   
                   {t("general.brokerage_contract_number")}
                 </Th>
                 <Th className="table_header_item"> </Th>

@@ -205,8 +205,8 @@ function PropertiesTable() {
             }}
           >
             <span className="pl-8 fo_secondry">
-              {" "}
-              {t("propreties.page.add_property_title")}{" "}
+               
+              {t("propreties.page.add_property_title")} 
             </span>
           </Button>
           <Button
@@ -605,7 +605,7 @@ function PropertiesTable() {
                       {t("general.total_rent")}
                     </Th>
                     <Th className="table_header_item">
-                      {t("general.address")}{" "}
+                      {t("general.address")} 
                     </Th>
                     <Th className="table_header_item">{t("general.owner")}</Th>
                     <Th className="table_header_item"> </Th>
@@ -675,7 +675,7 @@ function PropertiesTable() {
                     </>
                   ) : (
                     <>
-                      {" "}
+                       
                       <div className="flex-center spinner-table">
                         <Spinner
                           thickness="4px"

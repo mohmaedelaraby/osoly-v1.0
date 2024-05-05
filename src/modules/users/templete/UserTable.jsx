@@ -175,8 +175,8 @@ function UserTable({ switchTo }) {
             }}
           >
             <span className="pl-8 fo_secondry">
-              {" "}
-              {t("users.create.title")}{" "}
+               
+              {t("users.create.title")} 
             </span>
           </Button>
 
@@ -445,7 +445,7 @@ function UserTable({ switchTo }) {
                 </Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
                 <Th className="table_header_item">
-                  {t("general.property_name")}{" "}
+                  {t("general.property_name")} 
                 </Th>
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item"> </Th>
