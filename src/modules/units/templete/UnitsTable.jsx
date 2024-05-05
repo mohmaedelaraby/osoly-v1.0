@@ -49,10 +49,10 @@ import { useDeleteUnit } from "../hooks/useDeleteUnit";
 import { useUploadUnitsFile } from "../hooks/useUploadUnitsFile";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import dayjs from "dayjs";
 const UnitsTable = () => {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
-
+  const { primary, secondry } = useDynamicColors();
 
   const [selectId, setSelectedId] = useState();
   const [selectprobId, setSelectedProbId] = useState();
@@ -194,22 +194,20 @@ const UnitsTable = () => {
     onOpenUnitModalEdit();
   };
 
-   //emit data from cards
-   const [dataFromChild, setDataFromChild] = useState();
+  //emit data from cards
+  const [dataFromChild, setDataFromChild] = useState();
 
-   let onClickFunction = (arg) => setDataFromChild(arg);
- 
-   useEffect(()=>{
-    if(dataFromChild){
-     if(dataFromChild[0] == 'edit'){
-      openUnitEditPopup({id:dataFromChild[1]})
-     }else if(dataFromChild[0] == 'delete'){
-       mutate(dataFromChild[1])
-     }
+  let onClickFunction = (arg) => setDataFromChild(arg);
+
+  useEffect(() => {
+    if (dataFromChild) {
+      if (dataFromChild[0] == "edit") {
+        openUnitEditPopup({ id: dataFromChild[1] });
+      } else if (dataFromChild[0] == "delete") {
+        mutate(dataFromChild[1]);
+      }
     }
-   
-   },[dataFromChild])
-   
+  }, [dataFromChild]);
 
   return (
     <>
@@ -224,7 +222,10 @@ const UnitsTable = () => {
               openUnitPopup();
             }}
           >
-            <span className="pl-8 fo_secondry"> {t("units.page.add_property")}</span>
+            <span className="pl-8 fo_secondry">
+              {" "}
+              {t("units.page.add_property")}
+            </span>
           </Button>
 
           <Button
@@ -250,7 +251,7 @@ const UnitsTable = () => {
               bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
@@ -337,7 +338,7 @@ const UnitsTable = () => {
               bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
@@ -641,15 +642,27 @@ const UnitsTable = () => {
                 <Thead className="table_header">
                   <Tr>
                     <Th className="table_header_item">{t("general.name")}</Th>
-                    <Th className="table_header_item">{t("general.due_date")}</Th>
+                    <Th className="table_header_item">
+                      {t("general.due_date")}
+                    </Th>
                     <Th className="table_header_item">{t("general.rent")}</Th>
-                    <Th className="table_header_item">{t("general.address")}</Th>
+                    <Th className="table_header_item">
+                      {t("general.address")}
+                    </Th>
                     <Th className="table_header_item">{t("general.space")}</Th>
-                    <Th className="table_header_item">{t("general.electericty_cost")}</Th>
-                    <Th className="table_header_item">{t("general.water_cost")}</Th>
+                    <Th className="table_header_item">
+                      {t("general.electericty_cost")}
+                    </Th>
+                    <Th className="table_header_item">
+                      {t("general.water_cost")}
+                    </Th>
                     <Th className="table_header_item">{t("general.rooms")}</Th>
-                    <Th className="table_header_item">{t("general.kitchen")}</Th>
-                    <Th className="table_header_item">{t("general.conditioners")}</Th>
+                    <Th className="table_header_item">
+                      {t("general.kitchen")}
+                    </Th>
+                    <Th className="table_header_item">
+                      {t("general.conditioners")}
+                    </Th>
                     <Th className="table_header_item"></Th>
                   </Tr>
                 </Thead>
@@ -663,7 +676,9 @@ const UnitsTable = () => {
                       >
                         <Td className="table_body_row_item">{item.name}</Td>
                         <Td className="table_body_row_item">
-                          {item.rentCollectionDate}
+                          {dayjs(new Date(item.rentCollectionDate)).format(
+                            "YYYY-MM-DD"
+                          )}
                         </Td>
                         <Td className="table_body_row_item">{item.rent}</Td>
                         <Td className="table_body_row_item">{item.address}</Td>
@@ -700,8 +715,8 @@ const UnitsTable = () => {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              paddingRight='8px'
-                              color={'white'}
+                              paddingRight="8px"
+                              color={"white"}
                               variant="solid"
                               bg={"#CC3636"}
                               alignItems="center"
@@ -714,8 +729,8 @@ const UnitsTable = () => {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              paddingRight='8px'
-                              color={'white'}
+                              paddingRight="8px"
+                              color={"white"}
                               variant="solid"
                               alignItems="center"
                               justifyContent="center"

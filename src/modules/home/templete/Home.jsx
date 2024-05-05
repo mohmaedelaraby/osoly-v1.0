@@ -28,6 +28,7 @@ import useUnits from "../../units/hooks/useUnits";
 import { useNavigate } from "react-router-dom";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import useStats from "../../../hooks/useStats";
+import dayjs from "dayjs";
 const Home = () => {
   const { t } = useTranslation();
 
@@ -187,7 +188,11 @@ const Home = () => {
                               <Td>
                                 <div className="pt-16 pb-16">{item.name}</div>
                               </Td>
-                              <Td>{item.rentCollectionDate}</Td>
+                              <Td>
+                                {dayjs(
+                                  new Date(item.rentCollectionDate)
+                                ).format("YYYY-MM-DD")}
+                              </Td>
                               <Td>{item.address}</Td>
                               <Td>{item.rent} ر.س</Td>
                             </Tr>

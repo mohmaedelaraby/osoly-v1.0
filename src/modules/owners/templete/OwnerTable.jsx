@@ -477,7 +477,7 @@ const OwnerTable = ({ switchTo }) => {
                         onClick={() => {}}
                       >
                         <Td className="table_body_row_item">
-                          {item.firstNameAr} {item.role}
+                          {item.firstNameAr}
                         </Td>
                         <Td className="table_body_row_item">-</Td>
                         <Td className="table_body_row_item">{item.email}</Td>
