@@ -64,7 +64,9 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       setSelectedOwnerId(data?.ownerId);
       setSelectedMaintenanceManId(data?.maintenanceMan);
       setSelectedPropertyId(data?.propertyId);
-      setLoadedImage(data.image);
+      setLoadedImage(data?.image);
+      setKitchenChoice(data?.kitchen)
+      setLoungeChoice(data?.lounge)
     }
   }, [data]);
 

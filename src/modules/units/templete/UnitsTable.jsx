@@ -695,15 +695,8 @@ const UnitsTable = () => {
                         <Td className="table_body_row_item">{item.rooms}</Td>
 
                         <Td className="table_body_row_item">
-                          {item?.kitchen == true ? (
-                            <>
-                              <Checkbox defaultChecked isDisabled></Checkbox>
-                            </>
-                          ) : (
-                            <>
-                              <Checkbox isDisabled></Checkbox>
-                            </>
-                          )}
+                        <Checkbox isChecked={item?.kitchen} isDisabled></Checkbox>
+                       
                         </Td>
                         <Td className="table_body_row_item">
                           {item.conditioners}
