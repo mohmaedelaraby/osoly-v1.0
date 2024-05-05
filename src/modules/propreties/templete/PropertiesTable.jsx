@@ -233,7 +233,7 @@ function PropertiesTable() {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.sort")}</span>
+              <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
@@ -258,7 +258,7 @@ function PropertiesTable() {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
-                      {t("general.sort")}
+                      {t("general.filter")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -268,7 +268,7 @@ function PropertiesTable() {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>{t("general.sort")}</option>
+                    <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -320,7 +320,7 @@ function PropertiesTable() {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.filter")}</span>
+              <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
             <MenuList width="257px">
               <div className="menu-select-container">
@@ -328,7 +328,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.name")}
+                        {t("general.sort")} {t("general.name")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -347,7 +347,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.address")}
+                        {t("general.sort")} {t("general.address")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -366,7 +366,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.num_of_units")}
+                        {t("general.sort")} {t("general.num_of_units")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -385,7 +385,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.sk_number")}
+                        {t("general.sort")} {t("general.sk_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -404,7 +404,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.city")}
+                        {t("general.sort")} {t("general.city")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -423,7 +423,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.postal_code")}
+                        {t("general.sort")} {t("general.postal_code")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -442,7 +442,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.property_number")}
+                        {t("general.sort")} {t("general.property_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -461,7 +461,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.street")}
+                        {t("general.sort")} {t("general.street")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -479,7 +479,7 @@ function PropertiesTable() {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.distract")}
+                        {t("general.sort")} {t("general.distract")}
                       </Text>
                     </FormLabel>
                     <Input

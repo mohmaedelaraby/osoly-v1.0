@@ -253,7 +253,7 @@ const UnitsTable = () => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.sort")}</span>
+              <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
@@ -278,7 +278,7 @@ const UnitsTable = () => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
-                      {t("general.sort")}
+                      {t("general.filter")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -288,7 +288,7 @@ const UnitsTable = () => {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>{t("general.sort")}</option>
+                    <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -340,7 +340,7 @@ const UnitsTable = () => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.filter")}</span>
+              <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
             <MenuList width="257px">
               <div className="menu-select-container">
@@ -348,7 +348,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.name")}
+                        {t("general.sort")} {t("general.name")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -367,7 +367,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.rent")}
+                        {t("general.sort")} {t("general.rent")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -386,7 +386,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.rooms_number")}
+                        {t("general.sort")} {t("general.rooms_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -405,7 +405,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.bathrooms_number")}
+                        {t("general.sort")} {t("general.bathrooms_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -424,7 +424,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.kitchens")}
+                        {t("general.sort")} {t("general.kitchens")}
                       </Text>
                     </FormLabel>
                     <RadioGroup onChange={setKitchenTmp} value={kitchenTmp}>
@@ -440,7 +440,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.lounge")}
+                        {t("general.sort")} {t("general.lounge")}
                       </Text>
                     </FormLabel>
                     <RadioGroup onChange={setLoungeTmp} value={loungeTmp}>
@@ -456,7 +456,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.conditioners_number")}
+                        {t("general.sort")} {t("general.conditioners_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -475,7 +475,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.electericty_bill")}
+                        {t("general.sort")} {t("general.electericty_bill")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -493,7 +493,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.water_bill")}
+                        {t("general.sort")} {t("general.water_bill")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -511,7 +511,7 @@ const UnitsTable = () => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.water_meter")}
+                        {t("general.sort")} {t("general.water_meter")}
                       </Text>
                     </FormLabel>
                     <Input
