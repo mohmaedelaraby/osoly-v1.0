@@ -201,7 +201,7 @@ const UserEnterpraiseTable = () => {
                       rightIcon={<ChevronDownIcon />}
                     >
                       <span className="pl-8 fo_primary">
-                        {t("general.sort")}
+                        {t("general.filter")}
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
@@ -227,11 +227,11 @@ const UserEnterpraiseTable = () => {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary fo_primary">
-                              {t("general.sort")}
+                              {t("general.filter")}
                             </Text>
                           </FormLabel>
                           <Select
-                            placeholder={t("general.sort")}
+                            placeholder={t("general.filter")}
                             name="sortBY"
                             onChange={(e) => {
                               setSortByTmp(e.target.value);
@@ -290,7 +290,7 @@ const UserEnterpraiseTable = () => {
                       rightIcon={<ChevronDownIcon />}
                     >
                       <span className="pl-8 fo_primary fo_primary">
-                        {t("general.filter")}
+                        {t("general.sort")}
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
@@ -298,8 +298,7 @@ const UserEnterpraiseTable = () => {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary fo_primary">
-                              {t("general.filter")}
-                              {t("general.plan")}
+                              {t("general.sort")}  {t("general.plan")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -322,7 +321,7 @@ const UserEnterpraiseTable = () => {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label  fo_primary">
-                              {t("general.filter")} {t("general.name")}
+                              {t("general.sort")} {t("general.name")}
                             </Text>
                           </FormLabel>
                           <Input
