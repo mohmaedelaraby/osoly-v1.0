@@ -48,8 +48,7 @@ import { useDynamicColors } from "../../../hooks/useDynamicColors";
 
 function UserTable({ switchTo }) {
   const { t } = useTranslation();
-  const {primary,secondry}=useDynamicColors()
-
+  const { primary, secondry } = useDynamicColors();
 
   const [selectedUser, setSelectedUser] = useState();
   const [file, setFile] = useState("");
@@ -152,7 +151,7 @@ function UserTable({ switchTo }) {
     identityId,
     contractNumber,
     isSuccess,
-    isSuccessFiles
+    isSuccessFiles,
   ]);
 
   const handlePageUserChange = (page) => {
@@ -174,7 +173,10 @@ function UserTable({ switchTo }) {
               openUserPopup();
             }}
           >
-            <span className="pl-8 fo_secondry"> {t("users.create.title")} </span>
+            <span className="pl-8 fo_secondry">
+              {" "}
+              {t("users.create.title")}{" "}
+            </span>
           </Button>
           <Button
             marginRight="8px"
@@ -199,7 +201,7 @@ function UserTable({ switchTo }) {
               bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.sort")} </span>
             </MenuButton>
@@ -286,85 +288,87 @@ function UserTable({ switchTo }) {
               bg={"white"}
               border={"1px solid #C8C9CC"}
               borderRadius="8px"
-              rightIcon={<ChevronDownIcon />}  
+              rightIcon={<ChevronDownIcon />}
             >
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
-              <div className="menu-select">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.phone")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setPhoneNumberTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+              <div className="menu-select-container">
+                <div className="menu-select">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.phone")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setPhoneNumberTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.email")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setEmailTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.email")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setEmailTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.contract_number")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setContractNumberTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.contract_number")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setContractNumberTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.national_id")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setIdentityIdTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.national_id")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setIdentityIdTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
               </div>
 
               <MenuItem marginTop={"24px"} closeOnSelect={true}>
@@ -432,9 +436,13 @@ function UserTable({ switchTo }) {
             <Thead className="table_header">
               <Tr>
                 <Th className="table_header_item">{t("general.name")} </Th>
-                <Th className="table_header_item">{t("general.national_id_text")}</Th>
+                <Th className="table_header_item">
+                  {t("general.national_id_text")}
+                </Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
-                <Th className="table_header_item">{t("general.property_name")} </Th>
+                <Th className="table_header_item">
+                  {t("general.property_name")}{" "}
+                </Th>
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
@@ -445,10 +453,7 @@ function UserTable({ switchTo }) {
                   {usersDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.TENANT)
                     .map((item, index) => (
-                      <Tr
-                        key={index}
-                        className="table_body_row"
-                      >
+                      <Tr key={index} className="table_body_row">
                         <Td className="table_body_row_item">
                           {item.firstNameAr}
                         </Td>
@@ -470,8 +475,8 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              paddingRight='8px'
-                              color={'white'}
+                              paddingRight="8px"
+                              color={"white"}
                               variant="solid"
                               bg={"#CC3636"}
                               alignItems="center"
@@ -484,8 +489,8 @@ function UserTable({ switchTo }) {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              paddingRight='8px'
-                              color={'white'}
+                              paddingRight="8px"
+                              color={"white"}
                               variant="solid"
                               alignItems="center"
                               justifyContent="center"
@@ -497,7 +502,7 @@ function UserTable({ switchTo }) {
                           </Stack>
                         </Td>
                       </Tr>
-                    ))} 
+                    ))}
                 </>
               ) : (
                 <>

@@ -309,80 +309,82 @@ const OwnerTable = ({ switchTo }) => {
               <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
-              <div className="menu-select">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.phone")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setPhoneNumberTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+              <div className="menu-select-container">
+                <div className="menu-select">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.phone")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setPhoneNumberTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.email")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setEmailTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.email")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setEmailTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.contract_number")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setContractNumberTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              </div>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.contract_number")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setContractNumberTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
 
-              <div className="menu-select mt-8">
-                <FormControl className="form__input__container">
-                  <FormLabel>
-                    <Text className="form__input__container__label fo_primary">
-                      {t("general.filter")} {t("general.national_id")}
-                    </Text>
-                  </FormLabel>
-                  <Input
-                    name="subTitle"
-                    type="text"
-                    className="form__input__container__input"
-                    placeholder=""
-                    onChange={(e) => {
-                      setIdentityIdTmp(e.target.value);
-                    }}
-                  />
-                </FormControl>
+                <div className="menu-select mt-8">
+                  <FormControl className="form__input__container">
+                    <FormLabel>
+                      <Text className="form__input__container__label fo_primary">
+                        {t("general.filter")} {t("general.national_id")}
+                      </Text>
+                    </FormLabel>
+                    <Input
+                      name="subTitle"
+                      type="text"
+                      className="form__input__container__input"
+                      placeholder=""
+                      onChange={(e) => {
+                        setIdentityIdTmp(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
               </div>
 
               <MenuItem marginTop={"24px"} closeOnSelect={true}>
@@ -479,7 +481,9 @@ const OwnerTable = ({ switchTo }) => {
                         <Td className="table_body_row_item">
                           {item?.firstNameAr}
                         </Td>
-                        <Td className="table_body_row_item">{item?.identityId ? item.identityId : "-"}</Td>
+                        <Td className="table_body_row_item">
+                          {item?.identityId ? item.identityId : "-"}
+                        </Td>
                         <Td className="table_body_row_item">{item?.email}</Td>
                         <Td className="table_body_row_item">
                           {item?.phoneNumber}
@@ -487,7 +491,9 @@ const OwnerTable = ({ switchTo }) => {
                         <Td className="table_body_row_item">
                           {item?.ownedProperties?.length}
                         </Td>
-                        <Td className="table_body_row_item">{item?.contractNumber ? item.contractNumber : "-"}</Td>
+                        <Td className="table_body_row_item">
+                          {item?.contractNumber ? item.contractNumber : "-"}
+                        </Td>
                         <Td className="table_body_row_item_btns">
                           <Stack
                             alignItems={"center"}
@@ -498,7 +504,7 @@ const OwnerTable = ({ switchTo }) => {
                               className="table_body_row_item_btns_deletebtn"
                               width={"25%"}
                               rightIcon={<DeleteIcon />}
-                              paddingRight='8px'
+                              paddingRight="8px"
                               color={"white"}
                               variant="solid"
                               bg={"#CC3636"}
@@ -512,7 +518,7 @@ const OwnerTable = ({ switchTo }) => {
                               className="table_body_row_item_btns_editbtn"
                               width={"25%"}
                               rightIcon={<EditOutlinedIcon />}
-                              paddingRight='8px'
+                              paddingRight="8px"
                               color={"white"}
                               variant="solid"
                               alignItems="center"
