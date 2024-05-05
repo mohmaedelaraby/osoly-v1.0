@@ -134,7 +134,6 @@ function TicketsContainer() {
     sortBy,
     sortDirection,
     type,
-    status,
     dataFromChild,
   ]);
 
@@ -206,6 +205,7 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
+                      bg={"white"}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
@@ -295,6 +295,7 @@ function TicketsContainer() {
                       as={Button}
                       marginRight="8px"
                       marginLeft="8px"
+                      bg={"white"}
                       border={"1px solid #C8C9CC"}
                       borderRadius="8px"
                       rightIcon={<ChevronDownIcon />}
@@ -325,7 +326,7 @@ function TicketsContainer() {
                             {Object.values(ticketsTypes).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
-                                  {item}
+                                {t(`tickets.${item}`)}
                                 </option>
                               </>
                             ))}
@@ -350,7 +351,7 @@ function TicketsContainer() {
                             {Object.values(ticketsStatus).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
-                                  {item}
+                                {t(`tickets.${item}`)}
                                 </option>
                                 ;
                               </>
