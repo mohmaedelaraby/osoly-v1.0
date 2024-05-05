@@ -22,8 +22,6 @@ import close from "../../../assets/icons-svgs/close.svg";
 import bell from "../../../assets/images/bell.png";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { AddIcon } from "@chakra-ui/icons";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const { t } = useTranslation();
@@ -651,7 +649,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             </FormControl>
           </div>
           <div className="form__input form__input__flex mb-24">
-            <FormControl className="form__input__container  disabled">
+            <FormControl className="form__input__container disabled ">
               <FormLabel>
                 <Text className="form__input__container__label fo_primary">
                   {t("general.unit_property")}
