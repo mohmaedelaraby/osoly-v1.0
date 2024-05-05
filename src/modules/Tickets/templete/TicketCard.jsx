@@ -41,7 +41,6 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
       <Card width="-webkit-fit-content" bg="white">
         {item ? (
           <>
-             
             <div className="cardWithimg">
               <div className={"cardWithimg_contanier"}>
                 <div className="cardWithimg_contanier__icon">
@@ -61,7 +60,7 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
                         : " "
                     }
                   >
-                    {t(status)}
+                    {t(`tickets.${item.status}`)}
                   </div>
                 </div>
                 <div className="cardWithimg_contanier__text">
