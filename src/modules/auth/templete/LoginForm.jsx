@@ -12,7 +12,7 @@ import whiteLogo from "../../../assets/images/whiteLogo.png";
 
 function LoginForm() {
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
-  const { mutate, isLoading } = useLoginMutation();
+  const { mutate, isLoading , loginError } = useLoginMutation();
 
   const initialValues = {
     username: "",
@@ -95,6 +95,21 @@ function LoginForm() {
                 {formik.touched.password && formik.errors.password ? (
                   <Text color="#EE2E2E" fontSize="sm" className="">
                     {formik.errors.password}
+                  </Text>
+                ) : null}
+              </div>
+              <div
+                className="login_form_warn"
+                style={{
+                  height:
+                     loginError
+                      ? "16px"
+                      : "0px",
+                }}
+              >
+                { loginError ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="">
+                    {loginError}
                   </Text>
                 ) : null}
               </div>
