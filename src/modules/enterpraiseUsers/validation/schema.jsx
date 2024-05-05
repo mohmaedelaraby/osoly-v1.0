@@ -11,4 +11,5 @@ export const userEnterpraiseValidationCreate = Yup.object({
 });
 export const userEnterpraiseValidationEdit = Yup.object({
   username: Yup.string().required("errors.name"),
+  password: Yup.string().min(8 , "errors.password_eight").required("errors.password"),
 });

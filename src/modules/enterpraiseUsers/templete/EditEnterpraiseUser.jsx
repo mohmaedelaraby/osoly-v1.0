@@ -4,7 +4,6 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Stack,
   Text,
@@ -29,6 +28,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
 
   const initialValues = {
     username: item.username,
+    password: item.password || " ",
   };
 
   const [showpassword, setShowPassword] = useState(false);
@@ -39,7 +39,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
     initialValues: initialValues,
     validationSchema: userEnterpraiseValidationEdit,
     onSubmit: (values) => {
-      let data = { id: item.id, body: { ...values } };
+      let data = { id: item.id, body: { ...values  , planId:plan} };
       mutate(data);
       onClose();
     },
@@ -89,23 +89,28 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
         <div className="form__input form__input__flex">
           <FormControl className="form__input__container">
             <FormLabel>
-              <Text className="form__input__container__label fo_primary"> {t("general.password")} </Text>
+              <Text className="form__input__container__label fo_primary">
+                {t("general.password")}
+              </Text>
             </FormLabel>
             <InputGroup size="md">
               <Input
                 id="enterpraisePassword"
                 pr="4.5rem"
-                disabled
                 type={showpassword ? "text" : "password"}
-                placeholder="**********"
+                placeholder={t("general.password")}
+                name="password"
                 size="lg"
                 readOnly={removeReadOnly}
                 onFocus={() => {
                   setRemoveReadOnly(false);
                 }}
                 className="form__input__container__input"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                isInvalid={formik.touched.password && !!formik.errors.password}
               />
-              <InputRightElement  height="56px" width="4.5rem">
+              <InputRightElement height="56px" width="4.5rem">
                 <Button
                   h="1.75rem"
                   size="sm"
@@ -125,10 +130,18 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                 </Button>
               </InputRightElement>
             </InputGroup>
+
+            <div className="form__input__container__warn">
+              {formik.touched.password && formik.errors.password ? (
+                <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                  {t(formik.errors.password)}
+                </Text>
+              ) : null}
+            </div>
           </FormControl>
         </div>
 
-        <div className="from__card_plans disabled">
+        <div className="from__card_plans ">
           <div className="from__card_plans_title"> {t("general.decide")} {t("general.plan_type")}</div>
           <div className="from__card_plans_cards">
             {plans ? (
@@ -138,7 +151,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                   onClick={() => {
                     setPlan(plans[0]?.id);
                   }}
-                  className="from__card_plans_cards_planCard not_allow"
+                  className="from__card_plans_cards_planCard  "
                   style={{
                     background: `${plan == plans[0]?.id ? "#EFF9FF" : ""}`,
                   }}
@@ -175,7 +188,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                   onClick={() => {
                     setPlan(plans[1]?.id);
                   }}
-                  className="from__card_plans_cards_planCard not_allow"
+                  className="from__card_plans_cards_planCard  "
                   style={{
                     background: `${plan == plans[1]?.id ? "#EFF9FF" : ""}`,
                   }}
@@ -212,7 +225,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
                   onClick={() => {
                     setPlan(plans[2]?.id);
                   }}
-                  className="from__card_plans_cards_planCard not_allow"
+                  className="from__card_plans_cards_planCard  "
                   style={{
                     background: `${plan == plans[2]?.id ? "#EFF9FF" : ""}`,
                   }}
