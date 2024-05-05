@@ -290,7 +290,7 @@ const CreateUser = ({ onClose, userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder={t("general.national_id")}
+                placeholder={t("general.contractNumber")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.contractNumber}
                 onChange={formik.handleChange}

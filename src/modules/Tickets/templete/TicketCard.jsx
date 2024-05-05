@@ -1,5 +1,5 @@
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import { Avatar, Button, Card, WrapItem } from "@chakra-ui/react";
+import { Avatar, Button, Card, Spinner, WrapItem } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
 import { useUpdateTickets } from "../hooks/useUpdateTickets";
@@ -9,8 +9,6 @@ import { useTranslation } from "react-i18next";
 
 const TicketCard = ({ item, img = image, sendDataToParent }) => {
   const { t } = useTranslation();
-
- 
 
   const TICKET_STATUS = ticketsStatus;
   const TICKET_TYPES = ticketsTypes;
@@ -35,102 +33,117 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
 
   const updateStatus = (status) => {
     let body = { status: status };
-    sendDataToParent("data is Send")
+    sendDataToParent("data is Send");
     mutate({ id: item?.id, body: body });
   };
   return (
     <>
-      <Card width="-webkit-fit-content">
-        <div className="cardWithimg">
-          <div className={"cardWithimg_contanier"}>
-            <div className="cardWithimg_contanier__icon">
-              <img src={img} alt="desc" />
-              <div
-                className={
-                  status == TICKET_STATUS.CLOSED
-                    ? "cardWithimg_contanier__icon_stats closed"
-                    : status == TICKET_STATUS.ACTIVE
-                    ? "cardWithimg_contanier__icon_stats activecard"
-                    : status == TICKET_STATUS.PROCESSING
-                    ? "cardWithimg_contanier__icon_stats process"
-                    : " "
-                }
-              >
-                {t(status)}
-              </div>
-            </div>
-            <div className="cardWithimg_contanier__text">
-              <div className="cardWithimg_contanier__text_header">
-                {item.type}
-              </div>
-              <div className="cardWithimg_contanier__text_title">
-                {item.unit.name}
-              </div>
-
-              <div className="cardWithimg_contanier__text_name">
-                <WrapItem>
-                  <Avatar
-                    size="xs"
-                    marginLeft="4px"
-                    name="Kola Tioluwani"
-                    src="https://bit.ly/tioluwani-kolawole"
+      <Card width="-webkit-fit-content" bg="white">
+        {item ? (
+          <>
+            {" "}
+            <div className="cardWithimg">
+              <div className={"cardWithimg_contanier"}>
+                <div className="cardWithimg_contanier__icon">
+                  <img
+                    src={img}
+                    alt="desc"
+                    className="cardWithimg_contanier__icon_img"
                   />
-                </WrapItem>
-                {item.unit?.tenant?.firstNameAr}
-              </div>
+                  <div
+                    className={
+                      status == TICKET_STATUS.CLOSED
+                        ? "cardWithimg_contanier__icon_stats closed"
+                        : status == TICKET_STATUS.ACTIVE
+                        ? "cardWithimg_contanier__icon_stats activecard"
+                        : status == TICKET_STATUS.PROCESSING
+                        ? "cardWithimg_contanier__icon_stats process"
+                        : " "
+                    }
+                  >
+                    {t(status)}
+                  </div>
+                </div>
+                <div className="cardWithimg_contanier__text">
+                  <div className="cardWithimg_contanier__text_header">
+                    {item.type}
+                  </div>
+                  <div className="cardWithimg_contanier__text_title">
+                    {item.unit.name}
+                  </div>
 
-              <div className="cardWithimg_contanier__text_address">
-                {item.description}
-              </div>
-            </div>
+                  <div className="cardWithimg_contanier__text_name">
+                    <WrapItem>
+                      <Avatar
+                        size="xs"
+                        marginLeft="4px"
+                        name="Kola Tioluwani"
+                        src="https://bit.ly/tioluwani-kolawole"
+                      />
+                    </WrapItem>
+                    {item.unit?.tenant?.firstNameAr}
+                  </div>
 
-            <>
-              <div
-                className="cardWithimg_contanier__btns"
-                style={{
-                  marginTop: status === TICKET_STATUS.CLOSED ? "0px" : "",
-                }}
-              >
-                {status === TICKET_STATUS.ACTIVE ||
-                status === TICKET_STATUS.PROCESSING ? (
-                  <>
-                    <Button
-                      variant="solid"
-                      rightIcon={<CheckIcon />}
-                      colorScheme="blue"
-                      marginLeft="8px"
-                      width="100%"
-                      backgroundColor="#2EA154"
-                    color={'white'}
-                      onClick={() => {
-                        let sentStatus =
-                          status === TICKET_STATUS.ACTIVE
-                            ? TICKET_STATUS.PROCESSING
-                            : TICKET_STATUS.CLOSED;
-                        setStatus(sentStatus);
-                        updateStatus(sentStatus);
-                      }}
-                    >
-                      {t("general.accept")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      rightIcon={<CloseIcon />}
-                      colorScheme="red"
-                      width="100%"
-                      onClick={() => {
-                        setStatus(TICKET_STATUS.CLOSED);
-                        updateStatus(TICKET_STATUS.CLOSED);
-                      }}
-                    >
-                      {t("general.reject")}
-                    </Button>
-                  </>
-                ) : (
-                  <></>
-                )}
+                  <div className="cardWithimg_contanier__text_address">
+                    {item.description}
+                  </div>
+                </div>
 
-                {/*  {status === TICKET_STATUS.processing ? (
+                <>
+                  <div
+                    className="cardWithimg_contanier__btns"
+                    style={{
+                      marginTop: status === TICKET_STATUS.CLOSED ? "0px" : "",
+                    }}
+                  >
+                    {status === TICKET_STATUS.ACTIVE ||
+                    status === TICKET_STATUS.PROCESSING ? (
+                      <>
+                        <Button
+                          variant="solid"
+                          rightIcon={<CheckIcon />}
+                          colorScheme="blue"
+                          marginLeft="8px"
+                          width="100%"
+                          backgroundColor="#2EA154"
+                          color={"white"}
+                          onClick={() => {
+                            let sentStatus =
+                              status === TICKET_STATUS.ACTIVE
+                                ? TICKET_STATUS.PROCESSING
+                                : TICKET_STATUS.CLOSED;
+                            setStatus(sentStatus);
+                            updateStatus(sentStatus);
+                          }}
+                        >
+                          {status === TICKET_STATUS.ACTIVE ? (
+                            <>{t("general.accept")}</>
+                          ) : (
+                            <>{t("general.solved")}</>
+                          )}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          rightIcon={<CloseIcon />}
+                          colorScheme="red"
+                          width="100%"
+                          onClick={() => {
+                            setStatus(TICKET_STATUS.CLOSED);
+                            updateStatus(TICKET_STATUS.CLOSED);
+                          }}
+                        >
+                          {status === TICKET_STATUS.ACTIVE ? (
+                            <>{t("general.reject")}</>
+                          ) : (
+                            <>{t("general.closed")}</>
+                          )}
+                        </Button>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+
+                    {/*  {status === TICKET_STATUS.processing ? (
                   <>
                     <Button
                       variant="solid"
@@ -165,10 +178,24 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
                 ) : (
                   <></>
                 )} */}
+                  </div>
+                </>
               </div>
-            </>
-          </div>
-        </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex-center ">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </div>
+          </>
+        )}
       </Card>
     </>
   );

@@ -28,6 +28,7 @@
       "email": "البريد الإلكتروني",
       "phone": "رقم الجوال",
       "national_id": "رقم الهوية الوطنية",
+      "contractNumber": "رقم عقد الوساطة",
       "national_id_text": "الهوية الوطنية",
       "price_value": "قيمة المسدد",
       "rentDate": "موعد سداد الاستحقاق",
@@ -102,7 +103,10 @@
       "total_properties":"عدد العقارات الكلي",
       "total_numbers_units":"عدد الوحدات الكلي",
       "total_rent_money":"مجموع الإيجار",
-      "edit":"تعديل"
+      "edit":"تعديل",
+      "solved":"تم الحل",
+      "closed":"اغلاق",
+      "all_tickets":"كل التذاكر"
       
     },
     "search": {

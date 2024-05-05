@@ -666,7 +666,7 @@ function TicketsContainer() {
 
                 <div className="w-100">
                   <div className="page_container_table__content_header">
-                    كل التذاكر
+                  {t("general.all_tickets")}
                   </div>
                   {!isGrid ? (
                     <>
@@ -780,7 +780,7 @@ function TicketsContainer() {
                                                 );
                                               }}
                                             >
-                                              {t("general.reject")}
+                                              {t("general.closed")}
                                             </Button>
                                             <Button
                                               width={"100%"}
@@ -798,7 +798,7 @@ function TicketsContainer() {
                                                 );
                                               }}
                                             >
-                                              {t("general.accept")}
+                                              {t("general.solved")}
                                             </Button>
                                           </Stack>
                                         </>

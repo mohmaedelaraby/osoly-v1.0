@@ -28,6 +28,7 @@
       "email": "email",
       "phone": "mobile number",
       "national_id": "National ID number",
+      "contractNumber": "Contract Number",
       "national_id_text": "National ID",
       "price_value": "paid value",
       "rentDate": "Due payment date",
@@ -102,7 +103,11 @@
       "total_properties": "Total number of properties",
       "total_numbers_units": "total number of units",
       "total_rent_money": "Total rent",
-      "edit": "Edit"
+      "edit": "Edit",
+      "solved":"Solve ",
+      "closed":"Close",
+      "all_tickets":"All Tickets"
+
     },
     "search": {
       "by_mail": "Search by user's email",

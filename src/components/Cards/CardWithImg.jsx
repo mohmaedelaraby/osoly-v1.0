@@ -1,4 +1,11 @@
-import { Avatar, Button, Card, Stack, WrapItem } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Card,
+  Spinner,
+  Stack,
+  WrapItem,
+} from "@chakra-ui/react";
 import image from "../../assets/images/houseImg.png";
 import "../../assets/styels/components/cards.scss";
 
@@ -26,108 +33,125 @@ function CardWithImg({
   const { primary, secondry } = useDynamicColors();
 
   return (
-    <Card width={isVertical ? "100%" : "-webkit-fit-content"}>
-      <div className="cardWithimg" style={{ width: isVertical ? "100%" : "" }}>
-        <div
-          className={
-            isVertical
-              ? "cardWithimg_contanier verticalCard"
-              : "cardWithimg_contanier"
-          }
-        >
-          <div className="cardWithimg_contanier__icon">
-            <img src={img} alt="desc" />
-            <div className="cardWithimg_contanier__icon_btns">
-              {!isVertical ? (
+    <Card width={isVertical ? "100%" : "100%"}>
+      {title ? (
+        <>
+          <div
+            className="cardWithimg"
+            style={{ width: isVertical ? "100%" : "100%" }}
+          >
+            <div
+              className={
+                isVertical
+                  ? "cardWithimg_contanier verticalCard"
+                  : "cardWithimg_contanier"
+              }
+            >
+              <div className="cardWithimg_contanier__icon">
+                <img
+                  src={img}
+                  alt=""
+                  className="cardWithimg_contanier__icon_img"
+                />
+                <div className="cardWithimg_contanier__icon_btns">
+                  {!isVertical ? (
+                    <>
+                      <Stack
+                        alignItems={"center"}
+                        direction={"row"}
+                        spacing={1}
+                      >
+                        <Button
+                          className="table_body_row_item_btns_editbtn"
+                          width={"25%"}
+                          rightIcon={<EditOutlinedIcon />}
+                          paddingRight="8px"
+                          color={"white"}
+                          variant="solid"
+                          alignItems="center"
+                          justifyContent="center"
+                          bg={"#194C81"}
+                          onClick={() => {
+                            //(item);
+                            sendDataToParent(["edit", id]);
+                          }}
+                        ></Button>
+                        <Button
+                          className="table_body_row_item_btns_deletebtn"
+                          width={"25%"}
+                          rightIcon={<DeleteIcon />}
+                          paddingRight="8px"
+                          color={"white"}
+                          variant="solid"
+                          bg={"#CC3636"}
+                          alignItems="center"
+                          justifyContent="center"
+                          onClick={() => {
+                            sendDataToParent(["delete", id]);
+                            //mutate(item.id);
+                          }}
+                        ></Button>
+                      </Stack>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+              <div className="cardWithimg_contanier__text">
+                {header ? (
+                  <div className="cardWithimg_contanier__text_header">
+                    {header}
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {title ? (
+                  <div className="cardWithimg_contanier__text_title">
+                    {title}
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {name ? (
+                  <div className="cardWithimg_contanier__text_name">
+                    <WrapItem>
+                      <Avatar
+                        size="xs"
+                        marginLeft="4px"
+                        name="Kola Tioluwani"
+                        src="https://bit.ly/tioluwani-kolawole"
+                      />
+                    </WrapItem>
+                    {name}
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {price ? (
+                  <div className="cardWithimg_contanier__text_priceContainer">
+                    <span className="cardWithimg_contanier__text_price">
+                      {price}
+                    </span>
+                    <span className="cardWithimg_contanier__text_price_desc">
+                      {currncy}
+                    </span>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {address ? (
+                  <div className="cardWithimg_contanier__text_address">
+                    {address}
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+              {isBtns ? (
                 <>
-                  <Stack alignItems={"center"} direction={"row"} spacing={1}>
-                    <Button
-                      className="table_body_row_item_btns_editbtn"
-                      width={"25%"}
-                      rightIcon={<EditOutlinedIcon />}
-                      paddingRight='8px'
-                      color={"white"}
-                      variant="solid"
-                      alignItems="center"
-                      justifyContent="center"
-                      bg={"#194C81"}
-                      onClick={() => {
-                        //(item);
-                        sendDataToParent(["edit" , id]);
-                      }}
-                    ></Button>
-                    <Button
-                      className="table_body_row_item_btns_deletebtn"
-                      width={"25%"}
-                      rightIcon={<DeleteIcon />}
-                      paddingRight='8px'
-                      color={"white"}
-                      variant="solid"
-                      bg={"#CC3636"}
-                      alignItems="center"
-                      justifyContent="center"
-                      onClick={() => {
-                        sendDataToParent(["delete" ,id]);
-                        //mutate(item.id);
-                      }}
-                    ></Button>
-                  </Stack>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
-          <div className="cardWithimg_contanier__text">
-            {header ? (
-              <div className="cardWithimg_contanier__text_header">{header}</div>
-            ) : (
-              <></>
-            )}
-            {title ? (
-              <div className="cardWithimg_contanier__text_title">{title}</div>
-            ) : (
-              <></>
-            )}
-            {name ? (
-              <div className="cardWithimg_contanier__text_name">
-                <WrapItem>
-                  <Avatar
-                    size="xs"
-                    marginLeft="4px"
-                    name="Kola Tioluwani"
-                    src="https://bit.ly/tioluwani-kolawole"
-                  />
-                </WrapItem>
-                {name}
-              </div>
-            ) : (
-              <></>
-            )}
-            {price ? (
-              <div className="cardWithimg_contanier__text_priceContainer">
-                <span className="cardWithimg_contanier__text_price">
-                  {price}
-                </span>
-                <span className="cardWithimg_contanier__text_price_desc">
-                  {currncy}
-                </span>
-              </div>
-            ) : (
-              <></>
-            )}
-            {address ? (
-              <div className="cardWithimg_contanier__text_address">
-                {address}
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
-          {isBtns ? (
-            <>
-              <div className="cardWithimg_contanier__btns">
-                {/* <Stack
+                  <div className="cardWithimg_contanier__btns">
+                    {/* <Stack
                   alignItems={isVertical ? "flex-end" : "center"}
                   direction={isVertical ? "column" : "row"}
                   spacing={4}
@@ -151,13 +175,29 @@ function CardWithImg({
                     {t("general.reject")}
                   </Button>
                 </Stack> */}
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <>
+            <div className="flex-center ">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </div>
+          </>
+        </>
+      )}
     </Card>
   );
 }
