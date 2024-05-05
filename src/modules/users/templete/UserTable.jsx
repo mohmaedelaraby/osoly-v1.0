@@ -434,10 +434,7 @@ function UserTable({ switchTo }) {
                 <Th className="table_header_item">{t("general.name")} </Th>
                 <Th className="table_header_item">{t("general.national_id_text")}</Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
-                <Th className="table_header_item">{t("general.price_value")}</Th>
-                <Th className="table_header_item">{t("general.rentDate")}</Th>
                 <Th className="table_header_item">{t("general.property_name")} </Th>
-
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
@@ -451,17 +448,14 @@ function UserTable({ switchTo }) {
                       <Tr
                         key={index}
                         className="table_body_row"
-                        onClick={() => {}}
                       >
                         <Td className="table_body_row_item">
-                          {item.firstNameAr} {item.role}
+                          {item.firstNameAr}
                         </Td>
                         <Td className="table_body_row_item">-</Td>
                         <Td className="table_body_row_item">
                           {item.phoneNumber}
                         </Td>
-                        <Td className="table_body_row_item">-</Td>
-                        <Td className="table_body_row_item">-</Td>
                         <Td className="table_body_row_item">
                           {item?.ownedUnits[0]?.name}
                         </Td>
