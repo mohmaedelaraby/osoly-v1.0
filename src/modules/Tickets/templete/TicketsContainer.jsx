@@ -39,6 +39,7 @@ import processingTickets from "../../../assets/icons-svgs/processingTickets.svg"
 import activeTickets from "../../../assets/icons-svgs/activeTickets.svg";
 import closedTickets from "../../../assets/icons-svgs/closedTickets.svg";
 import totalTicketsey from "../../../assets/icons-svgs/totalTickets.svg";
+import logo from "../../../assets/images/houseImg.png";
 
 import "../../../assets/styels/components/page.scss";
 import CardWithNumber from "../../../components/Cards/CardWithNumber";
@@ -548,7 +549,7 @@ function TicketsContainer() {
                                           {item.description}
                                         </Td>
                                         <Td className="table_body_row_item">
-                                          -
+                                          <img src={item?.images[0] ? item?.images[0] : logo } alt="" width='35px' height='35px' />
                                         </Td>
                                         <Td className="table_body_row_item">
                                           {item.unit?.tenant?.firstNameAr}
@@ -726,7 +727,9 @@ function TicketsContainer() {
                                     <Td className="table_body_row_item">
                                       {item.description}
                                     </Td>
-                                    <Td className="table_body_row_item">-</Td>
+                                    <Td className="table_body_row_item">
+                                    <img src={item?.images[0] ? item?.images[0] : logo } alt="" width='35px' height='35px' />
+                                    </Td>
                                     <Td className="table_body_row_item">
                                       {item.unit?.tenant?.firstNameAr}
                                     </Td>
