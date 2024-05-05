@@ -212,7 +212,7 @@ function TicketsContainer() {
                       rightIcon={<ChevronDownIcon />}
                     >
                       <span className="pl-8 fo_primary">
-                        {t("general.sort")}
+                        {t("general.filter")}
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
@@ -238,7 +238,7 @@ function TicketsContainer() {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary">
-                              {t("general.sort")}
+                              {t("general.filter")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -302,7 +302,7 @@ function TicketsContainer() {
                       rightIcon={<ChevronDownIcon />}
                     >
                       <span className="pl-8 fo_primary">
-                        {t("general.filter")}
+                        {t("general.sort")}
                       </span>
                     </MenuButton>
                     <MenuList padding={"24px"} width="257px">
@@ -313,7 +313,7 @@ function TicketsContainer() {
                               {Object.entries(ticketsTypes).map((item) => (
                                 <></>
                               ))}
-                              {t("general.filter")} {t("general.type")}
+                              {t("general.sort")} {t("general.type")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -338,7 +338,7 @@ function TicketsContainer() {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary">
-                              {t("general.filter")} {t("general.status")}
+                              {t("general.sort")} {t("general.status")}
                             </Text>
                           </FormLabel>
                           <Select
