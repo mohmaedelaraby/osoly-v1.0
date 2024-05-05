@@ -231,7 +231,7 @@ const EditProperty = ({ id, onClose }) => {
                 <div className="form__input__container__warn">
                   {formik.touched.name && formik.errors.name ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.name}
+                      {t(formik.errors.name)}
                     </Text>
                   ) : null}
                 </div>
@@ -260,7 +260,7 @@ const EditProperty = ({ id, onClose }) => {
                 <div className="form__input__container__warn">
                   {formik.touched.address && formik.errors.address ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.address}
+                      {t(formik.errors.address)}
                     </Text>
                   ) : null}
                 </div>
@@ -358,7 +358,7 @@ const EditProperty = ({ id, onClose }) => {
                 <div className="form__input__container__warn">
                   {formik.touched.postalCode && formik.errors.postalCode ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.postalCode}
+                      {t(formik.errors.postalCode)}
                     </Text>
                   ) : null}
                 </div>
@@ -389,7 +389,7 @@ const EditProperty = ({ id, onClose }) => {
                   {formik.touched.instrumentNumber &&
                   formik.errors.instrumentNumber ? (
                     <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                      {formik.errors.instrumentNumber}
+                      {t(formik.errors.instrumentNumber)}
                     </Text>
                   ) : null}
                 </div>

@@ -83,8 +83,8 @@
       "accept": "accept",
       "reject": "reject",
       "total_number": "total number",
-      "total_owners":"total owners of the property",
-      "total_tenats":"Total Tenants",
+      "total_owners": "total owners of the property",
+      "total_tenats": "Total Tenants",
       "date": "date",
       "type": "type",
       "status": "status",
@@ -97,12 +97,12 @@
       "attachment": "attachments",
       "senter": "sender",
       "rent_collect": " Rent collected ",
-      "last":"last",
-      "months":"months",
-      "total_properties":"Total number of properties",
-      "total_numbers_units":"total number of units",
-      "total_rent_money":"Total rent",
-      "edit":"Edit"
+      "last": "last",
+      "months": "months",
+      "total_properties": "Total number of properties",
+      "total_numbers_units": "total number of units",
+      "total_rent_money": "Total rent",
+      "edit": "Edit"
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -161,7 +161,7 @@
         "enterprisename": "Founder name"
       }
     },
-    "properties": {
+    "propreties": {
       "page": {
         "header": "Properties/Units",
         "add_property_title": "Add property"
@@ -203,12 +203,42 @@
       "info": "Help",
       "logout": "Logout"
     },
-    "settings":{
-      "primary_dash":"Primary Color For Dashboard",
-      "sec_dash":"Secondry Color For Dashboard",
-      "primary_sb":"Primary Color For Sidebar",
-      "sec_sb":"Secondry Color For Sidebar",
-      "logo":"Upload Your Logo"
+    "settings": {
+      "primary_dash": "Primary Color For Dashboard",
+      "sec_dash": "Secondry Color For Dashboard",
+      "primary_sb": "Primary Color For Sidebar",
+      "sec_sb": "Secondry Color For Sidebar",
+      "logo": "Upload Your Logo"
+    },
+    "errors": {
+      "name": "Please enter the name",
+      "nameEn":"Please enter the name in English",
+      "password": "Please enter the password",
+      "password_eight":"password must be at least 8 digits",
+      "address": "Please enter the address",
+      "unitsCount": "Please enter the number of units",
+      "instrumentNumber": "Please enter the instrument number",
+      "postalCode": "Please enter your postal code",
+      "blockNumber": "Please enter the building number",
+      "street": "Please enter the street",
+      "district": "Please enter the district",
+      "ownerId": "Please enter the owner",
+      "city": "Please enter the city",
+      "image": "Please enter an image",
+      "email":"Please enter your email",
+      "phone":"Please enter your mobile number",
+      "identityNumber":"Please enter your ID number",
+      "role":"Please enter user type",
+      "rent":"Please enter the rent",
+      "rentCollectionDate":"Please enter the date",
+      "electricityAccount":"Please enter the electricity account number",
+      "waterAccount":"Please enter the water account number",
+      "space":"Please enter the space",
+      "rooms":"Please enter the number of rooms",
+      "bathrooms":"Please enter the number of bathrooms",
+      "conditioners":"Please enter the number of conditioners",
+      "maintenanceMan":"Please enter the maintenance person.",
+      "tenantId":"Please enter the tenant"
     }
   }
 }

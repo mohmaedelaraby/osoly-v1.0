@@ -91,7 +91,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.firstNameAr && formik.errors.firstNameAr ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.firstNameAr}
+                    {t(formik.errors.firstNameAr)}
                   </Text>
                 ) : null}
               </div>
@@ -124,7 +124,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.firstNameEn && formik.errors.firstNameEn ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.firstNameEn}
+                    {t(formik.errors.firstNameEn)}
                   </Text>
                 ) : null}
               </div>
@@ -153,7 +153,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.email && formik.errors.email ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.email}
+                    {t(formik.errors.email)}
                   </Text>
                 ) : null}
               </div>
@@ -182,7 +182,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.phoneNumber}
+                    {t(formik.errors.phoneNumber)}
                   </Text>
                 ) : null}
               </div>
@@ -239,7 +239,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.password && formik.errors.password ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.password}
+                    {t(formik.errors.password)}
                   </Text>
                 ) : null}
               </div>
@@ -270,7 +270,7 @@ const CreateUser = ({ onClose, userRule }) => {
               <div className="form__input__container__warn">
                 {formik.touched.identityId && formik.errors.identityId ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.identityId}
+                    {t(formik.errors.identityId)}
                   </Text>
                 ) : null}
               </div>

@@ -2,12 +2,12 @@
 import * as Yup from "yup";
 
 export const ownerValidation = Yup.object({
-  firstNameEn: Yup.string().url().required("You should enter first name"),
-  email: Yup.string().required("You should enter email"),
-  phoneNumber: Yup.string().required("You should enter phoneNumber"),
-  lastNameEn: Yup.string().required("You should enter last name"),
-  firstNameAr: Yup.string().required("يجب ادخال اسمك الاول"),
-  lastNameAr: Yup.string().required("يجب ادخال اسمك الاخير"),
-  password: Yup.string().min(8).required("You should enter password"),
-  role: Yup.string().required("You should enter role"),
+  firstNameEn: Yup.string().url().required("errors.name"),
+  email: Yup.string().required("errors.email"),
+  phoneNumber: Yup.string().required("errors.phoneNumber"),
+  lastNameEn: Yup.string().required("errors.last name"),
+  firstNameAr: Yup.string().required("errors.name"),
+  lastNameAr: Yup.string().required("errors.name"),
+  password: Yup.string().min(8 , "errors.password_eight").required("errors.password"),
+  role: Yup.string().required("errors.role"),
 });

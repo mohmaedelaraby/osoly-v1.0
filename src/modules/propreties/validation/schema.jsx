@@ -1,28 +1,28 @@
 import * as Yup from "yup";
 
 export const propertyCreateValidation = Yup.object({
-  name: Yup.string().required("You should enter name"),
-  address: Yup.string().required("You should enter address"),
-  unitsCount: Yup.number().required("You should enter unitsCount"),
-  instrumentNumber: Yup.string().required("You should enter instrumentNumber"),
-  postalCode: Yup.string().required("You should enter postalCode"),
-  blockNumber: Yup.string().required("You should enter blockNumber"),
-  street: Yup.string().required("You should enter street"),
-  district: Yup.string().required("You should enter district"),
-  ownerId: Yup.string().required("You should enter ownerId"),
-  city: Yup.string().required("You should enter city"),
-  image: Yup.mixed().required("You need to provide a file")});
+  name: Yup.string().required("errors.name"),
+  address: Yup.string().required("errors.address"),
+  unitsCount: Yup.number().required("errors.unitsCount"),
+  instrumentNumber: Yup.string().required("errors.instrumentNumber"),
+  postalCode: Yup.string().required("errors.postalCode"),
+  blockNumber: Yup.string().required("errors.blockNumber"),
+  street: Yup.string().required("errors.street"),
+  district: Yup.string().required("errors.district"),
+  ownerId: Yup.string().required("errors.ownerId"),
+  city: Yup.string().required("errors.city"),
+  image: Yup.mixed().required("errors.image")});
 
 
 export const propertyEditValidation = Yup.object({
-  name: Yup.string().required("You should enter name"),
-  address: Yup.string().required("You should enter address"),
-  unitsCount: Yup.number().required("You should enter unitsCount"),
-  instrumentNumber: Yup.string().required("You should enter instrumentNumber"),
-  postalCode: Yup.string().required("You should enter postalCode"),
-  blockNumber: Yup.string().required("You should enter blockNumber"),
-  street: Yup.string().required("You should enter street"),
-  subNumber: Yup.string().required("You should enter subNumber"),
-  district: Yup.string().required("You should enter district"),
-  city: Yup.string().required("You should enter city"),
+  name: Yup.string().required("errors.name"),
+  address: Yup.string().required("errors.address"),
+  unitsCount: Yup.number().required("errors.unitsCount"),
+  instrumentNumber: Yup.string().required("errors.instrumentNumber"),
+  postalCode: Yup.string().required("errors.postalCode"),
+  blockNumber: Yup.string().required("errors.blockNumber"),
+  street: Yup.string().required("errors.street"),
+  subNumber: Yup.string().required("errors.subNumber"),
+  district: Yup.string().required("errors.district"),
+  city: Yup.string().required("errors.city"),
 });

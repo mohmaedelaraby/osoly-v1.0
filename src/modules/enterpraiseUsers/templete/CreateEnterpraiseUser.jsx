@@ -85,7 +85,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
             <div className="form__input__container__warn">
               {formik.touched.username && formik.errors.username ? (
                 <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                  {formik.errors.username}
+                  {t(formik.errors.username)}
                 </Text>
               ) : null}
             </div>
@@ -140,7 +140,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
             <div className="form__input__container__warn">
               {formik.touched.password && formik.errors.password ? (
                 <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                  {formik.errors.password}
+                  {t(formik.errors.password)}
                 </Text>
               ) : null}
             </div>

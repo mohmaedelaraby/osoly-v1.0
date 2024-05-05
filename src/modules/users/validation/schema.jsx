@@ -1,21 +1,21 @@
 import * as Yup from "yup";
 
 export const userEditValidation = Yup.object({
-  firstNameEn: Yup.string().required("You should enter first name"),
-  lastNameEn: Yup.string().required("You should enter last name"),
-  firstNameAr: Yup.string().required("يجب ادخال اسمك الاول"),
-  lastNameAr: Yup.string().required("يجب ادخال اسمك الاخير"),
+  firstNameEn: Yup.string().required("errors.name"),
+  lastNameEn: Yup.string().required("errors.name"),
+  firstNameAr: Yup.string().required("errors.name"),
+  lastNameAr: Yup.string().required("errors.name"),
 });
 export const userCreateValidation = Yup.object({
-  firstNameEn: Yup.string().required("You should enter first name"),
+  firstNameEn: Yup.string().required("errors.name"),
   lastNameEn: Yup.string().required("You should enter last name"),
-  firstNameAr: Yup.string().required("يجب ادخال اسمك الاول"),
-  lastNameAr: Yup.string().required("يجب ادخال اسمك الاخير"),
-  password: Yup.string().min(8).required("You should enter password"),
-  phoneNumber: Yup.string().min(11).required("You should enter phone number"),
-  role: Yup.string().required("You should enter role"),
-  email: Yup.string().email().required("You should enter email"),
-  identityId: Yup.string().required("You should enter identity Number"),
+  firstNameAr: Yup.string().required("errors.name"),
+  lastNameAr: Yup.string().required("errors.name"),
+  password: Yup.string().min(8 , "errors.password_eight").required("errors.password"),
+  phoneNumber: Yup.string().min(11).required("errors.phone"),
+  role: Yup.string().required("errors.role"),
+  email: Yup.string().email().required("errors.email"),
+  identityId: Yup.string().required("errors.identityNumber"),
 });
 
 

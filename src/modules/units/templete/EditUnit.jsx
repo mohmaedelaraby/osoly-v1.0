@@ -235,7 +235,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.name && formik.errors.name ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.name}
+                    {t(formik.errors.name)}
                   </Text>
                 ) : null}
               </div>
@@ -264,7 +264,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.rent && formik.errors.rent ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.rent}
+                    {t(formik.errors.rent)}
                   </Text>
                 ) : null}
               </div>
@@ -365,7 +365,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.address && formik.errors.address ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.address}
+                    {t(formik.errors.address)}
                   </Text>
                 ) : null}
               </div>
@@ -396,7 +396,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.waterAccount && formik.errors.waterAccount ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.waterAccount}
+                    {t(formik.errors.waterAccount)}
                   </Text>
                 ) : null}
               </div>
@@ -427,7 +427,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 {formik.touched.electricityAccount &&
                 formik.errors.electricityAccount ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.electricityAccount}
+                    {t(formik.errors.electricityAccount)}
                   </Text>
                 ) : null}
               </div>
@@ -468,7 +468,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.space && formik.errors.space ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.space}
+                    {t(formik.errors.space)}
                   </Text>
                 ) : null}
               </div>
@@ -497,7 +497,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.rooms && formik.errors.rooms ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.rooms}
+                    {t(formik.errors.rooms)}
                   </Text>
                 ) : null}
               </div>
@@ -526,7 +526,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.bathrooms && formik.errors.bathrooms ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.bathrooms}
+                    {t(formik.errors.bathrooms)}
                   </Text>
                 ) : null}
               </div>
@@ -555,7 +555,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               <div className="form__input__container__warn">
                 {formik.touched.conditioners && formik.errors.conditioners ? (
                   <Text color="#EE2E2E" fontSize="sm" className="mt-2">
-                    {formik.errors.conditioners}
+                    {t(formik.errors.conditioners)}
                   </Text>
                 ) : null}
               </div>
