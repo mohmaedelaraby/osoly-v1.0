@@ -37,6 +37,12 @@ const EditProperty = ({ id, onClose }) => {
   const { t } = useTranslation();
   const {primary,secondry}=useDynamicColors()
 
+  const {
+    isOpen: isOpenUnitModal,
+    onOpen: onOpenUnitModal,
+    onClose: onCloseUnitModal,
+  } = useDisclosure();
+
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -57,6 +63,12 @@ const EditProperty = ({ id, onClose }) => {
     refetch();
     usersRefetch();
   }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      refetch();
+    }, 500);
+  }, [isOpenUnitModal]);
+  
 
   useEffect(() => {
     if (data) {
@@ -107,11 +119,7 @@ const EditProperty = ({ id, onClose }) => {
       //mutate({ id: data?.id, body: values });
     },
   });
-  const {
-    isOpen: isOpenUnitModal,
-    onOpen: onOpenUnitModal,
-    onClose: onCloseUnitModal,
-  } = useDisclosure();
+  
 
   const openUnitPopup = () => {
     onOpenUnitModal();
