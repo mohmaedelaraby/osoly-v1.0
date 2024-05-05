@@ -219,7 +219,7 @@ const OwnerTable = ({ switchTo }) => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.sort")}</span>
+              <span className="pl-8 fo_primary">{t("general.filter")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <MenuItem>
@@ -244,7 +244,7 @@ const OwnerTable = ({ switchTo }) => {
                 <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
-                      {t("general.sort")}
+                      {t("general.filter")}
                     </Text>
                   </FormLabel>
                   <Select
@@ -254,7 +254,7 @@ const OwnerTable = ({ switchTo }) => {
                       setTimeout(() => {}, 0);
                     }}
                   >
-                    <option value={null}>{t("general.sort")}</option>
+                    <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
                         {item}
@@ -306,7 +306,7 @@ const OwnerTable = ({ switchTo }) => {
               borderRadius="8px"
               rightIcon={<ChevronDownIcon />}
             >
-              <span className="pl-8 fo_primary">{t("general.filter")}</span>
+              <span className="pl-8 fo_primary">{t("general.sort")}</span>
             </MenuButton>
             <MenuList padding={"24px"} width="257px">
               <div className="menu-select-container">
@@ -314,7 +314,7 @@ const OwnerTable = ({ switchTo }) => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.phone")}
+                        {t("general.sort")} {t("general.phone")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -333,7 +333,7 @@ const OwnerTable = ({ switchTo }) => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.email")}
+                        {t("general.sort")} {t("general.email")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -352,7 +352,7 @@ const OwnerTable = ({ switchTo }) => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.contract_number")}
+                        {t("general.sort")} {t("general.contract_number")}
                       </Text>
                     </FormLabel>
                     <Input
@@ -371,7 +371,7 @@ const OwnerTable = ({ switchTo }) => {
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
-                        {t("general.filter")} {t("general.national_id")}
+                        {t("general.sort")} {t("general.national_id")}
                       </Text>
                     </FormLabel>
                     <Input
