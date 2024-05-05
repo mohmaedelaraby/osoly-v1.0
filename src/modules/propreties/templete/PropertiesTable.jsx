@@ -162,6 +162,7 @@ function PropertiesTable() {
     blockNumber,
     postalCode,
     isSuccess,
+    isSuccessFiles
   ]);
 
   const handlePropertyPageChange = (page) => {

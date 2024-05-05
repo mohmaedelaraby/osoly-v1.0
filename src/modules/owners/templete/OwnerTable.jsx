@@ -151,6 +151,8 @@ const OwnerTable = ({ switchTo }) => {
     email,
     identityId,
     contractNumber,
+    isSuccess,
+    isSuccessFiles
   ]);
 
   useEffect(() => {
