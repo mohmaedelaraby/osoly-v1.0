@@ -1,13 +1,12 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { userCreateValidation } from "../validation/schema";
+import { ownerCreateValidation, userCreateValidation } from "../validation/schema";
 import {
   Button,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Stack,
   Text,
@@ -37,12 +36,13 @@ const CreateUser = ({ onClose, userRule }) => {
     phoneNumber: "",
     email: "",
     identityId: "",
+    contractNumber:"",
     role: userRule,
   };
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: userCreateValidation,
+    validationSchema: userRule == USER_ROLES.TENANT ?  userCreateValidation : ownerCreateValidation,
     onSubmit: (values) => {
       mutate({ body: values });
       onClose();
@@ -275,6 +275,39 @@ const CreateUser = ({ onClose, userRule }) => {
                 ) : null}
               </div>
             </FormControl>
+          </div>
+
+          <div className="form__input form__input__flex">
+            {
+              userRule ==  USER_ROLES.OWNER ? (<> <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label fo_primary">
+                  {t("general.contractNumber")}
+                </Text>
+              </FormLabel>
+              <Input
+                name="contractNumber"
+                size="lg"
+                type="text"
+                className="form__input__container__input"
+                placeholder={t("general.national_id")}
+                _placeholder={{ color: "#77797E" }}
+                value={formik.values.contractNumber}
+                onChange={formik.handleChange}
+                isInvalid={
+                  formik.touched.contractNumber && !!formik.errors.contractNumber
+                }
+              />
+
+              <div className="form__input__container__warn">
+                {formik.touched.contractNumber && formik.errors.contractNumber ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                    {t(formik.errors.contractNumber)}
+                  </Text>
+                ) : null}
+              </div>
+            </FormControl></>):(<></>)
+            }   
           </div>
 
           <div className="form__btn__container">

@@ -477,17 +477,17 @@ const OwnerTable = ({ switchTo }) => {
                         onClick={() => {}}
                       >
                         <Td className="table_body_row_item">
-                          {item.firstNameAr}
+                          {item?.firstNameAr}
                         </Td>
-                        <Td className="table_body_row_item">-</Td>
-                        <Td className="table_body_row_item">{item.email}</Td>
+                        <Td className="table_body_row_item">{item?.identityId ? item.identityId : "-"}</Td>
+                        <Td className="table_body_row_item">{item?.email}</Td>
                         <Td className="table_body_row_item">
-                          {item.phoneNumber}
+                          {item?.phoneNumber}
                         </Td>
                         <Td className="table_body_row_item">
                           {item?.ownedProperties?.length}
                         </Td>
-                        <Td className="table_body_row_item">-</Td>
+                        <Td className="table_body_row_item">{item?.contractNumber ? item.contractNumber : "-"}</Td>
                         <Td className="table_body_row_item_btns">
                           <Stack
                             alignItems={"center"}

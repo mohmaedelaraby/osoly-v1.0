@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
-import { userEditValidation } from "../validation/schema";
+import { ownerEditValidation, userEditValidation } from "../validation/schema";
 import { USER_ROLES } from "../../../enums/UserRoles";
 import close from "../../../assets/icons-svgs/close.svg";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -39,21 +39,22 @@ const EditUser = ({ onClose, id, userRule }) => {
   }, []);
 
   const initialValues = {
-    firstNameEn: usersData?.firstNameEn,
+    firstNameEn: usersData?.firstNameEn|| " ",
     lastNameEn: " ",
     lastNameAr: " ",
-    firstNameAr: usersData?.firstNameAr,
+    firstNameAr: usersData?.firstNameAr|| " ",
     password: "0000000000",
-    phoneNumber: usersData?.phoneNumber,
-    email: usersData?.email,
-    identityId: usersData?.identityId,
+    phoneNumber: usersData?.phoneNumber|| " ",
+    email: usersData?.email|| " ",
+    identityId: usersData?.identityId|| " ",
+    contractNumber: usersData?.contractNumber || " ",
     role: userRule,
   };
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
-    validationSchema: userEditValidation,
+    validationSchema: userRule == USER_ROLES.TENANT ? userEditValidation : ownerEditValidation,
     onSubmit: (values) => {
       let sentData = {
         id: id,
@@ -62,6 +63,8 @@ const EditUser = ({ onClose, id, userRule }) => {
           lastNameEn: " ",
           firstNameAr: values.firstNameAr,
           lastNameAr: " ",
+          phoneNumber :values.phoneNumber,
+          email :values.email,
         },
       };
       mutate(sentData);
@@ -158,7 +161,7 @@ const EditUser = ({ onClose, id, userRule }) => {
             </div>
 
             <div className="form__input form__input__flex">
-              <FormControl className="form__input__container disabled">
+              <FormControl className="form__input__container ">
                 <FormLabel>
                   <Text className="form__input__container__label fo_primary">
                     {t("general.email")}
@@ -185,7 +188,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                 </div>
               </FormControl>
 
-              <FormControl className="form__input__container disabled">
+              <FormControl className="form__input__container ">
                 <FormLabel>
                   <Text className="form__input__container__label fo_primary">
                     {t("general.phone")}
@@ -299,6 +302,39 @@ const EditUser = ({ onClose, id, userRule }) => {
                 </div>
               </FormControl>
             </div>
+
+            <div className="form__input form__input__flex">
+            {
+              userRule ==  USER_ROLES.OWNER ? (<> <FormControl className="form__input__container">
+              <FormLabel>
+                <Text className="form__input__container__label fo_primary">
+                  {t("general.contractNumber")}
+                </Text>
+              </FormLabel>
+              <Input
+                name="contractNumber"
+                size="lg"
+                type="text"
+                className="form__input__container__input"
+                placeholder={t("general.national_id")}
+                _placeholder={{ color: "#77797E" }}
+                value={formik.values.contractNumber}
+                onChange={formik.handleChange}
+                isInvalid={
+                  formik.touched.contractNumber && !!formik.errors.contractNumber
+                }
+              />
+
+              <div className="form__input__container__warn">
+                {formik.touched.contractNumber && formik.errors.contractNumber ? (
+                  <Text color="#EE2E2E" fontSize="sm" className="mt-2">
+                    {t(formik.errors.contractNumber)}
+                  </Text>
+                ) : null}
+              </div>
+            </FormControl></>):(<></>)
+            }   
+          </div>
 
             <div className="form__btn__container">
               <Stack direction="row" width="100%" justify="space-between">
