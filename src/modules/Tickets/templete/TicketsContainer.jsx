@@ -105,10 +105,8 @@ function TicketsContainer() {
   } = useTickets({
     pageNo: currentActivePage,
     limit: activeLimit,
-    sortBy: sortBy,
     sortDirection: sortDirection,
-    type: type,
-    status: status,
+   
   });
 
   useEffect(() => {
@@ -129,14 +127,7 @@ function TicketsContainer() {
     setTimeout(() => {
       activerefetch();
     }, 500);
-  }, [
-    currentActivePage,
-    isSuccess,
-    sortBy,
-    sortDirection,
-    type,
-    dataFromChild,
-  ]);
+  }, [currentActivePage, isSuccess, sortDirection, dataFromChild]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -149,12 +140,11 @@ function TicketsContainer() {
     allrefetch(); */
   };
 
-   //get stats 
-   const { statsData, statsRefetch } = useStats();
-   useEffect(()=>{
-     statsRefetch()
-   },[])
-
+  //get stats
+  const { statsData, statsRefetch } = useStats();
+  useEffect(() => {
+    statsRefetch();
+  }, []);
 
   return (
     <>
@@ -201,8 +191,7 @@ function TicketsContainer() {
             <Card>
               <div className="page_container_table__header pr-16 pl-16 pb-16 pt-16">
                 <div className="page_container_table__header__btns">
-                  
-                <Menu closeOnSelect={false}>
+                  <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
                       marginRight="8px"
@@ -238,7 +227,7 @@ function TicketsContainer() {
                             {Object.values(ticketsTypes).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
-                                {t(`tickets.${item}`)}
+                                  {t(`tickets.${item}`)}
                                 </option>
                               </>
                             ))}
@@ -263,7 +252,7 @@ function TicketsContainer() {
                             {Object.values(ticketsStatus).map((item, index) => (
                               <>
                                 <option id={index} value={item}>
-                                {t(`tickets.${item}`)}
+                                  {t(`tickets.${item}`)}
                                 </option>
                                 ;
                               </>
@@ -305,7 +294,7 @@ function TicketsContainer() {
                       </MenuItem>
                     </MenuList>
                   </Menu>
-                  
+
                   <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
@@ -395,7 +384,6 @@ function TicketsContainer() {
                       </MenuItem>
                     </MenuList>
                   </Menu>
-
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
@@ -510,91 +498,115 @@ function TicketsContainer() {
                                 </Tr>
                               </Thead>
                               <Tbody className="table_body">
-                                {activeData?.tickets &&
-                                  activeData?.tickets
-                                    .filter(
-                                      (i) => i.status == ticketsStatus.ACTIVE
-                                    )
-                                    .map((item, index) => (
-                                      <Tr
-                                        key={index}
-                                        className="table_body_row"
-                                      >
-                                        <Td className="table_body_row_item">
-                                          {item.id}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          {t(`tickets.${item.type}`)}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          <div
-                                            className={
-                                              item.status ==
-                                              ticketsStatus.CLOSED
-                                                ? "table_contanier__icon_stats closed_table"
-                                                : item.status ==
-                                                  ticketsStatus.ACTIVE
-                                                ? "table_contanier__icon_stats activecard_table"
-                                                : item.status ==
-                                                  ticketsStatus.PROCESSING
-                                                ? "table_contanier__icon_stats process_table"
-                                                : " "
-                                            }
-                                          >
-                                            {t(`tickets.${item.status}`)}
-                                          </div>
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          {item.unit.name}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          {item.description}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          <img src={item?.images[0] ? item?.images[0] : logo } alt="" width='35px' height='35px' />
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          {item.unit?.tenant?.firstNameAr}
-                                        </Td>
-                                        <Td className="table_body_row_item">
-                                          <Stack
-                                            alignItems={"center"}
-                                            direction={"row"}
-                                            spacing={4}
-                                          >
-                                            <Button
-                                              width={"100%"}
-                                              rightIcon={<SmallCloseIcon />}
-                                              colorScheme="red"
-                                              variant="outline"
-                                              onClick={() => {
-                                                updateStatus(
-                                                  ticketsStatus.CLOSED,
-                                                  item
-                                                );
-                                              }}
+                                {activeData?.tickets ? (
+                                  <>
+                                    {activeData?.tickets
+                                      .filter(
+                                        (i) => i.status == ticketsStatus.ACTIVE
+                                      )
+                                      .map((item, index) => (
+                                        <Tr
+                                          key={index}
+                                          className="table_body_row"
+                                        >
+                                          <Td className="table_body_row_item">
+                                            {item.id}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            {t(`tickets.${item.type}`)}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            <div
+                                              className={
+                                                item.status ==
+                                                ticketsStatus.CLOSED
+                                                  ? "table_contanier__icon_stats closed_table"
+                                                  : item.status ==
+                                                    ticketsStatus.ACTIVE
+                                                  ? "table_contanier__icon_stats activecard_table"
+                                                  : item.status ==
+                                                    ticketsStatus.PROCESSING
+                                                  ? "table_contanier__icon_stats process_table"
+                                                  : " "
+                                              }
                                             >
-                                              {t("general.reject")}
-                                            </Button>
-                                            <Button
-                                              width={"100%"}
-                                              rightIcon={<CheckIcon />}
-                                              backgroundColor="#2EA154"
-                                              color={'white'}
-                                              variant="solid"
-                                              onClick={() => {
-                                                updateStatus(
-                                                  ticketsStatus.PROCESSING,
-                                                  item
-                                                );
-                                              }}
+                                              {t(`tickets.${item.status}`)}
+                                            </div>
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            {item.unit.name}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            {item.description}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            <img
+                                              src={
+                                                item?.images[0]
+                                                  ? item?.images[0]
+                                                  : logo
+                                              }
+                                              alt=""
+                                              width="35px"
+                                              height="35px"
+                                            />
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            {item.unit?.tenant?.firstNameAr}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            <Stack
+                                              alignItems={"center"}
+                                              direction={"row"}
+                                              spacing={4}
                                             >
-                                              {t("general.accept")}
-                                            </Button>
-                                          </Stack>
-                                        </Td>
-                                      </Tr>
-                                    ))}
+                                              <Button
+                                                width={"100%"}
+                                                rightIcon={<SmallCloseIcon />}
+                                                colorScheme="red"
+                                                variant="outline"
+                                                onClick={() => {
+                                                  updateStatus(
+                                                    ticketsStatus.CLOSED,
+                                                    item
+                                                  );
+                                                }}
+                                              >
+                                                {t("general.reject")}
+                                              </Button>
+                                              <Button
+                                                width={"100%"}
+                                                rightIcon={<CheckIcon />}
+                                                backgroundColor="#2EA154"
+                                                color={"white"}
+                                                variant="solid"
+                                                onClick={() => {
+                                                  updateStatus(
+                                                    ticketsStatus.PROCESSING,
+                                                    item
+                                                  );
+                                                }}
+                                              >
+                                                {t("general.accept")}
+                                              </Button>
+                                            </Stack>
+                                          </Td>
+                                        </Tr>
+                                      ))}
+                                  </>
+                                ) : (
+                                  <>
+                                    <div className="flex-center spinner-table">
+                                      <Spinner
+                                        thickness="4px"
+                                        speed="0.65s"
+                                        emptyColor="gray.200"
+                                        color="blue.500"
+                                        size="xl"
+                                      />
+                                    </div>
+                                  </>
+                                )}
                               </Tbody>
                             </Table>
                           </TableContainer>
@@ -731,7 +743,16 @@ function TicketsContainer() {
                                       {item.description}
                                     </Td>
                                     <Td className="table_body_row_item">
-                                    <img src={item?.images[0] ? item?.images[0] : logo } alt="" width='35px' height='35px' />
+                                      <img
+                                        src={
+                                          item?.images[0]
+                                            ? item?.images[0]
+                                            : logo
+                                        }
+                                        alt=""
+                                        width="35px"
+                                        height="35px"
+                                      />
                                     </Td>
                                     <Td className="table_body_row_item">
                                       {item.unit?.tenant?.firstNameAr}
@@ -765,7 +786,7 @@ function TicketsContainer() {
                                               width={"100%"}
                                               rightIcon={<CheckIcon />}
                                               backgroundColor="#2EA154"
-                                              color={'white'}
+                                              color={"white"}
                                               variant="solid"
                                               onClick={() => {
                                                 updateStatus(
