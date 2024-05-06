@@ -243,7 +243,10 @@
       "bathrooms":"Please enter the number of bathrooms",
       "conditioners":"Please enter the number of conditioners",
       "maintenanceMan":"Please enter the maintenance person.",
-      "tenantId":"Please enter the tenant"
+      "tenantId":"Please enter the tenant",
+      "contractNumber":"Please enter the Contract's Number "
+
+
     }
   }
 }

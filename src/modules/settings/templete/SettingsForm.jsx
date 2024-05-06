@@ -51,14 +51,18 @@ const imageUpload = (file) => {
 
   const handleSubmit = () => {
     const formData = new FormData();
-    formData.append("logo", selectedLogo, selectedLogo?.name);
+    if(selectedLogo)
+      {
+        formData.append("logo", selectedLogo, selectedLogo?.name);
+      }
     formData.append("dashboardColor", bgColor);
     formData.append("dashboardFontColor", bgFontColor);
     formData.append("sidebarColor", sbColor);
     formData.append("sidebarFontColor", sbFontColor);
  
     mutate({ body: formData });
-    imageUpload(selectedLogo)
+    if(selectedLogo) 
+      {imageUpload(selectedLogo)}
     sessionStorage.setItem(
       "dashboardSettings",
       JSON.stringify({
