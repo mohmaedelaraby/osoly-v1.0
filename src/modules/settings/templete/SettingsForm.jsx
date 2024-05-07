@@ -7,8 +7,9 @@ import {
   Input,
   Spinner,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useTranslation } from "react-i18next";
 import "../../../assets/styels/components/forms.scss";
@@ -26,43 +27,53 @@ const SettingsForm = () => {
   const [bgFontColor, setbgFontcolor] = useState(null);
   const [sbColor, setSbcolor] = useState(null);
   const [sbFontColor, setSbFontcolor] = useState(null);
+  const [hoverText, setHoverText] = useState("");
 
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess } = useUpdateSettings();
-
-  
-
-
-const imageUpload = (file) => {
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    const base64StringUS = reader.result
-      .replace("data:", "")
-      .replace(/^.+,/, "");
-    localStorage.setItem("localLogo", base64StringUS);
-    const myImage = localStorage.getItem("localLogo");
-    var bannerImg = document.getElementById("logoBanner");
-    bannerImg = document.getElementById('logoBanner');
-    bannerImg.src = "data:image/png;base64," + myImage;
-    //document.body.style.background = `url(data:image/png;base64,${base64StringUS})`;
+  useEffect(() => {
+    if (selectedLogo && sbColor && sbFontColor && bgColor && bgFontColor) {
+      setHoverText(t("general.edit"));
+    } else {
+      setHoverText(
+        `${!selectedLogo ? "please add logo " : ""} ${
+          !sbColor ? "and please add sidebar backgound color " : ""
+        } ${!sbFontColor ? "and please add sidebar font color " : ""} ${
+          !bgColor ? "and please add System backgound color  " : ""
+        } ${!bgFontColor ? "and please add System font color " : ""}`
+      );
+    }
+  }, [selectedLogo, sbColor, sbFontColor, bgColor, bgFontColor]);
+  const imageUpload = (file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64StringUS = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      localStorage.setItem("localLogo", base64StringUS);
+      const myImage = localStorage.getItem("localLogo");
+      var bannerImg = document.getElementById("logoBanner");
+      bannerImg = document.getElementById("logoBanner");
+      bannerImg.src = "data:image/png;base64," + myImage;
+      //document.body.style.background = `url(data:image/png;base64,${base64StringUS})`;
+    };
+    reader.readAsDataURL(file);
   };
-  reader.readAsDataURL(file);
-};
 
   const handleSubmit = () => {
     const formData = new FormData();
-    if(selectedLogo)
-      {
-        formData.append("logo", selectedLogo, selectedLogo?.name);
-      }
+    if (selectedLogo) {
+      formData.append("logo", selectedLogo, selectedLogo?.name);
+    }
     formData.append("dashboardColor", bgColor);
     formData.append("dashboardFontColor", bgFontColor);
     formData.append("sidebarColor", sbColor);
     formData.append("sidebarFontColor", sbFontColor);
- 
+
     mutate({ body: formData });
-    if(selectedLogo) 
-      {imageUpload(selectedLogo)}
+    if (selectedLogo) {
+      imageUpload(selectedLogo);
+    }
     sessionStorage.setItem(
       "dashboardSettings",
       JSON.stringify({
@@ -73,12 +84,12 @@ const imageUpload = (file) => {
       })
     );
 
-   navigate("/home")
     //window.location.reload();
     //sessionStorage.removeItem("dashboardSettings")
-    
-    
   };
+  useEffect(() => {
+    if (isSuccess) navigate("/home");
+  }, [isSuccess]);
   return (
     <div className="page">
       <div className="page_container">
@@ -242,10 +253,23 @@ const imageUpload = (file) => {
                     </div>
 
                     <div className="form__btn__container">
-                      <Button  type="submit"  bg={primary} color={secondry}
-                    dir="rtl">
-                        {t("general.edit")}
-                      </Button>
+                      <Tooltip label={hoverText}>
+                        <Button
+                          type="submit"
+                          bg={primary}
+                          color={secondry}
+                          dir="rtl"
+                          isDisabled={
+                            !selectedLogo ||
+                            !sbColor ||
+                            !sbFontColor ||
+                            !bgColor ||
+                            !bgFontColor
+                          }
+                        >
+                          {t("general.edit")}
+                        </Button>
+                      </Tooltip>
                     </div>
                   </form>
                 </CardBody>
@@ -253,7 +277,9 @@ const imageUpload = (file) => {
             </>
           ) : (
             <>
-              <Spinner size="xl" />
+              <div className="flex-center">
+                <Spinner size="xl" />
+              </div>
             </>
           )}
         </div>

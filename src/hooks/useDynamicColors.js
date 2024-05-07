@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useDynamicColors = () => {
+
     const [dbColors, setDbColors] = useState()
     useEffect(() => {
         let dashboardSettings = sessionStorage.getItem("dashboardSettings");
@@ -40,7 +41,7 @@ export const useDynamicColors = () => {
             }
         } */
         
-    }, [dbColors])
+    }, [])
 
     return ({
         primary: dbColors?.dashboardColor,
