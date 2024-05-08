@@ -1,7 +1,7 @@
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { Avatar, Button, Card, Spinner, WrapItem } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { ticketsStatus, ticketsTypes } from "../../../enums/TicketsEnum";
+import { ticketsStatus } from "../../../enums/TicketsEnum";
 import { useUpdateTickets } from "../hooks/useUpdateTickets";
 import "../../../assets/styels/components/cards.scss";
 import image from "../../../assets/images/houseImg.png";
@@ -11,12 +11,9 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
   const { t } = useTranslation();
 
   const TICKET_STATUS = ticketsStatus;
-  const TICKET_TYPES = ticketsTypes;
 
-  const [name, setName] = useState(item?.name);
-  const [type, setType] = useState(item?.type);
+  
   const [status, setStatus] = useState(item?.status);
-  const [desc, setDesc] = useState(item?.desc);
 
   const { mutate } = useUpdateTickets();
 
@@ -25,10 +22,8 @@ const TicketCard = ({ item, img = image, sendDataToParent }) => {
   }, [status]);
   useEffect(() => {
     //
-    setName(item.name);
-    setType(item.type);
+
     setStatus(item.status);
-    setDesc(item.desc);
   }, [item]);
 
   const updateStatus = (status) => {

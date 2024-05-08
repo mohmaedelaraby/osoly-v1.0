@@ -6,7 +6,7 @@ import { useDynamicColors } from "../../hooks/useDynamicColors";
 
 function PieChartComponent({ numbers }) {
   const { t } = useTranslation();
-  const { primary, secondry } = useDynamicColors();
+  const { primary } = useDynamicColors();
 
 
   let data = [

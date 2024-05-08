@@ -29,8 +29,7 @@ function CardWithImg({
   sendDataToParent,
   id,
 }) {
-  const { t } = useTranslation();
-  const { primary, secondry } = useDynamicColors();
+
 
   return (
     <Card width={isVertical ? "100%" : "100%"}>

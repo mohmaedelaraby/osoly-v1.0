@@ -19,10 +19,9 @@ import { userEditValidation } from "../../users/validation/schema";
 const EditOwner = () => {
   const { state } = useLocation();
   const { id ,firstNameEn ,lastNameEn ,firstNameAr , lastNameAr , ownedProperties} = state;
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { mutate } = useUpdateUser();
-  const { data, isLoading, refetch } = useGetUser(id);
+  const {  refetch } = useGetUser(id);
   useEffect(() => {
     refetch();
   }, []);

@@ -4,7 +4,6 @@ import '../../assets/styels/components/pageHeader.scss'
 
 function PageHeader({ title, addtionTitle }) {
   const {
-    t,
     i18n: { changeLanguage, language },
   } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState(language);

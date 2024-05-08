@@ -1,8 +1,6 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
-import { useDrawingArea } from "@mui/x-charts";
-import { styled } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../hooks/useDynamicColors";
 
@@ -15,8 +13,7 @@ function PieChartComponentWithOneValue({number = 0}) {
     { value: reminder, label: "d" },
   ];
   const {
-    t,
-    i18n: { changeLanguage, language },
+    i18n: {language },
   } = useTranslation();
 
   const {primary,secondry}=useDynamicColors()
@@ -44,10 +41,10 @@ function PieChartComponentWithOneValue({number = 0}) {
     height: 230,
     legend: { hidden: true },
   };
-  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
+  //const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
   const getArcLabel = (params) => {
-    const percent = params.value / TOTAL;
+    //const percent = params.value / TOTAL;
     //${(percent * 100).toFixed(0)}%
     return ``;
   };

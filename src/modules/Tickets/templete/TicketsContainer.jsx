@@ -87,7 +87,6 @@ function TicketsContainer() {
 
   const {
     data: allData,
-    isLoading: allLoading,
     refetch: allrefetch,
   } = useTickets({
     pageNo: currentPage,
@@ -100,7 +99,6 @@ function TicketsContainer() {
 
   const {
     data: activeData,
-    isLoading: activeLoading,
     refetch: activerefetch,
   } = useTickets({
     pageNo: currentActivePage,
@@ -131,6 +129,9 @@ function TicketsContainer() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+  const handlePageChangeActive = (page) => {
+    setCurrentActivePage(page);
   };
 
   const updateStatus = (status, item) => {
@@ -654,7 +655,7 @@ function TicketsContainer() {
                             totalCount={activeData?.pagination.count}
                             currentPage={currentActivePage}
                             pageSize={10}
-                            onPageChange={handlePageChange}
+                            onPageChange={handlePageChangeActive}
                           />
                         </div>
                       }

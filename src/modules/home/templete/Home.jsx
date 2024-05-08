@@ -10,7 +10,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../style/Home.scss";
 
 import CardWithImg from "../../../components/Cards/CardWithImg";
@@ -60,7 +60,7 @@ const Home = () => {
     statsRefetch();
   }, []);
 
-  const { primary, secondry } = useDynamicColors();
+  const { primary } = useDynamicColors();
 
   return (
     <>
