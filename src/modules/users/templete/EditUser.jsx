@@ -82,7 +82,7 @@ const EditUser = ({ onClose, id, userRule }) => {
     <>
       <div className="from__card from__card__full">
         <div className="from__card from__card__full">
-          {!userDataLodaing && usersData ? (
+          {usersData && !userDataLodaing  ? (
             <>
               {" "}
               <form onSubmit={formik.handleSubmit} className="form">
