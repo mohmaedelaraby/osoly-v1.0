@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userEnterpraiseValidationCreate } from "../validation/schema";
 import {
   Button,
@@ -35,7 +35,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
 
   const [showpassword, setShowPassword] = useState(false);
   const [plan, setPlan] = useState(plans[0]?.id);
-  const { mutate } = useEnterPraisesCreateUser();
+  const { mutate , isLoading ,isSuccess} = useEnterPraisesCreateUser();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -43,9 +43,15 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
     onSubmit: (values) => {
       let body = { planId: plan, ...values };
       mutate(body);
-      onClose();
+     
     },
   });
+
+  useEffect(()=>{
+    if(isSuccess && !isLoading){
+      onClose();
+    }
+  },[isSuccess])
 
   return (
     <div className="from__card from__card__full">
@@ -280,6 +286,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
               bg={primary}
               type="submit"
               isDisabled={!plan}
+              isLoading={isLoading}
             >
               {t("general.add")}
             </Button>

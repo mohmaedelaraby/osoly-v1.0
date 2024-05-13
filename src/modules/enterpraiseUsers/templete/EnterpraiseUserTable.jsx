@@ -91,7 +91,7 @@ const UserEnterpraiseTable = () => {
 
   const [selectedPlan, setSelectedPlan] = useState();
 
-  const { usersEnterPrisesData, usersEnterPrisesRefetch } = useEnterPrisesUsers(
+  const { usersEnterPrisesData, usersEnterPrisesRefetch , usersEnterPrisesisLoading } = useEnterPrisesUsers(
     {
       pageNo: currentPage,
       limit: limit,
@@ -422,7 +422,7 @@ const UserEnterpraiseTable = () => {
                         </Tr>
                       </Thead>
                       <Tbody className="table_body">
-                        {usersEnterPrisesData ? (
+                        {usersEnterPrisesData && !usersEnterPrisesisLoading? (
                           usersEnterPrisesData?.enterprises?.map((item) => (
                             <>
                               <Tr className="table_body_row">

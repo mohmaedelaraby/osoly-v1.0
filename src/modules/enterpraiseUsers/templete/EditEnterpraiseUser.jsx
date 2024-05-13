@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useEnterprisesUpdateUser } from "../hooks/useUpdateEnterprisesUser";
 import { userEnterpraiseValidationEdit } from "../validation/schema";
 import close from "../../../assets/icons-svgs/close.svg";
@@ -33,7 +33,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
 
   const [showpassword, setShowPassword] = useState(false);
   const [plan, setPlan] = useState(item?.plan?.id);
-  const { mutate } = useEnterprisesUpdateUser();
+  const { mutate ,isLoading,isSuccess} = useEnterprisesUpdateUser();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -41,9 +41,13 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
     onSubmit: (values) => {
       let data = { id: item.id, body: { ...values  , planId:plan} };
       mutate(data);
-      onClose();
     },
   });
+  useEffect(()=>{
+    if(isSuccess && !isLoading){
+      onClose();
+    }
+  },[isSuccess])
 
   return (
     <div className="from__card from__card__full">
@@ -271,6 +275,8 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
               color={secondry}
               bg={primary}
               type="submit"
+              isLoading={isLoading}
+
             >
               {t("general.edit")}
             </Button>
