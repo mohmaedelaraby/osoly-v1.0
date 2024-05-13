@@ -106,7 +106,9 @@
       "edit": "Edit",
       "solved":"Solve ",
       "closed":"Close",
-      "all_tickets":"All Tickets"
+      "all_tickets":"All Tickets",
+      "created_date":"Created at "
+
 
     },
     "search": {

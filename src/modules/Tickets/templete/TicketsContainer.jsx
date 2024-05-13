@@ -53,6 +53,7 @@ import { useTranslation } from "react-i18next";
 import PageHeader from "../../../components/shared/PageHeader";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import useStats from "../../../hooks/useStats";
+import dayjs from "dayjs";
 
 function TicketsContainer() {
   const { t } = useTranslation();
@@ -85,10 +86,7 @@ function TicketsContainer() {
 
   let onClickFunction = (arg) => setDataFromChild(arg);
 
-  const {
-    data: allData,
-    refetch: allrefetch,
-  } = useTickets({
+  const { data: allData, refetch: allrefetch } = useTickets({
     pageNo: currentPage,
     limit: limit,
     sortBy: sortBy,
@@ -97,14 +95,10 @@ function TicketsContainer() {
     status: status,
   });
 
-  const {
-    data: activeData,
-    refetch: activerefetch,
-  } = useTickets({
+  const { data: activeData, refetch: activerefetch } = useTickets({
     pageNo: currentActivePage,
     limit: activeLimit,
     sortDirection: sortDirection,
-   
   });
 
   useEffect(() => {
@@ -490,6 +484,9 @@ function TicketsContainer() {
                                     {t("general.description")}
                                   </Th>
                                   <Th className="table_header_item">
+                                    {t("general.created_date")}
+                                  </Th>
+                                  <Th className="table_header_item">
                                     {t("general.attachment")}
                                   </Th>
                                   <Th className="table_header_item">
@@ -539,6 +536,11 @@ function TicketsContainer() {
                                           </Td>
                                           <Td className="table_body_row_item">
                                             {item.description}
+                                          </Td>
+                                          <Td className="table_body_row_item">
+                                            {dayjs(
+                                              new Date(item.createdAt)
+                                            ).format("YYYY-MM-DD")}{" "}
                                           </Td>
                                           <Td className="table_body_row_item">
                                             <img
@@ -667,7 +669,7 @@ function TicketsContainer() {
 
                 <div className="w-100">
                   <div className="page_container_table__content_header">
-                  {t("general.all_tickets")}
+                    {t("general.all_tickets")}
                   </div>
                   {!isGrid ? (
                     <>

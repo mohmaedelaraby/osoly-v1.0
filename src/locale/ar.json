@@ -106,7 +106,8 @@
       "edit":"تعديل",
       "solved":"تم الحل",
       "closed":"اغلاق",
-      "all_tickets":"كل التذاكر"
+      "all_tickets":"كل التذاكر",
+      "created_date":"تاريخ الاصدار"
       
     },
     "search": {
