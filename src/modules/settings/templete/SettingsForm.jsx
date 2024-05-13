@@ -27,23 +27,11 @@ const SettingsForm = () => {
   const [bgFontColor, setbgFontcolor] = useState(null);
   const [sbColor, setSbcolor] = useState(null);
   const [sbFontColor, setSbFontcolor] = useState(null);
-  const [hoverText, setHoverText] = useState("");
+  const oldVal = JSON.parse(sessionStorage.getItem("dashboardSettings"));
 
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess } = useUpdateSettings();
-  useEffect(() => {
-    if (selectedLogo && sbColor && sbFontColor && bgColor && bgFontColor) {
-      setHoverText(t("general.edit"));
-    } else {
-      setHoverText(
-        `${!selectedLogo ? "please add logo " : ""} ${
-          !sbColor ? "and please add sidebar backgound color " : ""
-        } ${!sbFontColor ? "and please add sidebar font color " : ""} ${
-          !bgColor ? "and please add System backgound color  " : ""
-        } ${!bgFontColor ? "and please add System font color " : ""}`
-      );
-    }
-  }, [selectedLogo, sbColor, sbFontColor, bgColor, bgFontColor]);
+
   const imageUpload = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -65,10 +53,18 @@ const SettingsForm = () => {
     if (selectedLogo) {
       formData.append("logo", selectedLogo, selectedLogo?.name);
     }
-    formData.append("dashboardColor", bgColor);
-    formData.append("dashboardFontColor", bgFontColor);
-    formData.append("sidebarColor", sbColor);
-    formData.append("sidebarFontColor", sbFontColor);
+    if (bgColor) {
+      formData.append("dashboardColor", bgColor);
+    }
+    if (sbColor) {
+      formData.append("sidebarColor", sbColor);
+    }
+    if (bgFontColor) {
+      formData.append("dashboardFontColor", bgFontColor);
+    }
+    if (sbFontColor) {
+      formData.append("sidebarFontColor", sbFontColor);
+    }
 
     mutate({ body: formData });
     if (selectedLogo) {
@@ -77,10 +73,12 @@ const SettingsForm = () => {
     sessionStorage.setItem(
       "dashboardSettings",
       JSON.stringify({
-        dashboardColor: bgColor,
-        dashboardFontColor: bgFontColor,
-        sidebarColor: sbColor,
-        sidebarFontColor: sbFontColor,
+        dashboardColor: bgColor ? bgColor : oldVal?.dashboardColor,
+        dashboardFontColor: bgFontColor
+          ? bgFontColor
+          : oldVal?.dashboardFontColor,
+        sidebarColor: sbColor ? sbColor : oldVal?.sidebarColor,
+        sidebarFontColor: sbFontColor ? sbFontColor : oldVal?.sidebarFontColor,
       })
     );
 
@@ -253,23 +251,14 @@ const SettingsForm = () => {
                     </div>
 
                     <div className="form__btn__container">
-                      <Tooltip label={hoverText}>
-                        <Button
-                          type="submit"
-                          bg={primary}
-                          color={secondry}
-                          dir="rtl"
-                          isDisabled={
-                            !selectedLogo ||
-                            !sbColor ||
-                            !sbFontColor ||
-                            !bgColor ||
-                            !bgFontColor
-                          }
-                        >
-                          {t("general.edit")}
-                        </Button>
-                      </Tooltip>
+                      <Button
+                        type="submit"
+                        bg={primary}
+                        color={secondry}
+                        dir="rtl"
+                      >
+                        {t("general.edit")}
+                      </Button>
                     </div>
                   </form>
                 </CardBody>
