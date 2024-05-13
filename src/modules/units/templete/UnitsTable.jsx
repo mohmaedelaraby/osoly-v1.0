@@ -18,6 +18,7 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -101,8 +102,11 @@ const UnitsTable = () => {
   const [conditioners, setConditioners] = useState(null);
   const [file, setFile] = useState("");
 
-  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
-    useUploadUnitsFile();
+  const {
+    mutate: uploadFiles,
+    isSuccess: isSuccessFiles,
+    isLoading: isBulkLoading,
+  } = useUploadUnitsFile();
 
   const updateFile = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -223,7 +227,6 @@ const UnitsTable = () => {
             }}
           >
             <span className="pl-8 fo_secondry">
-               
               {t("units.page.add_property")}
             </span>
           </Button>
@@ -587,8 +590,6 @@ const UnitsTable = () => {
               </MenuItem>
             </MenuList>
           </Menu>
-
-         
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
@@ -670,75 +671,94 @@ const UnitsTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {unitsData &&
-                    unitsData?.units?.map((item, index) => (
-                      <Tr
-                        key={index}
-                        className="table_body_row"
-                        onClick={() => {}}
-                      >
-                        <Td className="table_body_row_item">{item.name}</Td>
-                        <Td className="table_body_row_item">
-                          {dayjs(new Date(item.rentCollectionDate)).format(
-                            "YYYY-MM-DD"
-                          )}
-                        </Td>
-                        <Td className="table_body_row_item">{item.rent}</Td>
-                        <Td className="table_body_row_item">{item.address}</Td>
-                        <Td className="table_body_row_item">{item.space}</Td>
-                        <Td className="table_body_row_item">
-                          {item.electricityAccount}
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.waterAccount}
-                        </Td>
-                        <Td className="table_body_row_item">{item.rooms}</Td>
+                  {unitsData && !isBulkLoading ? (
+                    <>
+                      {unitsData?.units?.map((item, index) => (
+                        <Tr
+                          key={index}
+                          className="table_body_row"
+                          onClick={() => {}}
+                        >
+                          <Td className="table_body_row_item">{item.name}</Td>
+                          <Td className="table_body_row_item">
+                            {dayjs(new Date(item.rentCollectionDate)).format(
+                              "YYYY-MM-DD"
+                            )}
+                          </Td>
+                          <Td className="table_body_row_item">{item.rent}</Td>
+                          <Td className="table_body_row_item">
+                            {item.address}
+                          </Td>
+                          <Td className="table_body_row_item">{item.space}</Td>
+                          <Td className="table_body_row_item">
+                            {item.electricityAccount}
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.waterAccount}
+                          </Td>
+                          <Td className="table_body_row_item">{item.rooms}</Td>
 
-                        <Td className="table_body_row_item">
-                        <Checkbox isChecked={item?.kitchen} isDisabled></Checkbox>
-                       
-                        </Td>
-                        <Td className="table_body_row_item">
-                          {item.conditioners}
-                        </Td>
-                        <Td className="table_body_row_item_btns">
-                          <Stack
-                            alignItems={"center"}
-                            direction={"row"}
-                            spacing={4}
-                          >
-                            <Button
-                              className="table_body_row_item_btns_deletebtn"
-                              width={"25%"}
-                              rightIcon={<DeleteIcon />}
-                              paddingRight="8px"
-                              color={"white"}
-                              variant="solid"
-                              bg={"#CC3636"}
-                              alignItems="center"
-                              justifyContent="center"
-                              onClick={() => {
-                                mutate(item.id);
-                              }}
-                            ></Button>
-                            <Button
-                              className="table_body_row_item_btns_editbtn"
-                              width={"25%"}
-                              rightIcon={<EditOutlinedIcon />}
-                              paddingRight="8px"
-                              color={"white"}
-                              variant="solid"
-                              alignItems="center"
-                              justifyContent="center"
-                              bg={"#194C81"}
-                              onClick={() => {
-                                openUnitEditPopup(item);
-                              }}
-                            ></Button>
-                          </Stack>
-                        </Td>
-                      </Tr>
-                    ))}
+                          <Td className="table_body_row_item">
+                            <Checkbox
+                              isChecked={item?.kitchen}
+                              isDisabled
+                            ></Checkbox>
+                          </Td>
+                          <Td className="table_body_row_item">
+                            {item.conditioners}
+                          </Td>
+                          <Td className="table_body_row_item_btns">
+                            <Stack
+                              alignItems={"center"}
+                              direction={"row"}
+                              spacing={4}
+                            >
+                              <Button
+                                className="table_body_row_item_btns_deletebtn"
+                                width={"25%"}
+                                rightIcon={<DeleteIcon />}
+                                paddingRight="8px"
+                                color={"white"}
+                                variant="solid"
+                                bg={"#CC3636"}
+                                alignItems="center"
+                                justifyContent="center"
+                                onClick={() => {
+                                  mutate(item.id);
+                                }}
+                              ></Button>
+                              <Button
+                                className="table_body_row_item_btns_editbtn"
+                                width={"25%"}
+                                rightIcon={<EditOutlinedIcon />}
+                                paddingRight="8px"
+                                color={"white"}
+                                variant="solid"
+                                alignItems="center"
+                                justifyContent="center"
+                                bg={"#194C81"}
+                                onClick={() => {
+                                  openUnitEditPopup(item);
+                                }}
+                              ></Button>
+                            </Stack>
+                          </Td>
+                        </Tr>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex-center spinner-table">
+                        <Spinner
+                          thickness="4px"
+                          speed="0.65s"
+                          emptyColor="gray.200"
+                          color="blue.500"
+                          size="xl"
+                        />
+                      </div>
+                    </>
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>

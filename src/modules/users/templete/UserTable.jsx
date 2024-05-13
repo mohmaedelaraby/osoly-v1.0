@@ -53,7 +53,7 @@ function UserTable({ switchTo }) {
   const [selectedUser, setSelectedUser] = useState();
   const [file, setFile] = useState("");
 
-  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
+  const { mutate: uploadFiles, isSuccess: isSuccessFiles , isLoading :isBulkLoading } =
     useUploadUsersFile();
 
   const updateFile = (event) => {
@@ -452,7 +452,7 @@ function UserTable({ switchTo }) {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {usersDataType ? (
+              {usersDataType && !isBulkLoading ? (
                 <>
                   {usersDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.TENANT)

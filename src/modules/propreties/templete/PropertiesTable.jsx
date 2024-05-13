@@ -92,8 +92,11 @@ function PropertiesTable() {
 
   const [file, setFile] = useState("");
 
-  const { mutate: uploadFiles, isSuccess: isSuccessFiles } =
-    useUploadProperteyFile();
+  const {
+    mutate: uploadFiles,
+    isSuccess: isSuccessFiles,
+    isLoading: isBulkLoading,
+  } = useUploadProperteyFile();
 
   const updateFile = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -162,7 +165,7 @@ function PropertiesTable() {
     blockNumber,
     postalCode,
     isSuccess,
-    isSuccessFiles
+    isSuccessFiles,
   ]);
 
   const handlePropertyPageChange = (page) => {
@@ -205,8 +208,7 @@ function PropertiesTable() {
             }}
           >
             <span className="pl-8 fo_secondry">
-               
-              {t("propreties.page.add_property_title")} 
+              {t("propreties.page.add_property_title")}
             </span>
           </Button>
           <Button
@@ -540,8 +542,6 @@ function PropertiesTable() {
               </MenuItem>
             </MenuList>
           </Menu>
-
-          
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
@@ -605,14 +605,14 @@ function PropertiesTable() {
                       {t("general.total_rent")}
                     </Th>
                     <Th className="table_header_item">
-                      {t("general.address")} 
+                      {t("general.address")}
                     </Th>
                     <Th className="table_header_item">{t("general.owner")}</Th>
                     <Th className="table_header_item"> </Th>
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {PropertiesData ? (
+                  {PropertiesData && !isBulkLoading ? (
                     <>
                       {PropertiesData?.updatedProperties?.map((item, index) => (
                         <Tr
@@ -631,7 +631,7 @@ function PropertiesTable() {
                             {item?.address}
                           </Td>
                           <Td className="table_body_row_item">
-                          {item?.owner?.firstNameAr}
+                            {item?.owner?.firstNameAr}
                           </Td>
 
                           <Td className="table_body_row_item_btns">
@@ -644,7 +644,7 @@ function PropertiesTable() {
                                 className="table_body_row_item_btns_deletebtn"
                                 width={"25%"}
                                 rightIcon={<DeleteIcon />}
-                                paddingRight='8px'
+                                paddingRight="8px"
                                 color={"white"}
                                 variant="solid"
                                 bg={"#CC3636"}
@@ -658,7 +658,7 @@ function PropertiesTable() {
                                 className="table_body_row_item_btns_editbtn"
                                 width={"25%"}
                                 rightIcon={<EditOutlinedIcon />}
-                                paddingRight='8px'
+                                paddingRight="8px"
                                 color={"white"}
                                 variant="solid"
                                 alignItems="center"
@@ -675,7 +675,6 @@ function PropertiesTable() {
                     </>
                   ) : (
                     <>
-                       
                       <div className="flex-center spinner-table">
                         <Spinner
                           thickness="4px"
