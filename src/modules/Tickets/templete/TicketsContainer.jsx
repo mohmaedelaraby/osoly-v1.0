@@ -66,7 +66,7 @@ function TicketsContainer() {
 
   const [currentActivePage, setCurrentActivePage] = useState(1);
   const activeLimit = 1000;
-  const { mutate, isSuccess } = useUpdateTickets();
+  const { mutate, isSuccess ,isLoading:mutateLoading} = useUpdateTickets();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState(null);
@@ -86,7 +86,11 @@ function TicketsContainer() {
 
   let onClickFunction = (arg) => setDataFromChild(arg);
 
-  const { data: allData, refetch: allrefetch } = useTickets({
+  const {
+    data: allData,
+    refetch: allrefetch,
+    isLoading: allLoading,
+  } = useTickets({
     pageNo: currentPage,
     limit: limit,
     sortBy: sortBy,
@@ -95,7 +99,11 @@ function TicketsContainer() {
     status: status,
   });
 
-  const { data: activeData, refetch: activerefetch } = useTickets({
+  const {
+    data: activeData,
+    refetch: activerefetch,
+    isLoading: activeLoading,
+  } = useTickets({
     pageNo: currentActivePage,
     limit: activeLimit,
     sortDirection: sortDirection,
@@ -496,7 +504,7 @@ function TicketsContainer() {
                                 </Tr>
                               </Thead>
                               <Tbody className="table_body">
-                                {activeData?.tickets ? (
+                                {activeData?.tickets && !activeLoading && !mutateLoading ? (
                                   <>
                                     {activeData?.tickets
                                       .filter(
@@ -617,7 +625,7 @@ function TicketsContainer() {
                       ) : (
                         <>
                           <div className="page_container_table__content__grid">
-                            {activeData?.tickets ? (
+                            {activeData?.tickets && !activeLoading && !mutateLoading ? (
                               <>
                                 {activeData?.tickets
                                   ?.filter(
@@ -712,7 +720,7 @@ function TicketsContainer() {
                             </Tr>
                           </Thead>
                           <Tbody className="table_body">
-                            {allData?.tickets ? (
+                            {allData?.tickets && !allLoading && !mutateLoading ? (
                               <>
                                 {allData?.tickets.map((item, index) => (
                                   <Tr key={index} className="table_body_row">
@@ -832,17 +840,32 @@ function TicketsContainer() {
                   ) : (
                     <>
                       <div className="page_container_table__content__grid">
-                        {allData?.tickets &&
-                          allData?.tickets?.map((item, index) => (
-                            <>
-                              <TicketCard
-                                key={index}
-                                item={item}
-                                img={item?.images[0]}
-                                sendDataToParent={onClickFunction}
-                              ></TicketCard>
-                            </>
-                          ))}
+                        {allData?.tickets && !allLoading && !mutateLoading ? (
+                          <>
+                            {allData?.tickets?.map((item, index) => (
+                              <>
+                                <TicketCard
+                                  key={index}
+                                  item={item}
+                                  img={item?.images[0]}
+                                  sendDataToParent={onClickFunction}
+                                ></TicketCard>
+                              </>
+                            ))}
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex-center spinner-table">
+                              <Spinner
+                                thickness="4px"
+                                speed="0.65s"
+                                emptyColor="gray.200"
+                                color="blue.500"
+                                size="xl"
+                              />
+                            </div>
+                          </>
+                        )}
                       </div>
                     </>
                   )}
