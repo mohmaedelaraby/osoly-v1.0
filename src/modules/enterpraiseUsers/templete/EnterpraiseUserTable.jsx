@@ -52,6 +52,7 @@ import PageHeader from "../../../components/shared/PageHeader";
 import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import useStats from "../../../hooks/useStats";
+import dayjs from "dayjs";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
@@ -209,7 +210,7 @@ const UserEnterpraiseTable = () => {
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary fo_primary">
-                              {t("general.sort")}  {t("general.plan")}
+                              {t("general.sort")} {t("general.plan")}
                             </Text>
                           </FormLabel>
                           <Select
@@ -282,7 +283,7 @@ const UserEnterpraiseTable = () => {
                       </div>
                     </MenuList>
                   </Menu>
-                  
+
                   <Menu closeOnSelect={false}>
                     <MenuButton
                       as={Button}
@@ -371,7 +372,6 @@ const UserEnterpraiseTable = () => {
                       </div>
                     </MenuList>
                   </Menu>
-
                 </div>
                 <div className="page_container_table__header__search">
                   <InputGroup>
@@ -415,6 +415,9 @@ const UserEnterpraiseTable = () => {
                           <Th className="table_header_item">
                             {t("general.num_of_users")}
                           </Th>
+                          <Th className="table_header_item">
+                            {t("general.expire_date")}
+                          </Th>
                           <Th className="table_header_item"> </Th>
                         </Tr>
                       </Thead>
@@ -433,7 +436,12 @@ const UserEnterpraiseTable = () => {
                                   {item?.plan ? item?.plan?.name : "-"}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.users?.length}
+                                  {item?.plan?.numberOfUsers}
+                                </Td>
+                                <Td className="table_body_row_item">
+                                  {dayjs(new Date(item.expireDate)).format(
+                                    "YYYY-MM-DD"
+                                  )}
                                 </Td>
 
                                 <Td className="table_body_row_item_btns">
@@ -450,7 +458,7 @@ const UserEnterpraiseTable = () => {
                                       variant="solid"
                                       bg={"#CC3636"}
                                       alignItems="center"
-                                      paddingRight='8px'
+                                      paddingRight="8px"
                                       justifyContent="center"
                                       onClick={() => {
                                         mutate(item.id);
@@ -464,7 +472,7 @@ const UserEnterpraiseTable = () => {
                                       variant="solid"
                                       alignItems="center"
                                       justifyContent="center"
-                                      paddingRight='8px'
+                                      paddingRight="8px"
                                       bg={"#194C81"}
                                       onClick={() => {
                                         openEditPopup(item);

@@ -1,4 +1,3 @@
-import { Card } from "@chakra-ui/react";
 import "../../assets/styels/genric-styles/table.scss";
 import UserEnterpraiseTable from "../../modules/enterpraiseUsers/templete/EnterpraiseUserTable";
 
