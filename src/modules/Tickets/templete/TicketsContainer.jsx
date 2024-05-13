@@ -66,7 +66,7 @@ function TicketsContainer() {
 
   const [currentActivePage, setCurrentActivePage] = useState(1);
   const activeLimit = 1000;
-  const { mutate, isSuccess ,isLoading:mutateLoading} = useUpdateTickets();
+  const { mutate, isSuccess, isLoading: mutateLoading } = useUpdateTickets();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState(null);
@@ -504,7 +504,9 @@ function TicketsContainer() {
                                 </Tr>
                               </Thead>
                               <Tbody className="table_body">
-                                {activeData?.tickets && !activeLoading && !mutateLoading ? (
+                                {activeData?.tickets &&
+                                !activeLoading &&
+                                !mutateLoading ? (
                                   <>
                                     {activeData?.tickets
                                       .filter(
@@ -625,7 +627,9 @@ function TicketsContainer() {
                       ) : (
                         <>
                           <div className="page_container_table__content__grid">
-                            {activeData?.tickets && !activeLoading && !mutateLoading ? (
+                            {activeData?.tickets &&
+                            !activeLoading &&
+                            !mutateLoading ? (
                               <>
                                 {activeData?.tickets
                                   ?.filter(
@@ -711,6 +715,9 @@ function TicketsContainer() {
                                 {t("general.description")}
                               </Th>
                               <Th className="table_header_item">
+                                {t("general.created_date")}
+                              </Th>
+                              <Th className="table_header_item">
                                 {t("general.attachment")}
                               </Th>
                               <Th className="table_header_item">
@@ -720,7 +727,9 @@ function TicketsContainer() {
                             </Tr>
                           </Thead>
                           <Tbody className="table_body">
-                            {allData?.tickets && !allLoading && !mutateLoading ? (
+                            {allData?.tickets &&
+                            !allLoading &&
+                            !mutateLoading ? (
                               <>
                                 {allData?.tickets.map((item, index) => (
                                   <Tr key={index} className="table_body_row">
@@ -752,6 +761,11 @@ function TicketsContainer() {
                                     </Td>
                                     <Td className="table_body_row_item">
                                       {item.description}
+                                    </Td>
+                                    <Td className="table_body_row_item">
+                                      {dayjs(new Date(item.createdAt)).format(
+                                        "YYYY-MM-DD"
+                                      )}{" "}
                                     </Td>
                                     <Td className="table_body_row_item">
                                       <img
