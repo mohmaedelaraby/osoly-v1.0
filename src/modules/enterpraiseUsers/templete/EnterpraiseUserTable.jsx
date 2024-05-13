@@ -73,7 +73,7 @@ const UserEnterpraiseTable = () => {
   //search by name
 
   // delete user
-  const { mutate, isSuccess } = useEnterprisesDeleteUser();
+  const { mutate, isSuccess,isDeleteLoading } = useEnterprisesDeleteUser();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState();
@@ -422,7 +422,7 @@ const UserEnterpraiseTable = () => {
                         </Tr>
                       </Thead>
                       <Tbody className="table_body">
-                        {usersEnterPrisesData && !usersEnterPrisesisLoading? (
+                        {usersEnterPrisesData && !usersEnterPrisesisLoading && !isDeleteLoading ? (
                           usersEnterPrisesData?.enterprises?.map((item) => (
                             <>
                               <Tr className="table_body_row">
