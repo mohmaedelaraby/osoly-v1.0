@@ -46,11 +46,11 @@ function CardWithImg({
                   : "cardWithimg_contanier"
               }
             >
-              <div className="cardWithimg_contanier__icon">
+              <div className="cardWithimg_contanier__icon" style={{width : isVertical?'75%':'100%'}}>
                 <img
                   src={img}
                   alt=""
-                  className="cardWithimg_contanier__icon_img"
+                  className={isVertical? 'cardWithimg_contanier__icon_img_horz'  : "cardWithimg_contanier__icon_img" }
                 />
                 <div className="cardWithimg_contanier__icon_btns">
                   {!isVertical ? (
