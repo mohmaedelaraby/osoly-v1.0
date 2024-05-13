@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ownerCreateValidation, userCreateValidation } from "../validation/schema";
 import {
   Button,
@@ -26,7 +26,7 @@ const CreateUser = ({ onClose, userRule }) => {
   const [showpassword, setShowPassword] = useState(false);
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
 
-  const { mutate } = useCreateUser();
+  const { mutate ,isLoading,isSuccess} = useCreateUser();
   const initialValues = {
     firstNameEn: "",
     lastNameEn: " ",
@@ -45,9 +45,13 @@ const CreateUser = ({ onClose, userRule }) => {
     validationSchema: userRule == USER_ROLES.TENANT ?  userCreateValidation : ownerCreateValidation,
     onSubmit: (values) => {
       mutate({ body: values });
-      onClose();
     },
   });
+  useEffect(()=>{
+    if(isSuccess && !isLoading){
+      onClose();
+    }
+  },[isSuccess])
   return (
     <div className="from__card from__card__full">
       <div className="from__card from__card__full">
@@ -318,6 +322,8 @@ const CreateUser = ({ onClose, userRule }) => {
                 color={secondry}
                 bg={primary}
                 type="submit"
+                isLoading={isLoading}
+
               >
                 {t("general.add")}
               </Button>

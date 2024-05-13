@@ -452,7 +452,7 @@ function UserTable({ switchTo }) {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {usersDataType && !isBulkLoading ? (
+              {usersDataType && !userDataLodaing && !isBulkLoading ? (
                 <>
                   {usersDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.TENANT)

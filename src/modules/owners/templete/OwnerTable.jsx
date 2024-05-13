@@ -470,7 +470,7 @@ const OwnerTable = ({ switchTo }) => {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {ownerDataType  && !isBulkLoading ? (
+              {ownerDataType && !ownerDataLodaing  && !isBulkLoading ? (
                 <>
                   {ownerDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.OWNER)
