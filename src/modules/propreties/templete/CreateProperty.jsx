@@ -39,7 +39,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
   useEffect(() => {
     usersRefetch();
   }, []);
-  const { mutate } = useCreatePropertey();
+  const { mutate,isLoading,isSuccess } = useCreatePropertey();
 
   const initialValues = {
     name: "",
@@ -73,9 +73,13 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
       mutate({ body: formData });
-      onClose();
     },
   });
+  useEffect(()=>{
+    if(isSuccess && !isLoading){
+      onClose();
+    }
+  },[isSuccess])
 
   const {
     isOpen: isOpenUnitModal,
@@ -341,6 +345,8 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   color={secondry}
                   bg={primary}
                   type="submit"
+                  isLoading={isLoading}
+
                 >
                   {t("general.add")}
                 </Button>

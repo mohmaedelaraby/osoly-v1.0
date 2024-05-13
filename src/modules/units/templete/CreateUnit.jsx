@@ -27,7 +27,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
   const { t } = useTranslation();
   const {primary,secondry}=useDynamicColors()
 
-  const { mutate } = useCreateUnit();
+  const { mutate , isLoading,isSuccess} = useCreateUnit();
 
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
   const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
@@ -101,9 +101,13 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
       formData.append("kitchen", kitchenChoice);
       formData.append("lounge", loungeChoice);
       mutate({ body: formData });
-      onClose();
     },
   });
+  useEffect(()=>{
+    if(isSuccess && !isLoading){
+      onClose();
+    }
+  },[isSuccess])
 
   return (
     <div className="from__card from__card__full">
@@ -637,6 +641,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               color={secondry}
               bg={primary}
               type="submit"
+              isLoading={isLoading}
               isDisabled={
                 !selectedImage ||
                 !selectedOwnerId ||

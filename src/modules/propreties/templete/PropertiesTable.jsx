@@ -612,7 +612,7 @@ function PropertiesTable() {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {PropertiesData && !isBulkLoading ? (
+                  {PropertiesData && !isPropertiesLoading && !isBulkLoading ? (
                     <>
                       {PropertiesData?.updatedProperties?.map((item, index) => (
                         <Tr
