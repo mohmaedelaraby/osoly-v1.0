@@ -119,7 +119,7 @@ const OwnerTable = ({ switchTo }) => {
   const ownerlimit = 10;
 
   // delete user
-  const { mutate, isSuccess } = useDeleteUser();
+  const { mutate, isSuccess , isDeleteLoading } = useDeleteUser();
 
   const {
     usersData: ownerDataType,
@@ -470,7 +470,7 @@ const OwnerTable = ({ switchTo }) => {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {ownerDataType && !ownerDataLodaing  && !isBulkLoading ? (
+              {ownerDataType && !ownerDataLodaing  && !isBulkLoading && ! isDeleteLoading ? (
                 <>
                   {ownerDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.OWNER)

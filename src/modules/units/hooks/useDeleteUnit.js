@@ -17,7 +17,7 @@ export const useDeleteUnit = () => {
     });
     return {
         mutate: mutation.mutate,
-        isLoading: mutation.isLoading,
+        isDeleteLoading: mutation.isLoading,
         isSuccess: mutation.isSuccess
     }
   }

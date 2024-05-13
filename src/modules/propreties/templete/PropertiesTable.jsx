@@ -122,7 +122,7 @@ function PropertiesTable() {
     onClose: onCloseProperyModalEdit,
   } = useDisclosure();
   // delete user
-  const { mutate, isSuccess } = useDeleteProperty();
+  const { mutate, isSuccess ,isDeleteLoading } = useDeleteProperty();
 
   const [currentPropertyPage, setCurrentPropertyPage] = useState(1);
   const propertylimit = 10;
@@ -612,7 +612,7 @@ function PropertiesTable() {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {PropertiesData && !isPropertiesLoading && !isBulkLoading ? (
+                  {PropertiesData && !isPropertiesLoading && !isBulkLoading && !isDeleteLoading ? (
                     <>
                       {PropertiesData?.updatedProperties?.map((item, index) => (
                         <Tr

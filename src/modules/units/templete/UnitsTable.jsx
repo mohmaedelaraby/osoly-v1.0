@@ -134,7 +134,7 @@ const UnitsTable = () => {
   const [isGrid, setIsGrid] = useState(false);
 
   // delete user
-  const { mutate, isSuccess } = useDeleteUnit();
+  const { mutate, isSuccess ,isDeleteLoading} = useDeleteUnit();
 
   //units
   const [currentUnitPage, setCurrentUnitPage] = useState(1);
@@ -671,7 +671,7 @@ const UnitsTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {unitsData && !isBulkLoading ? (
+                  {unitsData && !isBulkLoading  && !isDeleteLoading? (
                     <>
                       {unitsData?.units?.map((item, index) => (
                         <Tr

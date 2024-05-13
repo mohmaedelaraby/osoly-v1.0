@@ -81,7 +81,7 @@ function UserTable({ switchTo }) {
   } = useDisclosure();
 
   // delete user
-  const { mutate, isSuccess } = useDeleteUser();
+  const { mutate, isSuccess ,isDeleteLoading} = useDeleteUser();
 
   const openUserPopup = () => {
     onOpenUserModal();
@@ -452,7 +452,7 @@ function UserTable({ switchTo }) {
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {usersDataType && !userDataLodaing && !isBulkLoading ? (
+              {usersDataType && !userDataLodaing && !isBulkLoading && !isDeleteLoading? (
                 <>
                   {usersDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.TENANT)
