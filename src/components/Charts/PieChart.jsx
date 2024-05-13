@@ -3,11 +3,11 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../hooks/useDynamicColors";
+import { Spinner } from "@chakra-ui/react";
 
 function PieChartComponent({ numbers }) {
   const { t } = useTranslation();
   const { primary } = useDynamicColors();
-
 
   let data = [
     {
@@ -52,27 +52,45 @@ function PieChartComponent({ numbers }) {
   };
 
   return (
-    <ThemeProvider theme={MuiTheme}>
-      <PieChart
-        colors={[primary, primary+'50', primary+'90']}
-        series={[
-          {
-            outerRadius: 145,
-            data,
-            arcLabel: getArcLabel,
-          },
-        ]}
-        sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
-            fill: "white",
-            fontSize: 14,
-            fontWeight: 700,
-            border: "none",
-          },
-        }}
-        {...sizing}
-      />
-    </ThemeProvider>
+    <>
+      {numbers ? (
+        <>
+          <ThemeProvider theme={MuiTheme}>
+            <PieChart
+              colors={[primary, primary + "50", primary + "90"]}
+              series={[
+                {
+                  outerRadius: 145,
+                  data,
+                  arcLabel: getArcLabel,
+                },
+              ]}
+              sx={{
+                [`& .${pieArcLabelClasses.root}`]: {
+                  fill: "white",
+                  fontSize: (numbers?.CLOSED / TOTAL) * 100 < 15 ? 8 : 14,
+                  fontWeight: 700,
+                  border: "none",
+                },
+              }}
+              {...sizing}
+            />
+          </ThemeProvider>
+        </>
+      ) : (
+        <>
+          <div className="flex-center " style={{width:"364px" , height:"294px"}}>
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </div>
+        </>
+      )}
+    </>
   );
 }
 export default PieChartComponent;
