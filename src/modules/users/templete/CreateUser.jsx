@@ -81,7 +81,7 @@ const CreateUser = ({ onClose, userRule }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder={userRule == USER_ROLES.OWNER
+                placeholder={userRule == USER_ROLES.TENANT
                   ? t("users.create.name_ar")
                   : t("users.create.name_ar_owner")}
                 _placeholder={{ color: "#77797E" }}
@@ -104,7 +104,7 @@ const CreateUser = ({ onClose, userRule }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label fo_primary">
-                {userRule == USER_ROLES.OWNER
+                {userRule == USER_ROLES.TENANT
                 ? t("users.create.name_en")
                 : t("users.create.name_en_owner")}
                 </Text>
@@ -115,8 +115,8 @@ const CreateUser = ({ onClose, userRule }) => {
                 type="text"
                 className="form__input__container__input"
                 placeholder={userRule == USER_ROLES.OWNER
-                  ? t("users.create.name_ar")
-                  : t("users.create.name_ar_owner")}
+                  ? t("users.create.name_en")
+                  : t("users.create.name_en_owner")}
                 _placeholder={{ color: "#77797E" }}
                 value={formik.values.firstNameEn}
                 onChange={formik.handleChange}
