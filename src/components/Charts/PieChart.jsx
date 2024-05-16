@@ -23,6 +23,20 @@ function PieChartComponent({ numbers }) {
       value: numbers?.PROCESSING,
     },
   ];
+  let emptydata = [
+    {
+      label: t("tickets.ACTIVE"),
+      value: 100,
+    },
+    {
+      label: t("tickets.CLOSED"),
+      value: 0,
+    },
+    {
+      label: t("tickets.PROCESSING"),
+      value: 0,
+    },
+  ];
   const MuiTheme = createTheme({
     palette: {
       mode: "dark",
@@ -44,9 +58,17 @@ function PieChartComponent({ numbers }) {
     legend: { hidden: true },
   };
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
+  const emptyTOTAL = emptydata
+    .map((item) => item.value)
+    .reduce((a, b) => a + b, 0);
 
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
+    //${(percent * 100).toFixed(0)}%
+    return `${params.label} ${(percent * 100).toFixed(0)}%`;
+  };
+  const getArcLabelEmpty = (params) => {
+    const percent = params.value / emptyTOTAL;
     //${(percent * 100).toFixed(0)}%
     return `${params.label} ${(percent * 100).toFixed(0)}%`;
   };
@@ -55,31 +77,59 @@ function PieChartComponent({ numbers }) {
     <>
       {numbers ? (
         <>
-          <ThemeProvider theme={MuiTheme}>
-            <PieChart
-              colors={[primary, primary + "50", primary + "90"]}
-              series={[
-                {
-                  outerRadius: 145,
-                  data,
-                  arcLabel: getArcLabel,
-                },
-              ]}
-              sx={{
-                [`& .${pieArcLabelClasses.root}`]: {
-                  fill: "white",
-                  fontSize: (numbers?.CLOSED / TOTAL) * 100 < 15 ? 8 : 14,
-                  fontWeight: 700,
-                  border: "none",
-                },
-              }}
-              {...sizing}
-            />
-          </ThemeProvider>
+          {Object.keys(numbers)?.length > 0 ? (
+            <>
+              <ThemeProvider theme={MuiTheme}>
+                <PieChart
+                  colors={[primary, primary + "50", primary + "90"]}
+                  series={[
+                    {
+                      outerRadius: 145,
+                      data,
+                      arcLabel: getArcLabel,
+                    },
+                  ]}
+                  sx={{
+                    [`& .${pieArcLabelClasses.root}`]: {
+                      fill: "white",
+                      fontSize: (numbers?.CLOSED / TOTAL) * 100 < 15 ? 8 : 14,
+                      fontWeight: 700,
+                      border: "none",
+                    },
+                  }}
+                  {...sizing}
+                />
+              </ThemeProvider>
+            </>
+          ) : (
+            <>
+              <ThemeProvider theme={MuiTheme}>
+                <div className="empty_state">{t('general.empty_tickets')}</div>
+                <PieChart
+                  colors={[primary, primary + "50", primary + "90"]}
+                  series={[
+                    {
+                      outerRadius: 145,
+                      data: [
+                        { value: 0, color: primary },
+                        { value: 100, color: primary },
+                        { value: 0, color: primary }, // Use color property
+                        // ...
+                      ],
+                    },
+                  ]}
+                  {...sizing}
+                />
+              </ThemeProvider>
+            </>
+          )}
         </>
       ) : (
         <>
-          <div className="flex-center " style={{width:"364px" , height:"294px"}}>
+          <div
+            className="flex-center "
+            style={{ width: "364px", height: "294px" }}
+          >
             <Spinner
               thickness="4px"
               speed="0.65s"

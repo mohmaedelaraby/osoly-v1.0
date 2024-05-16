@@ -107,7 +107,8 @@
       "solved":"Solve ",
       "closed":"Close",
       "all_tickets":"All Tickets",
-      "created_date":"Created at "
+      "created_date":"Created at ",
+      "empty_tickets":"There is No Tickets"
 
 
     },
