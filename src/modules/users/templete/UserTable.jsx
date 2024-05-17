@@ -466,7 +466,7 @@ function UserTable({ switchTo }) {
                           {item.phoneNumber}
                         </Td>
                         <Td className="table_body_row_item">
-                          {item?.ownedUnits[0]?.name}
+                          {item?.units[0]?.name}
                         </Td>
                         <Td className="table_body_row_item">{item?.email}</Td>
                         <Td className="table_body_row_item_btns">
