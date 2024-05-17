@@ -12,15 +12,15 @@ function PieChartComponent({ numbers }) {
   let data = [
     {
       label: t("tickets.ACTIVE"),
-      value: numbers?.ACTIVE,
+      value: numbers?.ACTIVE || 0,
     },
     {
       label: t("tickets.CLOSED"),
-      value: numbers?.CLOSED,
+      value: numbers?.CLOSED || 0,
     },
     {
       label: t("tickets.PROCESSING"),
-      value: numbers?.PROCESSING,
+      value: numbers?.PROCESSING || 0,
     },
   ];
   let emptydata = [
@@ -65,12 +65,12 @@ function PieChartComponent({ numbers }) {
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
     //${(percent * 100).toFixed(0)}%
-    return `${params.label} ${(percent * 100).toFixed(0)}%`;
+    return ` ${(percent * 100).toFixed(0) > 0  ? `${params.label} ${(percent * 100).toFixed(0)}%`:`` }`;
   };
   const getArcLabelEmpty = (params) => {
     const percent = params.value / emptyTOTAL;
     //${(percent * 100).toFixed(0)}%
-    return `${params.label} ${(percent * 100).toFixed(0)}%`;
+    return ` ${(percent * 100).toFixed(0) > 0  ? `${params.label} ${(percent * 100).toFixed(0)}%`:`` }`;
   };
 
   return (
