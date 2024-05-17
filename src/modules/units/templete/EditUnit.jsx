@@ -63,6 +63,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       setSelectedOwnerId(data?.ownerId);
       setSelectedMaintenanceManId(data?.maintenanceMan);
       setSelectedPropertyId(data?.propertyId);
+      setSelectedRenterId(data?.tenantId)
       setLoadedImage(data?.image);
       setKitchenChoice(data?.kitchen);
       setLoungeChoice(data?.lounge);
@@ -633,7 +634,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   </Select>
                 </FormControl>
 
-                <FormControl className="form__input__container disabled">
+                <FormControl className="form__input__container ">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
                       {t("general.property_renter")}
@@ -660,7 +661,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 </FormControl>
               </div>
               <div className="form__input form__input__flex mb-24">
-                <FormControl className="form__input__container disabled ">
+                <FormControl className="form__input__container  ">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
                       {t("general.unit_property")}
@@ -684,7 +685,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   </Select>
                 </FormControl>
 
-                <FormControl className="form__input__container disabled">
+                <FormControl className="form__input__container ">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
                       {t("general.maintenance")}
