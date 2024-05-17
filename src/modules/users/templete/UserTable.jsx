@@ -461,7 +461,7 @@ function UserTable({ switchTo }) {
                         <Td className="table_body_row_item">
                           {item.firstNameAr}
                         </Td>
-                        <Td className="table_body_row_item">-</Td>
+                        <Td className="table_body_row_item"> {item?.identityId ? item.identityId : "-"}</Td>
                         <Td className="table_body_row_item">
                           {item.phoneNumber}
                         </Td>
