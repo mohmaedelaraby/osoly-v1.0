@@ -94,11 +94,8 @@ function UserTable({ switchTo }) {
   const sortItems = [
     "phoneNumber",
     "email",
-    "phoneNumber",
     "firstNameEn",
-    "lastNameEn",
     "firstNameAr",
-    "lastNameAr",
   ];
 
   const [sortByTmp, setSortByTmp] = useState(null);
@@ -370,7 +367,7 @@ function UserTable({ switchTo }) {
                     <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
-                        {item}
+                        {t(`options.${item}`)}
                       </option>
                     ))}
                   </Select>

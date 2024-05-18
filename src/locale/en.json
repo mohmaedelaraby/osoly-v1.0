@@ -12,7 +12,7 @@
       "sort_type": "Filter type ",
       "asc": "asc",
       "desc": "desc",
-      "filter": "sort by ",
+      "filter": "filter by ",
       "expire_date": "expiry date",
       "apply": "application",
       "delete": "delete",
@@ -250,6 +250,12 @@
       "contractNumber":"Please enter the Contract's Number "
 
 
+    },
+    "options":{
+      "phoneNumber" : "phoneNumber",
+      "email":"email",
+      "firstNameEn" :"Arabic Name",
+      "firstNameAr":"English Name"
     }
   }
 }

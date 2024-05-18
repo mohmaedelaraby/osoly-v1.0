@@ -53,15 +53,7 @@ const OwnerTable = ({ switchTo }) => {
   const { primary, secondry } = useDynamicColors();
 
   //sorting and filtering local
-  const sortItems = [
-    "phoneNumber",
-    "email",
-    "phoneNumber",
-    "firstNameEn",
-    "lastNameEn",
-    "firstNameAr",
-    "lastNameAr",
-  ];
+  const sortItems = ["phoneNumber", "email", "firstNameEn", "firstNameAr"];
 
   const [sortByTmp, setSortByTmp] = useState(null);
   const [sortDirectionTmp, setSortDirectionTmp] = useState("asc");
@@ -81,8 +73,11 @@ const OwnerTable = ({ switchTo }) => {
 
   const [file, setFile] = useState("");
 
-  const { mutate: uploadFiles, isSuccess: isSuccessFiles , isLoading :isBulkLoading} =
-    useUploadUsersFile();
+  const {
+    mutate: uploadFiles,
+    isSuccess: isSuccessFiles,
+    isLoading: isBulkLoading,
+  } = useUploadUsersFile();
 
   const updateFile = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -119,7 +114,7 @@ const OwnerTable = ({ switchTo }) => {
   const ownerlimit = 10;
 
   // delete user
-  const { mutate, isSuccess , isDeleteLoading } = useDeleteUser();
+  const { mutate, isSuccess, isDeleteLoading } = useDeleteUser();
 
   const {
     usersData: ownerDataType,
@@ -151,7 +146,7 @@ const OwnerTable = ({ switchTo }) => {
     identityId,
     contractNumber,
     isSuccess,
-    isSuccessFiles
+    isSuccessFiles,
   ]);
 
   useEffect(() => {
@@ -189,8 +184,7 @@ const OwnerTable = ({ switchTo }) => {
             }}
           >
             <span className="pl-8 fo_secondry">
-               
-              {t("users.create.title_owner")} 
+              {t("users.create.title_owner")}
             </span>
           </Button>
 
@@ -384,7 +378,7 @@ const OwnerTable = ({ switchTo }) => {
                     <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
-                        {item}
+                        {t(`options.${item}`)}{" "}
                       </option>
                     ))}
                   </Select>
@@ -422,7 +416,6 @@ const OwnerTable = ({ switchTo }) => {
               </MenuItem>
             </MenuList>
           </Menu>
-
         </div>
         <div className="page_container_table__header__search">
           <InputGroup>
@@ -460,17 +453,19 @@ const OwnerTable = ({ switchTo }) => {
                 <Th className="table_header_item">{t("general.email")}</Th>
                 <Th className="table_header_item">{t("general.phone")}</Th>
                 <Th className="table_header_item">
-                  {t("general.num_of_properties")} 
+                  {t("general.num_of_properties")}
                 </Th>
                 <Th className="table_header_item">
-                   
                   {t("general.brokerage_contract_number")}
                 </Th>
                 <Th className="table_header_item"> </Th>
               </Tr>
             </Thead>
             <Tbody className="table_body">
-              {ownerDataType && !ownerDataLodaing  && !isBulkLoading && ! isDeleteLoading ? (
+              {ownerDataType &&
+              !ownerDataLodaing &&
+              !isBulkLoading &&
+              !isDeleteLoading ? (
                 <>
                   {ownerDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.OWNER)
