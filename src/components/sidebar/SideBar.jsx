@@ -236,7 +236,7 @@ function SideBar() {
                 <hr className="sidebar__items_hr" />
                 {
                   // eslint-disable-next-line
-                  userRole == "SUPER" ? (
+                  userRole == "SUPER" || "ENTERPRISE" ? (
                     <>
                       {sidebarSettings.map((item, i) => (
                         <>
