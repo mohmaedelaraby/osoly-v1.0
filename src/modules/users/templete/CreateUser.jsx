@@ -44,7 +44,14 @@ const CreateUser = ({ onClose, userRule }) => {
     initialValues: initialValues,
     validationSchema: userRule == USER_ROLES.TENANT ?  userCreateValidation : ownerCreateValidation,
     onSubmit: (values) => {
-      mutate({ body: values });
+      let data 
+      if(userRule ==  USER_ROLES.OWNER){
+        data = values
+      }else{
+        delete values.contractNumber
+        data =values
+      }
+      mutate({ body: data });
     },
   });
   useEffect(()=>{
