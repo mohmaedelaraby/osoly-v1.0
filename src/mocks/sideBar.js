@@ -28,7 +28,7 @@ export const sidebarItems = [
         navTo:'/enterprises',
         activeRoutes:['/enterprises','/enterprise'],
         isActive: false,
-        isHidden:["USER"]
+        isHidden:["ENTERPRISE"]
     },
 
     {
