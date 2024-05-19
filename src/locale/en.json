@@ -108,8 +108,8 @@
       "closed":"Close",
       "all_tickets":"All Tickets",
       "created_date":"Created at ",
-      "empty_tickets":"There is No Tickets"
-
+      "empty_tickets":"There is No Tickets" ,
+      "reset":"reset"  
 
     },
     "search": {

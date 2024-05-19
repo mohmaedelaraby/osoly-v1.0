@@ -85,6 +85,28 @@ const SettingsForm = () => {
     //window.location.reload();
     //sessionStorage.removeItem("dashboardSettings")
   };
+  const resetValuesToDefault = () => {
+    const formData = new FormData();
+
+    formData.append("dashboardColor", "#194C81");
+
+    formData.append("sidebarColor","#194C81");
+
+    formData.append("dashboardFontColor", "#EFF9FF");
+
+    formData.append("sidebarFontColor",  "#EFF9FF");
+
+    mutate({ body: formData });
+    sessionStorage.setItem(
+      "dashboardSettings",
+      JSON.stringify({
+        dashboardColor:  "#194C81",
+        dashboardFontColor: "#EFF9FF",
+        sidebarColor:  "#194C81",
+        sidebarFontColor:  "#EFF9FF",
+      })
+    );
+  };
   useEffect(() => {
     if (isSuccess) navigate("/home");
   }, [isSuccess]);
@@ -256,8 +278,20 @@ const SettingsForm = () => {
                         bg={primary}
                         color={secondry}
                         dir="rtl"
+                        marginLeft="16px"
                       >
                         {t("general.edit")}
+                      </Button>
+
+                      <Button
+                        onClick={() => {
+                          resetValuesToDefault();
+                        }}
+                        bg={primary}
+                        color={secondry}
+                        dir="rtl"
+                      >
+                        {t("general.reset")}
                       </Button>
                     </div>
                   </form>

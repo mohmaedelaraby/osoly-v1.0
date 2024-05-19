@@ -108,9 +108,8 @@
       "closed":"اغلاق",
       "all_tickets":"كل التذاكر",
       "created_date":"تاريخ الاصدار",
-      "empty_tickets":"ليس هناك تذاكر"
-
-      
+      "empty_tickets":"ليس هناك تذاكر",
+      "reset":"اعاده"      
     },
     "search": {
       "by_mail": "ابحث ب البريد الالكتروني لل مستخدم",
