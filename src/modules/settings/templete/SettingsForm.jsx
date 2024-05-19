@@ -227,7 +227,7 @@ const SettingsForm = () => {
                       <FormControl className="form__input__container">
                         <FormLabel>
                           <Text className="form__input__container__label fo_primary">
-                            {t("settings.primary_sb")}
+                            {t("settings.sec_sb")}
                           </Text>
                         </FormLabel>
 
