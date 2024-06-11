@@ -581,7 +581,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 .filter((s) => s.role == USER_ROLES.TENANT)
                 ?.map((i, index) => (
                   <option value={i.id} key={index}>
-                    {i.firstNameAr} 
+                    {i.identityId}
                   </option>
                 ))}
             </Select>
@@ -647,7 +647,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 !selectedOwnerId ||
                 !selectedMaintenanceManId ||
                 !selectedProbertyId ||
-                !selectedRenterId
+                !selectedRenterId || (loungeChoice && formik.values.conditioners <= 0)
               }
             >
               {t("general.add")}
