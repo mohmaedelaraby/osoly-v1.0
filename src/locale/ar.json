@@ -66,13 +66,13 @@
       "rooms": "الغرف",
       "kitchen": "المطبخ",
       "kitchens": "المطابخ",
-      "conditioners": "التكييفات",
-      "conditioners_number": "عدد التكييفات",
+      "conditioners": "المكييفات",
+      "conditioners_number": "عدد المكييفات",
       "rooms_number": "عدد الغرف",
       "bathrooms_number": "عدد دورات المياه",
       "exist":"يوجد",
       "not_exist":"لا يوجد",
-      "lounge":"تكييفات راكبه",
+      "lounge":"مكييفات راكبه",
       "rent_cost":"قيمة الإيجار ",
       "rent_collect_date":"موعد تحصيل الإيجار",
       "unit_space":"مساحة الوحدة",
@@ -115,7 +115,8 @@
       "by_mail": "ابحث ب البريد الالكتروني لل مستخدم",
       "by_property_name": "ابحث ب اسم العقار ",
       "by_enterprise_name": "ابحث ب اسم المؤسسه",
-      "by_unit_name": "ابحث ب اسم الوحده "
+      "by_unit_name": "ابحث ب اسم الوحده ",
+      "by_identityid": "ابحث ب رقم الهويه الوطنية  "
     },
     "home": {
       "cards": {
@@ -139,7 +140,7 @@
     "enterprise": {
       "page": {
         "header": "المؤسسة",
-        "add_user": " إضافة مؤسس"
+        "add_user": " إضافة مؤسسه"
       },
       "create": {
         "title": "إضافة مؤسس جديد",
@@ -152,11 +153,11 @@
     "users": {
       "page": {
         "header": "المستخدمين",
-        "add_user": " إضافة مستأجر "
+        "add_user": "اضافه مستاجر في المستاجرين "
       },
       "create": {
-        "title": "إضافة مستأجر جديد",
-        "title_owner": "إضافة مالك جديد",
+        "title": "اضافه مستاجر في المستاجرين  ",
+        "title_owner": "ضافه ملاك في المالكين  ",
         "title_edit": "تعديل مستأجر جديد",
         "title_owner_edit": "تعديل مالك جديد",
         "name_ar": "اسم المستأجر (العربية)",
@@ -193,7 +194,7 @@
       }
     },
     "tickets":{
-      "ACTIVE":"نشطه",
+      "ACTIVE":"مفتوحه ",
       "CLOSED":"مغلقة ",
       "PROCESSING":"قيد المعالجة",
       "SERVICE":"طلب خدمة",
@@ -243,7 +244,7 @@
       "space":"يرجي ادخال المساحه ",
       "rooms":"يرجي ادخال عدد الغرف ",
       "bathrooms":"يرجي ادخال عدد دورات المياه ",
-      "conditioners":"يرجي ادخال عدد التكييفات ",
+      "conditioners":"يرجي ادخال عدد المكييفات ",
       "maintenanceMan":"يرجي ادخال مسئول الصيانة  ",
       "tenantId":"يرجي ادخال المستأجر   ",
       "contractNumber":"يرجي ادخال رقم العقد   "

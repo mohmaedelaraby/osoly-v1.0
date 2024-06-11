@@ -34,6 +34,7 @@
                 .card__container__header__title__type {
                     font-size: 14px;
                     font-weight: bold;
+                    text-transform: capitalize;
 
                 }
 
@@ -55,6 +56,7 @@
                 padding: 6px 6px;
                 border-radius: 8px;
                 font-size: 12px;
+                text-transform: capitalize;
                 color: white;
                 background: #000;
                 display: flex;
@@ -135,6 +137,7 @@
 
                 .card__container__body__imgs__viewunit {
                     font-size: 16px;
+                    text-transform: capitalize;
                     cursor: pointer;
                     color: $font-color;
                     font-weight: bold;

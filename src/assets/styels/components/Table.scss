@@ -9,6 +9,7 @@
         color: $font-color;
         font-size: $header-text;
         font-weight: bold;
+        text-transform: capitalize;
     }
 
     .tabel_header_addBtn {
@@ -32,6 +33,7 @@
             font-size: large;
             color: #010B38;
             font-family: "Almarai", sans-serif;
+            text-transform: capitalize;
         }
     }
 
@@ -54,6 +56,7 @@
             .table_body_row_item {
                 font-size: medium;
                 font-family: "Almarai", sans-serif;
+                text-transform: capitalize;
 
             }
 

@@ -65,6 +65,8 @@
                     height: auto;
                     max-height: 120px;
                     max-width: 120px;
+                    min-width: 120px;
+                    min-height: 120px;
                     cursor: pointer;
                 }
 
@@ -147,12 +149,14 @@
                     .sidebar__items__container__item__text {
                         color: #EFF9FF;
                         font-size: 16px;
+                        text-transform: capitalize;
                         font-style: normal;
                         font-weight: 400;
                         padding-right: 12px;
 
                         @media screen and (max-width:768px) {
                             font-size: 14px;
+                            text-transform: capitalize;
                         }
 
                     }
@@ -162,6 +166,7 @@
                     margin-right: 10%;
                     font-size: 14px;
                     font-style: normal;
+                    text-transform: capitalize;
                     font-weight: 400;
                     margin-top: 4px;
 

@@ -125,7 +125,7 @@ function LoginForm() {
                 type="submit"
                 isLoading={isLoading}
               >
-                تسجيل الدخول
+                بيانات التواصل 
               </Button>
             </div>
           </form>

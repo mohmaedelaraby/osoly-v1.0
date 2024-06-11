@@ -17,6 +17,7 @@
                 color: #010B38;
                 text-align: right;
                 font-size: 36px;
+                text-transform: capitalize;
                 font-weight: 700;
             }
 
@@ -39,6 +40,7 @@
                     /* Heading/H6 */
                     font-size: 16px;
                     font-style: normal;
+                    text-transform: capitalize;
                     font-weight: 500;
                     line-height: 120%;
                 }
@@ -86,6 +88,7 @@
                         color: #010B38;
                         font-size: 24px;
                         font-style: normal;
+                        text-transform: capitalize;
                         font-weight: 700;
                     }
 
@@ -113,6 +116,7 @@
                         color: #010B38;
                         font-size: 24px;
                         font-style: normal;
+                        text-transform: capitalize;
                         font-weight: 700;
                     }
 
@@ -156,7 +160,7 @@
 
                 .home_container_charts_table__chart_header {
                     color: #010B38;
-
+                    text-transform: capitalize;
                     font-size: 24px;
                     font-weight: 700;
                     margin-bottom: 8px;
@@ -165,6 +169,7 @@
                 .home_container_charts_table__chart_card_title {
                     color: rgba(1, 11, 56, 0.50);
                     font-size: 12px;
+                    text-transform: capitalize;
                     font-style: normal;
                     font-weight: 400;
                     margin-bottom: 14px;
@@ -181,6 +186,7 @@
                     .home_container_charts_table__chart_card_footer_txt {
                         color: rgba(1, 11, 56, 0.50);
                         font-size: 12px;
+                        text-transform: capitalize;
                         font-style: normal;
                         font-weight: 400;
                         width: 100%;

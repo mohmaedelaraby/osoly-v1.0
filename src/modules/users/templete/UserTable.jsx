@@ -414,10 +414,10 @@ function UserTable({ switchTo }) {
             </InputRightElement>
             <Input
               type="text"
-              placeholder={t("search.by_mail")}
+              placeholder={t("search.by_identityid")}
               onChange={(e) => {
                 setTimeout(() => {
-                  setEmail(e.target.value);
+                  setIdentityId(e.target.value);
                 }, 200);
               }}
             />

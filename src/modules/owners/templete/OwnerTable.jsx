@@ -486,7 +486,7 @@ const OwnerTable = ({ switchTo }) => {
                           {item?.phoneNumber}
                         </Td>
                         <Td className="table_body_row_item">
-                          {item?.ownedProperties?.length}
+                          {item?.ownedProperties?.length.toLocaleString()}
                         </Td>
                         <Td className="table_body_row_item">
                           {item?.contractNumber ? item.contractNumber : "-"}

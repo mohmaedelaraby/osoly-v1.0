@@ -71,8 +71,8 @@ const UserComponent = () => {
             <Card>
               <Tabs isLazy>
                 <TabList>
-                  <Tab padding={"16px"}> {t("general.renters")}</Tab>
-                  <Tab padding={"16px"}> {t("general.oweners")}</Tab>
+                  <Tab padding={"16px"} className="camal_case"> {t("general.renters")}</Tab>
+                  <Tab padding={"16px"} className="camal_case"> {t("general.oweners")}</Tab>
                 </TabList>
 
                 <TabPanels>

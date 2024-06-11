@@ -17,6 +17,7 @@
             .cardWithNum_contanier__text_number {
                 text-align: right;
                 font-size: 36px;
+                text-transform: capitalize;
                 color: #010B38;
                 font-weight: 700;
             }
@@ -24,6 +25,7 @@
             .cardWithNum_contanier__text_desc {
                 text-align: right;
                 font-size: 16px;
+                text-transform: capitalize; 
                 font-weight: 400;
                 color: rgba(1, 11, 56, 0.50);
             }
@@ -66,6 +68,7 @@
                 
                 padding: 8px;
                 font-size: 12px;
+                text-transform: capitalize;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 16px;
@@ -103,6 +106,7 @@
             .cardWithimg_contanier__text_header {
                 color: rgba(1, 11, 56, 0.50);
                 font-size: 12px;
+                text-transform: capitalize;
                 font-weight: 700;
                 margin-bottom: 4px;
             }
@@ -110,12 +114,14 @@
             .cardWithimg_contanier__text_title {
                 color: #010B38;
                 font-size: 20px;
+                text-transform: capitalize;
                 font-weight: 700;
             }
 
             .cardWithimg_contanier__text_name {
                 color: #010B38;
                 font-size: 12px;
+                text-transform: capitalize;
                 font-weight: 400;
                 display: inline-flex;
                 align-items: baseline;
@@ -131,6 +137,7 @@
 
                 .cardWithimg_contanier__text_price {
                     font-size: 18px;
+                    text-transform: capitalize;
                     font-style: normal;
                     font-weight: 700;
                     text-align: right;
@@ -139,6 +146,7 @@
 
                 .cardWithimg_contanier__text_price_desc {
                     font-size: 12px;
+                    text-transform: capitalize;
                     font-style: normal;
                     font-weight: 400;
                     text-align: right;
@@ -154,6 +162,7 @@
             .cardWithimg_contanier__text_address {
                 font-size: 12px;
                 font-style: normal;
+                text-transform: capitalize;
                 font-weight: 400;
                 text-align: right;
                 color: rgba(1, 11, 56, 0.60);
@@ -196,10 +205,12 @@
 
         .cardWithimg_contanier__text_header {
             font-size: 10px !important;
+            text-transform: capitalize;
         }
 
         .cardWithimg_contanier__text_title {
             font-size: 12px !important;
+            text-transform: capitalize;
         }
     }
 

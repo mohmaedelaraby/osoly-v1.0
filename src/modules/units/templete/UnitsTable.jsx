@@ -685,18 +685,18 @@ const UnitsTable = () => {
                               "YYYY-MM-DD"
                             )}
                           </Td>
-                          <Td className="table_body_row_item">{item.rent}</Td>
+                          <Td className="table_body_row_item">{item.rent.toLocaleString()}</Td>
                           <Td className="table_body_row_item">
                             {item.address}
                           </Td>
-                          <Td className="table_body_row_item">{item.space}</Td>
+                          <Td className="table_body_row_item">{item.space.toLocaleString()}</Td>
                           <Td className="table_body_row_item">
                             {item.electricityAccount}
                           </Td>
                           <Td className="table_body_row_item">
                             {item.waterAccount}
                           </Td>
-                          <Td className="table_body_row_item">{item.rooms}</Td>
+                          <Td className="table_body_row_item">{item.rooms.toLocaleString()}</Td>
 
                           <Td className="table_body_row_item">
                             <Checkbox

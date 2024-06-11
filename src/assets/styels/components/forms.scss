@@ -16,6 +16,7 @@
         .form__header_text {
             color: #001833;
             font-size: 36px;
+            text-transform: capitalize;
             font-weight: 700;
         }
 
@@ -28,7 +29,7 @@
 
             .form__input__container__checkbox_txt {
                 color: #010B38;
-
+                text-transform: capitalize;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 700;
@@ -37,6 +38,7 @@
             .form__input__container__label {
                 color: #001833;
                 text-align: right;
+                text-transform: capitalize;
                 font-size: 12px;
                 font-weight: 600;
             }
@@ -44,6 +46,7 @@
             .form__input__container__desc {
                 color: gray;
                 font-size: 14px;
+                text-transform: capitalize;
                 font-weight: 400;
             }
 
@@ -96,6 +99,7 @@
 
             /* ازرار/18 */
             font-size: 18px;
+            text-transform: capitalize;
             font-weight: 700;
             line-height: 32px;
             /* 177.778% */
@@ -124,6 +128,7 @@
                 text-align: center;
                 width: 100%;
                 font-size: 16px;
+                text-transform: capitalize;
                 font-weight: 700;
                 line-height: 32px;
                 /* 200% */
@@ -134,6 +139,7 @@
                 text-align: center;
                 width: 100%;
                 font-size: 14px;
+                text-transform: capitalize;
                 font-weight: 400;
                 line-height: 32px;
                 /* 200% */
@@ -201,6 +207,7 @@
         .from__card_plans_title {
             color: #000000;
             font-size: 18px;
+            text-transform: capitalize;
             font-weight: 700;
             margin-bottom: 8px;
         }
@@ -231,6 +238,7 @@
                         color: #010B38;
                         font-size: 16px;
                         font-style: normal;
+                        text-transform: capitalize;
                         font-weight: 700;
                         margin-top: 8px;
                         margin-bottom: 8px;
@@ -241,6 +249,7 @@
                         color: rgba(1, 11, 56, 0.50);
                         text-overflow: ellipsis;
                         font-size: 14px;
+                        text-transform: capitalize;
                         font-style: normal;
                         font-weight: 400;
 
@@ -274,6 +283,7 @@
                 color: #001833;
                 font-size: 36px;
                 font-weight: 700;
+                text-transform: capitalize;
             }
 
             .form__header_close {}
@@ -289,11 +299,13 @@
                     text-align: right;
                     font-size: 12px;
                     font-weight: 600;
+                    text-transform: capitalize;
                 }
 
                 .form__input__container__desc {
                     color: gray;
                     font-size: 14px;
+                    text-transform: capitalize;
                     font-weight: 400;
                 }
 

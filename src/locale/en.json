@@ -12,7 +12,7 @@
       "sort_type": "Filter type ",
       "asc": "asc",
       "desc": "desc",
-      "filter": "filter by ",
+      "filter": "Filter by ",
       "expire_date": "expiry date",
       "apply": "application",
       "delete": "delete",
@@ -116,7 +116,8 @@
       "by_mail": "Search by user's email",
       "by_property_name": "Search by property name",
       "by_enterprise_name": "Search by enterprise name",
-      "by_unit_name": "Search by unit name"
+      "by_unit_name": "Search by unit name",
+      "by_identityid": "Search by Identity Number"
     },
     "home": {
       "cards": {

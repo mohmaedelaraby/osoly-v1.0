@@ -5,6 +5,7 @@
     overflow-x: hidden;
     direction: rtl;
     font-family: "Almarai", sans-serif;
+    text-transform: capitalize;
 
 }
 
@@ -187,6 +188,7 @@
     justify-content: center;
     color: #34B53A;
     font-size: 33.367px;
+    text-transform: capitalize;
     font-weight: 500;
     top: 26%;
     left: 21%;
@@ -208,6 +210,7 @@
     justify-content: center;
     color: #34B53A;
     font-size: 33.367px;
+    text-transform: capitalize;
     font-weight: 500;
     top: 22%;
     left: 21%;
@@ -318,6 +321,7 @@
     
     padding: 8px;
     font-size: 12px;
+    text-transform: capitalize;
     font-style: normal;
     font-weight: 400;
     line-height: 16px;
@@ -358,6 +362,7 @@
         text-align: center;
         width: 100%;
         font-size: 16px;
+        text-transform: capitalize;
         font-weight: 700;
         line-height: 32px;
         /* 200% */
@@ -368,6 +373,7 @@
         text-align: center;
         width: 100%;
         font-size: 14px;
+        text-transform: capitalize;
         font-weight: 400;
         line-height: 32px;
         /* 200% */
@@ -436,4 +442,13 @@
     z-index: 9;
     bottom: 48%;
     left: 36%;
+}
+
+.camal_case{
+    text-transform: capitalize;
+}
+.chakra-toast__inner{
+    button{
+        display: none;
+    }
 }
