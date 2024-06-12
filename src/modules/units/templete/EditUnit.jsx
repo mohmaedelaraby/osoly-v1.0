@@ -61,7 +61,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     if(usersData){
       setFiltersRenters(usersData)
     }
-  }, [filterdRenters]);
+  }, [filterdRenters,usersData]);
 
   useEffect(() => {
     if (data) {

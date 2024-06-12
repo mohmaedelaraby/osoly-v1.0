@@ -57,7 +57,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     if(usersData){
       setFiltersRenters(usersData)
     }
-  }, [filterdRenters]);
+  }, [usersData]);
 
   useEffect(() => {}, [kitchenChoice]);
   useEffect(() => {}, [loungeChoice]);
@@ -610,9 +610,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               }}
             >
               <option value={0}>{t("general.renter")} </option>
-              <option>
               
-              </option>
               {filterdRenters?.users
                 .filter((s) => s.role == USER_ROLES.TENANT)
                 ?.map((i, index) => (
