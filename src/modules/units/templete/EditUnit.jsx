@@ -41,6 +41,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const [loungeChoice, setLoungeChoice] = useState(false);
   const [kitchenChoice, setKitchenChoice] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [filterdRenters , setFiltersRenters]=useState()
+  const [filterdRentSearch , setFilterdRentSearch]=useState("")
 
   const { usersData, usersRefetch } = useUsers({
     pageNo: 1,
@@ -56,7 +58,10 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     refetch();
     usersRefetch();
     PropertiesRefetch();
-  }, []);
+    if(usersData){
+      setFiltersRenters(usersData)
+    }
+  }, [filterdRenters]);
 
   useEffect(() => {
     if (data) {
@@ -131,6 +136,15 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       onClose();
     }
   }, [isSuccess]);
+
+  useEffect(()=>{
+    const filterdArr = filterdRenters?.users.filter((i) => i.identityId === filterdRentSearch)
+    if(filterdArr?.length){
+      setSelectedRenterId(filterdArr[0]?.id)
+    }else{
+      setSelectedRenterId(data?.tenantId)
+    }
+  },[filterdRentSearch])
   return (
     <>
       <div className="from__card from__card__full">
@@ -640,9 +654,25 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                       {t("general.property_renter")}
                     </Text>
                   </FormLabel>
+                  <div className="form__input__container_custom_input" style={{padding:'0px'}}>
+            <Input
+              name="renter_search"
+              size="sm"
+              type="text"
+              placeholder={t("general.search")}
+              _placeholder={{ color: "#77797E" }}
+              marginLeft={'8px'}
+              padding="0px 6px"
+              height={'40px'}
+              onChange={(e)=>{
+                setFilterdRentSearch(e.target.value)
+              }}
+            />
+             
+            </div>
                   <Select
                     height={"56px"}
-                    name="owner"
+                    name="renter"
                     value={selectedRenterId}
                     onChange={(e) => {
                       setSelectedRenterId(e.target.value);
@@ -650,11 +680,11 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     }}
                   >
                     <option value={0}>{t("general.renter")} </option>
-                    {usersData?.users
+                    {filterdRenters?.users
                       .filter((s) => s.role == USER_ROLES.TENANT)
                       ?.map((i, index) => (
                         <option value={i.id} key={index}>
-                          {i.firstNameAr}
+                          {i.identityId}
                         </option>
                       ))}
                   </Select>
@@ -669,7 +699,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   </FormLabel>
                   <Select
                     height={"56px"}
-                    name="owner"
+                    name="unit_property"
                     value={selectedProbertyId}
                     onChange={(e) => {
                       setSelectedPropertyId(e.target.value);
@@ -693,7 +723,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                   </FormLabel>
                   <Select
                     height={"56px"}
-                    name="owner"
+                    name="maintenance"
                     value={selectedMaintenanceManId}
                     onChange={(e) => {
                       setSelectedMaintenanceManId(e.target.value);

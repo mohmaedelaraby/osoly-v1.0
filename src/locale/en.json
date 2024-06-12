@@ -109,8 +109,8 @@
       "all_tickets":"All Tickets",
       "created_date":"Created at ",
       "empty_tickets":"There is No Tickets" ,
-      "reset":"reset"  
-
+      "reset":"reset" ,
+      "search":"Search"
     },
     "search": {
       "by_mail": "Search by user's email",
