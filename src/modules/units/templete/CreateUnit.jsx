@@ -30,7 +30,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
   const { mutate , isLoading,isSuccess} = useCreateUnit();
 
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
-  const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
+  const [selectedRenterId, setSelectedRenterId] = useState();
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
     useState();
   const [selectedRentRate, setSelectedRentRate] =
@@ -143,7 +143,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
         formData.append("lounge", loungeChoice);
       }
       if(selectedRentRate){
-        formData.append("rentCollectionRate ", selectedRentRate);
+        formData.append("rentCollectionRate", selectedRentRate);
       }
      
       mutate({ body: formData });

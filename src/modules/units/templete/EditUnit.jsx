@@ -32,7 +32,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
 
   const { data, refetch } = useGetUnit(id);
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
-  const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
+  const [selectedRenterId, setSelectedRenterId] = useState();
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
     useState(propOwenerId);
     const [selectedRentRate, setSelectedRentRate] =
@@ -166,7 +166,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
         formData.append("lounge", loungeChoice);
       }
       if(selectedRentRate){
-        formData.append("rentCollectionRate ", selectedRentRate);
+        formData.append("rentCollectionRate", selectedRentRate);
       }
       mutate({ id: id, body: formData });
     },
