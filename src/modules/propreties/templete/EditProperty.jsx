@@ -495,13 +495,13 @@ const EditProperty = ({ id, onClose }) => {
                                       {item.rentCollectionDate}
                                     </Td>
                                     <Td className="table_body_row_item">
-                                      {item.rent.toLocaleString()}
+                                      {item?.rent?.toLocaleString()}
                                     </Td>
                                     <Td className="table_body_row_item">
                                       {item.address}
                                     </Td>
                                     <Td className="table_body_row_item">
-                                      {item.space.toLocaleString()}
+                                      {item?.space?.toLocaleString()}
                                     </Td>
                                     <Td className="table_body_row_item">
                                       {item.electricityAccount}
@@ -510,7 +510,7 @@ const EditProperty = ({ id, onClose }) => {
                                       {item.waterAccount}
                                     </Td>
                                     <Td className="table_body_row_item">
-                                      {item.rooms.toLocaleString()}
+                                      {item?.rooms?.toLocaleString()}
                                     </Td>
 
                                     <Td className="table_body_row_item">

@@ -34,7 +34,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
   const [selectedRenterId, setSelectedRenterId] = useState();
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
-    useState(propOwenerId);
+    useState();
     const [selectedRentRate, setSelectedRentRate] =
     useState();
   const [loadedImage, setLoadedImage] = useState(null);
@@ -69,7 +69,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     if (data) {
       setSelectedOwnerId(data?.ownerId);
       setSelectedMaintenanceManId(data?.maintenanceMan);
-      setSelectedMaintenanceManId(data?.rentCollectionRate);
+      setSelectedRentRate(data?.rentCollectionRate);
       setSelectedPropertyId(data?.propertyId);
       setSelectedRenterId(data?.tenantId)
       setLoadedImage(data?.image);
@@ -662,7 +662,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
               </div>
 
               <div className="form__input form__input__flex mb-24">
-                <FormControl className="form__input__container disabled">
+                <FormControl className="form__input__container">
                   <FormLabel>
                     <Text className="form__input__container__label fo_primary">
                       {t("general.property_owner")}
@@ -787,6 +787,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
             <Select
               height={"56px"}
               name="rent_rate"
+              value={selectedRentRate}
               onChange={(e) => {
                 setSelectedRentRate(e.target.value);
                 setTimeout(() => {}, 0);

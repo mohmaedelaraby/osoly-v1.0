@@ -622,10 +622,10 @@ function PropertiesTable() {
                         >
                           <Td className="table_body_row_item">{item.name}</Td>
                           <Td className="table_body_row_item">
-                            {item?.units?.length.toLocaleString()}
+                            {item?.units?.length?.toLocaleString()}
                           </Td>
                           <Td className="table_body_row_item">
-                            {item?.totalRent.toLocaleString()}
+                            {item?.totalRent?.toLocaleString()}
                           </Td>
                           <Td className="table_body_row_item">
                             {item?.address}

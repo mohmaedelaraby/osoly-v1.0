@@ -430,13 +430,13 @@ const UserEnterpraiseTable = () => {
                                   {item?.username}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.units?.length.toLocaleString()}
+                                  {item?.units?.length?.toLocaleString()}
                                 </Td>
                                 <Td className="table_body_row_item">
                                   {item?.plan ? item?.plan?.name : "-"}
                                 </Td>
                                 <Td className="table_body_row_item">
-                                  {item?.plan?.numberOfUsers.toLocaleString()}
+                                  {item?.plan?.numberOfUsers?.toLocaleString()}
                                 </Td>
                                 <Td className="table_body_row_item">
                                   {dayjs(new Date(item.expireDate)).format(
