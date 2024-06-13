@@ -35,6 +35,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
   const [selectedRenterId, setSelectedRenterId] = useState(propOwenerId);
   const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
     useState(propOwenerId);
+    const [selectedRentRate, setSelectedRentRate] =
+    useState();
   const [loadedImage, setLoadedImage] = useState(null);
 
   const [selectedProbertyId, setSelectedPropertyId] = useState(propPropertyId);
@@ -67,6 +69,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     if (data) {
       setSelectedOwnerId(data?.ownerId);
       setSelectedMaintenanceManId(data?.maintenanceMan);
+      setSelectedMaintenanceManId(data?.rentCollectionRate);
       setSelectedPropertyId(data?.propertyId);
       setSelectedRenterId(data?.tenantId)
       setLoadedImage(data?.image);
@@ -106,28 +109,65 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
       formik.values.maintenanceMan = selectedMaintenanceManId;
       formik.values.tenantId = selectedRenterId;
       const formData = new FormData();
+     
       if (selectedImage) {
         formData.append("image", selectedImage, selectedImage.name);
-      } else {
+      } else if(!selectedImage && loadedImage) {
         formData.append("image", loadedImage);
       }
+      
 
-      formData.append("name", formik.values.name);
-      formData.append("address", formik.values.address);
-      formData.append("bathrooms", formik.values.bathrooms);
-      formData.append("conditioners", formik.values.conditioners);
-      formData.append("electricityAccount", formik.values.electricityAccount);
-      //formData.append("maintenanceMan", formik.values.maintenanceMan);
-      // formData.append("ownerId", formik.values.ownerId);
-      //formData.append("propertyId", formik.values.propertyId);
-      //formData.append("tenantId", formik.values.tenantId);
-      formData.append("rent", formik.values.rent);
-      formData.append("rentCollectionDate", formik.values.rentCollectionDate);
-      formData.append("rooms", formik.values.rooms);
-      formData.append("space", formik.values.space);
-      formData.append("waterAccount", formik.values.waterAccount);
-      formData.append("kitchen", kitchenChoice);
-      formData.append("lounge", loungeChoice);
+      if(formik.values.name){
+        formData.append("name", formik.values.name);
+      }
+      if(formik.values.address){
+        formData.append("address", formik.values.address);
+      }
+      if(formik.values.bathrooms){
+        formData.append("bathrooms", formik.values.bathrooms);
+      }
+      if(formik.values.conditioners){
+        formData.append("conditioners", formik.values.conditioners);
+      }
+      if(formik.values.electricityAccount){
+        formData.append("electricityAccount", formik.values.electricityAccount);
+      }
+      if(formik.values.maintenanceMan){
+        formData.append("maintenanceMan", formik.values.maintenanceMan);
+      }
+      if(formik.values.ownerId){
+        formData.append("ownerId", formik.values.ownerId);
+      }
+      if(formik.values.propertyId){
+        formData.append("propertyId", formik.values.propertyId);
+      }
+      if(formik.values.tenantId){
+        formData.append("tenantId", formik.values.tenantId);
+      }
+     if(formik.values.rent){
+        formData.append("rent", formik.values.rent);
+      }
+      if(formik.values.rentCollectionDate){
+        formData.append("rentCollectionDate", formik.values.rentCollectionDate);
+      }
+      if(formik.values.rooms){
+        formData.append("rooms", formik.values.rooms);
+      }
+      if(formik.values.space){
+        formData.append("space", formik.values.space);
+      }
+      if(formik.values.waterAccount){
+        formData.append("waterAccount", formik.values.waterAccount);
+      }
+      if(kitchenChoice){
+        formData.append("kitchen", kitchenChoice);
+      }
+      if(loungeChoice){
+        formData.append("lounge", loungeChoice);
+      }
+      if(selectedRentRate){
+        formData.append("rentCollectionRate ", selectedRentRate);
+      }
       mutate({ id: id, body: formData });
     },
   });
@@ -731,11 +771,33 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     }}
                   >
                     <option value={0}> {t("general.maintenance")} </option>
-                    <option value={"OWNER"}> OWNER </option>
-                    <option value={"ENTERPRISE"}> ENTERPRISE </option>
+                    <option value={"OWNER"}> {t("general.owner")}  </option>
+                    <option value={"ENTERPRISE"}> {t("sidebar.enterprise")} </option>
                   </Select>
                 </FormControl>
               </div>
+
+              <div className="form__input form__input__flex mb-24">
+          <FormControl className="form__input__container">
+            <FormLabel>
+              <Text className="form__input__container__label fo_primary">
+                {t("general.rent_rate")}
+              </Text>
+            </FormLabel>
+            <Select
+              height={"56px"}
+              name="rent_rate"
+              onChange={(e) => {
+                setSelectedRentRate(e.target.value);
+                setTimeout(() => {}, 0);
+              }}
+            >
+              <option value={0}> {t("general.rent_rate")} </option>
+              <option value={"MONTHLY"}> {t("general.monthly")} </option>
+              <option value={"YEARLY"}> {t("general.yearly")} </option>
+            </Select>
+          </FormControl>
+        </div>
 
               <div className="form__btn__container">
                 <Stack direction="row" width="100%" justify="space-between">
@@ -747,11 +809,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     type="submit"
                     isLoading={isLoading}
                     isDisabled={
-                      (!selectedImage && !loadedImage) ||
-                      !selectedOwnerId ||
                       !selectedMaintenanceManId ||
-                      !selectedProbertyId ||
-                      !selectedRenterId
+                      !selectedRentRate || (loungeChoice && formik.values.conditioners <= 0)
                     }
                   >
                     {t("general.edit")}

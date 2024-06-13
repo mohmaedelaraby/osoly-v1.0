@@ -43,7 +43,7 @@
       "address": "address",
       "postal_code": "postal  p code",
       "sk_number": "instrument number",
-      "owner": "owner",
+      "owner": "Owner",
       "city": "city",
       "property_number": "property number",
       "street": "street",
@@ -110,7 +110,11 @@
       "created_date":"Created at ",
       "empty_tickets":"There is No Tickets" ,
       "reset":"reset" ,
-      "search":"Search"
+      "search":"Search",
+      "rent_rate":" Rent Rate",
+      "monthly":"Monthly",
+      "yearly":"Yearly"
+
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -224,6 +228,8 @@
       "nameEn":"Please enter the name in English",
       "password": "Please enter the password",
       "password_eight":"password must be at least 8 digits",
+      "password_ten":"password must be at least 10 digits",
+      "password_tweleve":"password must be at least 12 digits",
       "address": "Please enter the address",
       "unitsCount": "Please enter the number of units",
       "instrumentNumber": "Please enter the instrument number",
