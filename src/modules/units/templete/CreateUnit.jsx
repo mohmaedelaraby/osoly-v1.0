@@ -690,6 +690,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <FormLabel>
               <Text className="form__input__container__label fo_primary">
                 {t("general.maintenance")}
+                <span className="red_dot">*</span>
               </Text>
             </FormLabel>
             <Select
@@ -714,6 +715,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <FormLabel>
               <Text className="form__input__container__label fo_primary">
                 {t("general.rent_rate")}
+                <span className="red_dot">*</span>
+
               </Text>
             </FormLabel>
             <Select
