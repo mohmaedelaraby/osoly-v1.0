@@ -84,7 +84,7 @@ const EditUser = ({ onClose, id, userRule }) => {
         <div className="from__card from__card__full">
           {usersData && !userDataLodaing ? (
             <>
-              {" "}
+               
               <form onSubmit={formik.handleSubmit} className="form">
                 <div className="form__header">
                   <div className="form__header_text fo_primary">
@@ -325,7 +325,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   <div className="form__input form__input__flex">
                     {userRule == USER_ROLES.OWNER ? (
                       <>
-                        {" "}
+                         
                         <FormControl className="form__input__container">
                           <FormLabel>
                             <Text className="form__input__container__label fo_primary">

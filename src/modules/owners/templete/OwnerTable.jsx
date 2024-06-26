@@ -378,7 +378,7 @@ const OwnerTable = ({ switchTo }) => {
                     <option value={null}>{t("general.filter")}</option>
                     {sortItems.map((item, index) => (
                       <option id={index} value={item}>
-                        {t(`options.${item}`)}{" "}
+                        {t(`options.${item}`)} 
                       </option>
                     ))}
                   </Select>

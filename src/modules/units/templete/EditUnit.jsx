@@ -780,8 +780,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                       <option value={0}> {t("general.maintenance")} </option>
                       <option value={"OWNER"}> {t("general.owner")} </option>
                       <option value={"ENTERPRISE"}>
-                        {" "}
-                        {t("sidebar.enterprise")}{" "}
+                         
+                        {t("sidebar.enterprise")} 
                       </option>
                     </Select>
                   </FormControl>
@@ -806,8 +806,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     >
                       <option value={0}> {t("general.rent_rate")} </option>
                       <option value={"MONTHLY"}>
-                        {" "}
-                        {t("general.monthly")}{" "}
+                         
+                        {t("general.monthly")} 
                       </option>
                       <option value={"YEARLY"}> {t("general.yearly")} </option>
                     </Select>

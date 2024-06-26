@@ -302,7 +302,7 @@ const CreateUser = ({ onClose, userRule }) => {
             <div className="form__input form__input__flex">
               {userRule == USER_ROLES.OWNER ? (
                 <>
-                  {" "}
+                   
                   <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">

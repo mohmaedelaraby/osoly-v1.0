@@ -550,7 +550,7 @@ function TicketsContainer() {
                                           <Td className="table_body_row_item">
                                             {dayjs(
                                               new Date(item.createdAt)
-                                            ).format("YYYY-MM-DD")}{" "}
+                                            ).format("YYYY-MM-DD")} 
                                           </Td>
                                           <Td className="table_body_row_item">
                                             <img
@@ -765,7 +765,7 @@ function TicketsContainer() {
                                     <Td className="table_body_row_item">
                                       {dayjs(new Date(item.createdAt)).format(
                                         "YYYY-MM-DD"
-                                      )}{" "}
+                                      )} 
                                     </Td>
                                     <Td className="table_body_row_item">
                                       <img

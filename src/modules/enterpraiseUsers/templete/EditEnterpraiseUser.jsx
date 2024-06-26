@@ -67,7 +67,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
             <FormControl className="form__input__container">
               <FormLabel>
                 <Text className="form__input__container__label fo_primary">
-                  {" "}
+                   
                   {t("enterprise.create.enterprisename")}
                 </Text>
               </FormLabel>
@@ -152,7 +152,7 @@ const EditEnterpraiseUser = ({ onClose, plans, item }) => {
 
           <div className="from__card_plans ">
             <div className="from__card_plans_title">
-              {" "}
+               
               {t("general.decide")} {t("general.plan_type")}
             </div>
             <div className="from__card_plans_cards">

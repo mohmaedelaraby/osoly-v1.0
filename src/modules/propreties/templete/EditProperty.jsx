@@ -430,7 +430,7 @@ const EditProperty = ({ id, onClose }) => {
                           }}
                         >
                           <span className="pl-8 fo_primary">
-                            {" "}
+                             
                             {t("units.create.title")}
                           </span>
                         </Button>
@@ -573,7 +573,7 @@ const EditProperty = ({ id, onClose }) => {
             </>
           ) : (
             <>
-              {" "}
+               
               <div className="flex-center form-spinner">
                 <Spinner
                   thickness="4px"
