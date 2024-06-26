@@ -4,7 +4,7 @@ export const unitsValidation = Yup.object({
   name: Yup.string().notRequired(""),
   rent: Yup.number().notRequired(""),
   rentCollectionDate: Yup.string().notRequired(""),
-  electricityAccount: Yup.string().notRequired(""),
+  electricityAccount: Yup.string().min(10 , "errors.password_ten").notRequired(""),
   waterAccount: Yup.string().notRequired(""),
   address: Yup.string().notRequired(""),
   space: Yup.number().notRequired(""),
