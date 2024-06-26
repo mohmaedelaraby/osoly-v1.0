@@ -33,6 +33,7 @@
       "price_value": "قيمة المسدد",
       "rentDate": "موعد سداد الاستحقاق",
       "property_name": "اسم العقار",
+      "unit_name": "اسم الوحده",
       "renters": "المستأجرين",
       "oweners": "ملاك العقار",
       "contract_number": "رقم العقد",

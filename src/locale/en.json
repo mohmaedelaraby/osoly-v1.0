@@ -33,6 +33,7 @@
       "price_value": "paid value",
       "rentDate": "Due payment date",
       "property_name": "Property name",
+      "unit_name": "Unit name",
       "renters": "tenants",
       "oweners": "property owners",
       "contract_number": " contract number",

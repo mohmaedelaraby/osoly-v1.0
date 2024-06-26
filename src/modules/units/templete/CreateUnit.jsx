@@ -219,7 +219,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
           <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label fo_primary">
-                {t("general.property_name")}
+                {t("general.unit_name")}
               </Text>
             </FormLabel>
             <Input
@@ -227,7 +227,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               size="lg"
               type="text"
               className="form__input__container__input"
-              placeholder={t("general.property_name")}
+              placeholder={t("general.unit_name")}
               _placeholder={{ color: "#77797E" }}
               value={formik.values.name}
               onChange={formik.handleChange}
