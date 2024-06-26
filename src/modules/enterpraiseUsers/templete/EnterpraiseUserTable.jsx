@@ -110,6 +110,7 @@ const UserEnterpraiseTable = () => {
   useEffect(() => {
     setTimeout(() => {
       usersEnterPrisesRefetch();
+      statsRefetch()
     }, 500);
   }, [
     currentPage,
