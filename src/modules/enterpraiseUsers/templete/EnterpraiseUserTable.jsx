@@ -53,6 +53,7 @@ import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import useStats from "../../../hooks/useStats";
 import dayjs from "dayjs";
+import DeleteEnterpraiseUser from "./DeleteEnterpraiseUser";
 
 const UserEnterpraiseTable = () => {
   const { t } = useTranslation();
@@ -70,10 +71,14 @@ const UserEnterpraiseTable = () => {
     onClose: onCloseModalEdit,
   } = useDisclosure();
 
-  //search by name
+  const {
+    isOpen: isOpenModalDelte,
+    onOpen: onOpenModalDelte,
+    onClose: onCloseModalDelte,
+  } = useDisclosure();
 
   // delete user
-  const { mutate, isSuccess,isDeleteLoading } = useEnterprisesDeleteUser();
+  const { mutate, isSuccess, isDeleteLoading } = useEnterprisesDeleteUser();
 
   //sorting and filtering local
   const [sortByTmp, setSortByTmp] = useState();
@@ -91,16 +96,18 @@ const UserEnterpraiseTable = () => {
 
   const [selectedPlan, setSelectedPlan] = useState();
 
-  const { usersEnterPrisesData, usersEnterPrisesRefetch , usersEnterPrisesisLoading } = useEnterPrisesUsers(
-    {
-      pageNo: currentPage,
-      limit: limit,
-      sortBy: sortBy,
-      sortDirection: sortDirection,
-      planId: planId,
-      name: name,
-    }
-  );
+  const {
+    usersEnterPrisesData,
+    usersEnterPrisesRefetch,
+    usersEnterPrisesisLoading,
+  } = useEnterPrisesUsers({
+    pageNo: currentPage,
+    limit: limit,
+    sortBy: sortBy,
+    sortDirection: sortDirection,
+    planId: planId,
+    name: name,
+  });
 
   const { PlansData, PlansRefetch } = usePlans();
   useEffect(() => {
@@ -110,11 +117,12 @@ const UserEnterpraiseTable = () => {
   useEffect(() => {
     setTimeout(() => {
       usersEnterPrisesRefetch();
-      statsRefetch()
+      statsRefetch();
     }, 500);
   }, [
     currentPage,
     isOpenModalEdit,
+    isOpenModalDelte,
     isOpenModal,
     sortBy,
     sortDirection,
@@ -133,6 +141,11 @@ const UserEnterpraiseTable = () => {
   const openEditPopup = (plan) => {
     setSelectedPlan(plan);
     onOpenModalEdit();
+  };
+
+  const openDeletePopup = (plan) => {
+    setSelectedPlan(plan);
+    onOpenModalDelte();
   };
 
   //get stats
@@ -423,7 +436,9 @@ const UserEnterpraiseTable = () => {
                         </Tr>
                       </Thead>
                       <Tbody className="table_body">
-                        {usersEnterPrisesData && !usersEnterPrisesisLoading && !isDeleteLoading ? (
+                        {usersEnterPrisesData &&
+                        !usersEnterPrisesisLoading &&
+                        !isDeleteLoading ? (
                           usersEnterPrisesData?.enterprises?.map((item) => (
                             <>
                               <Tr className="table_body_row">
@@ -462,7 +477,7 @@ const UserEnterpraiseTable = () => {
                                       paddingRight="8px"
                                       justifyContent="center"
                                       onClick={() => {
-                                        mutate(item.id);
+                                        openDeletePopup(item);
                                       }}
                                     ></Button>
                                     <Button
@@ -516,6 +531,7 @@ const UserEnterpraiseTable = () => {
         </div>
       </div>
 
+      {/* create popup */}
       <Modal isOpen={isOpenModal} onClose={onCloseModal}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
@@ -527,12 +543,26 @@ const UserEnterpraiseTable = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+      {/* edit popup */}
       <Modal isOpen={isOpenModalEdit} onClose={onCloseModalEdit}>
         <ModalOverlay />
         <ModalContent maxWidth="700px">
           <ModalBody padding="0px">
             <EditEnterpraiseUser
               onClose={onCloseModalEdit}
+              plans={PlansData?.plans}
+              item={selectedPlan}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      {/* delete popup */}
+      <Modal isOpen={isOpenModalDelte} onClose={onCloseModalDelte}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <DeleteEnterpraiseUser
+              onClose={onCloseModalDelte}
               plans={PlansData?.plans}
               item={selectedPlan}
             />

@@ -4,6 +4,7 @@
 
 .form {
     direction: rtl;
+    max-height: 680px;
 
     .form__header {
         display: flex;
@@ -427,4 +428,9 @@
 
 .rtl {
     direction: rtl;
+}
+
+.form_scroll{
+    overflow-y: auto;
+    max-height: 400px;
 }

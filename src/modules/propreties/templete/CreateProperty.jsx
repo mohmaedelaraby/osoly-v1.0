@@ -105,6 +105,9 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
               </div>
             </div>
 
+            <div className="form_scroll">
+
+           
             <div className="form__input form__input__flex">
               {!selectedImage ? (
                 <div className="form__input__flex_fileUpload">
@@ -336,7 +339,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
             </div>
 
            
-
+            </div>
             <div className="form__btn__container">
               <Stack direction="row" width="100%" justify="space-between">
                 <Button

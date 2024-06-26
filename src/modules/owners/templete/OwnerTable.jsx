@@ -575,7 +575,7 @@ const OwnerTable = ({ switchTo }) => {
           <ModalBody padding="0px">
             <EditUser
               onClose={onCloseOwnerEditModal}
-              userRule={USER_ROLES.TENANT}
+              userRule={USER_ROLES.OWNER}
               id={selectedUser?.id}
             />
           </ModalBody>

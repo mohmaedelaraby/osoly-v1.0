@@ -174,6 +174,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <img src={close} alt="" width="40px" onClick={onClose} />
           </div>
         </div>
+        <div className="form_scroll">
 
         <div className="form__input form__input__flex">
           {!selectedImage ? (
@@ -732,6 +733,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               <option value={"YEARLY"}> {t("general.yearly")} </option>
             </Select>
           </FormControl>
+        </div>
+
         </div>
 
         <div className="form__btn__container">
