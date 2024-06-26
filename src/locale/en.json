@@ -230,6 +230,7 @@
       "password": "Please enter the password",
       "password_eight":"password must be at least 8 digits",
       "password_ten":"password must be at least 10 digits",
+      "password_eleven":"password must be at least 11 digits",
       "password_tweleve":"password must be at least 12 digits",
       "address": "Please enter the address",
       "unitsCount": "Please enter the number of units",
