@@ -1,7 +1,12 @@
 import {
   Button,
   Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOverlay,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -9,10 +14,11 @@ import { useLoginMutation } from "../hooks/useLoginMutation";
 import { loginValidation } from "../validation/loginValidation";
 import "../style/login.scss";
 import whiteLogo from "../../../assets/images/whiteLogo.png";
+import InfoModal from "../../../components/modals/InfoModal";
 
 function LoginForm() {
   const [removeReadOnly, setRemoveReadOnly] = useState(true);
-  const { mutate, isLoading , loginError } = useLoginMutation();
+  const { mutate, isLoading, loginError } = useLoginMutation();
 
   const initialValues = {
     username: "",
@@ -26,6 +32,16 @@ function LoginForm() {
       mutate({ username: values.username, password: values.password });
     },
   });
+
+  const {
+    isOpen: isOpenInfoModal,
+    onOpen: onOpenInfoModal,
+    onClose: onCloseInfoModal,
+  } = useDisclosure();
+
+  const openHelpPopup = () => {
+    onOpenInfoModal();
+  };
   return (
     <>
       <div className="login_page">
@@ -47,7 +63,7 @@ function LoginForm() {
                 }}
                 placeholder="البريد الإلكتروني"
                 className="login_form_input"
-                bg={'white'}
+                bg={"white"}
                 value={formik.values.username}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.username && !!formik.errors.username}
@@ -77,7 +93,7 @@ function LoginForm() {
                 className="login_form_input mb-0"
                 type={"password"}
                 placeholder="كلمة المرور"
-                bg={'white'}
+                bg={"white"}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.password && !!formik.errors.password}
@@ -101,13 +117,10 @@ function LoginForm() {
               <div
                 className="login_form_warn"
                 style={{
-                  height:
-                     loginError
-                      ? "16px"
-                      : "0px",
+                  height: loginError ? "16px" : "0px",
                 }}
               >
-                { loginError ? (
+                {loginError ? (
                   <Text color="#EE2E2E" fontSize="sm" className="">
                     {loginError}
                   </Text>
@@ -125,8 +138,15 @@ function LoginForm() {
                 type="submit"
                 isLoading={isLoading}
               >
-                بيانات التواصل 
+                تسجيل الدخول
               </Button>
+              <div
+                onClick={() => {
+                  openHelpPopup();
+                }}
+              >
+                <p className="underline_text mt-4">بيانات التواصل</p>
+              </div>
             </div>
           </form>
         </div>
@@ -134,6 +154,15 @@ function LoginForm() {
           <img src={whiteLogo} alt="logo" />
         </div>
       </div>
+
+      <Modal isOpen={isOpenInfoModal} onClose={onCloseInfoModal}>
+        <ModalOverlay />
+        <ModalContent maxWidth="407px">
+          <ModalBody padding={"0px"}>
+            <InfoModal onClose={onCloseInfoModal} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

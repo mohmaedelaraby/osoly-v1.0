@@ -10,7 +10,7 @@ const InfoModal = ({ onClose }) => {
   useEffect(()=>{
     let dashboardSettings = sessionStorage.getItem("dashboardSettings");
     dashboardSettings = JSON.parse(dashboardSettings)
-    setStrokeColor(dashboardSettings?.dashboardColor)
+    setStrokeColor(dashboardSettings?.dashboardColor ? dashboardSettings?.dashboardColor : '#194C81')
   },[])
 
   return (
