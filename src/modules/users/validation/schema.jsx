@@ -17,7 +17,7 @@ export const userCreateValidation = Yup.object({
   phoneNumber: Yup.string().min(10 , "errors.password_ten").required("errors.phone"),
   role: Yup.string().required("errors.role"),
   email: Yup.string().email().required("errors.email"),
-  identityId: Yup.string().required("errors.identityNumber"),
+  identityId: Yup.string().min(12 , "errors.password_tweleve").required("errors.identityNumber"),
 });
 export const ownerEditValidation = Yup.object({
   firstNameEn: Yup.string().required("errors.name"),
@@ -37,7 +37,7 @@ export const ownerCreateValidation = Yup.object({
   phoneNumber: Yup.string().min(10 , "errors.password_ten").required("errors.phone"),
   role: Yup.string().required("errors.role"),
   email: Yup.string().email().required("errors.email"),
-  identityId: Yup.string().required("errors.identityNumber"),
+  identityId: Yup.string().min(12 , "errors.password_tweleve").required("errors.identityNumber"),
   contractNumber: Yup.string().min(10 , "errors.password_ten").required("errors.contractNumber"),
 });
 
