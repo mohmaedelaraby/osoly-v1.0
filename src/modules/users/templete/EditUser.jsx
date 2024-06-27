@@ -58,6 +58,7 @@ const EditUser = ({ onClose, id, userRule }) => {
     validationSchema:
       userRule == USER_ROLES.TENANT ? userEditValidation : ownerEditValidation,
     onSubmit: (values) => {
+      values.phoneNumber = values.phoneNumber.toString()
       let sentData = {
         id: id,
         body: {
@@ -214,7 +215,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                       <Input
                         name="phoneNumber"
                         size="lg"
-                        type="text"
+                        type="number"
                         className="form__input__container__input"
                         placeholder={t("general.phone")}
                         _placeholder={{ color: "#77797E" }}
@@ -301,7 +302,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                       <Input
                         name="identityId"
                         size="lg"
-                        type="text"
+                        type="number"
                         className="form__input__container__input"
                         placeholder={t("general.national_id")}
                         _placeholder={{ color: "#77797E" }}

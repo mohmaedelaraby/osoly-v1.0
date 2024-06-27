@@ -314,7 +314,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <Input
                       name="rent"
                       size="lg"
-                      type="text"
+                      type="number"
                       className="form__input__container__input"
                       placeholder={t("general.rent_cost")}
                       _placeholder={{ color: "#77797E" }}
@@ -446,7 +446,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <Input
                       name="waterAccount"
                       size="lg"
-                      type="text"
+                      type="number"
                       className="form__input__container__input"
                       placeholder={t("general.water_bill_cost")}
                       _placeholder={{ color: "#77797E" }}
@@ -477,7 +477,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <Input
                       name="electricityAccount"
                       size="lg"
-                      type="text"
+                      type="number"
                       className="form__input__container__input"
                       placeholder={t("general.electericty_cost_num")}
                       _placeholder={{ color: "#77797E" }}
@@ -511,7 +511,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                       <Input
                         name="space"
                         size="lg"
-                        type="text"
+                        type="number"
                         className="form__input__container__input"
                         placeholder={t("general.unit_space")}
                         _placeholder={{ color: "#77797E" }}

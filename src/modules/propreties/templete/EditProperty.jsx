@@ -359,7 +359,7 @@ const EditProperty = ({ id, onClose }) => {
                       <Input
                         name="postalCode"
                         size="lg"
-                        type="text"
+                        type="number"
                         className="form__input__container__input"
                         placeholder={t("general.postal_code")}
                         _placeholder={{ color: "#77797E" }}
@@ -390,7 +390,7 @@ const EditProperty = ({ id, onClose }) => {
                       <Input
                         name="instrumentNumber"
                         size="lg"
-                        type="text"
+                        type="number"
                         className="form__input__container__input"
                         placeholder={t("general.sk_number")}
                         _placeholder={{ color: "#77797E" }}
@@ -413,7 +413,7 @@ const EditProperty = ({ id, onClose }) => {
                     </FormControl>
                   </div>
 
-                  <div className="form__input form__input__flex">
+                  <div className="form__input form__input__flex mb-8">
                     <div className="flex-between">
                       <div className="form__input__flex_text">
                         {t("general.units")}

@@ -52,8 +52,10 @@ const CreateUser = ({ onClose, userRule }) => {
     onSubmit: (values) => {
       let data;
       if (userRule == USER_ROLES.OWNER) {
+        values.phoneNumber = values.phoneNumber.toString()
         data = values;
       } else {
+        values.phoneNumber = values.phoneNumber.toString()
         delete values.contractNumber;
         data = values;
       }
@@ -192,7 +194,7 @@ const CreateUser = ({ onClose, userRule }) => {
                 <Input
                   name="phoneNumber"
                   size="lg"
-                  type="text"
+                  type="number"
                   className="form__input__container__input"
                   placeholder={t("general.phone")}
                   _placeholder={{ color: "#77797E" }}
@@ -280,7 +282,7 @@ const CreateUser = ({ onClose, userRule }) => {
                 <Input
                   name="identityId"
                   size="lg"
-                  type="text"
+                  type="number"
                   className="form__input__container__input"
                   placeholder={t("general.national_id")}
                   _placeholder={{ color: "#77797E" }}
