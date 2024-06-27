@@ -2,15 +2,15 @@ import { Button, Stack } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
-import { useEnterprisesDeleteUser } from "../hooks/useDeleteEnterprisesUser";
 import { useTranslation } from "react-i18next";
 import "../style/deletePopup.scss";
+import { useDeleteUser } from "../../users/hooks/useDeleteUser";
 
-const DeleteEnterpraiseUser = ({ onClose, plans, item }) => {
+const DeleteOwner= ({ onClose, item }) => {
   const { t } = useTranslation();
 
   // delete user
-  const { mutate, isSuccess, isDeleteLoading } = useEnterprisesDeleteUser();
+  const { mutate, isSuccess, isDeleteLoading } = useDeleteUser();
   const { primary, secondry } = useDynamicColors();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const DeleteEnterpraiseUser = ({ onClose, plans, item }) => {
       <div className="deletePopup_container">
         <div className="deletePopup_text_conatnier">
           <p className="deletePopup_text">{t("general.delete_enterpriase")} </p>
-          <p className="deletePopup_name">{item?.username} </p>
+          <p className="deletePopup_name">{item?.firstNameEn} </p>
         </div>
 
         <div className="deletePopup_buttons">
@@ -56,4 +56,4 @@ const DeleteEnterpraiseUser = ({ onClose, plans, item }) => {
   );
 };
 
-export default DeleteEnterpraiseUser;
+export default DeleteOwner;

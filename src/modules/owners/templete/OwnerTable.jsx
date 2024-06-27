@@ -46,6 +46,7 @@ import { useDeleteUser } from "../../users/hooks/useDeleteUser";
 import { useUploadUsersFile } from "../../users/hooks/useUploadUsersFile";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import DeleteOwner from "./DeleteOwner";
 
 const OwnerTable = ({ switchTo }) => {
   const [selectedUser, setSelectedUser] = useState();
@@ -101,6 +102,12 @@ const OwnerTable = ({ switchTo }) => {
     onClose: onCloseOwnerEditModal,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenModalDelte,
+    onOpen: onOpenModalDelte,
+    onClose: onCloseModalDelte,
+  } = useDisclosure();
+
   const openOwnerPopup = () => {
     onOpenOwnerModal();
   };
@@ -114,7 +121,6 @@ const OwnerTable = ({ switchTo }) => {
   const ownerlimit = 10;
 
   // delete user
-  const { mutate, isSuccess, isDeleteLoading } = useDeleteUser();
 
   const {
     usersData: ownerDataType,
@@ -139,13 +145,13 @@ const OwnerTable = ({ switchTo }) => {
     currentOwnerPage,
     isOpenOwnerEditModal,
     isOpenOwnerModal,
+    isOpenModalDelte,
     sortBy,
     sortDirection,
     phoneNumber,
     email,
     identityId,
     contractNumber,
-    isSuccess,
     isSuccessFiles,
   ]);
 
@@ -169,6 +175,12 @@ const OwnerTable = ({ switchTo }) => {
 
   const handlePageOwnerChange = (page) => {
     setCurrentOwnerPage(page);
+  };
+
+  const openOwnerDeletePopup = (user) => {
+    setSelectedUser(user);
+    onOpenModalDelte();
+   
   };
   return (
     <>
@@ -464,8 +476,7 @@ const OwnerTable = ({ switchTo }) => {
             <Tbody className="table_body">
               {ownerDataType &&
               !ownerDataLodaing &&
-              !isBulkLoading &&
-              !isDeleteLoading ? (
+              !isBulkLoading  ? (
                 <>
                   {ownerDataType?.users
                     ?.filter((i) => i.role === USER_ROLES.OWNER)
@@ -508,7 +519,7 @@ const OwnerTable = ({ switchTo }) => {
                               alignItems="center"
                               justifyContent="center"
                               onClick={() => {
-                                mutate(item.id);
+                                openOwnerDeletePopup(item);
                               }}
                             ></Button>
                             <Button
@@ -577,6 +588,18 @@ const OwnerTable = ({ switchTo }) => {
               onClose={onCloseOwnerEditModal}
               userRule={USER_ROLES.OWNER}
               id={selectedUser?.id}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+       <Modal isOpen={isOpenModalDelte} onClose={onCloseModalDelte}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <DeleteOwner
+              onClose={onCloseModalDelte}
+              item={selectedUser}
             />
           </ModalBody>
         </ModalContent>

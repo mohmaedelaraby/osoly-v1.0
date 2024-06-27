@@ -45,6 +45,7 @@ import { useDeleteUser } from "../hooks/useDeleteUser";
 import { useTranslation } from "react-i18next";
 import { useUploadUsersFile } from "../hooks/useUploadUsersFile";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import DeleteUser from "./DeleteUser";
 
 function UserTable({ switchTo }) {
   const { t } = useTranslation();
@@ -80,6 +81,14 @@ function UserTable({ switchTo }) {
     onClose: onCloseUserModalEdit,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenModalDelte,
+    onOpen: onOpenModalDelte,
+    onClose: onCloseModalDelte,
+  } = useDisclosure();
+
+
+
   // delete user
   const { mutate, isSuccess ,isDeleteLoading} = useDeleteUser();
 
@@ -89,6 +98,10 @@ function UserTable({ switchTo }) {
   const openUserEditPopup = (user) => {
     setSelectedUser(user);
     onOpenUserModalEdit();
+  };
+  const openUserDeletePopup = (user) => {
+    setSelectedUser(user);
+    onOpenModalDelte();
   };
   //sorting and filtering local
   const sortItems = [
@@ -132,6 +145,8 @@ function UserTable({ switchTo }) {
     contractNumber: contractNumber,
   });
 
+  
+
   useEffect(() => {
     setTimeout(() => {
       userDataReftech();
@@ -141,6 +156,7 @@ function UserTable({ switchTo }) {
     currentUserPage,
     isOpenUserModal,
     isOpenUserModalEdit,
+    isOpenModalDelte,
     sortBy,
     sortDirection,
     phoneNumber,
@@ -483,7 +499,7 @@ function UserTable({ switchTo }) {
                               alignItems="center"
                               justifyContent="center"
                               onClick={() => {
-                                mutate(item.id);
+                                openUserDeletePopup(item);
                               }}
                             ></Button>
                             <Button
@@ -552,6 +568,18 @@ function UserTable({ switchTo }) {
               onClose={onCloseUserModalEdit}
               userRule={USER_ROLES.TENANT}
               id={selectedUser?.id}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenModalDelte} onClose={onCloseModalDelte}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <DeleteUser
+              onClose={onCloseModalDelte}
+              item={selectedUser}
             />
           </ModalBody>
         </ModalContent>
