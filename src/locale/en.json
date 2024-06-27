@@ -67,6 +67,8 @@
       "rooms": "rooms",
       "kitchen": "kitchen",
       "delete_enterpriase":"Are You Sure about delete this account ?",
+      "delete_prob": "Are You Sure about delete this property ?",
+      "delete_unit": "Are You Sure about delete this unit ?",
       "kitchens": "kitchens",
       "conditioners": "conditioning",
       "conditioners_number": "Numbers of conditioning",

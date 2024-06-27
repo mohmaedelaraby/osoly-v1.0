@@ -47,6 +47,7 @@ import { useDeleteProperty } from "../hooks/useDeleteProperties";
 import { useUploadProperteyFile } from "../hooks/useUploadProperteyFile";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import DeleteProperty from "./DeleteProperty";
 
 function PropertiesTable() {
   const { t } = useTranslation();
@@ -89,6 +90,7 @@ function PropertiesTable() {
   const [street, setStreet] = useState(null);
   const [postalCode, setPostalCode] = useState(null);
   const [district, setDistrict] = useState(null);
+  const [deletedItem, setDeletedItem] = useState(null);
 
   const [file, setFile] = useState("");
 
@@ -120,6 +122,12 @@ function PropertiesTable() {
     isOpen: isOpenProperyModalEdit,
     onOpen: onOpenProperyModalEdit,
     onClose: onCloseProperyModalEdit,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModalDelte,
+    onOpen: onOpenModalDelte,
+    onClose: onCloseModalDelte,
   } = useDisclosure();
   // delete user
   const { mutate, isSuccess ,isDeleteLoading } = useDeleteProperty();
@@ -153,6 +161,7 @@ function PropertiesTable() {
     currentPropertyPage,
     isOpenProperyModal,
     isOpenProperyModalEdit,
+    isOpenModalDelte,
     name,
     address,
     street,
@@ -179,6 +188,10 @@ function PropertiesTable() {
     setSelectedId(user.id);
     onOpenProperyModalEdit();
   };
+  const openPropertyDeletePopup = (user) => {
+    setDeletedItem(user);
+    onOpenModalDelte();
+  };
 
   //emit data from cards
   const [dataFromChild, setDataFromChild] = useState();
@@ -190,7 +203,8 @@ function PropertiesTable() {
       if (dataFromChild[0] == "edit") {
         openPropertyEditPopup({ id: dataFromChild[1] });
       } else if (dataFromChild[0] == "delete") {
-        mutate(dataFromChild[1]);
+        let user = PropertiesData?.updatedProperties?.filter((s) => s.id == dataFromChild[1])
+        openPropertyDeletePopup(user)
       }
     }
   }, [dataFromChild]);
@@ -651,7 +665,7 @@ function PropertiesTable() {
                                 alignItems="center"
                                 justifyContent="center"
                                 onClick={() => {
-                                  mutate(item.id);
+                                  openPropertyDeletePopup(item)
                                 }}
                               ></Button>
                               <Button
@@ -734,6 +748,17 @@ function PropertiesTable() {
         <ModalContent maxWidth="700px">
           <ModalBody padding={"0px"}>
             <EditProperty onClose={onCloseProperyModalEdit} id={selectId} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenModalDelte} onClose={onCloseModalDelte}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <DeleteProperty
+              onClose={onCloseModalDelte}
+              item={deletedItem}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>

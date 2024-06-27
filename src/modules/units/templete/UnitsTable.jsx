@@ -51,6 +51,7 @@ import { useUploadUnitsFile } from "../hooks/useUploadUnitsFile";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import dayjs from "dayjs";
+import DeleteUnit from "./DeleteUnit";
 const UnitsTable = () => {
   const { t } = useTranslation();
   const { primary, secondry } = useDynamicColors();
@@ -58,6 +59,7 @@ const UnitsTable = () => {
   const [selectId, setSelectedId] = useState();
   const [selectprobId, setSelectedProbId] = useState();
   const [selectOwnId, setSelectedOwnId] = useState();
+  const [deletedItem, setDeletedItem] = useState(null);
 
   //sorting and filtering local
   const sortItems = [
@@ -84,6 +86,7 @@ const UnitsTable = () => {
   const [loungeTmp, setLoungeTmp] = useState(null);
   const [kitchenTmp, setKitchenTmp] = useState(null);
   const [conditionersTmp, setConditionersTmp] = useState(null);
+  
 
   //sorting and filtering param data
   const [sortBy, setSortBy] = useState(null);
@@ -131,6 +134,12 @@ const UnitsTable = () => {
     onClose: onCloseUnitModalEdit,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenModalDelte,
+    onOpen: onOpenModalDelte,
+    onClose: onCloseModalDelte,
+  } = useDisclosure();
+
   const [isGrid, setIsGrid] = useState(false);
 
   // delete user
@@ -167,6 +176,7 @@ const UnitsTable = () => {
     currentUnitPage,
     isOpenUnitModal,
     isOpenUnitModalEdit,
+    isOpenModalDelte,
     sortBy,
     sortDirection,
     name,
@@ -197,6 +207,10 @@ const UnitsTable = () => {
     setSelectedOwnId(user.ownerId);
     onOpenUnitModalEdit();
   };
+  const openUnitDelete = (user) => {
+    setDeletedItem(user);
+    onOpenModalDelte();
+  };
 
   //emit data from cards
   const [dataFromChild, setDataFromChild] = useState();
@@ -208,7 +222,8 @@ const UnitsTable = () => {
       if (dataFromChild[0] == "edit") {
         openUnitEditPopup({ id: dataFromChild[1] });
       } else if (dataFromChild[0] == "delete") {
-        mutate(dataFromChild[1]);
+        let user = unitsData?.units?.filter((s) => s.id == dataFromChild[1])
+        openUnitDelete(user)
       }
     }
   }, [dataFromChild]);
@@ -724,7 +739,7 @@ const UnitsTable = () => {
                                 alignItems="center"
                                 justifyContent="center"
                                 onClick={() => {
-                                  mutate(item.id);
+                                  openUnitDelete(item)
                                 }}
                               ></Button>
                               <Button
@@ -817,6 +832,18 @@ const UnitsTable = () => {
               id={selectId}
               propPropertyId={selectprobId}
               propOwenerId={selectOwnId}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenModalDelte} onClose={onCloseModalDelte}>
+        <ModalOverlay />
+        <ModalContent maxWidth="700px">
+          <ModalBody padding="0px">
+            <DeleteUnit
+              onClose={onCloseModalDelte}
+              item={deletedItem}
             />
           </ModalBody>
         </ModalContent>
