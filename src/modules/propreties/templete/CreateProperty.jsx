@@ -61,7 +61,9 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     onSubmit: (values) => {
       formik.values.ownerId = selectedOwnerId;
       const formData = new FormData();
+      if(selectedImage){
       formData.append("image", selectedImage, selectedImage.name);
+      }
       formData.append("name", formik.values.name);
       formData.append("address", formik.values.address);
       formData.append("blockNumber", formik.values.blockNumber);
