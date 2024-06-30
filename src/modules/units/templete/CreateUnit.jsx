@@ -383,7 +383,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Input
               name="waterAccount"
               size="lg"
-              type="number"
+              type="text"
               className="form__input__container__input"
               placeholder={t("general.water_bill_cost")}
               _placeholder={{ color: "#77797E" }}
@@ -412,7 +412,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             <Input
               name="electricityAccount"
               size="lg"
-              type="number"
+              type="text"
               className="form__input__container__input"
               placeholder={t("general.electericty_cost_num")}
               _placeholder={{ color: "#77797E" }}

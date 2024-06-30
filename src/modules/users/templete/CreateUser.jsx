@@ -282,7 +282,7 @@ const CreateUser = ({ onClose, userRule }) => {
                 <Input
                   name="identityId"
                   size="lg"
-                  type="number"
+                  type="text"
                   className="form__input__container__input"
                   placeholder={t("general.national_id")}
                   _placeholder={{ color: "#77797E" }}

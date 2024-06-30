@@ -26,6 +26,7 @@
       "decide": "decide",
       "add_file": "Add file",
       "email": "email",
+      "only_num":"Only Enter Number",
       "phone": "mobile number",
       "national_id": "National ID number",
       "contractNumber": "Contract Number",

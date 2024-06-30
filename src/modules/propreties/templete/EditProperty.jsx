@@ -390,7 +390,7 @@ const EditProperty = ({ id, onClose }) => {
                       <Input
                         name="instrumentNumber"
                         size="lg"
-                        type="number"
+                        type="text"
                         className="form__input__container__input"
                         placeholder={t("general.sk_number")}
                         _placeholder={{ color: "#77797E" }}
