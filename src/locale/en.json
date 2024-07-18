@@ -248,6 +248,7 @@
       "image": "Please enter an image",
       "email":"Please enter your email",
       "phone":"Please enter your mobile number",
+      "phone_five":"Please enter 05 in the beginning your mobile number And only use numbers",
       "identityNumber":"Please enter your ID number",
       "role":"Please enter user type",
       "rent":"Please enter the rent",

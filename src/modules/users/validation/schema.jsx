@@ -5,7 +5,7 @@ export const userEditValidation = Yup.object({
   lastNameEn: Yup.string().required("errors.name"),
   firstNameAr: Yup.string().required("errors.name"),
   lastNameAr: Yup.string().required("errors.name"),
-  phoneNumber: Yup.string().min(9 , "errors.password_ten").max(9 , "errors.password_ten").required("errors.phone"),
+  phoneNumber: Yup.string().matches(/^0(5)[0-9\d]{8}$/, "errors.phone_five").matches(/^[0-9]+$/, "general.only_num").required("errors.phone"),
   email: Yup.string().email().required("errors.email"),
 });
 export const userCreateValidation = Yup.object({
@@ -14,7 +14,7 @@ export const userCreateValidation = Yup.object({
   firstNameAr: Yup.string().required("errors.name"),
   lastNameAr: Yup.string().required("errors.name"),
   password: Yup.string().min(8 , "errors.password_eight").required("errors.password"),
-  phoneNumber: Yup.string().min(9 , "errors.password_ten").max(9 , "errors.password_ten").required("errors.phone"),
+  phoneNumber: Yup.string().matches(/^0(5)[0-9\d]{8}$/, "errors.phone_five").matches(/^[0-9]+$/, "general.only_num").required("errors.phone"),
   role: Yup.string().required("errors.role"),
   email: Yup.string().email().required("errors.email"),
   identityId: Yup.string().matches(/^[0-9]+$/, "general.only_num").min(10 , "errors.password_ten").max(10 , "errors.password_ten").required("errors.identityNumber"),
@@ -24,7 +24,7 @@ export const ownerEditValidation = Yup.object({
   lastNameEn: Yup.string().required("errors.name"),
   firstNameAr: Yup.string().required("errors.name"),
   lastNameAr: Yup.string().required("errors.name"),
-  phoneNumber: Yup.string().min(9 , "errors.password_ten").max(9 , "errors.password_ten").required("errors.phone"),
+  phoneNumber: Yup.string().matches(/^0(5)[0-9\d]{8}$/, "errors.phone_five").matches(/^[0-9]+$/, "general.only_num").required("errors.phone"),
   email: Yup.string().email().required("errors.email"),
 });
 
@@ -34,7 +34,7 @@ export const ownerCreateValidation = Yup.object({
   firstNameAr: Yup.string().required("errors.name"),
   lastNameAr: Yup.string().required("errors.name"),
   password: Yup.string().min(8 , "errors.password_eight").required("errors.password"),
-  phoneNumber: Yup.string().min(9 , "errors.password_ten").max(9 , "errors.password_ten").required("errors.phone"),
+  phoneNumber: Yup.string().matches(/^0(5)[0-9\d]{8}$/, "errors.phone_five").matches(/^[0-9]+$/, "general.only_num").required("errors.phone"),
   role: Yup.string().required("errors.role"),
   email: Yup.string().email().required("errors.email"),
   identityId: Yup.string().matches(/^[0-9]+$/, "general.only_num").min(10 , "errors.password_ten").max(10 , "errors.password_ten").required("errors.identityNumber"),
