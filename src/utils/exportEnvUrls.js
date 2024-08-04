@@ -1,1 +1,1 @@
-export const apiUrl = "https://api.usooly.com/backend/api/v1/";
+export const apiUrl = "https://api.usooly.com/api/v1/";
