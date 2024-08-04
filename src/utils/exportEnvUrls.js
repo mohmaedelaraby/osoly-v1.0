@@ -1,1 +1,1 @@
-export const apiUrl = "http://8.213.34.113/backend/api/v1/";
+export const apiUrl = "https://api.usooly.com/backend/api/v1/";
