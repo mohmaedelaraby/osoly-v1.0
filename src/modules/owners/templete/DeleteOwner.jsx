@@ -35,7 +35,7 @@ const DeleteOwner= ({ onClose, item }) => {
               color={secondry}
               bg={primary}
               onClick={() => {
-                mutate(item.id);
+                mutate(item?.id);
               }}
               isLoading={isDeleteLoading}
             >

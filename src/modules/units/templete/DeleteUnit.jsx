@@ -25,7 +25,7 @@ const DeleteUnit= ({ onClose, item }) => {
       <div className="deletePopup_container">
         <div className="deletePopup_text_conatnier">
           <p className="deletePopup_text">{t("general.delete_unit")} </p>
-          <p className="deletePopup_name">{item?.name ? item?.name : item[0].name} </p>
+          <p className="deletePopup_name">{item?.name ? item?.name : item[0]?.name} </p>
         </div>
 
         <div className="deletePopup_buttons">
@@ -36,7 +36,7 @@ const DeleteUnit= ({ onClose, item }) => {
               color={secondry}
               bg={primary}
               onClick={() => {
-                mutate(item?.id ? item?.id : item[0].id);
+                mutate(item?.id ? item?.id : item[0]?.id);
               }}
               isLoading={isDeleteLoading}
             >
