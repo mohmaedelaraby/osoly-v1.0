@@ -9,7 +9,6 @@ import { useDeleteUnit } from "../hooks/useDeleteUnit";
 const DeleteUnit= ({ onClose, item }) => {
   const { t } = useTranslation();
 
-  console.log(item)
   // delete user
   const { mutate, isSuccess ,isDeleteLoading} = useDeleteUnit();
   const { primary, secondry } = useDynamicColors();
