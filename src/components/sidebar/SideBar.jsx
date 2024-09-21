@@ -25,6 +25,8 @@ import {
 } from "@chakra-ui/react";
 import InfoModal from "../modals/InfoModal";
 import { useTranslation } from "react-i18next";
+import ContractsSidebar from "../../assets/icons/ContractsSidebar";
+import FinanceSidebar from "../../assets/icons/FinanceSidebar";
 
 function SideBar() {
   // eslint-disable-next-line
@@ -67,6 +69,12 @@ function SideBar() {
     }
     if (icon == "propreties") {
       return <PropertiesSideBar fill={fill} />;
+    }
+    if (icon == "contracts") {
+      return <ContractsSidebar fill={fill} />;
+    }
+    if (icon == "finance") {
+      return <FinanceSidebar fill={fill} />;
     }
     if (icon == "settings") {
       return <SettingsSidebar fill={fill} />;

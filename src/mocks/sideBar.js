@@ -7,6 +7,8 @@ import settingsSB from '../assets/icons-svgs/settingsSB.svg'
 import logoout from '../assets/icons-svgs/logoutSb.svg'
 import infoSB from '../assets/icons-svgs/infoSB.svg'
 import enterprisesSB from '../assets/icons-svgs/enterpraiseSB.svg'
+import financeSb from '../assets/icons-svgs/finance.svg'
+import contractsSb from '../assets/icons-svgs/contracts.svg'
 export const sidebarItems = [
     
     {
@@ -63,6 +65,26 @@ export const sidebarItems = [
         activeRoutes:['/propreties'],
         isHidden:[]
     },
+    {
+        id: 6,
+        name: "sidebar.contracts",
+        navTo:'/contracts',
+        icon: 'contracts',
+        activeIcon: contractsSb,
+        isActive: false,
+        activeRoutes:['/contracts'],
+        isHidden:[] 
+    },
+    {
+        id: 7,
+        name: "sidebar.finance",
+        navTo:'/finance',
+        icon: 'finance',
+        activeIcon: financeSb,
+        isActive: false,
+        activeRoutes:['/finance'],
+        isHidden:[]
+    }
   
 ];
 
