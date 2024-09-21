@@ -6,6 +6,7 @@
       "hello": "Hello",
       "tickets": "tickets",
       "show_all": "Show all",
+      "elec":"Electricity",
       "latest": "latest",
       "ask_service": "Service Request",
       "sort": "Sort by ",
@@ -125,7 +126,9 @@
       "by_property_name": "Search by property name",
       "by_enterprise_name": "Search by enterprise name",
       "by_unit_name": "Search by unit name",
-      "by_identityid": "Search by Identity Number"
+      "by_identityid": "Search by Identity Number",
+      "by_contract_name": "Search by Contact Number"
+
     },
     "home": {
       "cards": {

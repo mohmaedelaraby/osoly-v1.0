@@ -63,7 +63,7 @@ const CreateContract = ({ onClose }) => {
       >
         <div className="form__header">
           <div className="form__header_text fo_primary fo_primary">
-            {t("contarcts.page.add_contract")}
+            {t("contracts.page.add_contract")}
           </div>
           <div className="form__header_close">
             <img src={close} alt="" width="40px" onClick={onClose} />
@@ -140,7 +140,7 @@ const CreateContract = ({ onClose }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder={t("enterprise.create.renter")}
+                placeholder={t("contracts.form.renter")}
                 value={formik.values.renter}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.renter && !!formik.errors.renter}
@@ -252,7 +252,7 @@ const CreateContract = ({ onClose }) => {
                 size="lg"
                 type="text"
                 className="form__input__container__input"
-                placeholder={t("enterprise.create.nationalty")}
+                placeholder={t("contracts.table.nationalty")}
                 value={formik.values.nationalty}
                 onChange={formik.handleChange}
                 isInvalid={formik.touched.nationalty && !!formik.errors.nationalty}
