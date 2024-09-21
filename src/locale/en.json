@@ -237,6 +237,23 @@
         "contract_Duration": "Rental Period",
         "has_water": "Includes Water",
         "has_elec": "Includes Electricity"
+      },
+      "cards": {
+        "total": "اجمالي عموله المكتب",
+        "total_two": "صافي الربح",
+        "total_three": "صافي الصرف"
+      }
+    },
+    "finance": {
+      "cards": {
+        "total_rent_units_profit": "Total Amount of Rented Units",
+        "total_profit": "Office Profits",
+        "total_adds": "Total Advertisements",
+        "total_loans_rent": "Total Profits from Upcoming Installments",
+        "total_rent_units": "Total Rented Units",
+        "total_free_units": "Total Unoccupied Units",
+        "total_contracts": "Total Contracts",
+        "total_contracts_profits": "Contract Profits"
       }
     },
     "sidebar": {

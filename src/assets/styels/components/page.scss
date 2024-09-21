@@ -46,6 +46,10 @@
             }
 
         }
+        .page_container_cards_two{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
 
         .page_container_table {
             margin-top: 24px;

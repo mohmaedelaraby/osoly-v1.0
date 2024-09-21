@@ -238,6 +238,23 @@
         "has_water":"شامل المياه",
         "has_elec":"شامل الكهرباء"
       
+      },
+      "cards":{
+        "total":"اجمالي عموله المكتب",
+        "total_two":"صافي الربح",
+        "total_three":"صافي الصرف"
+      }
+    },
+    "finance":{
+      "cards":{
+        "total_rent_units_profit":"جمالي مبلغ الوحدات المؤجره ",
+        "total_profit":"ارباح المكتب",
+        "total_adds":"اجمالي  الاعلانات",
+        "total_loans_rent":"اجمالي ارباح الاقساط القادمه",
+        "total_rent_units":"اجمالي الوحذات المؤجره",
+        "total_free_units":"اجمالي الوحدات الغير مشغولهً",
+        "total_contracts":"اجمالي العقودً",
+        "total_contracts_profits":"ارباح العقود"
       }
     },
     "sidebar": {

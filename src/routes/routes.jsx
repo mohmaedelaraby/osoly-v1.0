@@ -13,6 +13,7 @@ import PropertiesTablePage from "../pages/Properties/PropertiesPage";
 import EnterpraisUserTablePage from "../pages/EnterpraisUsers/EnterpraisUserTablePage";
 import { ProtectedRoutes } from "./protectedRoutes";
 import ContractsTablePage from "../pages/contracts/ContractsTablePage";
+import FinanceTablePage from "../pages/finance/ContractsTablePage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ export const RootRoutes = () => {
         <Route path="/settings" index element={<SettingsPage />} />
         <Route path="/propreties" index element={<PropertiesTablePage />} />
         <Route path="/contracts" index element={<ContractsTablePage />} />
+        <Route path="/finance" index element={<FinanceTablePage />} />
       </Route>
 
       <Route path="login" element={<AuthLayout />}>
