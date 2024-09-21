@@ -210,6 +210,36 @@
       "COMPLAIN": "شكوي",
       "OTHER": "اخري"
     },
+    "contracts":{
+      "page":{
+        "add_contract":"اضافه عقد"
+      },
+      "table":{
+        "limit":"مده العقد",
+        "owner_name":"اسم المالك",
+        "owner_id":"رقم هويه المالك",
+        "renter":"المستأجر",
+        "commetion":"عموله المكتب",
+        "nationalty":"الجنسيه",
+        "contracts_number":"رقم العقد",
+        "contract_Duration":"فتره الايجار",
+        "has_water":"شامل المياه",
+        "has_elec":"شامل الكهرباء"
+      },
+      "form":{
+       "limit":"مده العقد",
+        "owner_name":"اسم المالك",
+        "owner_id":"رقم هويه المالك",
+        "renter":"المستأجر",
+        "commetion":"عموله المكتب",
+        "nationalty":"الجنسيه",
+        "contracts_number":"رقم العقد",
+        "contract_Duration":"فتره الايجار",
+        "has_water":"شامل المياه",
+        "has_elec":"شامل الكهرباء"
+      
+      }
+    },
     "sidebar": {
       "home": "الرئيسية",
       "enterprise": "المؤسسة",
@@ -230,6 +260,7 @@
       "logo": "تحميل شعار البرنامج"
     },
     "errors": {
+      "requierd":"يجب الادخال",
       "name": "يرجي ادخال الاسم",
       "nameEn": "يرجي ادخال الاسم باللغه الانجليزيه",
       "password": "يرجي ادخال الرقم السري",

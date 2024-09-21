@@ -26,7 +26,7 @@
       "decide": "decide",
       "add_file": "Add file",
       "email": "email",
-      "only_num":"Only Enter Number",
+      "only_num": "Only Enter Number",
       "phone": "mobile number",
       "national_id": "National ID number",
       "contractNumber": "Contract Number",
@@ -67,7 +67,7 @@
       "water_meter": "Water meter",
       "rooms": "rooms",
       "kitchen": "kitchen",
-      "delete_enterpriase":"Are You Sure about delete this account ?",
+      "delete_enterpriase": "Are You Sure about delete this account ?",
       "delete_prob": "Are You Sure about delete this property ?",
       "delete_unit": "Are You Sure about delete this unit ?",
       "kitchens": "kitchens",
@@ -109,17 +109,16 @@
       "total_numbers_units": "total number of units",
       "total_rent_money": "Total rent",
       "edit": "Edit",
-      "solved":"Solve ",
-      "closed":"Close",
-      "all_tickets":"All Tickets",
-      "created_date":"Created at ",
-      "empty_tickets":"There is No Tickets" ,
-      "reset":"reset" ,
-      "search":"Search",
-      "rent_rate":" Rent Rate",
-      "monthly":"Monthly",
-      "yearly":"Yearly"
-
+      "solved": "Solve ",
+      "closed": "Close",
+      "all_tickets": "All Tickets",
+      "created_date": "Created at ",
+      "empty_tickets": "There is No Tickets",
+      "reset": "reset",
+      "search": "Search",
+      "rent_rate": " Rent Rate",
+      "monthly": "Monthly",
+      "yearly": "Yearly"
     },
     "search": {
       "by_mail": "Search by user's email",
@@ -211,14 +210,43 @@
       "COMPLAIN": "complaint",
       "OTHER": "Other"
     },
+    "contracts": {
+      "page": {
+        "add_contract": "Add Contract"
+      },
+      "table": {
+        "limit": "Contract Duration",
+        "owner_name": "Owner Name",
+        "owner_id": "Owner ID Number",
+        "renter": "Renter",
+        "commetion": "Office Commission",
+        "nationalty": "Nationality",
+        "contracts_number": "Contract Number",
+        "contract_Duration": "Rental Period",
+        "has_water": "Includes Water",
+        "has_elec": "Includes Electricity"
+      },
+      "form": {
+        "limit": "Contract Duration",
+        "owner_name": "Owner Name",
+        "owner_id": "Owner ID Number",
+        "renter": "Renter",
+        "commetion": "Office Commission",
+        "nationalty": "Nationality",
+        "contracts_number": "Contract Number",
+        "contract_Duration": "Rental Period",
+        "has_water": "Includes Water",
+        "has_elec": "Includes Electricity"
+      }
+    },
     "sidebar": {
       "home": "Home",
       "enterprise": "Enterprise",
       "users": "Users",
       "tickets": "Tickets",
       "propreties": "Real estate",
-      "contracts":"Contracts",
-      "finance":"Finance",
+      "contracts": "Contracts",
+      "finance": "Finance",
       "settings": "Settings",
       "info": "Help",
       "logout": "Logout"
@@ -231,13 +259,14 @@
       "logo": "Upload Your Logo"
     },
     "errors": {
+      "requierd": "Please Enter The Data ",
       "name": "Please enter the name",
-      "nameEn":"Please enter the name in English",
+      "nameEn": "Please enter the name in English",
       "password": "Please enter the password",
-      "password_eight":"number must be at least 8 digits",
-      "password_ten":"number must be at least 10 digits",
-      "password_eleven":"number must be at least 11 digits",
-      "password_tweleve":"number must be at least 12 digits",
+      "password_eight": "number must be at least 8 digits",
+      "password_ten": "number must be at least 10 digits",
+      "password_eleven": "number must be at least 11 digits",
+      "password_tweleve": "number must be at least 12 digits",
       "address": "Please enter the address",
       "unitsCount": "Please enter the number of units",
       "instrumentNumber": "Please enter the instrument number",
@@ -248,30 +277,28 @@
       "ownerId": "Please enter the owner",
       "city": "Please enter the city",
       "image": "Please enter an image",
-      "email":"Please enter your email",
-      "phone":"Please enter your mobile number",
-      "phone_five":"Please enter 05 in the beginning your mobile number And only use numbers and not exceed 10 digits",
-      "identityNumber":"Please enter your ID number",
-      "role":"Please enter user type",
-      "rent":"Please enter the rent",
-      "rentCollectionDate":"Please enter the date",
-      "electricityAccount":"Please enter the electricity account number",
-      "waterAccount":"Please enter the water account number",
-      "space":"Please enter the space",
-      "rooms":"Please enter the number of rooms",
-      "bathrooms":"Please enter the number of bathrooms",
-      "conditioners":"Please enter the number of conditioners",
-      "maintenanceMan":"Please enter the maintenance person.",
-      "tenantId":"Please enter the tenant",
-      "contractNumber":"Please enter the Contract's Number "
-
-
+      "email": "Please enter your email",
+      "phone": "Please enter your mobile number",
+      "phone_five": "Please enter 05 in the beginning your mobile number And only use numbers and not exceed 10 digits",
+      "identityNumber": "Please enter your ID number",
+      "role": "Please enter user type",
+      "rent": "Please enter the rent",
+      "rentCollectionDate": "Please enter the date",
+      "electricityAccount": "Please enter the electricity account number",
+      "waterAccount": "Please enter the water account number",
+      "space": "Please enter the space",
+      "rooms": "Please enter the number of rooms",
+      "bathrooms": "Please enter the number of bathrooms",
+      "conditioners": "Please enter the number of conditioners",
+      "maintenanceMan": "Please enter the maintenance person.",
+      "tenantId": "Please enter the tenant",
+      "contractNumber": "Please enter the Contract's Number "
     },
-    "options":{
-      "phoneNumber" : "phoneNumber",
-      "email":"email",
-      "firstNameEn" :"Arabic Name",
-      "firstNameAr":"English Name"
+    "options": {
+      "phoneNumber": "phoneNumber",
+      "email": "email",
+      "firstNameEn": "Arabic Name",
+      "firstNameAr": "English Name"
     }
   }
 }
