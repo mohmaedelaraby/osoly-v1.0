@@ -15,6 +15,7 @@ import { ProtectedRoutes } from "./protectedRoutes";
 import ContractsTablePage from "../pages/contracts/ContractsTablePage";
 import FinanceTablePage from "../pages/finance/ContractsTablePage";
 import PravicyPolicyPage from "../pages/Pravicy/PravicyPolicyPage";
+import UserDeletePreviewPage from "../pages/users/UserDeletePreview";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ export const RootRoutes = () => {
         <Route path="/tickets" index element={<TicketsPage />} />
         <Route path="/settings" index element={<SettingsPage />} />
         <Route path="/PravicyPolicyPage" index element={<PravicyPolicyPage />} />
+        <Route path="/users/delete" index element={<UserDeletePreviewPage />} />
         <Route path="/propreties" index element={<PropertiesTablePage />} />
         <Route path="/contracts" index element={<ContractsTablePage />} />
         <Route path="/finance" index element={<FinanceTablePage />} />

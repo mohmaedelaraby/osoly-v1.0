@@ -41,4 +41,7 @@ export const ownerCreateValidation = Yup.object({
   contractNumber: Yup.string().matches(/^[0-9]+$/, "general.only_num").min(10 , "errors.password_ten").max(10 , "errors.password_ten").required("errors.contractNumber"),
 });
 
+export const DeleteUserPreviewValidation = Yup.object({
+  userName: Yup.string().required("errors.name"),
+});
 

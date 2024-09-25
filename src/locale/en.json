@@ -277,6 +277,10 @@
       "changesToThisPolicy": "We reserve the right to modify this policy from time to time.",
       "contactUs": "If you have any questions regarding this policy, please contact us at com.usooly@Superadmin."
     },
+    "deletePreview": {
+      "username": "Delete User",
+      "textlabel": "Enter User Name"
+    },
     "finance": {
       "cards": {
         "total_rent_units_profit": "Total Amount of Rented Units",
@@ -342,7 +346,8 @@
       "conditioners": "Please enter the number of conditioners",
       "maintenanceMan": "Please enter the maintenance person.",
       "tenantId": "Please enter the tenant",
-      "contractNumber": "Please enter the Contract's Number "
+      "contractNumber": "Please enter the Contract's Number ",
+      "usernamerror":"this user does not exist"
     },
     "options": {
       "phoneNumber": "phoneNumber",
