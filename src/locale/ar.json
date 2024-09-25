@@ -18,7 +18,7 @@
       "delete": "مسح",
       "plan": "الخطه",
       "name": "الاسم",
-      "elec":"شامل الكهرباء",
+      "elec": "شامل الكهرباء",
       "delete_enterpriase": "هل انت متاكد من مسح هذا الحساب ؟",
       "delete_prob": "هل انت متاكد من مسح هذا العقار ؟",
       "delete_unit": "هل انت متاكد من مسح هذا الوحدة ؟",
@@ -30,7 +30,7 @@
       "decide": "حدد",
       "add_file": "اضافه ملف",
       "email": "البريد الإلكتروني",
-      "only_num":"يرجي ادخال ارقام فقط",
+      "only_num": "يرجي ادخال ارقام فقط",
       "phone": "رقم الجوال",
       "national_id": "رقم الهوية الوطنية",
       "contractNumber": "رقم عقد الوساطة",
@@ -128,7 +128,6 @@
       "by_unit_name": "ابحث ب اسم الوحده ",
       "by_identityid": "ابحث ب رقم الهويه الوطنية  ",
       "by_contract_name": "ابحث ب اسم العقد    "
-      
     },
     "home": {
       "cards": {
@@ -213,51 +212,85 @@
       "COMPLAIN": "شكوي",
       "OTHER": "اخري"
     },
-    "contracts":{
-      "page":{
-        "add_contract":"اضافه عقد"
+    "contracts": {
+      "page": {
+        "add_contract": "اضافه عقد"
       },
-      "table":{
-        "limit":"مده العقد",
-        "owner_name":"اسم المالك",
-        "owner_id":"رقم هويه المالك",
-        "renter":"المستأجر",
-        "commetion":"عموله المكتب",
-        "nationalty":"الجنسيه",
-        "contracts_number":"رقم العقد",
-        "contract_Duration":"فتره الايجار",
-        "has_water":"شامل المياه",
-        "has_elec":"شامل الكهرباء"
+      "table": {
+        "limit": "مده العقد",
+        "owner_name": "اسم المالك",
+        "owner_id": "رقم هويه المالك",
+        "renter": "المستأجر",
+        "commetion": "عموله المكتب",
+        "nationalty": "الجنسيه",
+        "contracts_number": "رقم العقد",
+        "contract_Duration": "فتره الايجار",
+        "has_water": "شامل المياه",
+        "has_elec": "شامل الكهرباء"
       },
-      "form":{
-       "limit":"مده العقد",
-        "owner_name":"اسم المالك",
-        "owner_id":"رقم هويه المالك",
-        "renter":"المستأجر",
-        "commetion":"عموله المكتب",
-        "nationalty":"الجنسيه",
-        "contracts_number":"رقم العقد",
-        "contract_Duration":"فتره الايجار",
-        "has_water":"شامل المياه",
-        "has_elec":"شامل الكهرباء"
-      
+      "form": {
+        "limit": "مده العقد",
+        "owner_name": "اسم المالك",
+        "owner_id": "رقم هويه المالك",
+        "renter": "المستأجر",
+        "commetion": "عموله المكتب",
+        "nationalty": "الجنسيه",
+        "contracts_number": "رقم العقد",
+        "contract_Duration": "فتره الايجار",
+        "has_water": "شامل المياه",
+        "has_elec": "شامل الكهرباء"
       },
-      "cards":{
-        "total":"اجمالي عموله المكتب",
-        "total_two":"صافي الربح",
-        "total_three":"صافي الصرف"
+      "cards": {
+        "total": "اجمالي عموله المكتب",
+        "total_two": "صافي الربح",
+        "total_three": "صافي الصرف"
       }
     },
-    "finance":{
-      "cards":{
-        "total_rent_units_profit":"جمالي مبلغ الوحدات المؤجره ",
-        "total_profit":"ارباح المكتب",
-        "total_adds":"اجمالي  الاعلانات",
-        "total_loans_rent":"اجمالي ارباح الاقساط القادمه",
-        "total_rent_units":"اجمالي الوحذات المؤجره",
-        "total_free_units":"اجمالي الوحدات الغير مشغولهً",
-        "total_contracts":"اجمالي العقودً",
-        "total_contracts_profits":"ارباح العقود"
+    "privacyPolicy": {
+    "introduction": "تلتزم اصولي بحماية خصوصية مستخدمي تطبيق \"أصولي\". هذه السياسة تحدد كيفية جمعنا واستخدامنا وكشفنا عن المعلومات التي نحصل عليها منك عند استخدامك للتطبيق.",
+    "dataWeCollect": "نحن نجمع الحد الأدنى من البيانات اللازمة لتقديم خدماتنا، بما في ذلك:",
+    "dataList": [
+      "اسم المستخدم",
+      "عنوان البريد الإلكتروني",
+      "رقم التليفون"
+    ],
+    "howWeUseYourData": {
+      "providingServices": "نستخدم بياناتك لتوفير خدمات إدارة العقارات، وتتبع المدفوعات، وتقديم الدعم الفني.",
+      "improvingServices": "قد نستخدم بياناتك لتحليل استخدام التطبيق وتحسين تجربتك."
+    },
+    "sharingWithAnalyticsCompanies": "قد نشارك بيانات مجهولة المصدر مع شركات تحليل ثالثة لتحسين أداء التطبيق.",
+    "dataSharing": "قد نشارك بياناتك مع:",
+    "dataShareList": [
+      {
+        "title": "شركات تحليل ثالثة",
+        "description": "لمساعدتنا في تحسين خدماتنا."
+      },
+      {
+        "title": "مقدمي الخدمات",
+        "description": "مثل شركات الاستضافة، لتوفير البنية التحتية للتطبيق."
+      }
+    ],
+    "dataSecurity": "نحن نلتزم بحماية بياناتك ونطبق إجراءات أمنية مناسبة، بما في ذلك:",
+    "dataSecurityDetails": "حماية من البايوهاك: لحماية بياناتك من الوصول غير المصرح به.",
+    "userRights": "حقوق المستخدم",
+    "userRightsDetails": {
+      "accessToData": "يمكنك طلب الاطلاع على البيانات التي نحتفظ بها عنك.",
+      "correctionOfData": "يمكنك طلب تصحيح أي بيانات غير صحيحة.",
+      "accountDeletion": "يمكنك طلب حذف حسابك."
+    },
+    "changesToThisPolicy": "نحتفظ بالحق في تعديل هذه السياسة من وقت لآخر.",
+    "contactUs": "إذا كان لديك أي أسئلة حول هذه السياسة، يرجى الاتصال بنا على com.usooly@Superadmin."
+  },
+    "finance": {
+      "cards": {
+        "total_rent_units_profit": "جمالي مبلغ الوحدات المؤجره ",
+        "total_profit": "ارباح المكتب",
+        "total_adds": "اجمالي  الاعلانات",
+        "total_loans_rent": "اجمالي ارباح الاقساط القادمه",
+        "total_rent_units": "اجمالي الوحذات المؤجره",
+        "total_free_units": "اجمالي الوحدات الغير مشغولهً",
+        "total_contracts": "اجمالي العقودً",
+        "total_contracts_profits": "ارباح العقود"
       }
     },
     "sidebar": {
@@ -267,8 +300,8 @@
       "tickets": "التذاكر",
       "propreties": "العقارات",
       "settings": "الإعدادات",
-      "contracts":"العقود",
-      "finance":"الماليه",
+      "contracts": "العقود",
+      "finance": "الماليه",
       "info": "مساعدة",
       "logout": "تسجيل الخروج"
     },
@@ -280,7 +313,7 @@
       "logo": "تحميل شعار البرنامج"
     },
     "errors": {
-      "requierd":"يجب الادخال",
+      "requierd": "يجب الادخال",
       "name": "يرجي ادخال الاسم",
       "nameEn": "يرجي ادخال الاسم باللغه الانجليزيه",
       "password": "يرجي ادخال الرقم السري",

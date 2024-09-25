@@ -6,7 +6,7 @@
       "hello": "Hello",
       "tickets": "tickets",
       "show_all": "Show all",
-      "elec":"Electricity",
+      "elec": "Electricity",
       "latest": "latest",
       "ask_service": "Service Request",
       "sort": "Sort by ",
@@ -128,7 +128,6 @@
       "by_unit_name": "Search by unit name",
       "by_identityid": "Search by Identity Number",
       "by_contract_name": "Search by Contact Number"
-
     },
     "home": {
       "cards": {
@@ -246,6 +245,37 @@
         "total_two": "صافي الربح",
         "total_three": "صافي الصرف"
       }
+    },
+    "privacyPolicy": {
+      "introduction": "Asooli is committed to protecting the privacy of its users. This policy outlines how we collect, use, and disclose information obtained from you when you use the application.",
+      "dataWeCollect": "We collect the minimum amount of data necessary to provide our services, including:",
+      "dataList": ["Username", "Email address", "Phone number"],
+      "howWeUseYourData": {
+        "providingServices": "We use your data to provide property management services, track payments, and offer technical support.",
+        "improvingServices": "We may use your data to analyze application usage and enhance your experience."
+      },
+      "sharingWithAnalyticsCompanies": "We may share anonymized data with third-party analytics companies to improve the application's performance.",
+      "dataSharing": "We may share your data with:",
+      "dataShareList": [
+        {
+          "title": "Third-party analytics companies",
+          "description": "To help us improve our services."
+        },
+        {
+          "title": "Service providers",
+          "description": "Such as hosting companies, to provide the application's infrastructure."
+        }
+      ],
+      "dataSecurity": "We are committed to protecting your data and implement appropriate security measures, including:",
+      "dataSecurityDetails": "Protection against data breaches: To safeguard your data from unauthorized access.",
+      "userRights": "User Rights",
+      "userRightsDetails": {
+        "accessToData": "You can request to view the data we hold about you.",
+        "correctionOfData": "You can request the correction of any inaccurate data.",
+        "accountDeletion": "You can request the deletion of your account."
+      },
+      "changesToThisPolicy": "We reserve the right to modify this policy from time to time.",
+      "contactUs": "If you have any questions regarding this policy, please contact us at com.usooly@Superadmin."
     },
     "finance": {
       "cards": {
