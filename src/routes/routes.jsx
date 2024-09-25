@@ -14,6 +14,7 @@ import EnterpraisUserTablePage from "../pages/EnterpraisUsers/EnterpraisUserTabl
 import { ProtectedRoutes } from "./protectedRoutes";
 import ContractsTablePage from "../pages/contracts/ContractsTablePage";
 import FinanceTablePage from "../pages/finance/ContractsTablePage";
+import PravicyPolicyPage from "../pages/Pravicy/PravicyPolicyPage";
 
 export const RootRoutes = () => {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ export const RootRoutes = () => {
         />
         <Route path="/tickets" index element={<TicketsPage />} />
         <Route path="/settings" index element={<SettingsPage />} />
+        <Route path="/PravicyPolicyPage" index element={<PravicyPolicyPage />} />
         <Route path="/propreties" index element={<PropertiesTablePage />} />
         <Route path="/contracts" index element={<ContractsTablePage />} />
         <Route path="/finance" index element={<FinanceTablePage />} />
