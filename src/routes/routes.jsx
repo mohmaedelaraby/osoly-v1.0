@@ -47,12 +47,16 @@ export const RootRoutes = () => {
         />
         <Route path="/tickets" index element={<TicketsPage />} />
         <Route path="/settings" index element={<SettingsPage />} />
-        <Route path="/PravicyPolicyPage" index element={<PravicyPolicyPage />} />
         <Route path="/users/delete" index element={<UserDeletePreviewPage />} />
         <Route path="/propreties" index element={<PropertiesTablePage />} />
         <Route path="/contracts" index element={<ContractsTablePage />} />
         <Route path="/finance" index element={<FinanceTablePage />} />
       </Route>
+
+      
+
+      
+      <Route path="/PravicyPolicyPage" index element={<PravicyPolicyPage />} />
 
       <Route path="login" element={<AuthLayout />}>
         <Route index element={<LoginPage />} />

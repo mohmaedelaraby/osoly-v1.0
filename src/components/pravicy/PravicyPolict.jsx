@@ -7,7 +7,7 @@ function PravicyPolicy() {
   const { t } = useTranslation();
   return (
     <>
-      <div className="page">
+      <div className="page" dir="rtl">
         <div className="page_container">
           <div className="page_container_header">
             <PageHeader title={t("sidebar.settings")}></PageHeader>
