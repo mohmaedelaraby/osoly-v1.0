@@ -66,6 +66,7 @@ const EditUser = ({ onClose, id, userRule }) => {
           lastNameEn: " ",
           firstNameAr: values.firstNameAr,
           lastNameAr: " ",
+          identityId:values.identityId,
           phoneNumber: values.phoneNumber,
           email: values.email,
         },
@@ -239,9 +240,9 @@ const EditUser = ({ onClose, id, userRule }) => {
                   </div>
 
                   <div className="form__input form__input__flex">
-                    <FormControl className="form__input__container disabled">
+                    <FormControl className="form__input__container ">
                       <FormLabel>
-                        <Text className="form__input__container__label fo_primary">
+                        <Text className="form__input__container__label fo_primary disabled">
                           {t("general.password")}
                         </Text>
                       </FormLabel>
@@ -261,7 +262,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                             formik.touched.password && !!formik.errors.password
                           }
                         />
-                        <InputRightElement width="4.5rem">
+                        <InputRightElement width="4.5rem" height={'100%'}>
                           <Button
                             h="1.75rem"
                             size="sm"
@@ -293,7 +294,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   </div>
 
                   <div className="form__input form__input__flex">
-                    <FormControl className="form__input__container disabled">
+                    <FormControl className="form__input__container">
                       <FormLabel>
                         <Text className="form__input__container__label fo_primary">
                           {t("general.national_id")}
