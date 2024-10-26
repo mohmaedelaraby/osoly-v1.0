@@ -33,6 +33,7 @@ import CreateUnit from "../../units/templete/CreateUnit";
 import close from "../../../assets/icons-svgs/close.svg";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
+import dayjs from "dayjs";
 
 const EditProperty = ({ id, onClose }) => {
   const { t } = useTranslation();
@@ -494,32 +495,32 @@ const EditProperty = ({ id, onClose }) => {
                                       onClick={() => {}}
                                     >
                                       <Td className="table_body_row_item">
-                                        {item.name}
+                                        {item?.name}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {item.rentCollectionDate}
+                                        {dayjs(new Date(item?.rentCollectionDate)).format("YYYY-MM-DD")}
                                       </Td>
                                       <Td className="table_body_row_item">
                                         {item?.rent?.toLocaleString()}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {item.address}
+                                        {item?.address}
                                       </Td>
                                       <Td className="table_body_row_item">
                                         {item?.space?.toLocaleString()}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {item.electricityAccount}
+                                        {item?.electricityAccount}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {item.waterAccount}
+                                        {item?.waterAccount}
                                       </Td>
                                       <Td className="table_body_row_item">
                                         {item?.rooms?.toLocaleString()}
                                       </Td>
 
                                       <Td className="table_body_row_item">
-                                        {item.kitchen ? (
+                                        {item?.kitchen ? (
                                           <>
                                             <Checkbox
                                               defaultChecked
@@ -533,7 +534,7 @@ const EditProperty = ({ id, onClose }) => {
                                         )}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {item.conditioners}
+                                        {item?.conditioners}
                                       </Td>
                                     </Tr>
                                   ))}
