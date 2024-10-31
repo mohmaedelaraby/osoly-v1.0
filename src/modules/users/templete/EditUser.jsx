@@ -67,6 +67,7 @@ const EditUser = ({ onClose, id, userRule }) => {
           firstNameAr: values.firstNameAr,
           lastNameAr: " ",
           identityId:values.identityId,
+          password:values.password,
           phoneNumber: values.phoneNumber,
           email: values.email,
         },
@@ -242,7 +243,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                   <div className="form__input form__input__flex">
                     <FormControl className="form__input__container ">
                       <FormLabel>
-                        <Text className="form__input__container__label fo_primary disabled">
+                        <Text className="form__input__container__label fo_primary">
                           {t("general.password")}
                         </Text>
                       </FormLabel>
@@ -250,8 +251,8 @@ const EditUser = ({ onClose, id, userRule }) => {
                         <Input
                           id="password"
                           pr="4.5rem"
-                          disabled
-                          type="password"
+                      
+                          type={showpassword ? "text" : "password"}
                           placeholder=" 00000000000 "
                           name="password"
                           size="lg"
