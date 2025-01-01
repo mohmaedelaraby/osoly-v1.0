@@ -34,6 +34,12 @@ import close from "../../../assets/icons-svgs/close.svg";
 import { useTranslation } from "react-i18next";
 import { useDynamicColors } from "../../../hooks/useDynamicColors";
 import dayjs from "dayjs";
+import { USER_ROLES } from "../../../enums/UserRoles";
+import {
+  Select as SelectMultiOption,
+  CreatableSelect,
+  AsyncSelect,
+} from "chakra-react-select";
 
 const EditProperty = ({ id, onClose }) => {
   const { t } = useTranslation();
@@ -49,6 +55,9 @@ const EditProperty = ({ id, onClose }) => {
   const [selectedOwnerId, setSelectedOwnerId] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const [loadedImage, setLoadedImage] = useState(null);
+  const [selectedOwnerIdArr, setSelectedOwnerIdArr] = useState([]);
+  const [multiOptions, setMultiOption] = useState([]);
+
   const { usersData, usersRefetch } = useUsers({
     pageNo: 1,
     limit: 1000,
@@ -65,6 +74,12 @@ const EditProperty = ({ id, onClose }) => {
   } = useUpdatePropertey();
   const { data, isLoading, refetch } = useGetPropertey(id);
 
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "vanilla", label: "Vanilla" },
+    { value: "strawberry", label: "Strawberry" },
+  ];
+
   useEffect(() => {
     refetch();
     usersRefetch();
@@ -78,6 +93,8 @@ const EditProperty = ({ id, onClose }) => {
   useEffect(() => {
     if (data) {
       setSelectedOwnerId(data?.ownerId);
+      setSelectedOwnerIdArr(data?.owners);
+
       setLoadedImage(data?.image);
     }
   }, [data]);
@@ -101,7 +118,7 @@ const EditProperty = ({ id, onClose }) => {
     initialValues: initialValues,
     validationSchema: propertyCreateValidation,
     onSubmit: (values) => {
-      formik.values.ownerId = selectedOwnerId;
+      formik.values.ownerId = selectedOwnerIdArr;
       const formData = new FormData();
       if (selectedImage) {
         formData.append("image", selectedImage, selectedImage.name);
@@ -114,7 +131,9 @@ const EditProperty = ({ id, onClose }) => {
       formData.append("city", formik.values.city);
       formData.append("district", formik.values.district);
       formData.append("instrumentNumber", formik.values.instrumentNumber);
-      //formData.append("ownerId", formik.values.ownerId);
+      if (selectedOwnerIdArr) {
+        formData.append("ownersIds", selectedOwnerIdArr);
+      }
       formData.append("postalCode", formik.values.postalCode);
       formData.append("street", formik.values.street);
       formData.append("unitsCount", formik.values.unitsCount);
@@ -133,6 +152,30 @@ const EditProperty = ({ id, onClose }) => {
   const openUnitPopup = () => {
     onOpenUnitModal();
   };
+
+  useEffect(() => {
+    const list = usersData?.users
+      .filter((s) => s.role == USER_ROLES.OWNER)
+      .map((i, index) => ({
+        label: i?.firstNameAr,
+        value: i?.id,
+      }));
+
+  /*   const filters  = []
+    console.log('--->' , data?.owners)
+    list?.map((item) =>{
+
+      if(Boolean(data?.owners?.find((i) => i?.id != item?.value))){
+        console.log('object' , item?.value)
+      }
+    }
+      
+    );
+    console.log('filters' , filters) */
+    setMultiOption(list);
+  }, [usersData, setMultiOption ,data?.owners ]);
+
+  
   return (
     <>
       <div className="from__card from__card__full">
@@ -325,28 +368,29 @@ const EditProperty = ({ id, onClose }) => {
             </div> */}
 
                   <div className="form__input form__input__flex mb-24">
-                    <FormControl className="form__input__container disabled">
+                    <FormControl>
                       <FormLabel>
                         <Text className="form__input__container__label fo_primary">
                           {t("general.property_owner")}
                         </Text>
                       </FormLabel>
-                      <Select
-                        height={"56px"}
-                        name="owner"
-                        value={selectedOwnerId}
+
+                      <SelectMultiOption
+                        isMulti
+                        name="owners"
+                        className="form__input__container__multiSelect"
                         onChange={(e) => {
-                          setSelectedOwnerId(e.target.value);
-                          setTimeout(() => {}, 0);
+                          setSelectedOwnerIdArr(e.map((i) => i.value));
                         }}
-                      >
-                        <option value={0}>{t("general.owner")} </option>
-                        {usersData?.users?.map((i, index) => (
-                          <option value={i.id} key={index}>
-                            {i.firstNameAr}
-                          </option>
-                        ))}
-                      </Select>
+                        options={multiOptions}
+                        defaultValue={data?.owners?.map((i, index) => ({
+                          label:  i?.firstNameAr,
+                          value: i?.id
+                        }))}
+                        placeholder="Select a flavor"
+                        size={"lg"}
+                        closeMenuOnSelect={false}
+                      />
                     </FormControl>
                   </div>
 
@@ -431,7 +475,6 @@ const EditProperty = ({ id, onClose }) => {
                           }}
                         >
                           <span className="pl-8 fo_primary">
-                             
                             {t("units.create.title")}
                           </span>
                         </Button>
@@ -498,7 +541,9 @@ const EditProperty = ({ id, onClose }) => {
                                         {item?.name}
                                       </Td>
                                       <Td className="table_body_row_item">
-                                        {dayjs(new Date(item?.rentCollectionDate)).format("YYYY-MM-DD")}
+                                        {dayjs(
+                                          new Date(item?.rentCollectionDate)
+                                        ).format("YYYY-MM-DD")}
                                       </Td>
                                       <Td className="table_body_row_item">
                                         {item?.rent?.toLocaleString()}
@@ -574,7 +619,6 @@ const EditProperty = ({ id, onClose }) => {
             </>
           ) : (
             <>
-               
               <div className="flex-center form-spinner">
                 <Spinner
                   thickness="4px"

@@ -645,7 +645,19 @@ function PropertiesTable() {
                             {item?.address}
                           </Td>
                           <Td className="table_body_row_item">
-                            {item?.owner?.firstNameAr}
+                            {item?.owners?.map((owner , index)=>(
+                              <div >
+                              <span>
+                              {owner?.firstNameAr}
+                              </span>
+                              <span>
+                                {
+                                  index < item?.owners?.length-1 ? ' , ' : ''
+                                }
+                              </span>
+                              
+                              </div>
+                            ))}
                           </Td>
 
                           <Td className="table_body_row_item_btns">

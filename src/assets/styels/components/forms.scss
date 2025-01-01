@@ -28,16 +28,16 @@
     .form__input {
         .form__input__container {
 
-            .form__input__container_custom_input{
+            .form__input__container_custom_input {
                 justify-content: space-between;
                 display: flex;
                 align-items: center;
                 padding: 6px 16px;
                 margin-bottom: 8px;
 
-                .form__input__container_custom_input_custom{
+                .form__input__container_custom_input_custom {
                     border-bottom: 1px solid gray;
-                    box-shadow: 1px black ;
+                    box-shadow: 1px black;
                     margin-left: 8px;
                 }
             }
@@ -69,6 +69,14 @@
                 height: 56px;
                 padding: 20px !important;
             }
+            .form__input__container__multiSelect {
+                .css-i2418r{
+                 height: 50px;
+                }
+                div{
+                    height: 56px;
+                }
+             }
 
             .form__input__container__warn {
                 display: flex;
@@ -173,7 +181,7 @@
 
             }
 
-           
+
 
             .form__input__flex_fileUpload_image {
                 width: 100%;
@@ -309,7 +317,7 @@
 
             .form__input__container {
 
-                .form__input__container_custom_input{
+                .form__input__container_custom_input {
                     justify-content: space-between;
                     display: flex;
                     align-items: center;
@@ -317,9 +325,9 @@
 
                     padding: 6px 16px;
 
-                    .form__input__container_custom_input_custom{
+                    .form__input__container_custom_input_custom {
                         border-bottom: 1px solid gray;
-                        box-shadow: 1px black ;
+                        box-shadow: 1px black;
                         margin-left: 8px;
                     }
                 }
@@ -342,6 +350,15 @@
                 .form__input__container__input {
                     height: 56px;
                     padding: 20px !important;
+                }
+
+                .form__input__container__multiSelect {
+                   .css-i2418r{
+                    height: 50px;
+                   }
+                   div{
+                    height: 56px;
+                }
                 }
 
                 .form__input__container__warn {
@@ -430,7 +447,7 @@
     direction: rtl;
 }
 
-.form_scroll{
+.form_scroll {
     overflow-y: auto;
     max-height: 430px;
 }
