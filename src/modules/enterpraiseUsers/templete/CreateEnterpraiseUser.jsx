@@ -159,7 +159,7 @@ const CreateEnterpraiseUser = ({ onClose, plans }) => {
               {t("general.decide")} {t("general.plan_type")}
             </div>
             <div className="from__card_plans_cards">
-              {plans ? (
+              {Boolean(plans) ? (
                 <>
                   <div
                     key={plans[0]?.id}

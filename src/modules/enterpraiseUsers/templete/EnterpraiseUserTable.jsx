@@ -195,6 +195,7 @@ const UserEnterpraiseTable = () => {
                     rightIcon={<AddIcon />}
                     className="page_container_table__header__btns__add"
                     bg={primary}
+                    isDisabled={usersEnterPrisesisLoading}
                     dir="rtl"
                     onClick={() => {
                       openCreatePopup();
