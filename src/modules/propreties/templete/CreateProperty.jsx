@@ -332,7 +332,7 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
                   <Input
                     name="instrumentNumber"
                     size="lg"
-                    type="text"
+                    type="number"
                     className="form__input__container__input"
                     placeholder={t("general.sk_number")}
                     _placeholder={{ color: "#77797E" }}

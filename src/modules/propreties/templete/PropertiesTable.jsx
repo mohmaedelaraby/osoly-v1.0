@@ -320,7 +320,7 @@ function PropertiesTable() {
                     </FormLabel>
                     <Input
                       name="subTitle"
-                      type="text"
+                      type="number"
                       className="form__input__container__input"
                       placeholder=""
                       onChange={(e) => {
