@@ -666,7 +666,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                 </div>
 
                 <div className="form__input form__input__flex mb-24">
-                  <FormControl className="form__input__container">
+                  {/* <FormControl className="form__input__container">
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.property_owner")}
@@ -690,7 +690,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                           </option>
                         ))}
                     </Select>
-                  </FormControl>
+                  </FormControl> */}
 
                   <FormControl className="form__input__container ">
                     <FormLabel>

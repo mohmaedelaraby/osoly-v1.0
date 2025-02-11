@@ -593,7 +593,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
           </FormControl>
         </div>
 
-        <div className="form__input form__input__flex mb-24" style={{alignItems:'flex-end'}}>
+        {/* <div className="form__input form__input__flex mb-24" style={{alignItems:'flex-end'}}>
           <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label fo_primary">
@@ -660,7 +660,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 ))}
             </Select>
           </FormControl>
-        </div>
+        </div> */}
         <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
             <FormLabel>
