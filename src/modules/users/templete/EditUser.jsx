@@ -217,7 +217,7 @@ const EditUser = ({ onClose, id, userRule }) => {
                       <Input
                         name="phoneNumber"
                         size="lg"
-                        type="number"
+                        type="text"
                         className="form__input__container__input"
                         placeholder={t("general.phone")}
                         _placeholder={{ color: "#77797E" }}
