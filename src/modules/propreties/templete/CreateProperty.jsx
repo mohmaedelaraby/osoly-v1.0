@@ -41,13 +41,13 @@ const CreateProperty = ({ onClose, propOwenerId }) => {
     pageNo: 1,
     limit: 1000,
     count: 12,
+    role: USER_ROLES.OWNER,
   });
 
   const [multiOptions, setMultiOption] = useState([]);
 
   useEffect(() => {
     const list = usersData?.users
-      .filter((s) => s.role == USER_ROLES.OWNER)
       .map((i, index) => ({
         label: i.firstNameAr,
         value: i.id,

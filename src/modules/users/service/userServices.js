@@ -3,8 +3,8 @@ import { apiUrl } from "../../../utils/exportEnvUrls";
 
 //Fetch all users
 export const getUsers = (params) => {
-  const { pageNo, limit, sortDirection, sortBy, phoneNumber, email, identityId, contractNumber } = params;
-  return api.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}${sortBy ? `&sortBy=${sortBy}` : ``}${sortDirection ? `&sortDirection=${sortDirection}` : ``}${contractNumber ? `&contractNumber=${contractNumber}` : ``}${phoneNumber ? `&phoneNumber=${phoneNumber}` : ``}${identityId ? `&identityId=${identityId}` : ``}${email ? `&email=${email}` : ``}`, {
+  const { pageNo, limit, sortDirection, sortBy, phoneNumber, email, identityId, contractNumber, role } = params;
+  return api.get(`${apiUrl}dashboard/users?page=${pageNo}&limit=${limit}${sortBy ? `&sortBy=${sortBy}` : ``}${sortDirection ? `&sortDirection=${sortDirection}` : ``}${contractNumber ? `&contractNumber=${contractNumber}` : ``}${phoneNumber ? `&phoneNumber=${phoneNumber}` : ``}${identityId ? `&identityId=${identityId}` : ``}${email ? `&email=${email}` : ``}${role ? `&role=${role}` : ``}`, {
   }).then(res => res.data.data)
 }
 

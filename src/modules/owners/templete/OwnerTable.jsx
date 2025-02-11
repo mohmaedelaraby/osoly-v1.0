@@ -135,6 +135,7 @@ const OwnerTable = ({ switchTo }) => {
     email: email,
     identityId: identityId,
     contractNumber: contractNumber,
+    role: USER_ROLES.OWNER,
   });
 
   useEffect(() => {
@@ -479,7 +480,6 @@ const OwnerTable = ({ switchTo }) => {
               !isBulkLoading  ? (
                 <>
                   {ownerDataType?.users
-                    ?.filter((i) => i.role === USER_ROLES.OWNER)
                     .map((item, index) => (
                       <Tr
                         key={index}

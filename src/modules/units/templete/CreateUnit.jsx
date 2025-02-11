@@ -47,6 +47,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     pageNo: 1,
     limit: 1000,
     count: 12,
+    role: USER_ROLES.OWNER,
   });
   const { PropertiesData, PropertiesRefetch } = useProperties({
     pageNo: 1,
@@ -609,9 +610,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
               }}
             >
               <option value={0}>{t("general.owner")} </option>
-              {usersData?.users
-                .filter((s) => s.role == USER_ROLES.OWNER)
-                ?.map((i, index) => (
+              {usersData?.users?.map((i, index) => (
                   <option value={i.id} key={index}>
                     {i.firstNameAr}
                   </option>

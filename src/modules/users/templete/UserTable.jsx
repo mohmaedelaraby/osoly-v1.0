@@ -143,6 +143,7 @@ function UserTable({ switchTo }) {
     email: email,
     identityId: identityId,
     contractNumber: contractNumber,
+    role: USER_ROLES.TENANT,
   });
 
   
@@ -468,7 +469,6 @@ function UserTable({ switchTo }) {
               {usersDataType && !userDataLodaing && !isBulkLoading && !isDeleteLoading? (
                 <>
                   {usersDataType?.users
-                    ?.filter((i) => i.role === USER_ROLES.TENANT)
                     .map((item, index) => (
                       <Tr key={index} className="table_body_row">
                         <Td className="table_body_row_item">
