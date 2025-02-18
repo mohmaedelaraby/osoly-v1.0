@@ -32,7 +32,7 @@ const CreateUser = ({ onClose, userRule }) => {
   const { mutate, isLoading, isSuccess } = useCreateUser();
   const initialValues = {
     firstNameEn: "",
-    lastNameEn: " ",
+    lastNameEn: "",
     lastNameAr: " ",
     firstNameAr: "",
     password: "",
@@ -52,13 +52,21 @@ const CreateUser = ({ onClose, userRule }) => {
     onSubmit: (values) => {
       let data;
       if (userRule == USER_ROLES.OWNER) {
-        values.phoneNumber = values.phoneNumber.toString()
+        values.phoneNumber = values.phoneNumber.toString();
         data = values;
       } else {
-        values.phoneNumber = values.phoneNumber.toString()
+        values.phoneNumber = values.phoneNumber.toString();
         delete values.contractNumber;
         data = values;
       }
+
+      // Remove falsy keys from data
+      Object.keys(data).forEach(key => {
+        if (!data[key]) {
+          delete data[key];
+        }
+      });
+
       mutate({ body: data });
     },
   });

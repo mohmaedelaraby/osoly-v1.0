@@ -1,1 +1,1 @@
-export const apiUrl = "https://api.usooly.com/api/v1/";
+export const apiUrl = process.env.REACT_APP_API_URL;

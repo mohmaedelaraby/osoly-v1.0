@@ -72,6 +72,12 @@ const EditUser = ({ onClose, id, userRule }) => {
           email: values.email,
         },
       };
+       // Remove falsy keys from data
+       Object.keys(sentData).forEach(key => {
+        if (!sentData[key]) {
+          delete sentData[key];
+        }
+      });
       mutate(sentData);
     },
   });

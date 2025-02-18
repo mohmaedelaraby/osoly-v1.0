@@ -119,6 +119,8 @@
       "search": "بحث",
       "rent_rate": "نوع الايجار",
       "monthly": "شهري",
+      "quarter_yearly": "ربع سنوي",
+      "half_yearly": "نصف سنوي",
       "yearly": "سنوي"
     },
     "search": {

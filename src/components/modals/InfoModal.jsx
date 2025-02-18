@@ -42,7 +42,7 @@ const InfoModal = ({ onClose }) => {
             </div>
             <div className="info_modal_conatiner_body_email">
               <div className="info_modal_conatiner_body_box">
-                <span>Usoleey@info.com</span>
+                <span>{process.env.REACT_APP_EMAIL_CONTACT}</span>
 
                 <span>
                   <svg
@@ -64,7 +64,7 @@ const InfoModal = ({ onClose }) => {
             </div>
             <div className="info_modal_conatiner_body_phone">
               <div className="info_modal_conatiner_body_box">
-                <span>0502928382893</span>
+                <span>{process.env.REACT_APP_PHONE_CONTACT}</span>
 
                 <span>
                   <svg

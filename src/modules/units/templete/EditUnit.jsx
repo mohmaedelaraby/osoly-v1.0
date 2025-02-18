@@ -280,6 +280,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.unit_name")}
+                        <span className="red_dot">*</span>
                       </Text>
                     </FormLabel>
                     <Input
@@ -309,6 +310,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.rent_cost")}
+                        <span className="red_dot">*</span>
                       </Text>
                     </FormLabel>
                     <Input
@@ -336,6 +338,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.rent_collect_date")}
+                        <span className="red_dot">*</span>
                       </Text>
                     </FormLabel>
                     <Input
@@ -353,6 +356,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                         formik.touched.rentCollectionDate &&
                         !!formik.errors.rentCollectionDate
                       }
+                      min={dayjs().add(15, 'days').format("YYYY-MM-DD")}
                     />
 
                     <div className="form__input__container__warn">
@@ -441,6 +445,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.water_bill_cost")}
+                        <span className="red_dot">*</span>
                       </Text>
                     </FormLabel>
                     <Input
@@ -472,6 +477,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     <FormLabel>
                       <Text className="form__input__container__label fo_primary">
                         {t("general.electericty_cost_num")}
+                        <span className="red_dot">*</span>
                       </Text>
                     </FormLabel>
                     <Input
@@ -805,10 +811,9 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                       }}
                     >
                       <option value={0}> {t("general.rent_rate")} </option>
-                      <option value={"MONTHLY"}>
-                         
-                        {t("general.monthly")} 
-                      </option>
+                      <option value={"MONTHLY"}>{t("general.monthly")}</option>
+                      <option value={"QUARTERLY"}> {t("general.quarter_yearly")} </option>
+                      <option value={"HALF_YEARLY"}> {t("general.half_yearly")} </option>
                       <option value={"YEARLY"}> {t("general.yearly")} </option>
                     </Select>
                   </FormControl>

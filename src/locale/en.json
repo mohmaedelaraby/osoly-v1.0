@@ -119,6 +119,8 @@
       "search": "Search",
       "rent_rate": " Rent Rate",
       "monthly": "Monthly",
+      "quarter_yearly": "Quarterly",
+      "half_yearly": "Half Yearly",
       "yearly": "Yearly"
     },
     "search": {
