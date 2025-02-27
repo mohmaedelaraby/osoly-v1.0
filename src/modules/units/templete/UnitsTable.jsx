@@ -55,6 +55,9 @@ import DeleteUnit from "./DeleteUnit";
 const UnitsTable = () => {
   const { t } = useTranslation();
   const { primary, secondry } = useDynamicColors();
+  const currentUserJson = sessionStorage.getItem("currentUser");
+  const userRole = JSON.parse(currentUserJson)?.enterprise?.role;
+
 
   const [selectId, setSelectedId] = useState();
   const [selectprobId, setSelectedProbId] = useState();
@@ -86,7 +89,7 @@ const UnitsTable = () => {
   const [loungeTmp, setLoungeTmp] = useState(null);
   const [kitchenTmp, setKitchenTmp] = useState(null);
   const [conditionersTmp, setConditionersTmp] = useState(null);
-  
+
 
   //sorting and filtering param data
   const [sortBy, setSortBy] = useState(null);
@@ -143,7 +146,7 @@ const UnitsTable = () => {
   const [isGrid, setIsGrid] = useState(false);
 
   // delete user
-  const { mutate, isSuccess ,isDeleteLoading} = useDeleteUnit();
+  const { mutate, isSuccess, isDeleteLoading } = useDeleteUnit();
 
   //units
   const [currentUnitPage, setCurrentUnitPage] = useState(1);
@@ -232,35 +235,39 @@ const UnitsTable = () => {
     <>
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
-          <Button
-            rightIcon={<AddIcon />}
-            className="page_container_table__header__btns__add"
-            bg={primary}
-            dir="rtl"
-            onClick={() => {
-              openUnitPopup();
-            }}
-          >
-            <span className="pl-8 fo_secondry">
-              {t("units.page.add_property")}
-            </span>
-          </Button>
+          {userRole !== "SUPER" && (
+            <>
+              <Button
+                rightIcon={<AddIcon />}
+                className="page_container_table__header__btns__add"
+                bg={primary}
+                dir="rtl"
+                onClick={() => {
+                  openUnitPopup();
+                }}
+              >
+                <span className="pl-8 fo_secondry">
+                  {t("units.page.add_property")}
+                </span>
+              </Button>
 
-          <Button
-            marginRight="8px"
-            rightIcon={<AddIcon />}
-            className="page_container_table__header__btns__add"
-            bg={primary}
-          >
-            <span className="pl-8 fo_secondry"> {t("general.add_file")}</span>
-            <Input
-              className="form__input__flex_fileUpload_input"
-              type="file"
-              name="image"
-              accept=".csv"
-              onChange={updateFile}
-            />
-          </Button>
+              <Button
+                marginRight="8px"
+                rightIcon={<AddIcon />}
+                className="page_container_table__header__btns__add"
+                bg={primary}
+              >
+                <span className="pl-8 fo_secondry"> {t("general.add_file")}</span>
+                <Input
+                  className="form__input__flex_fileUpload_input"
+                  type="file"
+                  name="image"
+                  accept=".csv"
+                  onChange={updateFile}
+                />
+              </Button>
+            </>
+          )}
 
           <Menu closeOnSelect={false}>
             <MenuButton
@@ -561,7 +568,7 @@ const UnitsTable = () => {
                     name="sortBY"
                     onChange={(e) => {
                       setSortByTmp(e.target.value);
-                      setTimeout(() => {}, 0);
+                      setTimeout(() => { }, 0);
                     }}
                   >
                     <option value={null}>{t("general.filter")}</option>
@@ -686,13 +693,13 @@ const UnitsTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody className="table_body">
-                  {unitsData && !isBulkLoading  && !isDeleteLoading? (
+                  {unitsData && !isBulkLoading && !isDeleteLoading ? (
                     <>
                       {unitsData?.units?.map((item, index) => (
                         <Tr
                           key={index}
                           className="table_body_row"
-                          onClick={() => {}}
+                          onClick={() => { }}
                         >
                           <Td className="table_body_row_item">{item.name}</Td>
                           <Td className="table_body_row_item">
@@ -742,6 +749,7 @@ const UnitsTable = () => {
                                   openUnitDelete(item)
                                 }}
                               ></Button>
+                               {userRole !== 'SUPER' && (
                               <Button
                                 className="table_body_row_item_btns_editbtn"
                                 width={"25%"}
@@ -756,6 +764,7 @@ const UnitsTable = () => {
                                   openUnitEditPopup(item);
                                 }}
                               ></Button>
+                               )}
                             </Stack>
                           </Td>
                         </Tr>
@@ -794,7 +803,7 @@ const UnitsTable = () => {
                     isBtns={false}
                     isVertical={false}
                     currncy={"ريال/شهري"}
-                    onClick={() => {}}
+                    onClick={() => { }}
                   ></CardWithImg>
                 ))}
             </div>

@@ -803,10 +803,11 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
                     </FormLabel>
                     <Select
                       height={"56px"}
-                      name="rent_rate"
+                      name="rentCollectionRate"
                       value={selectedRentRate}
                       onChange={(e) => {
                         setSelectedRentRate(e.target.value);
+                        formik.setFieldValue("rentCollectionRate", e.target.value);        
                         setTimeout(() => {}, 0);
                       }}
                     >

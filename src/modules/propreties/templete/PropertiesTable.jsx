@@ -51,6 +51,9 @@ import DeleteProperty from "./DeleteProperty";
 
 function PropertiesTable() {
   const { t } = useTranslation();
+  const currentUserJson = sessionStorage.getItem("currentUser");
+  const userRole = JSON.parse(currentUserJson)?.enterprise?.role;
+
   const { primary, secondry } = useDynamicColors();
 
   const [selectId, setSelectedId] = useState();
@@ -130,7 +133,7 @@ function PropertiesTable() {
     onClose: onCloseModalDelte,
   } = useDisclosure();
   // delete user
-  const { mutate, isSuccess ,isDeleteLoading } = useDeleteProperty();
+  const { mutate, isSuccess, isDeleteLoading } = useDeleteProperty();
 
   const [currentPropertyPage, setCurrentPropertyPage] = useState(1);
   const propertylimit = 10;
@@ -213,33 +216,36 @@ function PropertiesTable() {
     <>
       <div className="page_container_table__header">
         <div className="page_container_table__header__btns">
-          <Button
-            rightIcon={<AddIcon />}
-            className="page_container_table__header__btns__add"
-            bg={primary}
-            onClick={() => {
-              openPropertyPopup();
-            }}
-          >
-            <span className="pl-8 fo_secondry">
-              {t("propreties.page.add_property_title")}
-            </span>
-          </Button>
-          <Button
-            marginRight="8px"
-            rightIcon={<AddIcon />}
-            className="page_container_table__header__btns__add"
-            bg={primary}
-          >
-            <span className="pl-8 fo_secondry"> {t("general.add_file")}</span>
-            <Input
-              className="form__input__flex_fileUpload_input"
-              type="file"
-              name="csvFile"
-              accept=".csv"
-              onChange={updateFile}
-            />
-          </Button>
+          {userRole !== 'SUPER' && (
+            <>
+              <Button
+                rightIcon={<AddIcon />}
+                className="page_container_table__header__btns__add"
+                bg={primary}
+                onClick={() => {
+                  openPropertyPopup();
+                }}
+              >
+                <span className="pl-8 fo_secondry">
+                  {t("propreties.page.add_property_title")}
+                </span>
+              </Button>
+              <Button
+                marginRight="8px"
+                rightIcon={<AddIcon />}
+                className="page_container_table__header__btns__add"
+                bg={primary}
+              >
+                <span className="pl-8 fo_secondry"> {t("general.add_file")}</span>
+                <Input
+                  className="form__input__flex_fileUpload_input"
+                  type="file"
+                  name="csvFile"
+                  accept=".csv"
+                  onChange={updateFile}
+                />
+              </Button>
+            </>)}
           <Menu closeOnSelect={false}>
             <MenuButton
               as={Button}
@@ -512,7 +518,7 @@ function PropertiesTable() {
                     name="sortBY"
                     onChange={(e) => {
                       setSortByTmp(e.target.value);
-                      setTimeout(() => {}, 0);
+                      setTimeout(() => { }, 0);
                     }}
                   >
                     <option value={null}>{t("general.filter")}</option>
@@ -632,7 +638,7 @@ function PropertiesTable() {
                         <Tr
                           key={index}
                           className="table_body_row"
-                          onClick={() => {}}
+                          onClick={() => { }}
                         >
                           <Td className="table_body_row_item">{item.name}</Td>
                           <Td className="table_body_row_item">
@@ -645,17 +651,17 @@ function PropertiesTable() {
                             {item?.address}
                           </Td>
                           <Td className="table_body_row_item">
-                            {item?.owners?.map((owner , index)=>(
+                            {item?.owners?.map((owner, index) => (
                               <div >
-                              <span>
-                              {owner?.firstNameAr}
-                              </span>
-                              <span>
-                                {
-                                  index < item?.owners?.length-1 ? ' , ' : ''
-                                }
-                              </span>
-                              
+                                <span>
+                                  {owner?.firstNameAr}
+                                </span>
+                                <span>
+                                  {
+                                    index < item?.owners?.length - 1 ? ' , ' : ''
+                                  }
+                                </span>
+
                               </div>
                             ))}
                           </Td>
@@ -680,6 +686,7 @@ function PropertiesTable() {
                                   openPropertyDeletePopup(item)
                                 }}
                               ></Button>
+                              {userRole !== 'SUPER' && (
                               <Button
                                 className="table_body_row_item_btns_editbtn"
                                 width={"25%"}
@@ -694,6 +701,7 @@ function PropertiesTable() {
                                   openPropertyEditPopup(item);
                                 }}
                               ></Button>
+                              )}
                             </Stack>
                           </Td>
                         </Tr>

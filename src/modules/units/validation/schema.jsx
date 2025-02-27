@@ -13,7 +13,7 @@ export const unitsValidation = Yup.object({
   conditioners: Yup.number().notRequired(""),
   maintenanceMan: Yup.string().required(""),
   tenantId: Yup.string().notRequired(""),
-  rent_rate: Yup.string().required(""),
+  rentCollectionRate: Yup.string().required(""),
   image: Yup.mixed().notRequired("")
 });
 

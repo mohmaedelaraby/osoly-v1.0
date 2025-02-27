@@ -32,10 +32,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
 
   const [selectedOwnerId, setSelectedOwnerId] = useState(propOwenerId);
   const [selectedRenterId, setSelectedRenterId] = useState();
-  const [selectedMaintenanceManId, setSelectedMaintenanceManId] =
-    useState();
-  const [selectedRentRate, setSelectedRentRate] =
-    useState("");
+  const [selectedMaintenanceManId, setSelectedMaintenanceManId] = useState();
+  const [selectedRentRate, setSelectedRentRate] = useState("");
   const [selectedProbertyId, setSelectedPropertyId] = useState(propPropertyId);
   const [loungeChoice, setLoungeChoice] = useState(false);
   const [kitchenChoice, setKitchenChoice] = useState(false);
@@ -81,17 +79,19 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     propertyId: propPropertyId || " ",
     tenantId:" ",
     image: " ",
+    rentCollectionRate: null,
     maintenanceMan: "OWNER",
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: unitsValidation,
-    onSubmit: (values) => {
+    onSubmit: (values) => {      
       formik.values.ownerId = selectedOwnerId;
       formik.values.propertyId = selectedProbertyId;
       formik.values.maintenanceMan = selectedMaintenanceManId;
       formik.values.tenantId = selectedRenterId;
+      formik.rentCollectionRate = selectedRentRate;
       const formData = new FormData();
       if(selectedImage){
         formData.append("image", selectedImage, selectedImage.name);
@@ -728,8 +728,9 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
             </FormLabel>
             <Select
               height={"56px"}
-              name="rent_rate"
-              onChange={(e) => {
+              name="rentCollectionRate"
+              onChange={(e) => {        
+                formik.setFieldValue("rentCollectionRate", e.target.value);        
                 setSelectedRentRate(e.target.value);
                 setTimeout(() => {}, 0);
               }}
