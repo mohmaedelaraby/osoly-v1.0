@@ -191,8 +191,6 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
         {data ? (
           <>
             <form onSubmit={formik.handleSubmit} className="form">
-              {console.log("formik", formik.values)}
-              {console.log("formik", formik.errors)}
               <div className="form__header">
                 <div className="form__header_text fo_primary">
                   {t("units.create.title_edit")}
