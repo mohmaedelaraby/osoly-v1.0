@@ -90,6 +90,7 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
     rooms: data?.rooms || 0,
     bathrooms: data?.bathrooms || 0,
     conditioners: data?.conditioners || 0,
+    rentCollectionRate: data?.rentCollectionRate || 0,
     ownerId: data?.ownerId || " ",
     tenantId: data?.tenantId || " ",
     propertyId: data?.propertyId || " ",
@@ -190,6 +191,8 @@ const EditUnit = ({ onClose, id, propOwenerId, propPropertyId }) => {
         {data ? (
           <>
             <form onSubmit={formik.handleSubmit} className="form">
+              {console.log("formik", formik.values)}
+              {console.log("formik", formik.errors)}
               <div className="form__header">
                 <div className="form__header_text fo_primary">
                   {t("units.create.title_edit")}

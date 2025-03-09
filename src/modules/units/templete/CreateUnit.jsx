@@ -46,7 +46,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     pageNo: 1,
     limit: 1000,
     count: 12,
-    role: USER_ROLES.OWNER,
+    role: USER_ROLES.TENANT,
   });
   const { PropertiesData, PropertiesRefetch } = useProperties({
     pageNo: 1,
@@ -56,7 +56,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
   useEffect(() => {
     usersRefetch();
     PropertiesRefetch();
-    if(usersData){
+    if(usersData){      
       setFiltersRenters(usersData)
     }
   }, [usersData]);
@@ -157,15 +157,14 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
     }
   },[isSuccess])
 
-  useEffect(()=>{
-
+  useEffect(()=>{    
     const filterdArr = filterdRenters?.users.filter((i) => i.identityId === filterdRentSearch)
     if(filterdArr?.length){
       setSelectedRenterId(filterdArr[0]?.id)
     }else{
       setSelectedRenterId(null)
     }
-  },[filterdRentSearch])
+  },[filterdRentSearch, filterdRenters])
 
   return (
     <div className="from__card from__card__full">
@@ -600,8 +599,8 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
           </FormControl>
         </div>
 
-        {/* <div className="form__input form__input__flex mb-24" style={{alignItems:'flex-end'}}>
-          <FormControl className="form__input__container">
+        <div className="form__input form__input__flex mb-24" style={{alignItems:'flex-end'}}>
+          {/* <FormControl className="form__input__container">
             <FormLabel>
               <Text className="form__input__container__label fo_primary">
                 {t("general.property_owner")}
@@ -623,7 +622,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                   </option>
                 ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           <FormControl className="form__input__container">
             <FormLabel>
@@ -667,7 +666,7 @@ const CreateUnit = ({ propOwenerId, propPropertyId, onClose }) => {
                 ))}
             </Select>
           </FormControl>
-        </div> */}
+        </div> 
         <div className="form__input form__input__flex mb-24">
           <FormControl className="form__input__container">
             <FormLabel>
